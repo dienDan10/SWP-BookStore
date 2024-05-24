@@ -9,4 +9,6 @@ public interface UserService {
 
     void saveUser(UserDTO userDTO);
 
+    void updateUser(User user);
+
 }

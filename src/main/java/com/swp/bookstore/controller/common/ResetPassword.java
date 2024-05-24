@@ -13,10 +13,10 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet(name="Login", urlPatterns = "/login")
-public class Login extends HttpServlet {
+@WebServlet(name="ResetPassword", urlPatterns = "/reset-password")
+public class ResetPassword extends HttpServlet {
 
-    private UserService userService;
+    UserService userService;
 
     @Override
     public void init() throws ServletException {
@@ -24,24 +24,18 @@ public class Login extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("login.jsp").forward(req, resp);
-    }
-
-    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String email = req.getParameter("email");
         String password = req.getParameter("password");
-        User user = userService.findOneByEmail(email);
-        System.out.println(user);
-        if (user == null || !user.getPassword().equals(PasswordEncryptor.toSHA256(password))) { //display error message
-            req.setAttribute("loginError", "Invalid email or password");
-            req.getRequestDispatcher("login.jsp").forward(req, resp);
-            return;
-        }
-
+        // get email from session
         HttpSession session = req.getSession();
-        session.setAttribute("user", user);
-        resp.sendRedirect("/home-page");
+        String email = (String) session.getAttribute("email");
+        // remove email from session
+        session.removeAttribute("email");
+        // change user password
+        User user = userService.findOneByEmail(email);
+        user.setPassword(PasswordEncryptor.toSHA256(password));
+        userService.updateUser(user);
+        req.setAttribute("resetSuccess", "Reset password successful!");
+        req.getRequestDispatcher("resetPasswordSuccess.jsp").forward(req, resp);
     }
 }

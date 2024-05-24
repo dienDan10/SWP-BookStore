@@ -14,12 +14,9 @@ public class HelloServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-
-        EntityManager em = JPAUtil.getEntityManager();
         String s = "test123";
         String encryped = PasswordEncryptor.toSHA256(s);
         request.setAttribute("encrypted", encryped);
-
 
     }
 

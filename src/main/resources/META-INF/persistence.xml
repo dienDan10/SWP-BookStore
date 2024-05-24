@@ -4,7 +4,7 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
     <persistence-unit name="default">
-    <class>com.swp.bookstore.Student</class>
+        <class>com.swp.bookstore.entity.User</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
             <property name="jakarta.persistence.jdbc.url"    value="jdbc:sqlserver://localhost:1433;databaseName=BOOKSTORE;trustServerCertificate=true" />

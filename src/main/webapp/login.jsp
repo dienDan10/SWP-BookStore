@@ -1,5 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -37,6 +38,9 @@
                                         <input type="password" class="form-control border-0 border-bottom rounded-0" name="password" id="password" value="" placeholder="Password" required>
                                         <label for="password" class="form-label">Password</label>
                                     </div>
+                                    <c:if test="${not empty loginError}">
+                                        <p class="mb-0 fst-italic text-danger">${loginError}</p>
+                                    </c:if>
                                 </div>
                                 <div class="col-12">
                                     <div class="row justify-content-between">
@@ -50,7 +54,7 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="text-end">
-                                                <a href="#!" class="link-secondary text-decoration-none">Forgot password?</a>
+                                                <a href="#!" class="link-secondary text-decoration-none mb-0" data-bs-toggle="modal" data-bs-target="#exampleModal">Forgot password?</a>
                                             </div>
                                         </div>
                                     </div>
@@ -98,5 +102,42 @@
         </div>
     </div>
 </section>
+<c:if test="${not empty emailError}">
+    <div class="alert alert-danger mx-auto" style="max-width: 500px" role="alert">
+        ${emailError}
+    </div>
+</c:if>
+<c:if test="${not empty emailSuccess}">
+    <div class="alert alert-success mx-auto" style="max-width: 500px" role="alert">
+            ${emailSuccess}
+    </div>
+</c:if>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="p-3">
+                <p class="fs-6">
+                    We will send an email with a link to reset your password.
+                    <br />
+                    Please enter your email to reset password:
+                </p>
+                <form action="/forgot-password" class="form" method="POST">
+                    <div class="form-group mb-3">
+                        <input type="email" class="form-control" name="email">
+                    </div>
+                    <button class="btn btn-dark rounded-0">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
