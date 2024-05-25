@@ -1,6 +1,7 @@
 package com.swp.bookstore.service;
 
 import com.swp.bookstore.dto.UserDTO;
+import com.swp.bookstore.dto.UserGoogleDto;
 import com.swp.bookstore.entity.User;
 
 public interface UserService {
@@ -10,5 +11,7 @@ public interface UserService {
     void saveUser(UserDTO userDTO);
 
     void updateUser(User user);
+
+    void saveUser(UserGoogleDto userGoogleDto);
 
 }

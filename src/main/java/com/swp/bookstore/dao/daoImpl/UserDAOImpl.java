@@ -20,7 +20,7 @@ public class UserDAOImpl implements UserDAO {
         try {
             user = query.getSingleResult();
         } catch (NoResultException e) {
-            e.printStackTrace();
+            System.out.println("Email not found " + email);
         } finally {
             em.close();
         }

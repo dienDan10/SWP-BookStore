@@ -39,7 +39,7 @@ public class Email {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to, false)); // set receive email
             message.setSubject(subject);    // set subject for the mail
             message.setSentDate(new Date());    // set time to send
-            message.setText(body, "UTF-8"); // set content of the mail.
+            message.setContent(body, "text/HTML;charset=UTF-8"); // set content of the mail.
 
             Transport.send(message);
             return true;
