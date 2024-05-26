@@ -36,13 +36,6 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control border-0 border-bottom rounded-0"
-                                               name="username" id="username" value="${param.username}" placeholder="Username" required>
-                                        <label for="username" class="form-label">Username</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-floating mb-3">
                                         <input type="email" class="form-control border-0 border-bottom rounded-0 ${not empty emailExist ? "is-invalid" : ""}"
                                                name="email" id="email" value="${param.email}" placeholder="Email" required>
                                         <label for="email" class="form-label">Email</label>
@@ -53,16 +46,17 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating mb-3">
-                                        <input type="password" class="form-control border-0 border-bottom rounded-0 "
+                                        <input type="password" class="form-control border-0 border-bottom rounded-0 password-1"
                                                name="password" id="password" value="" placeholder="Password" required>
                                         <label for="password" class="form-label">Password</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control border-0 border-bottom rounded-0"
-                                               name="phone" id="phone" value="${param.phone}" placeholder="Phone Number" required>
-                                        <label for="phone" class="form-label">Phone Number</label>
+                                        <input type="password" class="form-control border-0 border-bottom rounded-0 password-2"
+                                                id="re-password" value="" placeholder="Password" required>
+                                        <label for="re-password" class="form-label">Re-enter password</label>
+                                        <p class="msg fst-italic text-danger mb-0"></p>
                                     </div>
                                 </div>
                                 <div class="col-12 mb-2">
@@ -79,20 +73,9 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="form-floating mb-3">
-                                        <input type="date" class="form-control border-0 border-bottom rounded-0"
-                                               name="birthDate" id="birthDate" value="" placeholder="Birth Date">
-                                        <label for="birthDate" class="form-label">Birth Date</label>
-                                    </div>
-                                    <c:if test="${not empty birthDateErr}">
-                                        <div class="fst-italic text-danger">${birthDateErr}</div>
-                                    </c:if>
-                                </div>
-
-                                <div class="col-12">
                                     <div class="d-grid">
                                         <button class="btn btn-lg btn-dark rounded-0 fs-6"
-                                                type="submit">Register</button>
+                                                type="submit" disabled>Register</button>
                                     </div>
                                 </div>
                             </div>
@@ -103,5 +86,6 @@
         </div>
     </div>
 </section>
+<script src="js/re-enter-password.js"></script>
   </body>
 </html>

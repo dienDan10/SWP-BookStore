@@ -24,11 +24,7 @@ public class UserServiceImpl implements UserService {
         user.setName(userDTO.getName());
         user.setEmail(userDTO.getEmail());
         user.setPassword(PasswordEncryptor.toSHA256(userDTO.getPassword()));
-        user.setUsername(userDTO.getUsername());
-        user.setBirthDate(userDTO.getBirthDate());
         user.setGender(userDTO.isGender());
-        user.setPhoneNumber(userDTO.getPhone());
-
         userDAO.save(user);
     }
 

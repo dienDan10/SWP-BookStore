@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @WebServlet(name="Register", urlPatterns = "/register")
 public class Register extends HttpServlet {
@@ -31,12 +32,7 @@ public class Register extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // check valid user input
-        boolean isValid = authenticateUserInfo(req);
-        if (!isValid) {
-            req.getRequestDispatcher("register.jsp").forward(req, resp);
-            return;
-        }
+
         // check for email has been registered
         User user = userService.findOneByEmail(req.getParameter("email"));
         if (user != null) {
@@ -46,15 +42,11 @@ public class Register extends HttpServlet {
         }
 
         // create a user dto object
-        UserDTO userdto = new UserDTO(
-                req.getParameter("name"),
-                req.getParameter("username"),
-                req.getParameter("password"),
-                req.getParameter("email"),
-                req.getParameter("phone"),
-                req.getParameter("gender").equals("1"),
-                req.getParameter("birthDate")
-        );
+        UserDTO userdto = new UserDTO();
+        userdto.setEmail(req.getParameter("email"));
+        userdto.setPassword(req.getParameter("password"));
+        userdto.setName(req.getParameter("name"));
+        userdto.setGender(req.getParameter("gender").equals("1"));
         HttpSession session = req.getSession();
         session.setAttribute("userdto", userdto);
 
@@ -62,18 +54,5 @@ public class Register extends HttpServlet {
         resp.sendRedirect("/otp-verification");
     }
 
-    /*
-    * Return true if user input is valid
-    * false otherwise
-    * */
-    private boolean authenticateUserInfo(HttpServletRequest request) {
-        String birthDate = request.getParameter("birthDate");
-        if (birthDate.trim().equals("")) {
-            return true;
-        }
-        LocalDate date = LocalDate.parse(birthDate);
-        request.setAttribute("birthDateErr", "Your birth date is invalid!");
-        return date.isBefore(LocalDate.now());
-    }
 
 }

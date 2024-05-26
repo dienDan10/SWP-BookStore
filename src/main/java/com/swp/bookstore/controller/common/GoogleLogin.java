@@ -41,7 +41,6 @@ public class GoogleLogin extends HttpServlet {
 
         String accessToken = getToken(code);
         UserGoogleDto googleUserDTO = getUserInfo(accessToken);
-        System.out.println(googleUserDTO);
 
         // check if email has been registered to an account
         User user = userService.findOneByEmail(googleUserDTO.getEmail());
