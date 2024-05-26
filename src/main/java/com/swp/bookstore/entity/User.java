@@ -10,8 +10,8 @@ import java.util.List;
 
 @Entity
 @Table(name="users")
-@Data
 @ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -43,5 +43,14 @@ public class User {
 
     @Column(name="image_url")
     private String imageURL;
+
+    @ManyToMany(fetch = FetchType.EAGER,
+    cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinTable(
+        name="user_role",
+        joinColumns = @JoinColumn(name="user_id"),
+            inverseJoinColumns = @JoinColumn(name="role_id")
+    )
+    private List<Role> roles;
 
 }

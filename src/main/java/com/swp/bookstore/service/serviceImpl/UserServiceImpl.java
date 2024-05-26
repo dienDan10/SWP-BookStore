@@ -1,17 +1,23 @@
 package com.swp.bookstore.service.serviceImpl;
 
 import com.swp.bookstore.config.Constant;
+import com.swp.bookstore.dao.RoleDAO;
 import com.swp.bookstore.dao.UserDAO;
+import com.swp.bookstore.dao.daoImpl.RoleDAOImpl;
 import com.swp.bookstore.dao.daoImpl.UserDAOImpl;
 import com.swp.bookstore.dto.UserDTO;
 import com.swp.bookstore.dto.UserGoogleDto;
 import com.swp.bookstore.entity.User;
+import com.swp.bookstore.enums.ROLE;
 import com.swp.bookstore.service.UserService;
 import com.swp.bookstore.utils.PasswordEncryptor;
+
+import java.util.Arrays;
 
 public class UserServiceImpl implements UserService {
 
     private UserDAO userDAO = new UserDAOImpl();
+    private RoleDAO roleDAO = new RoleDAOImpl();
 
     @Override
     public User findOneByEmail(String email) {
@@ -25,6 +31,7 @@ public class UserServiceImpl implements UserService {
         user.setEmail(userDTO.getEmail());
         user.setPassword(PasswordEncryptor.toSHA256(userDTO.getPassword()));
         user.setGender(userDTO.isGender());
+        user.setRoles(Arrays.asList(roleDAO.findRoleByName(ROLE.USER.name())));
         userDAO.save(user);
     }
 
@@ -33,8 +40,9 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setName(userGoogleDto.getName());
         user.setEmail(userGoogleDto.getEmail());
-        user.setImageURL(user.getImageURL());
+        user.setImageURL(userGoogleDto.getPicture());
         user.setPassword(PasswordEncryptor.toSHA256(Constant.DEFAULT_PASSWORD));
+        user.setRoles(Arrays.asList(roleDAO.findRoleByName(ROLE.USER.name())));
         userDAO.save(user);
     }
 

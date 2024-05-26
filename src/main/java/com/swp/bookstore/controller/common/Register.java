@@ -12,8 +12,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.Objects;
 
 @WebServlet(name="Register", urlPatterns = "/register")
 public class Register extends HttpServlet {

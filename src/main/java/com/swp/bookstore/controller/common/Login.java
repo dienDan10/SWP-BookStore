@@ -42,6 +42,7 @@ public class Login extends HttpServlet {
 
         HttpSession session = req.getSession();
         session.setAttribute("user", user);
+        session.setAttribute("successMsg", "Login successful!");
         resp.sendRedirect("/home-page");
     }
 }
