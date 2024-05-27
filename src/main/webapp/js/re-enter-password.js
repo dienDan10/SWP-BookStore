@@ -14,4 +14,5 @@ p2.addEventListener('input', () => {
         msg.textContent = "";
         btn.disabled = false;
     }
+    console.log("hello");
 });

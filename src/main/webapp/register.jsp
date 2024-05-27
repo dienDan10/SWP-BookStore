@@ -1,7 +1,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <title>Register</title>
@@ -59,17 +59,12 @@
                                         <p class="msg fst-italic text-danger mb-0"></p>
                                     </div>
                                 </div>
-                                <div class="col-12 mb-2">
-                                    <div class="mb-2">Gender</div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" id="gender-male"
-                                               value="1" checked>
-                                        <label class="form-check-label" for="gender-male">Male</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input ms-5" type="radio" name="gender"
-                                               id="gender-female" value="0">
-                                        <label class="form-check-label" for="gender-female">Female</label>
+                                <div class="col-12">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" value="" name="remember_me" id="display-password">
+                                        <label class="form-check-label text-secondary" for="display-password">
+                                            See password
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -87,5 +82,17 @@
     </div>
 </section>
 <script src="js/re-enter-password.js"></script>
-  </body>
+<script>
+    const displayPassword = document.querySelector('#display-password');
+    displayPassword.onchange = function () {
+        if (displayPassword.checked) {
+            p1.setAttribute('type', 'text');
+            p2.setAttribute('type', 'text');
+        } else {
+            p1.setAttribute('type', 'password');
+            p2.setAttribute('type', 'password');
+        }
+    }
+</script>
+</body>
 </html>

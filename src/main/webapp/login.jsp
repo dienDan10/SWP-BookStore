@@ -8,6 +8,8 @@
     <title>Login</title>
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/logins/login-12/assets/css/login-12.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
 </head>
 <body>
 <!-- Login 12 - Bootstrap Brain Component -->
@@ -37,6 +39,7 @@
                                     <div class="form-floating mb-3">
                                         <input type="password" class="form-control border-0 border-bottom rounded-0" name="password" id="password" value="" placeholder="Password" required>
                                         <label for="password" class="form-label">Password</label>
+
                                     </div>
                                     <c:if test="${not empty loginError}">
                                         <p class="mb-0 fst-italic text-danger">${loginError}</p>
@@ -46,9 +49,9 @@
                                     <div class="row justify-content-between">
                                         <div class="col-6">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
-                                                <label class="form-check-label text-secondary" for="remember_me">
-                                                    Remember me
+                                                <input class="form-check-input" type="checkbox" value="" name="remember_me" id="display-password">
+                                                <label class="form-check-label text-secondary" for="display-password">
+                                                    See password
                                                 </label>
                                             </div>
                                         </div>
@@ -140,5 +143,17 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const displayPassword = document.querySelector('#display-password');
+    const password = document.querySelector("#password");
+    displayPassword.onchange = function() {
+        if (displayPassword.checked) {
+            password.setAttribute('type', 'text');
+        } else {
+            password.setAttribute('type', 'password');
+        }
+    }
+
+</script>
 </body>
 </html>
