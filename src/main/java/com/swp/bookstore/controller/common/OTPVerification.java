@@ -62,6 +62,8 @@ public class OTPVerification extends HttpServlet {
         // delete the otp code and remove userdto from session
         session.removeAttribute("userdto");
         session.removeAttribute("OTP");
+        // send register success message
+        session.setAttribute("successMsg", "Register successful!");
         // redirect to login page
         resp.sendRedirect("/login");
     }

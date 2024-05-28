@@ -30,7 +30,7 @@
 
                     <form action="/otp-verification" class="form" method="POST">
                         <div class="form-group mt-3 mb-3">
-                            <input type="text" class="form-control ${not empty otpErr ? "is-invalid" : ""}" name="otp" />
+                            <input type="number" class="form-control ${not empty otpErr ? "is-invalid" : ""}" name="otp" required/>
                             <c:if test="${not empty otpErr}">
                                 <div class="fst-italic text-danger">${otpErr}</div>
                             </c:if>

@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
         user.setName(userDTO.getName());
         user.setEmail(userDTO.getEmail());
         user.setPassword(PasswordEncryptor.toSHA256(userDTO.getPassword()));
-        user.setGender(userDTO.isGender());
+        user.setImageURL("image/default-user-image.png");
         user.setRoles(Arrays.asList(roleDAO.findRoleByName(ROLE.USER.name())));
         userDAO.save(user);
     }
@@ -40,7 +40,12 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setName(userGoogleDto.getName());
         user.setEmail(userGoogleDto.getEmail());
-        user.setImageURL(userGoogleDto.getPicture());
+        // set default user image
+        if (userGoogleDto.getPicture().isEmpty() || userGoogleDto.getPicture().isBlank()) {
+            user.setImageURL("image/default-user-image.png");
+        } else {
+            user.setImageURL(userGoogleDto.getPicture());
+        }
         user.setPassword(PasswordEncryptor.toSHA256(Constant.DEFAULT_PASSWORD));
         user.setRoles(Arrays.asList(roleDAO.findRoleByName(ROLE.USER.name())));
         userDAO.save(user);

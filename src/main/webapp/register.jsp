@@ -49,6 +49,7 @@
                                         <input type="password" class="form-control border-0 border-bottom rounded-0 password-1"
                                                name="password" id="password" value="" placeholder="Password" required>
                                         <label for="password" class="form-label">Password</label>
+                                        <div class="fst-italic text-danger password-constraint"></div>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -83,16 +84,13 @@
 </section>
 <script src="js/re-enter-password.js"></script>
 <script>
-    const displayPassword = document.querySelector('#display-password');
-    displayPassword.onchange = function () {
-        if (displayPassword.checked) {
-            p1.setAttribute('type', 'text');
-            p2.setAttribute('type', 'text');
-        } else {
-            p1.setAttribute('type', 'password');
-            p2.setAttribute('type', 'password');
-        }
-    }
+    const constraint = document.querySelector('.password-constraint');
+    p1.onfocus = function() {
+        constraint.textContent = 'For your safety, password should contains at least 8 character, text and number included';
+    };
+    p1.onblur = function() {
+        constraint.textContent = '';
+    };
 </script>
 </body>
 </html>

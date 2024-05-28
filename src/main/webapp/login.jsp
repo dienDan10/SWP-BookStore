@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/logins/login-12/assets/css/login-12.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-
+    <link rel="stylesheet" href="css/toast.css"/>
 </head>
 <body>
 <!-- Login 12 - Bootstrap Brain Component -->
@@ -141,6 +141,22 @@
         </div>
     </div>
 </div>
+
+<c:if test="${not empty successMsg}">
+    <div class="hidden" id="msg" type="success">${successMsg}</div>
+    <c:remove var="successMsg" scope="session"></c:remove>
+</c:if>
+<c:if test="${not empty errMsg}">
+    <div class="hidden" id="msg" type="error">${errMsg}</div>
+    <c:remove var="errMsg" scope="session"></c:remove>
+</c:if>
+<c:if test="${not empty invalidMsg}">
+    <div class="hidden" id="msg" type="invalid">${invalidMsg}</div>
+    <c:remove var="invalidMsg" scope="session"></c:remove>
+</c:if>
+<div id="toastBox"></div>
+
+<script src="js/toast.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>

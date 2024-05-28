@@ -44,7 +44,6 @@ public class Register extends HttpServlet {
         userdto.setEmail(req.getParameter("email"));
         userdto.setPassword(req.getParameter("password"));
         userdto.setName(req.getParameter("name"));
-        userdto.setGender(req.getParameter("gender").equals("1"));
         HttpSession session = req.getSession();
         session.setAttribute("userdto", userdto);
 
