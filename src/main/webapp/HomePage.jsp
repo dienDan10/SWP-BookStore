@@ -80,8 +80,8 @@
                                             </div>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Action</a></li>
-                                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                                            <li><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
+                                            <li><a class="dropdown-item" href="#">Thông tin đơn hàng</a></li>
                                             <li><a class="dropdown-item" href="/logout">Logout</a></li>
                                         </ul>
                                     </div>
@@ -114,7 +114,7 @@
         <div class="col col-12 col-xxl-10 mx-auto">
             <div class="d-flex flex-row gap-4 align-items-start">
                 <!-- Filter section -->
-                <div class="filter shadow" style="width: 200px">
+                <div class="filter shadow" style="width: 250px">
                     <div class="accordion accordion-flush" id="accordionFlushExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
@@ -206,7 +206,7 @@
                     <div class="book-card position-relative shadow border-1" style="width: 250px;">
                         <a href="#" class="book-link"></a>
                         <div class="image-box w-100 h-auto">
-                            <img src="image/namiya.jpeg" class="w-100 object-fit-cover" style="object-position: center;"
+                            <img src="image/book-image/namiya.jpeg" class="w-100 object-fit-cover" style="object-position: center;"
                                  alt="">
                         </div>
                         <div class="book-card-content mt-3 p-3">
@@ -233,7 +233,7 @@
                     <div class="book-card shadow position-relative border-1" style="width: 250px;">
                         <a href="#" class="book-link"></a>
                         <div class="image-box w-100 h-auto">
-                            <img src="image/namiya.jpeg" class="w-100 object-fit-cover" style="object-position: center;"
+                            <img src="image/book-image/namiya.jpeg" class="w-100 object-fit-cover" style="object-position: center;"
                                  alt="">
                         </div>
                         <div class="book-card-content mt-3 p-3">
@@ -260,7 +260,7 @@
                     <div class="book-card shadow position-relative border-1" style="width: 250px;">
                         <a href="#" class="book-link"></a>
                         <div class="image-box w-100 h-auto">
-                            <img src="image/namiya.jpeg" class="w-100 object-fit-cover" style="object-position: center;"
+                            <img src="image/book-image/namiya.jpeg" class="w-100 object-fit-cover" style="object-position: center;"
                                  alt="">
                         </div>
                         <div class="book-card-content mt-3 p-3">
@@ -287,7 +287,7 @@
                     <div class="book-card shadow position-relative border-1" style="width: 250px;">
                         <a href="#" class="book-link"></a>
                         <div class="image-box w-100 h-auto">
-                            <img src="image/namiya.jpeg" class="w-100 object-fit-cover" style="object-position: center;"
+                            <img src="image/book-image/namiya.jpeg" class="w-100 object-fit-cover" style="object-position: center;"
                                  alt="">
                         </div>
                         <div class="book-card-content mt-3 p-3">
@@ -314,7 +314,7 @@
                     <div class="book-card shadow position-relative border-1" style="width: 250px;">
                         <a href="#" class="book-link"></a>
                         <div class="image-box w-100 h-auto">
-                            <img src="image/namiya.jpeg" class="w-100 object-fit-cover" style="object-position: center;"
+                            <img src="image/book-image/namiya.jpeg" class="w-100 object-fit-cover" style="object-position: center;"
                                  alt="">
                         </div>
                         <div class="book-card-content mt-3 p-3">
@@ -341,7 +341,7 @@
                     <div class="book-card shadow position-relative border-1" style="width: 250px;">
                         <a href="#" class="book-link"></a>
                         <div class="image-box w-100 h-auto">
-                            <img src="image/namiya.jpeg" class="w-100 object-fit-cover" style="object-position: center;"
+                            <img src="image/book-image/namiya.jpeg" class="w-100 object-fit-cover" style="object-position: center;"
                                  alt="">
                         </div>
                         <div class="book-card-content mt-3 p-3">

@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/logins/login-12/assets/css/login-12.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 <!-- Login 12 - Bootstrap Brain Component -->
@@ -26,7 +27,7 @@
             <div class="col-12 col-lg-10 col-xl-8">
                 <div class="row gy-5 justify-content-center">
                     <div class="col-12 col-lg-5">
-                        <form action="/register" method="POST">
+                        <form action="/register" method="POST" class="myform">
                             <div class="row gy-3 overflow-hidden">
                                 <div class="col-12">
                                     <div class="form-floating mb-3">
@@ -70,6 +71,10 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
+                                    <div class="g-recaptcha" data-sitekey="6LePUuwpAAAAANteno4UNkHQ-IWcK6KwiGLH3QAD"></div>
+                                    <div class="fst-italic text-danger captcha-msg" ></div>
+                                </div>
+                                <div class="col-12">
                                     <div class="d-grid">
                                         <button class="btn btn-lg btn-dark rounded-0 fs-6"
                                                 type="submit" disabled>Register</button>
@@ -92,6 +97,25 @@
     p1.onblur = function() {
         constraint.textContent = '';
     };
+
+    const form = document.querySelector('.myform');
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const isValid = validateRecaptcha();
+        if (isValid) {
+            form.submit();
+        } else {
+
+        }
+    })
+    function validateRecaptcha() {
+        const response = grecaptcha.getResponse();
+        if (response.length === 0) {
+            document.querySelector('.captcha-msg').textContent = "Please finish the captcha";
+            return false;
+        }
+        return true;
+    }
 </script>
 </body>
 </html>

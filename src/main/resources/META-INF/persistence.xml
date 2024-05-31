@@ -6,12 +6,12 @@
     <persistence-unit name="default">
         <class>com.swp.bookstore.entity.User</class>
         <properties>
-            <property name="jakarta.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-            <property name="jakarta.persistence.jdbc.url"    value="jdbc:sqlserver://localhost:1433;databaseName=BOOKSTORE;trustServerCertificate=true" />
-            <property name="jakarta.persistence.jdbc.user"   value="sa" />
-            <property name="jakarta.persistence.jdbc.password" value="123" />
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="jakarta.persistence.jdbc.url"    value="jdbc:mysql://localhost:3306/BOOKSTORE" />
+            <property name="jakarta.persistence.jdbc.user"   value="trandinhtu" />
+            <property name="jakarta.persistence.jdbc.password" value="trandinhtu" />
             <property name="jakarta.persistence.schema-generation.database.action" value="none" />
-            <property name="hibernate.dialect"    value="org.hibernate.dialect.SQLServerDialect" />
+            <property name="hibernate.dialect"    value="org.hibernate.dialect.MySQLDialect" />
             <property name="hibernate.show_sql"   value="true" />
             <property name="hibernate.format_sql" value="true" />
         </properties>
