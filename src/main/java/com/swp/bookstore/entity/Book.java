@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.List;
-
 @Entity
 @Table(name="book")
 @Data
@@ -25,12 +23,6 @@ public class Book {
     private String description;
     @Column(name="published_date")
     private String publishedDate;
-    @Column(name="author_id")
-    private int authorId;
-    @Column(name="category_id")
-    private int categoryId;
-    @Column(name="publisher_id")
-    private int publisherId;
     @Column(name="number_of_page")
     private int pageCount;
     @Column(name="price")
@@ -69,10 +61,8 @@ public class Book {
     @JoinColumn(name="publisher_id")
     private Publisher publisher;
 
-    @OneToMany(
-            fetch = FetchType.LAZY,
-            mappedBy = "book",
-            cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}
-    )
-    private List<Rating> ratings;
+
+    public int getAverageRating() {
+        return (int)Math.ceil(averageRating);
+    }
 }

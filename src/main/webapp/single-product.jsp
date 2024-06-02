@@ -1,11 +1,14 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
-<html lang="zxx">
+<html lang="en">
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>pillloMart</title>
+    <title>Single Product</title>
     <link rel="icon" href="img/favicon.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -26,94 +29,16 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- font-awesome star -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <style>
+        .hover-pointer:hover{
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
 <!--::header part start::-->
-<header class="main_menu home_menu">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-lg-12">
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"> </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="menu_icon"><i class="fas fa-bars"></i></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.html">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="about.html">about</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1"
-                                   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    product
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                    <a class="dropdown-item" href="product_list.html"> product list</a>
-                                    <a class="dropdown-item" href="single-product.html">product details</a>
-
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
-                                   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    pages
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                    <a class="dropdown-item" href="login.html">
-                                        login
-
-                                    </a>
-                                    <a class="dropdown-item" href="checkout.html">product checkout</a>
-                                    <a class="dropdown-item" href="cart.html">shopping cart</a>
-                                    <a class="dropdown-item" href="confirmation.html">confirmation</a>
-                                    <a class="dropdown-item" href="elements.html">elements</a>
-                                </div>
-                            </li>
-
-                            <!--                            <li class="nav-item dropdown">-->
-                            <!--                                <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2"-->
-                            <!--                                   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-                            <!--                                    blog-->
-                            <!--                                </a>-->
-                            <!--                                <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">-->
-                            <!--                                    <a class="dropdown-item" href="blog.html"> blog</a>-->
-                            <!--                                    <a class="dropdown-item" href="single-blog.html">Single blog</a>-->
-                            <!--                                </div>-->
-                            <!--                            </li>-->
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="hearer_icon d-flex align-items-center">
-                        <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-                        <a href="cart.html">
-                            <i class="flaticon-shopping-cart-black-shape"></i>
-                        </a>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
-    <div class="search_input" id="search_input_box">
-        <div class="container ">
-            <form class="d-flex justify-content-between search-inner">
-                <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                <button type="submit" class="btn"></button>
-                <span class="ti-close" id="close_search" title="Close Search"></span>
-            </form>
-        </div>
-    </div>
-</header>
+<%@ include file="components/header.jsp"%>
 <!-- Header part end-->
 
 <!-- breadcrumb part start-->
@@ -136,79 +61,77 @@
             <div class="col-lg-6">
                 <div class="product_img_slide owl-carousel">
                     <div class="single_product_img">
-                        <img src="img/product/namiya.jpeg" alt="#" class="img-fluid">
+                        <img src="${book.imageFront}" alt="#" class="img-fluid">
                     </div>
                     <div class="single_product_img">
-                        <img src="img/product/namiya.jpeg" alt="#" class="img-fluid">
-                    </div>
-                    <div class="single_product_img">
-                        <img src="img/product/namiya.jpeg" alt="#" class="img-fluid">
+                        <img src="${book.imageBack}" alt="#" class="img-fluid">
                     </div>
                 </div>
             </div>
             <div class="col-lg-9">
                 <div class="single_product_text text-center" style="margin-bottom:100px">
-                    <h3>Điều kỳ diệu ở tiệm tạp hóa Namiya</h3>
+                    <h3>${book.name}</h3>
                     <div class="d-flex flex-row align-items-center justify-content-between flex-row">
                         <div> </div><div> </div>
-                        <h5 class="mb-0 mr-lg-5">Higashino Keigo</h5>
+                        <h5 class="mb-0 mr-lg-5">${book.author.name}</h5>
                         <div class="d-inline-block" style="font-size: 10px;">
                             <span style="font-size: 12px;">Đánh giá: </span>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
+                            <c:forEach var="i" begin="1" end="${book.averageRating}">
+                                <i class="fa-solid fa-star text-warning"></i>
+                            </c:forEach>
                         </div>
                         <div> </div><div> </div>
                     </div>
 
                     <p>
-                        Một đêm vội vã lẩn trốn sau phi vụ khoắng đồ nhà người, Atsuya, Shota và Kouhei đã rẽ vào lánh tạm trong một căn nhà hoang bên con dốc vắng người qua lại. Căn nhà có vẻ khi xưa là một tiệm tạp hóa với biển hiệu cũ kỹ bám đầy bồ hóng, khiến người ta khó lòng đọc được trên đó viết gì. Định bụng nghỉ tạm một đêm rồi sáng hôm sau chuồn sớm, cả ba không ngờ chờ đợi cả bọn sẽ là một đêm không ngủ, với bao điều kỳ bí bắt đầu từ một phong thư bất ngờ gửi đến…
-
-                        <br/><br/>Tài kể chuyện hơn người đã giúp Keigo khéo léo thay đổi các mốc dấu thời gian và không gian, chắp nối những câu chuyện tưởng chừng hoàn toàn riêng rẽ thành một kết cấu chặt chẽ, gây bất ngờ từ đầu tới cuối.                    </p>
+                        ${book.summary}
+                    </p>
 
                 </div>
             </div>
-            <div class="col-lg-11 mb-5">
+            <div class="col-lg-12 mb-5">
                 <div class="row">
-                    <div class="col-lg-7">
+                    <div class="col-lg-6">
                         <h4 style="margin-left: 15px">Thông tin chi tiết</h4>
                         <table class="table">
                             <tbody>
                             <tr>
                                 <td>Nhà Xuất Bản</td>
-                                <td>Nhà Xuất Bản Hội Nhà Văn</td>
+                                <td>${book.publisher.name}</td>
                             </tr>
                             <tr>
                                 <td>Ngày xuất bản</td>
-                                <td>2018-07-07 09:10:15</td>
+                                <td>${book.publishedDate}</td>
                             </tr>
                             <tr>
                                 <td>Thể loại</td>
-                                <td>Tiểu thuyết</td>
+                                <td>${book.category.name}</td>
                             </tr>
                             <tr>
                                 <td>Số trang</td>
-                                <td>356</td>
+                                <td>${book.pageCount}</td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-lg-5">
-                        <div class="card_area">
-                            <div class="product_count_area">
-                                <p>Quantity</p>
-                                <div class="product_count d-inline-block">
-                                    <span class="product_count_item number-decrement"> <i class="ti-minus"></i></span>
-                                    <input class="product_count_item input-number" style="height: fit-content;" type="text" value="1" min="1" max="10">
-                                    <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
+                    <div class="col-lg-6">
+                        <div class="card_area" style="margin-top: 30px">
+                            <form action="/add-to-cart" method="POST">
+                                <input type="hidden" name="id" value="${book.id}">
+                                <div class="product_count_area">
+                                    <p>Quantity</p>
+                                    <div class="product_count d-inline-block">
+                                        <span class="product_count_item number-decrement hover-pointer"> <i class="ti-minus"></i></span>
+                                        <input name="amount" class="product_count_item input-number" style="height: fit-content;" type="text" value="1" min="1" max="10" readonly>
+                                        <span class="product_count_item number-increment hover-pointer"> <i class="ti-plus"></i></span>
+                                    </div>
+                                    <p><fmt:formatNumber type = "number" minFractionDigits = "3" value = "${book.price}" />đ</p>
                                 </div>
-                                <p>$5</p>
-                            </div>
-                            <div class="add_to_cart text-center">
-                                <a href="#" class="btn_3">add to cart</a>
-                            </div>
+                                <div class="add_to_cart text-center">
+                                    <button class="btn_3">add to cart</button>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>

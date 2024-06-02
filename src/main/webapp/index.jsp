@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 
@@ -32,101 +33,7 @@
 
 <body>
 <!--::header part start::-->
-<header class="main_menu home_menu">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-lg-12">
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="navbar-brand" href="/home-page"> <img src="img/bb.jpg" alt="logo"> </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="menu_icon"><i class="fas fa-bars"></i></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="/home-page">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/home-page">about</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Product</a>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
-                                   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    pages
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                    <c:choose>
-                                        <c:when test="${not empty user}">
-                                            <a class="dropdown-item" href="/logout">
-                                                logout
-                                            </a>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <a class="dropdown-item" href="/login">
-                                                login
-                                            </a>
-                                        </c:otherwise>
-                                    </c:choose>
-
-                                    <a class="dropdown-item" href="cart.html">shopping cart</a>
-                                    <a class="dropdown-item" href="confirmation.html">confirmation</a>
-                                    <a class="dropdown-item" href="elements.html">elements</a>
-                                </div>
-                            </li>
-
-<!--                            <li class="nav-item dropdown">-->
-<!--                                <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2"-->
-<!--                                   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--                                    blog-->
-<!--                                </a>-->
-<!--                                <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">-->
-<!--                                    <a class="dropdown-item" href="blog.html"> blog</a>-->
-<!--                                    <a class="dropdown-item" href="single-blog.html">Single blog</a>-->
-<!--                                </div>-->
-<!--                            </li>-->
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="hearer_icon d-flex align-items-center">
-                        <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-                        <a href="cart.html">
-                            <i class="flaticon-shopping-cart-black-shape"></i>
-                        </a>
-                            <!--  USER IMAGE   -->
-                        <c:if test="${not empty user}">
-                            <div class="rounded-circle overflow-hidden ml-2 ml-md-4"
-                                 style="width: 35px; height: 35px">
-                                <img src="${user.imageURL}"
-                                     class="w-100 h-100 object-fit-cover" style="object-position: center;"
-                                     alt="">
-                            </div>
-                        </c:if>
-
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
-    <div class="search_input" id="search_input_box">
-        <div class="container ">
-            <form class="d-flex justify-content-between search-inner">
-                <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                <button type="submit" class="btn"></button>
-                <span class="ti-close" id="close_search" title="Close Search"></span>
-            </form>
-        </div>
-    </div>
-</header>
+<%@ include file="components/header.jsp"%>
 <!-- Header part end-->
 
 <!-- banner part start-->
@@ -230,65 +137,85 @@
             </div>
         </div>
         <div class="row" style="font-family: 'Inter', sans-serif;">
-            <div class="col-lg-4 col-sm-6">
-                <div class="single_product_item">
-                    <div class="single_product_item_thumb">
-                        <img src="https://salt.tikicdn.com/cache/750x750/ts/product/5e/18/24/2a6154ba08df6ce6161c13f4303fa19e.jpg.webp" 
-                        alt="#" class="img-fluid">
+            <c:forEach var="book" items="${bestSellers}">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="single_product_item">
+                        <div class="single_product_item_thumb">
+                            <img src="${book.imageFront}"
+                                 alt="#" class="img-fluid">
+                        </div>
+                        <h3> <a href="/book-detail?id=${book.id}">${book.name}</a> </h3>
+                        <h5>Tác giả: ${book.author.name}</h5>
+                        <div class="d-inline-block" style="font-size: 10px;">
+                            <c:forEach var="i" begin="1" end="${book.averageRating}">
+                                <i class="fa-solid fa-star text-warning"></i>
+                            </c:forEach>
+                        </div>
+                        <p>Chỉ với
+                            <fmt:formatNumber type = "number" minFractionDigits = "3" value = "${book.price}" />đ
+                        </p>
                     </div>
-                    <h3> <a href="single-product.html">Cây Cam Ngọt Của Tôi</a> </h3>
-                    <h5>Tác giả: José Mauro de Vasconcelos</h5>
-                    <div class="d-inline-block" style="font-size: 10px;">
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                    </div>
-                    <p>Chỉ với 77.700đ</p>
                 </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="single_product_item">
-                    <img src="https://salt.tikicdn.com/cache/750x750/ts/product/0a/f6/38/bc10734989977da424642a1c4750eee2.jpg.webp" 
-                    alt="#" class="img-fluid">
-                    <h3> <a href="single-product.html">Đàn Ông Sao Hỏa Đàn Bà Sao Kim</a> </h3>
-                    <p>Chỉ với 122.000đ</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="single_product_item">
-                    <img src="https://salt.tikicdn.com/cache/750x750/ts/product/bc/4b/3b/4338d90c5c309957e957df8467cb21b4.jpg.webp" 
-                    alt="#" class="img-fluid">
-                    <h3> <a href="single-product.html">Tam Thể 1 (Tái Bản)</a> </h3>
-                    <p>Chỉ với 120.000đ</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="single_product_item">
-                    <img src="https://salt.tikicdn.com/cache/750x750/media/catalog/producttmp/8b/67/1f/3ab39602fea6504b18267e7befafc16f.jpg.webp"
-                     alt="#" class="img-fluid">
-                    <h3> <a href="single-product.html">Bắt Đầu Với Câu Hỏi Tại Sao 
-                        - Nghệ Thuật Truyền Cảm Hứng Trong Kinh Doanh (Tái Bản)</a> </h3>
-                    <p>Chỉ với 78.400đ</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="single_product_item">
-                    <img src="https://salt.tikicdn.com/cache/750x750/ts/product/5d/32/fd/ac76c74fea1e97c61330b4b429d90950.jpg.webp"
-                     alt="#" class="img-fluid">
-                    <h3> <a href="single-product.html">Gieo Trồng Hạnh Phúc (Tái Bản)</a> </h3>
-                    <p>Chỉ với 62.200đ</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="single_product_item">
-                    <img src="https://salt.tikicdn.com/cache/750x750/ts/product/c7/f1/fb/71ab34591cebf167204f4e85b7c61b18.jpg.webp" 
-                    alt="#" class="img-fluid">
-                    <h3> <a href="single-product.html">45 Giây Tạo Nên Thay Đổi - Thấu Hiểu Tiếp Thị Mạng Lưới</a> </h3>
-                    <p>Chỉ với 42.000đ</p>
-                </div>
-            </div>
+            </c:forEach>
+<%--            <div class="col-lg-4 col-sm-6">--%>
+<%--                <div class="single_product_item">--%>
+<%--                    <div class="single_product_item_thumb">--%>
+<%--                        <img src="https://salt.tikicdn.com/cache/750x750/ts/product/5e/18/24/2a6154ba08df6ce6161c13f4303fa19e.jpg.webp" --%>
+<%--                        alt="#" class="img-fluid">--%>
+<%--                    </div>--%>
+<%--                    <h3> <a href="single-product.html">Cây Cam Ngọt Của Tôi</a> </h3>--%>
+<%--                    <h5>Tác giả: José Mauro de Vasconcelos</h5>--%>
+<%--                    <div class="d-inline-block" style="font-size: 10px;">--%>
+<%--                        <i class="fa-solid fa-star text-warning"></i>--%>
+<%--                        <i class="fa-solid fa-star text-warning"></i>--%>
+<%--                        <i class="fa-solid fa-star text-warning"></i>--%>
+<%--                        <i class="fa-solid fa-star text-warning"></i>--%>
+<%--                        <i class="fa-solid fa-star text-warning"></i>--%>
+<%--                    </div>--%>
+<%--                    <p>Chỉ với 77.700đ</p>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="col-lg-4 col-sm-6">--%>
+<%--                <div class="single_product_item">--%>
+<%--                    <img src="https://salt.tikicdn.com/cache/750x750/ts/product/0a/f6/38/bc10734989977da424642a1c4750eee2.jpg.webp" --%>
+<%--                    alt="#" class="img-fluid">--%>
+<%--                    <h3> <a href="single-product.html">Đàn Ông Sao Hỏa Đàn Bà Sao Kim</a> </h3>--%>
+<%--                    <p>Chỉ với 122.000đ</p>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="col-lg-4 col-sm-6">--%>
+<%--                <div class="single_product_item">--%>
+<%--                    <img src="https://salt.tikicdn.com/cache/750x750/ts/product/bc/4b/3b/4338d90c5c309957e957df8467cb21b4.jpg.webp" --%>
+<%--                    alt="#" class="img-fluid">--%>
+<%--                    <h3> <a href="single-product.html">Tam Thể 1 (Tái Bản)</a> </h3>--%>
+<%--                    <p>Chỉ với 120.000đ</p>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="col-lg-4 col-sm-6">--%>
+<%--                <div class="single_product_item">--%>
+<%--                    <img src="https://salt.tikicdn.com/cache/750x750/media/catalog/producttmp/8b/67/1f/3ab39602fea6504b18267e7befafc16f.jpg.webp"--%>
+<%--                     alt="#" class="img-fluid">--%>
+<%--                    <h3> <a href="single-product.html">Bắt Đầu Với Câu Hỏi Tại Sao --%>
+<%--                        - Nghệ Thuật Truyền Cảm Hứng Trong Kinh Doanh (Tái Bản)</a> </h3>--%>
+<%--                    <p>Chỉ với 78.400đ</p>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="col-lg-4 col-sm-6">--%>
+<%--                <div class="single_product_item">--%>
+<%--                    <img src="https://salt.tikicdn.com/cache/750x750/ts/product/5d/32/fd/ac76c74fea1e97c61330b4b429d90950.jpg.webp"--%>
+<%--                     alt="#" class="img-fluid">--%>
+<%--                    <h3> <a href="single-product.html">Gieo Trồng Hạnh Phúc (Tái Bản)</a> </h3>--%>
+<%--                    <p>Chỉ với 62.200đ</p>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="col-lg-4 col-sm-6">--%>
+<%--                <div class="single_product_item">--%>
+<%--                    <img src="https://salt.tikicdn.com/cache/750x750/ts/product/c7/f1/fb/71ab34591cebf167204f4e85b7c61b18.jpg.webp" --%>
+<%--                    alt="#" class="img-fluid">--%>
+<%--                    <h3> <a href="single-product.html">45 Giây Tạo Nên Thay Đổi - Thấu Hiểu Tiếp Thị Mạng Lưới</a> </h3>--%>
+<%--                    <p>Chỉ với 42.000đ</p>--%>
+<%--                </div>--%>
+<%--            </div>--%>
         </div>
     </div>
 </section>

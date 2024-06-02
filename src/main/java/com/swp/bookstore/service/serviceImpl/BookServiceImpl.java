@@ -5,6 +5,8 @@ import com.swp.bookstore.dao.daoImpl.BookDAOImpl;
 import com.swp.bookstore.entity.Book;
 import com.swp.bookstore.service.BookService;
 
+import java.util.List;
+
 public class BookServiceImpl implements BookService {
 
     private BookDAO bookDAO = new BookDAOImpl();
@@ -30,7 +32,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book getBookAndRaingsByBookID(int bookId) {
-        return bookDAO.getBookAndRaingsByBookID(bookId);
+    public List<Book> findBestSeller(int num) {
+        return bookDAO.findBestSeller(num);
     }
 }

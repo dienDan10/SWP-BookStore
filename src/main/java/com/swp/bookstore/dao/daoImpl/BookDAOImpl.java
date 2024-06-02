@@ -7,6 +7,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 
+import java.util.List;
+
 public class BookDAOImpl implements BookDAO {
 
     @Override
@@ -65,10 +67,11 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
-    public Book getBookAndRaingsByBookID(int bookId) {
+    public List<Book> findBestSeller(int num) {
         EntityManager em = JPAUtil.getEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        TypedQuery<Book> query = em.createQuery("select b from Book b join fetch Rating where b.id = :id", Book.class);
-        return query.getSingleResult();
+        TypedQuery<Book> query = em.createQuery("select b from Book b order by b.soldNum desc", Book.class);
+        query.setFirstResult(0);
+        query.setMaxResults(num);
+        return query.getResultList();
     }
 }

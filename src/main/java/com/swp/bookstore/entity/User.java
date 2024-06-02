@@ -1,5 +1,6 @@
 package com.swp.bookstore.entity;
 
+import com.swp.bookstore.enums.ROLES;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -52,5 +53,16 @@ public class User {
             inverseJoinColumns = @JoinColumn(name="role_id")
     )
     private List<Role> roles;
+
+    public boolean hasRole(ROLES role) {
+        if (roles == null) {
+            return false;
+        }
+        for (Role item : roles) {
+            if (item.getName().equals(role.name()))
+                return true;
+        }
+        return false;
+    }
 
 }

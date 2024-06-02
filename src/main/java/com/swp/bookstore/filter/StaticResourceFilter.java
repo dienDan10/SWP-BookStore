@@ -25,6 +25,5 @@ public class StaticResourceFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         request.getRequestDispatcher("ErrorPage.html").forward(request, servletResponse);
 
-
     }
 }

@@ -6,7 +6,7 @@
     <persistence-unit name="default">
         <class>com.swp.bookstore.entity.User</class>
         <properties>
-            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
             <property name="jakarta.persistence.jdbc.url"    value="jdbc:mysql://localhost:3306/BOOKSTORE" />
             <property name="jakarta.persistence.jdbc.user"   value="trandinhtu" />
             <property name="jakarta.persistence.jdbc.password" value="trandinhtu" />
