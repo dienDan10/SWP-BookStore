@@ -30,14 +30,12 @@ public class ForgotPassword extends HttpServlet {
         // verify authentication code
         String authenticationCode = session.getAttribute("authenticationCode").toString();
         String code = req.getParameter("code");
-        if (!authenticationCode.equals(code)) {         // display message
+        if (authenticationCode == null || !authenticationCode.equals(code)) {         // display message
             req.getRequestDispatcher("ErrorPage.html").forward(req, resp);
             return;
         }
-        // remove authentication code from session
-        session.removeAttribute("authenticationCode");
         // redirect to reset password page
-        req.getRequestDispatcher("resetPassword.jsp").forward(req, resp);
+        req.getRequestDispatcher("reset-password.jsp").forward(req, resp);
 
     }
 

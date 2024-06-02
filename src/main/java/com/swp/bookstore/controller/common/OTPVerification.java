@@ -3,8 +3,6 @@ package com.swp.bookstore.controller.common;
 import com.swp.bookstore.dto.UserDTO;
 import com.swp.bookstore.service.UserService;
 import com.swp.bookstore.service.serviceImpl.UserServiceImpl;
-import com.swp.bookstore.utils.Email;
-import com.swp.bookstore.utils.RandomUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -29,20 +27,12 @@ public class OTPVerification extends HttpServlet {
         HttpSession session = req.getSession();
         UserDTO userdto = (UserDTO) session.getAttribute("userdto");
         if (userdto == null) {  // redirect to page not found.
+            System.out.println("OTP verification failed");
             req.getRequestDispatcher("ErrorPage.html").forward(req, resp);
         }
-        // generate a OTP code
-        String OTP = RandomUtil.getOTPCode();
-        session.setAttribute("OTP", OTP);
-        // send mail to user
-        String mailContent = "Your OTP verification code is " + OTP;
-        String mailHeader = "OTP Authentication Code.";
-        boolean isSuccess = Email.sendEmail(userdto.getEmail(), mailHeader, mailContent);
-        if (!isSuccess) { // send a notification
-            req.setAttribute("sendMailError", "Fail to send verification email, please try to reload.");
-        }
+
         // redirect to otp verification form
-        req.getRequestDispatcher("OTPVerification.jsp").forward(req, resp);
+        req.getRequestDispatcher("otp-verification.jsp").forward(req, resp);
     }
 
     @Override
@@ -51,9 +41,9 @@ public class OTPVerification extends HttpServlet {
         HttpSession session = req.getSession();
         String OTP = session.getAttribute("OTP").toString();
         String otpInput = req.getParameter("otp");
-        if (OTP == null || !OTP.equals(otpInput)) {
+        if (OTP == null || !OTP.equals(otpInput)) { // send messsage
             req.setAttribute("otpErr", "Your OTP verification code is incorrect.");
-            req.getRequestDispatcher("OTPVerification.jsp").forward(req, resp);
+            req.getRequestDispatcher("otp-verification.jsp").forward(req, resp);
             return;
         }
         // create and save the user in database

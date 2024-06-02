@@ -8,7 +8,7 @@ import com.swp.bookstore.dao.daoImpl.UserDAOImpl;
 import com.swp.bookstore.dto.UserDTO;
 import com.swp.bookstore.dto.UserGoogleDto;
 import com.swp.bookstore.entity.User;
-import com.swp.bookstore.enums.ROLE;
+import com.swp.bookstore.enums.ROLES;
 import com.swp.bookstore.service.UserService;
 import com.swp.bookstore.utils.PasswordEncryptor;
 
@@ -30,8 +30,8 @@ public class UserServiceImpl implements UserService {
         user.setName(userDTO.getName());
         user.setEmail(userDTO.getEmail());
         user.setPassword(PasswordEncryptor.toSHA256(userDTO.getPassword()));
-        user.setImageURL("image/user-image/default-user-image.png");
-        user.setRoles(Arrays.asList(roleDAO.findRoleByName(ROLE.USER.name())));
+        user.setImageURL("img/user-image/default-user-image.png");
+        user.setRoles(Arrays.asList(roleDAO.findRoleByName(ROLES.USER.name())));
         userDAO.save(user);
     }
 
@@ -42,12 +42,12 @@ public class UserServiceImpl implements UserService {
         user.setEmail(userGoogleDto.getEmail());
         // set default user image
         if (userGoogleDto.getPicture().isEmpty() || userGoogleDto.getPicture().isBlank()) {
-            user.setImageURL("image/user-image/default-user-image.png");
+            user.setImageURL("img/user-image/default-user-image.png");
         } else {
             user.setImageURL(userGoogleDto.getPicture());
         }
         user.setPassword(PasswordEncryptor.toSHA256(Constant.DEFAULT_PASSWORD));
-        user.setRoles(Arrays.asList(roleDAO.findRoleByName(ROLE.USER.name())));
+        user.setRoles(Arrays.asList(roleDAO.findRoleByName(ROLES.USER.name())));
         userDAO.save(user);
     }
 

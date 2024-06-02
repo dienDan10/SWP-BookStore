@@ -31,11 +31,13 @@ public class ResetPassword extends HttpServlet {
         String email = (String) session.getAttribute("email");
         // remove email from session
         session.removeAttribute("email");
+        // remove authentication code from session
+        session.removeAttribute("authenticationCode");
         // change user password
         User user = userService.findOneByEmail(email);
         user.setPassword(PasswordEncryptor.toSHA256(password));
         userService.updateUser(user);
-        req.setAttribute("resetSuccess", "Reset password successful!");
-        req.getRequestDispatcher("resetPasswordSuccess.jsp").forward(req, resp);
+        session.setAttribute("successMsg", "Reset password successful");
+        resp.sendRedirect("/login");
     }
 }

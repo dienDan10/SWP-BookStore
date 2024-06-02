@@ -54,7 +54,7 @@ public class GoogleLogin extends HttpServlet {
         }
 
         // return to home page
-        response.sendRedirect("/home-page");
+        response.sendRedirect("/home-page?googleLogin=true");
     }
 
     @Override
