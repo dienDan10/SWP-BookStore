@@ -5,8 +5,10 @@ import com.swp.bookstore.entity.Book;
 import com.swp.bookstore.utils.JPAUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookDAOImpl implements BookDAO {
@@ -73,5 +75,26 @@ public class BookDAOImpl implements BookDAO {
         query.setFirstResult(0);
         query.setMaxResults(num);
         return query.getResultList();
+    }
+
+    @Override
+    public List<Book> getNextProductPage(int pageSize, int currentPage) {
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<Book> query = em.createQuery("select b from Book b", Book.class);
+        query.setFirstResult(currentPage * pageSize);
+        query.setMaxResults(pageSize);
+        List<Book> list = new ArrayList<>();
+        try {
+
+            list = query.getResultList();
+
+        } catch (NoResultException e) {
+            System.out.println("Cannot fetch next product page");
+        } finally {
+            em.close();
+        }
+
+
+        return list;
     }
 }

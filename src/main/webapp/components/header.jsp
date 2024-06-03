@@ -19,7 +19,7 @@
                                 <a class="nav-link" href="/home-page">about</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Product</a>
+                                <a class="nav-link" href="/product-list">Product</a>
                             </li>
 
                             <li class="nav-item dropdown">
@@ -41,9 +41,8 @@
                                         </c:otherwise>
                                     </c:choose>
 
-                                    <a class="dropdown-item" href="cart.html">shopping cart</a>
+                                    <a class="dropdown-item" href="/view-cart">shopping cart</a>
                                     <a class="dropdown-item" href="confirmation.html">confirmation</a>
-                                    <a class="dropdown-item" href="elements.html">elements</a>
                                 </div>
                             </li>
 
@@ -65,7 +64,7 @@
                     </div>
                     <div class="hearer_icon d-flex align-items-center">
                         <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-                        <a href="cart.html">
+                        <a href="/view-cart">
                             <i class="flaticon-shopping-cart-black-shape"></i>
                         </a>
                         <!--  USER IMAGE   -->

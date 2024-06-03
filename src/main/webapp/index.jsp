@@ -45,8 +45,8 @@
                     <div class="banner_text_iner" style="font-family: 'Inter', sans-serif">
                         <h1>Sách Trending 
                             <br/>Hiện Nay</h1>
-                        <p>Những quyển sách chứa nhiều thông tin giá trị nhưng cũng không kém phần giai trí</p>
-                        <a href="product_list.html" class="btn_1">truy cập ngay</a>
+                        <p>Những quyển sách chứa nhiều thông tin giá trị nhưng cũng không kém phần giải trí</p>
+                        <a href="/product-list" class="btn_1">truy cập ngay</a>
                     </div>
                 </div>
             </div>
@@ -75,9 +75,9 @@
                         <div class="col-lg-5 col-sm-6">
                             <div class="single_product_content">
                                 <h5>Chỉ từ 70.000đ</h5>
-                                <h2> <a href="single-product.html">Lựa chọn ngay quyển sách 
+                                <h2> <a href="#" onclick="return false">Lựa chọn ngay quyển sách
                                     phù hợp với bạn</a> </h2>
-                                <a href="product_list.html" class="btn_3">khám phá</a>
+                                <a href="/product-list" class="btn_3">khám phá</a>
                             </div>
                         </div>
                     </div>
@@ -93,10 +93,10 @@
                         <div class="col-lg-5 col-sm-6">
                             <div class="single_product_content">
                                 <h5>Với 300.000đ trở lên</h5>
-                                <h2> <a href="single-product.html">Sở hữu ngay bộ sách kinh điển
+                                <h2> <a href="#" onclick="return false">Sở hữu ngay bộ sách kinh điển
                                     trong lịch sử văn học Việt Nam cũng như toàn thế giới
                                 </a> </h2>
-                                <a href="product_list.html" class="btn_3">Sở hữu ngay</a>
+                                <a href="/product-list" class="btn_3">Sở hữu ngay</a>
                             </div>
                         </div>
                     </div>
@@ -112,9 +112,9 @@
                         <div class="col-lg-5 col-sm-6">
                             <div class="single_product_content">
                                 <h5>Với tất cả số tiền của bạn</h5>
-                                <h2> <a href="single-product.html">Tri thức là 
+                                <h2> <a href="#" onclick="return false">Tri thức là
                                     vô giá vì bạn không biết trước được bạn cần dùng khi nào</a> </h2>
-                                <a href="product_list.html" class="btn_3">Đồng ý và truy cập</a>
+                                <a href="/product-list" class="btn_3">Đồng ý và truy cập</a>
                             </div>
                         </div>
                     </div>
@@ -157,65 +157,7 @@
                     </div>
                 </div>
             </c:forEach>
-<%--            <div class="col-lg-4 col-sm-6">--%>
-<%--                <div class="single_product_item">--%>
-<%--                    <div class="single_product_item_thumb">--%>
-<%--                        <img src="https://salt.tikicdn.com/cache/750x750/ts/product/5e/18/24/2a6154ba08df6ce6161c13f4303fa19e.jpg.webp" --%>
-<%--                        alt="#" class="img-fluid">--%>
-<%--                    </div>--%>
-<%--                    <h3> <a href="single-product.html">Cây Cam Ngọt Của Tôi</a> </h3>--%>
-<%--                    <h5>Tác giả: José Mauro de Vasconcelos</h5>--%>
-<%--                    <div class="d-inline-block" style="font-size: 10px;">--%>
-<%--                        <i class="fa-solid fa-star text-warning"></i>--%>
-<%--                        <i class="fa-solid fa-star text-warning"></i>--%>
-<%--                        <i class="fa-solid fa-star text-warning"></i>--%>
-<%--                        <i class="fa-solid fa-star text-warning"></i>--%>
-<%--                        <i class="fa-solid fa-star text-warning"></i>--%>
-<%--                    </div>--%>
-<%--                    <p>Chỉ với 77.700đ</p>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <div class="col-lg-4 col-sm-6">--%>
-<%--                <div class="single_product_item">--%>
-<%--                    <img src="https://salt.tikicdn.com/cache/750x750/ts/product/0a/f6/38/bc10734989977da424642a1c4750eee2.jpg.webp" --%>
-<%--                    alt="#" class="img-fluid">--%>
-<%--                    <h3> <a href="single-product.html">Đàn Ông Sao Hỏa Đàn Bà Sao Kim</a> </h3>--%>
-<%--                    <p>Chỉ với 122.000đ</p>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <div class="col-lg-4 col-sm-6">--%>
-<%--                <div class="single_product_item">--%>
-<%--                    <img src="https://salt.tikicdn.com/cache/750x750/ts/product/bc/4b/3b/4338d90c5c309957e957df8467cb21b4.jpg.webp" --%>
-<%--                    alt="#" class="img-fluid">--%>
-<%--                    <h3> <a href="single-product.html">Tam Thể 1 (Tái Bản)</a> </h3>--%>
-<%--                    <p>Chỉ với 120.000đ</p>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <div class="col-lg-4 col-sm-6">--%>
-<%--                <div class="single_product_item">--%>
-<%--                    <img src="https://salt.tikicdn.com/cache/750x750/media/catalog/producttmp/8b/67/1f/3ab39602fea6504b18267e7befafc16f.jpg.webp"--%>
-<%--                     alt="#" class="img-fluid">--%>
-<%--                    <h3> <a href="single-product.html">Bắt Đầu Với Câu Hỏi Tại Sao --%>
-<%--                        - Nghệ Thuật Truyền Cảm Hứng Trong Kinh Doanh (Tái Bản)</a> </h3>--%>
-<%--                    <p>Chỉ với 78.400đ</p>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <div class="col-lg-4 col-sm-6">--%>
-<%--                <div class="single_product_item">--%>
-<%--                    <img src="https://salt.tikicdn.com/cache/750x750/ts/product/5d/32/fd/ac76c74fea1e97c61330b4b429d90950.jpg.webp"--%>
-<%--                     alt="#" class="img-fluid">--%>
-<%--                    <h3> <a href="single-product.html">Gieo Trồng Hạnh Phúc (Tái Bản)</a> </h3>--%>
-<%--                    <p>Chỉ với 62.200đ</p>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <div class="col-lg-4 col-sm-6">--%>
-<%--                <div class="single_product_item">--%>
-<%--                    <img src="https://salt.tikicdn.com/cache/750x750/ts/product/c7/f1/fb/71ab34591cebf167204f4e85b7c61b18.jpg.webp" --%>
-<%--                    alt="#" class="img-fluid">--%>
-<%--                    <h3> <a href="single-product.html">45 Giây Tạo Nên Thay Đổi - Thấu Hiểu Tiếp Thị Mạng Lưới</a> </h3>--%>
-<%--                    <p>Chỉ với 42.000đ</p>--%>
-<%--                </div>--%>
-<%--            </div>--%>
+
         </div>
     </div>
 </section>
@@ -245,7 +187,7 @@
                     </div>
                     <div class="single_client_review">
                         <div class="client_img">
-                            <img src="https://images.ctfassets.net/l7h59hfnlxjx/582Lx8AhvXHgRLXagk73lV/ef827f6b381202b112b61e218d8e3154/President_Obama_Headshot__Economic_Inclusion___Photo_by_Pari_Dukovic_courtesy_of_Penguin_Random_House_.jpg" alt="#">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/President_Barack_Obama_%28square%29.jpg/480px-President_Barack_Obama_%28square%29.jpg" alt="#">
                         </div>
                         <p>"Đọc sách rất quan trọng. Nếu biết cách đọc cả thế giới sẽ mở ra với bạn"</p>
                         <h5>- Barack Obama</h5>
@@ -327,59 +269,7 @@
 <!-- subscribe part end -->
 
 <!--::footer_part start::-->
-<footer class="footer_part">
-    <div class="footer_iner">
-        <div class="container">
-            <div class="row justify-content-between align-items-center">
-                <div class="col-lg-8">
-                    <div class="footer_menu">
-                        <div class="footer_logo">
-                            <a href="index.html"><img src="img/logo.png" alt="#"></a>
-                        </div>
-                        <div class="footer_menu_item">
-                            <a href="index.html">Home</a>
-                            <a href="about.html">About</a>
-                            <a href="product_list.html">Products</a>
-                            <a href="#">Pages</a>
-                            <a href="blog.html">Blog</a>
-                            <a href="contact.html">Contact</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="social_icon">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="copyright_part">
-        <div class="container">
-            <div class="row ">
-                <div class="col-lg-12">
-                    <div class="copyright_text">
-                        <P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;
-                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
-                            template is made with <i class="ti-heart" aria-hidden="true"></i> by <a
-                                    href="https://colorlib.com" target="_blank">Colorlib</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </P>
-                        <div class="copyright_link">
-                            <a href="#">Turms & Conditions</a>
-                            <a href="#">FAQ</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+<%@ include file="components/footer.jsp"%>
 <!--::footer_part end::-->
 
 <!--Toast box here-->

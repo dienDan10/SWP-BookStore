@@ -31,6 +31,7 @@
     <filter-mapping>
         <filter-name>UserFilter</filter-name>
         <url-pattern>/add-to-cart</url-pattern>
+        <url-pattern>/view-cart</url-pattern>
     </filter-mapping>
 
 </web-app>

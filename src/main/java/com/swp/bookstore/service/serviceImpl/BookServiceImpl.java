@@ -35,4 +35,9 @@ public class BookServiceImpl implements BookService {
     public List<Book> findBestSeller(int num) {
         return bookDAO.findBestSeller(num);
     }
+
+    @Override
+    public List<Book> getNextProductPage(int pageSize, int currentPage) {
+        return bookDAO.getNextProductPage(pageSize, currentPage);
+    }
 }

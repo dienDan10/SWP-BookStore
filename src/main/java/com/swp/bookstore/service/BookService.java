@@ -11,4 +11,5 @@ public interface BookService {
     Book findById(int id);
     void addBook(Book book);
     List<Book> findBestSeller(int num);
+    List<Book> getNextProductPage(int pageSize, int currentPage);
 }

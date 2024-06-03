@@ -69,7 +69,7 @@ public class ForgotPassword extends HttpServlet {
         }
 
         // redirect to the reset password page
-        req.setAttribute("emailSuccess", "Send email successfully! Please check your email");
+        session.setAttribute("successMsg", "Success! please check your email");
         req.getRequestDispatcher("login.jsp").forward(req, resp);
     }
 }

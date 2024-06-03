@@ -5,6 +5,8 @@ import com.swp.bookstore.dao.daoImpl.CartDAOImpl;
 import com.swp.bookstore.entity.Cart;
 import com.swp.bookstore.service.CartService;
 
+import java.util.List;
+
 public class CartServiceImpl implements CartService {
     private CartDAO cartDAO = new CartDAOImpl();
 
@@ -26,5 +28,15 @@ public class CartServiceImpl implements CartService {
     @Override
     public void updateCart(Cart cart) {
         cartDAO.updateCart(cart);
+    }
+
+    @Override
+    public Cart findCartByUserIdAndBookId(long userId, long bookId) {
+        return cartDAO.findCartByUserIdAndBookId(userId, bookId);
+    }
+
+    @Override
+    public List<Cart> findAllByUserId(long userId) {
+        return cartDAO.findAllByUserId(userId);
     }
 }

@@ -11,5 +11,5 @@ public interface BookDAO {
     void deleteBook(int id);
     Book findById(int id);
     List<Book> findBestSeller(int num);
-
+    List<Book> getNextProductPage(int pageSize, int currentPage);
 }

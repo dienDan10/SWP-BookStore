@@ -108,6 +108,10 @@
                                 <td>${book.category.name}</td>
                             </tr>
                             <tr>
+                                <td>Mô tả</td>
+                                <td>${book.description}</td>
+                            </tr>
+                            <tr>
                                 <td>Số trang</td>
                                 <td>${book.pageCount}</td>
                             </tr>
@@ -116,7 +120,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="card_area" style="margin-top: 30px">
-                            <form action="/add-to-cart" method="POST">
+                            <form action="/add-to-cart" method="GET">
                                 <input type="hidden" name="id" value="${book.id}">
                                 <div class="product_count_area">
                                     <p>Quantity</p>
@@ -225,55 +229,7 @@
 <!-- subscribe part end -->
 
 <!--::footer_part start::-->
-<footer class="footer_part">
-    <div class="footer_iner">
-        <div class="container">
-            <div class="row justify-content-between align-items-center">
-                <div class="col-lg-8">
-                    <div class="footer_menu">
-                        <div class="footer_logo">
-                            <a href="index.html"><img src="img/logo.png" alt="#"></a>
-                        </div>
-                        <div class="footer_menu_item">
-                            <a href="index.html">Home</a>
-                            <a href="about.html">About</a>
-                            <a href="product_list.html">Products</a>
-                            <a href="#">Pages</a>
-                            <a href="blog.html">Blog</a>
-                            <a href="contact.html">Contact</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="social_icon">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="copyright_part">
-        <div class="container">
-            <div class="row ">
-                <div class="col-lg-12">
-                    <div class="copyright_text">
-                        <P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></P>
-                        <div class="copyright_link">
-                            <a href="#">Turms & Conditions</a>
-                            <a href="#">FAQ</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+<%@ include file="components/footer.jsp"%>
 <!--::footer_part end::-->
 
 <!-- jquery plugins here-->

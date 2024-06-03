@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="css/style.css">
 <!--    Font awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="css/toast.css">
     <style>
         .btn-google-login {
             color: #B08EAD !important;
@@ -78,15 +79,6 @@
                         <h3>Chào bạn trở lại ! <br>
                             Đăng nhập ngay</h3>
                         <form class="row contact_form" action="/login" method="post" novalidate="novalidate">
-
-                            <c:if test="${not empty loginError}">
-                                <div class="alert alert-danger alert-dismissible fade show col-md-12" role="alert">
-                                    <strong>Error!</strong> ${loginError}.
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            </c:if>
                             <c:if test="${not empty emailError}">
                                 <div class="alert alert-danger alert-dismissible fade show col-md-12" role="alert">
                                     <strong>Error!</strong> ${emailError}.
@@ -95,26 +87,8 @@
                                     </button>
                                 </div>
                             </c:if>
-                            <c:if test="${not empty emailSuccess}">
-                                <div class="alert alert-success alert-dismissible fade show col-md-12" role="alert">
-                                    <strong>Success!</strong> ${emailSuccess}.
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            </c:if>
-                            <c:if test="${not empty successMsg}">
-                                <div class="alert alert-success alert-dismissible fade show col-md-12" role="alert">
-                                    <strong>Success!</strong> ${successMsg}.
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <c:remove var="successMsg" scope="session"></c:remove>
-                            </c:if>
-
                             <div class="col-md-12 form-group p_star mb-4">
-                                <input type="email" class="form-control" id="email" name="email" value=""
+                                <input type="email" class="form-control" id="email" name="email" value="${param.email}"
                                        placeholder="Email">
                             </div>
                             <div class="col-md-12 form-group p_star mb-4">
@@ -154,55 +128,7 @@
 <!--================login_part end =================-->
 
 <!--::footer_part start::-->
-<footer class="footer_part">
-    <div class="footer_iner section_bg">
-        <div class="container">
-            <div class="row justify-content-between align-items-center">
-                <div class="col-lg-8">
-                    <div class="footer_menu">
-                        <div class="footer_logo">
-                            <a href="index.jsp"><img src="img/logo.png" alt="#"></a>
-                        </div>
-                        <div class="footer_menu_item">
-                            <a href="index.jsp">Home</a>
-                            <a href="about.html">About</a>
-                            <a href="product_list.html">Products</a>
-                            <a href="#">Pages</a>
-                            <a href="blog.html">Blog</a>
-                            <a href="contact.html">Contact</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="social_icon">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="copyright_part">
-        <div class="container">
-            <div class="row ">
-                <div class="col-lg-12">
-                    <div class="copyright_text">
-                        <P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></P>
-                        <div class="copyright_link">
-                            <a href="#">Turms & Conditions</a>
-                            <a href="#">FAQ</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+<%@ include file="components/footer.jsp"%>
 <!--::footer_part end::-->
 
 <!-- Modal -->
@@ -232,6 +158,22 @@
     </div>
 </div>
 
+<!--Toast box here-->
+<c:if test="${not empty successMsg}">
+    <div class="hidden" id="msg" type="success">${successMsg}</div>
+    <c:remove var="successMsg" scope="session"></c:remove>
+</c:if>
+<c:if test="${not empty errMsg}">
+    <div class="hidden" id="msg" type="error">${errMsg}</div>
+    <c:remove var="errMsg" scope="session"></c:remove>
+</c:if>
+<c:if test="${not empty invalidMsg}">
+    <div class="hidden" id="msg" type="invalid">${invalidMsg}</div>
+    <c:remove var="invalidMsg" scope="session"></c:remove>
+</c:if>
+<div id="toastBox"></div>
+<!--Toast box end here-->
+
 <!-- jquery plugins here-->
 <script src="js/jquery-1.12.1.min.js"></script>
 <!-- popper js -->
@@ -259,17 +201,19 @@
 <!-- custom js -->
 <script src="js/custom.js"></script>
 
+<script src="js/toast.js"></script>
+
 <script>
-       const password = document.querySelector('#password');
-       const seePassword = document.querySelector('#f-option');
-        // implement see password
-       seePassword.onclick = function() {
-           if (seePassword.checked) {
-               password.setAttribute('type', 'text');
-           } else {
-               password.setAttribute('type', 'password');
-           }
-       }
+    const password = document.querySelector('#password');
+    const seePassword = document.querySelector('#f-option');
+    // implement see password
+    seePassword.onclick = function() {
+        if (seePassword.checked) {
+            password.setAttribute('type', 'text');
+        } else {
+            password.setAttribute('type', 'password');
+        }
+    }
 
 </script>
 

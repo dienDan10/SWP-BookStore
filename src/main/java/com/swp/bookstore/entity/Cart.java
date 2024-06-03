@@ -17,10 +17,15 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private long id;
-    @Column(name="book_id")
-    private long bookId;
     @Column(name="user_id")
     private long userId;
-    @Column(name="quantity")
-    private int quanity;
+    @Column(name="book_quantity")
+    private int quantity;
+
+    @ManyToOne(
+            fetch = FetchType.EAGER,
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH}
+    )
+    @JoinColumn(name="book_id")
+    private Book book;
 }

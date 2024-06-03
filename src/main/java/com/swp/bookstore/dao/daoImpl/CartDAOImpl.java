@@ -5,6 +5,10 @@ import com.swp.bookstore.entity.Cart;
 import com.swp.bookstore.utils.JPAUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.TypedQuery;
+
+import java.util.List;
 
 public class CartDAOImpl implements CartDAO {
 
@@ -44,8 +48,19 @@ public class CartDAOImpl implements CartDAO {
     @Override
     public Cart findCartById(long id) {
         EntityManager em = JPAUtil.getEntityManager();
-
-        return em.find(Cart.class, id);
+        EntityTransaction tx = em.getTransaction();
+        Cart cart = null;
+        try {
+            tx.begin();
+            cart = em.find(Cart.class, id);
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            System.out.println("find cart failed");
+        } finally {
+            em.close();
+        }
+        return cart;
     }
 
     @Override
@@ -62,5 +77,44 @@ public class CartDAOImpl implements CartDAO {
         } finally {
             em.close();
         }
+    }
+
+    @Override
+    public Cart findCartByUserIdAndBookId(long userId, long bookId) {
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<Cart> query = em.createQuery("select c from Cart c join fetch Book b where c.userId = :userId and b.id = :bookId", Cart.class);
+        query.setParameter("userId", userId);
+        query.setParameter("bookId", bookId);
+        Cart cart = null;
+        em.getTransaction().begin();
+        try {
+            List<Cart> carts = query.getResultList();
+            for (Cart car : carts) {
+                if (car.getBook().getId() == bookId)
+                    cart = car;
+            }
+        } catch (NoResultException e) {
+            em.getTransaction().rollback();
+            System.out.println("find cart failed");
+        } finally {
+            em.close();
+        }
+        return cart;
+    }
+
+    @Override
+    public List<Cart> findAllByUserId(long userId) {
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<Cart> query = em.createQuery("select c from Cart c where c.userId = :userId", Cart.class);
+        query.setParameter("userId", userId);
+        List<Cart> carts = null;
+        try {
+            carts = query.getResultList();
+        } catch (NoResultException e) {
+            System.out.println("No cart found");
+        } finally {
+            em.close();
+        }
+        return carts;
     }
 }
