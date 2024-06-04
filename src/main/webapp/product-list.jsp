@@ -56,8 +56,8 @@
             <div class="col-md-4">
                 <div class="product_sidebar">
                     <div class="single_sedebar">
-                        <form action="#">
-                            <input type="text" name="#" placeholder="Tìm kiếm">
+                        <form action="#" class="search-form">
+                            <input type="text" name="searchValue" placeholder="Tìm kiếm" class="search-input" required>
                             <i class="ti-search"></i>
                         </form>
                     </div>
@@ -265,10 +265,14 @@
         } else if (filterBy === 'publisher') {
             const filterId = $('.filter').attr('filter-id');
             loadMorePublisher(filterId, currentPage);
+        } else if (filterBy === 'search') {
+            const input = $('.filter').attr('filter-id');
+            loadMoreSearch(input, currentPage);
         }
 
     });
 
+    // load more without filter option
     function loadMoreDefault(currentPage) {
         $.ajax({
             url: '/next-page',
@@ -286,14 +290,14 @@
             }
         });
     }
-
+    // click event for btn category
     const btnFilterCategory = document.querySelectorAll('.btn_filter_category');
     btnFilterCategory.forEach(btn => btn.addEventListener('click', function(event) {
         event.preventDefault();
         const categoryId = this.getAttribute('category-id');
         loadMoreCategory(categoryId, 0);
     }));
-
+    // load more with category filter
     function loadMoreCategory(categoryId, currentPage) {
         $.ajax({
             url: '/filter-category',
@@ -317,14 +321,14 @@
             }
         });
     }
-
+    // click event for btn publisher
     const btnFilterPublisher = document.querySelectorAll('.btn_filter_publisher');
     btnFilterPublisher.forEach(btn => btn.addEventListener('click',function(event) {
        event.preventDefault();
        const publisherId = this.getAttribute('publisher-id');
         loadMorePublisher(publisherId, 0);
     }));
-
+    // load more with publisher filter
     function loadMorePublisher(publisherId, currentPage) {
         $.ajax({
             url: '/filter-publisher',
@@ -349,6 +353,40 @@
         });
     }
 
+    // submit event for search book
+    const searchForm = document.querySelector('.search-form');
+    searchForm.addEventListener('submit', function(event) {
+       event.preventDefault();
+       // get form input
+        const input = document.querySelector('.search-input').value;
+        const currentPage = 0;
+        // send to server to get data
+        loadMoreSearch(input, currentPage);
+    });
+
+    function loadMoreSearch(input, currentPage) {
+        $.ajax({
+            url: '/search-book',
+            type: 'GET',
+            data: {
+                searchInput: input,
+                currentPage: currentPage
+            },
+            success: function (data) {
+                if (currentPage === 0) {
+                    $('.product-list').empty();
+                }
+                $('.product-list').append(data);
+                document.querySelector('.current-page').setAttribute('page', Number(currentPage) + 1);
+                $('.filter').attr('filter-by', 'search');
+                $('.filter').attr('filter-id', input);
+                console.log('Load page by search success');
+            },
+            error: function (dd) {
+
+            }
+        });
+    }
 
 </script>
 </body>

@@ -4,6 +4,7 @@ import com.swp.bookstore.config.Page;
 import com.swp.bookstore.entity.Book;
 import com.swp.bookstore.service.BookService;
 import com.swp.bookstore.service.serviceImpl.BookServiceImpl;
+import com.swp.bookstore.utils.StringUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,7 +13,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DecimalFormat;
 import java.util.List;
 
 @WebServlet(name="FilterCategory", urlPatterns = "/filter-category")
@@ -47,7 +47,7 @@ public class FilterCategory extends HttpServlet {
                     "                                    <h5 class=\"px-4\">Tác giả: "+ book.getAuthor().getName()+"</h5>\n" +
                     builder.toString() +
                     "                                    <p  class=\"px-4\">Chỉ với\n" +
-                    formatBookPrice(book.getPrice()) + "đ" +
+                    StringUtil.formatBookPrice(book.getPrice()) + "đ" +
                     "                                    </p>\n" +
                     "                                </div>\n" +
                     "                            </div>") ;
@@ -59,8 +59,4 @@ public class FilterCategory extends HttpServlet {
         super.doPost(req, resp);
     }
 
-    private String formatBookPrice(double price) {
-        DecimalFormat df = new DecimalFormat("#.000");
-        return df.format(price);
-    }
 }

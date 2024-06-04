@@ -137,4 +137,32 @@ public class BookDAOImpl implements BookDAO {
         }
         return list;
     }
+
+    @Override
+    public List<Book> getBookBySearchByPage(int pageSize, int currentPage, String search) {
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<Book> query = em.createQuery("select b from Book b where lower(b.name) like :search", Book.class);
+        query.setParameter("search", "%" + search.toLowerCase() + "%");
+        query.setFirstResult(currentPage * pageSize);
+        query.setMaxResults(pageSize);
+        List<Book> list = new ArrayList<>();
+        try {
+
+            list = query.getResultList();
+
+        } catch (NoResultException e) {
+            System.out.println("Cannot fetch next product page by search");
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Book> findAll() {
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<Book> query = em.createQuery("select b from Book b", Book.class);
+        return query.getResultList();
+    }
 }

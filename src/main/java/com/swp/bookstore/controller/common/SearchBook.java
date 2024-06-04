@@ -15,8 +15,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name="FilterPublisher", urlPatterns = "/filter-publisher")
-public class FilterPublisher extends HttpServlet {
+@WebServlet(name="SearchBook", urlPatterns = "/search-book")
+public class SearchBook extends HttpServlet {
 
     private BookService bookService;
 
@@ -27,10 +27,10 @@ public class FilterPublisher extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int publisherId = Integer.parseInt(req.getParameter("publisherId"));
+        String searchInput = req.getParameter("searchInput");
         int currentPage = Integer.parseInt(req.getParameter("currentPage"));
-        // get first book page by category
-        List<Book> books = bookService.getBookByPublisherByPage(Page.PAGE_SIZE, currentPage, publisherId);
+        // get next page of book by search input
+        List<Book> books = bookService.getBookBySearchByPage(Page.PAGE_SIZE, currentPage, searchInput);
         // return html code
         PrintWriter out = resp.getWriter();
         books.forEach(book -> {
@@ -57,7 +57,7 @@ public class FilterPublisher extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        doGet(req, resp);
     }
 
 }

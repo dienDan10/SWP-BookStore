@@ -2,6 +2,7 @@ package com.swp.bookstore.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -66,7 +67,4 @@ public class Book {
         return (int)Math.ceil(averageRating);
     }
 
-    public String getFormattedPrice() {
-        return String.format("%.23f", price);
-    }
 }
