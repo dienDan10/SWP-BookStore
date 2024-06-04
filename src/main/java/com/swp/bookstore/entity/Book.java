@@ -2,6 +2,7 @@ package com.swp.bookstore.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;

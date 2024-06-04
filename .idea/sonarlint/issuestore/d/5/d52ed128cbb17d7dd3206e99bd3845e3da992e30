@@ -1,0 +1,15 @@
+
+|,Web:MouseEventWithoutKeyboardEquivalentCheck4"?Add a 'onKeyPress|onKeyDown|onKeyUp' attribute to this <a> tag.(Ñ†İ®ûÿÿÿÿ
+x	Web:S68194"^Use <button> or <input> instead of the button role to ensure accessibility across all devices.(Ñ†İ®ûÿÿÿÿ
+v,Web:MouseEventWithoutKeyboardEquivalentCheck?"?Add a 'onKeyPress|onKeyDown|onKeyUp' attribute to this <a> tag.(ëò¨r
+r	Web:S6819?"^Use <button> or <input> instead of the button role to ensure accessibility across all devices.(ëò¨r
+IWeb:AvoidCommentedOutCodeCheckO"Remove this commented out code.(¦å‹¢
+HWeb:AvoidCommentedOutCodeCheckP"Remove this commented out code.(Ìç
+IWeb:AvoidCommentedOutCodeCheckQ"Remove this commented out code.(åô´ü
+IWeb:AvoidCommentedOutCodeCheckS"Remove this commented out code.(ÊœÕˆ
+NWeb:AvoidCommentedOutCodeCheckT"Remove this commented out code.(Ë´‡¥ÿÿÿÿÿ
+IWeb:AvoidCommentedOutCodeCheckU"Remove this commented out code.(º÷‹
+NWeb:AvoidCommentedOutCodeCheckV"Remove this commented out code.(›Îöüÿÿÿÿ
+IWeb:AvoidCommentedOutCodeCheckW"Remove this commented out code.(‹ü­½
+IWeb:AvoidCommentedOutCodeCheckX"Remove this commented out code.(ˆœª
+E	Web:S6844’"*Anchor tags should not be used as buttons.(¶µ”üÿÿÿÿ

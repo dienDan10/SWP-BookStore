@@ -198,7 +198,7 @@
                                                         class="badge badge-sm bg-gradient-success">Delete</a>
                                                 </td> -->
                                                 <td class="align-middle text-center text-sm">
-                                                    <a href="#" onclick="confirmDelete('https://example.com/delete-link')"
+                                                    <a href="/delete-product?bookId=${book.id}" onclick="confirmDelete()"
                                                        class="badge badge-sm bg-gradient-success">Delete</a>
                                                 </td>
                                             </tr>
@@ -426,9 +426,9 @@
 
     <!-- Delete -->
     <script>
-        function confirmDelete(deleteUrl) {
-          if (confirm("Are you sure you want to delete?")) {
-            window.location.href = deleteUrl;
+        function confirmDelete() {
+          if (!confirm("Are you sure you want to delete?")) {
+                return false;
           }
         }
         </script>
