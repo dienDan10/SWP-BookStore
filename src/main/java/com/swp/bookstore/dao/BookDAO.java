@@ -14,4 +14,5 @@ public interface BookDAO {
     List<Book> getNextProductPage(int pageSize, int currentPage);
     List<Book> getBookByCategoryByPage(int pageSize, int currentPage, int categoryId);
     List<Book> getBookByPublisherByPage(int pageSize, int currentPage, int publisherId);
+    List<Book> getBookBySearchByPage(int pageSize, int currentPage, String search);
 }
