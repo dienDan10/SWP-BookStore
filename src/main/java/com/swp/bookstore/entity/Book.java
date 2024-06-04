@@ -67,7 +67,4 @@ public class Book {
         return (int)Math.ceil(averageRating);
     }
 
-    public String getFormattedPrice() {
-        return String.format("%.23f", price);
-    }
 }

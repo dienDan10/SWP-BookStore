@@ -174,8 +174,8 @@
                                                             <img src="${book.imageFront}" class="avatar avatar-sm me-3"
                                                                  alt="user1">
                                                         </div>
-                                                        <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">${book.name}</h6>
+                                                        <div class="d-flex flex-column justify-content-center flex-fill">
+                                                            <h6 class="mb-0 text-sm text-wrap w-100 w-md-80">${book.name}</h6>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -203,44 +203,6 @@
                                                 </td>
                                             </tr>
                                         </c:forEach>
-                                        <tr>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">1</p>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="assets/img/sach.jpg" class="avatar avatar-sm me-3"
-                                                            alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Sách Chữa Lành Nỗi Đau</h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">100</span>
-                                            </td>
-                                            <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">5.0</span>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <a href="#" class="badge badge-sm bg-gradient-success"
-                                                    data-bs-toggle="modal" data-bs-target="#bookModal">View</a>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <a href="#" class="badge badge-sm bg-gradient-success"
-                                                    data-bs-toggle="modal" data-bs-target="#productModal">Update</a>
-                                            </td>
-                                            <!-- <td class="align-middle text-center text-sm">
-                                                <a href="https://example.com/delete-link"
-                                                    class="badge badge-sm bg-gradient-success">Delete</a>
-                                            </td> -->
-                                            <td class="align-middle text-center text-sm">
-                                                <a href="#" onclick="confirmDelete('https://example.com/delete-link')"
-                                                    class="badge badge-sm bg-gradient-success">Delete</a>
-                                            </td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
