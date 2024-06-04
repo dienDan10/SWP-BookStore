@@ -214,48 +214,77 @@
 
         <!-- pop up add book -->
         <div class="modal fade" id="addBookModal" tabindex="-1" aria-labelledby="addBookModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-special">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="addBookModalLabel">Add New Book</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+
                         <!-- Form fields go here -->
-                        <form>
+                            <form>
                             <div class="mb-3">
                                 <label for="bookName" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="bookName" aria-describedby="bookNameHelp">
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 col-lg-5 me-lg-5 d-inline-block">
                                 <label for="bookDescription" class="form-label">Description</label>
-                                <textarea class="form-control" id="bookDescription" rows="3"></textarea>
+                                <input class="form-control" id="bookDescription">
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 col-lg-6 d-inline-block">
                                 <label for="bookPublishedDate" class="form-label">Published Date</label>
                                 <input type="date" class="form-control" id="bookPublishedDate">
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 col-lg-5 me-lg-5 d-inline-block">
                                 <label for="bookAuthorName" class="form-label">Author Name</label>
-                                <input type="text" class="form-control" id="bookAuthorName">
+                                <input type="text" class="form-control" id="bookAuthorName" name="author">
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 col-lg-6 d-inline-block">
+                                <label for="bookPublisherName" class="form-label">Publisher Name</label>
+<%--                                <input type="text" class="form-control" id="bookPublisherName" name ="publishedDate">--%>
+                                <select class="form-select" id="bookPublisherName" name="publisher">
+                                    <c:forEach items="${publishers}" var="publisher">
+                                        <option value="${publisher.id}">${publisher.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                            .
+                            <div class="mb-3 col-lg-3 d-inline-block">
                                 <label for="bookCategoryName" class="form-label">Category Name</label>
-                                <input type="text" class="form-control" id="bookCategoryName">
+<%--                                <input type="text" class="form-control" id="bookCategoryName" name="category">--%>
+                                <select class="form-select" id="bookCategoryName" name="category">
+                                    <c:forEach items="${categories}" var="category">
+                                        <option value="${category.id}">${category.name}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 col-lg-2 me-lg-5 d-inline-block">
+                                <label for="bookQuantity" class="form-label">Quantity</label>
+                                <input type="number" class="form-control" id="bookQuantity" name="quantity">
+                            </div>
+                            <div class="mb-3 col-lg-3 d-inline-block">
                                 <label for="bookNumberOfPages" class="form-label">Number of Pages</label>
-                                <input type="number" class="form-control" id="bookNumberOfPages">
+                                <input type="number" class="form-control" id="bookNumberOfPages" name="pageNum">
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 col-lg-3 d-inline-block">
                                 <label for="bookPrice" class="form-label">Price</label>
-                                <input type="number" class="form-control" id="bookPrice">
+                                <input type="number" class="form-control" id="bookPrice" name="price">
+                            </div>
+                            <div class="mb-3 col-lg-5 me-lg-5 d-inline-block">
+                                <label for="imgFront" class="form-label">Front Image</label>
+                                <input class="form-control" id="imgFront" name="imgFront">
+                            </div>
+                            <div class="mb-3 col-lg-6 d-inline-block">
+                                <label for="imgBack" class="form-label">Back Image</label>
+                                <input class="form-control" id="imgBack" name="imgBack">
                             </div>
                             <div class="mb-3">
                                 <label for="bookSummary" class="form-label">Summary</label>
-                                <textarea class="form-control" id="bookSummary" rows="3"></textarea>
+                                <textarea class="form-control" id="bookSummary" rows="5" name="summary"></textarea>
                             </div>
                         </form>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
