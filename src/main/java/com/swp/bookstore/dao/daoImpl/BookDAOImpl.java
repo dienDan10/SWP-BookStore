@@ -158,4 +158,11 @@ public class BookDAOImpl implements BookDAO {
         }
         return list;
     }
+
+    @Override
+    public List<Book> findAll() {
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<Book> query = em.createQuery("select b from Book b", Book.class);
+        return query.getResultList();
+    }
 }

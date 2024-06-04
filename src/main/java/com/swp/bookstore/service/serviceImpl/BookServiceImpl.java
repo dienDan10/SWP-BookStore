@@ -55,4 +55,9 @@ public class BookServiceImpl implements BookService {
     public List<Book> getBookBySearchByPage(int pageSize, int currentPage, String search) {
         return bookDAO.getBookBySearchByPage(pageSize,currentPage,search);
     }
+
+    @Override
+    public List<Book> findAll() {
+        return bookDAO.findAll();
+    }
 }
