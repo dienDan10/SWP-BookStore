@@ -23,6 +23,8 @@
     <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+    <%-- Data Table --%>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css">
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -135,8 +137,8 @@
                                 data-bs-target="#addBookModal" style="margin: 0 auto;">Add Book</a>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
-                            <div class="table-responsive p-0">
-                                <table class="table align-items-center mb-0">
+                            <div class="table-responsive p-2">
+                                <table class="table align-items-center mb-0" id="my-table">
                                     <thead>
                                         <tr>
                                             <th
@@ -186,8 +188,7 @@
                                                     <span class="text-secondary text-xs font-weight-bold">${book.averageRating}</span>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
-                                                    <a href="#" class="badge badge-sm bg-gradient-success"
-                                                       data-bs-toggle="modal" data-bs-target="#bookModal">View</a>
+                                                    <a href="/book-detail?id=${book.id}" target="_blank" class="badge badge-sm bg-gradient-success">View</a>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
                                                     <a href="#" class="badge badge-sm bg-gradient-success"
@@ -198,7 +199,7 @@
                                                         class="badge badge-sm bg-gradient-success">Delete</a>
                                                 </td> -->
                                                 <td class="align-middle text-center text-sm">
-                                                    <a href="/delete-product?bookId=${book.id}" onclick="confirmDelete()"
+                                                    <a href="/delete-product?bookId=${book.id}" onclick="if (!confirm('Do you want to delete?')) return false"
                                                        class="badge badge-sm bg-gradient-success">Delete</a>
                                                 </td>
                                             </tr>
@@ -260,59 +261,6 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary">Save Book</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- popup view book -->
-        <div class="modal fade" id="bookModal" tabindex="-1" aria-labelledby="bookModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="bookModalLabel">Book Details</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" value="Name" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Description</label>
-                                <textarea class="form-control" rows="3" readonly>Description</textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Published Date</label>
-                                <input type="text" class="form-control" value="Published Date"
-                                    readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Author Name</label>
-                                <input type="text" class="form-control" value="Author Name" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Category Name</label>
-                                <input type="text" class="form-control" value="Category Name"
-                                    readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Number of Pages</label>
-                                <input type="text" class="form-control" value="200" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Price</label>
-                                <input type="text" class="form-control" value="100000" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Summary</label>
-                                <textarea class="form-control" rows="3" readonly>Summary</textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -385,15 +333,13 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="assets/js/argon-dashboard.min.js?v=2.0.4"></script>
-
+    <!--  Data Table  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
     <!-- Delete -->
     <script>
-        function confirmDelete() {
-          if (!confirm("Are you sure you want to delete?")) {
-                return false;
-          }
-        }
-        </script>
+        new DataTable('#my-table');
+    </script>
 </body>
 
 </html>
