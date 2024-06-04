@@ -141,7 +141,7 @@
                     </table>
                     <c:if test="${carts.size() != 0}">
                         <div class="checkout_btn_inner d-flex justify-content-between" style="font-family: 'Inter', 'Helvetica Neue', sans-serif">
-                            <a class="btn_1" href="#">Tiếp Tục Mua Sắm</a>
+                            <a class="btn_1" href="/product-list">Tiếp Tục Mua Sắm</a>
                             <button class="btn_1 checkout_btn_1" href="#">Tiến Hành Thanh Toán</button>
                         </div>
                     </c:if>

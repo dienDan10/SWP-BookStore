@@ -12,4 +12,6 @@ public interface BookService {
     void addBook(Book book);
     List<Book> findBestSeller(int num);
     List<Book> getNextProductPage(int pageSize, int currentPage);
+    List<Book> getBookByCategoryByPage(int pageSize, int currentPage, int categoryId);
+    List<Book> getBookByPublisherByPage(int pageSize, int currentPage, int publisherId);
 }

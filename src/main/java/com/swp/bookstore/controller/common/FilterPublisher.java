@@ -15,8 +15,8 @@ import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.util.List;
 
-@WebServlet(name="NextPage", urlPatterns = "/next-page")
-public class NextPage extends HttpServlet {
+@WebServlet(name="FilterPublisher", urlPatterns = "/filter-publisher")
+public class FilterPublisher extends HttpServlet {
 
     private BookService bookService;
 
@@ -27,9 +27,10 @@ public class NextPage extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int page = Integer.parseInt(req.getParameter("page"));
-        // get next page
-        List<Book> books = bookService.getNextProductPage(Page.PAGE_SIZE, page);
+        int publisherId = Integer.parseInt(req.getParameter("publisherId"));
+        int currentPage = Integer.parseInt(req.getParameter("currentPage"));
+        // get first book page by category
+        List<Book> books = bookService.getBookByPublisherByPage(Page.PAGE_SIZE, currentPage, publisherId);
         // return html code
         PrintWriter out = resp.getWriter();
         books.forEach(book -> {
@@ -40,23 +41,23 @@ public class NextPage extends HttpServlet {
             builder.append("<i class=\"fa-solid fa-star text-warning\"></i>\n".repeat(Math.max(0, rating)));
             builder.append("</div>\n");
 
-           out.println("<div class=\"col-lg-6 col-sm-6\">\n" +
-                   "                                <div class=\"single_product_item\">\n" +
-                   "                                    <img src=\""+ book.getImageFront()+"\" alt=\"#\" class=\"img-fluid\">\n" +
-                   "                                    <h3 class=\"px-4\"> <a href=\"/book-detail?id="+book.getId()+"\">"+ book.getName()+"</a> </h3>\n" +
-                   "                                    <h5 class=\"px-4\">Tác giả: "+ book.getAuthor().getName()+"</h5>\n" +
-                                                        builder.toString() +
-                   "                                    <p  class=\"px-4\">Chỉ với\n" +
-                                                            formatBookPrice(book.getPrice()) + "đ" +
-                   "                                    </p>\n" +
-                   "                                </div>\n" +
-                   "                            </div>") ;
+            out.println("<div class=\"col-lg-6 col-sm-6\">\n" +
+                    "                                <div class=\"single_product_item\">\n" +
+                    "                                    <img src=\""+ book.getImageFront()+"\" alt=\"#\" class=\"img-fluid\">\n" +
+                    "                                    <h3 class=\"px-4\"> <a href=\"/book-detail?id="+book.getId()+"\">"+ book.getName()+"</a> </h3>\n" +
+                    "                                    <h5 class=\"px-4\">Tác giả: "+ book.getAuthor().getName()+"</h5>\n" +
+                    builder.toString() +
+                    "                                    <p  class=\"px-4\">Chỉ với\n" +
+                    formatBookPrice(book.getPrice()) + "đ" +
+                    "                                    </p>\n" +
+                    "                                </div>\n" +
+                    "                            </div>") ;
         });
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
+        super.doPost(req, resp);
     }
 
     private String formatBookPrice(double price) {

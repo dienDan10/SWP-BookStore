@@ -67,8 +67,13 @@ function calcTotal() {
     }
 
     totalPrice.textContent = total.toFixed(3) + 'đ';
-
+    //totalPrice.textContent = formatVND(total).toFixed(3) + 'đ';
 }
+// convet to vnd format
+// function formatVND(n) {
+//     const res = Number(n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."));
+//     return res;
+// }
 
 // convert a string of price into a number of price
 function sliceLastCharacterAndConvertToNumber(inputString) {

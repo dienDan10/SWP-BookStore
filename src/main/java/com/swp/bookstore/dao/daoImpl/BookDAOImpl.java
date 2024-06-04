@@ -93,8 +93,48 @@ public class BookDAOImpl implements BookDAO {
         } finally {
             em.close();
         }
+        return list;
+    }
 
+    @Override
+    public List<Book> getBookByCategoryByPage(int pageSize, int currentPage, int categoryId) {
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<Book> query = em.createQuery("select b from Book b where b.category.id = :categoryId", Book.class);
+        query.setParameter("categoryId", categoryId);
+        query.setFirstResult(currentPage * pageSize);
+        query.setMaxResults(pageSize);
+        List<Book> list = new ArrayList<>();
+        try {
 
+            list = query.getResultList();
+
+        } catch (NoResultException e) {
+            System.out.println("Cannot fetch next product page by category");
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return list;
+    }
+
+    @Override
+    public List<Book> getBookByPublisherByPage(int pageSize, int currentPage, int publisherId) {
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<Book> query = em.createQuery("select b from Book b where b.publisher.id = :publisherId", Book.class);
+        query.setParameter("publisherId", publisherId);
+        query.setFirstResult(currentPage * pageSize);
+        query.setMaxResults(pageSize);
+        List<Book> list = new ArrayList<>();
+        try {
+
+            list = query.getResultList();
+
+        } catch (NoResultException e) {
+            System.out.println("Cannot fetch next product page by publisher");
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
         return list;
     }
 }

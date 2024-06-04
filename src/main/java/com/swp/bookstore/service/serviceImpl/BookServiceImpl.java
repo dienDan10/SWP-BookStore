@@ -40,4 +40,14 @@ public class BookServiceImpl implements BookService {
     public List<Book> getNextProductPage(int pageSize, int currentPage) {
         return bookDAO.getNextProductPage(pageSize, currentPage);
     }
+
+    @Override
+    public List<Book> getBookByCategoryByPage(int pageSize, int currentPage, int categoryId) {
+        return bookDAO.getBookByCategoryByPage(pageSize,currentPage,categoryId);
+    }
+
+    @Override
+    public List<Book> getBookByPublisherByPage(int pageSize, int currentPage, int publisherId) {
+        return bookDAO.getBookByPublisherByPage(pageSize,currentPage,publisherId);
+    }
 }

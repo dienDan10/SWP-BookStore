@@ -66,7 +66,7 @@
                             <div class="select_option_list">Thể loại <i class="right fas fa-caret-down"></i> </div>
                             <div class="select_option_dropdown">
                                 <c:forEach var="category" items="${categories}">
-                                    <p><a href="#">${category.name}</a></p>
+                                    <p><a href="#" class="btn_filter_category" category-id="${category.id}">${category.name}</a></p>
                                 </c:forEach>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                             <div class="select_option_list">Nhà Xuất bản<i class="right fas fa-caret-down"></i> </div>
                             <div class="select_option_dropdown">
                                 <c:forEach var="publisher" items="${publishers}">
-                                    <p><a href="#">${publisher.name}</a></p>
+                                    <p><a href="#" class="btn_filter_publisher" publisher-id="${publisher.id}">${publisher.name}</a></p>
                                 </c:forEach>
                             </div>
                         </div>
@@ -219,7 +219,7 @@
 
 <!--Current page-->
 <p style="display: none" class="current-page" page="${currentPage}"></p>
-
+<p style="display: none" class="filter" filter-by="none" ></p>
 <!--::footer_part start::-->
 <%@ include file="components/footer.jsp"%>
 <!--::footer_part end::-->
@@ -255,6 +255,21 @@
        event.preventDefault();
        // get current page
         const currentPage = document.querySelector('.current-page').getAttribute('page');
+        // get filter by action
+        const filterBy = $('.filter').attr('filter-by');
+        if (filterBy === 'none') {
+            loadMoreDefault(currentPage);
+        } else if (filterBy === 'category') {
+            const filterId = $('.filter').attr('filter-id');
+            loadMoreCategory(filterId, currentPage);
+        } else if (filterBy === 'publisher') {
+            const filterId = $('.filter').attr('filter-id');
+            loadMorePublisher(filterId, currentPage);
+        }
+
+    });
+
+    function loadMoreDefault(currentPage) {
         $.ajax({
             url: '/next-page',
             type: 'get',
@@ -270,7 +285,71 @@
 
             }
         });
-    });
+    }
+
+    const btnFilterCategory = document.querySelectorAll('.btn_filter_category');
+    btnFilterCategory.forEach(btn => btn.addEventListener('click', function(event) {
+        event.preventDefault();
+        const categoryId = this.getAttribute('category-id');
+        loadMoreCategory(categoryId, 0);
+    }));
+
+    function loadMoreCategory(categoryId, currentPage) {
+        $.ajax({
+            url: '/filter-category',
+            type: 'get',
+            data: {
+                categoryId: categoryId,
+                currentPage: currentPage
+            },
+            success: function (data) {
+                if (currentPage === 0) {
+                    $('.product-list').empty();
+                }
+                $('.product-list').append(data);
+                document.querySelector('.current-page').setAttribute('page', Number(currentPage) + 1);
+                $('.filter').attr('filter-by', 'category');
+                $('.filter').attr('filter-id', categoryId);
+                console.log('Load page by category success');
+            },
+            error: function (dd) {
+
+            }
+        });
+    }
+
+    const btnFilterPublisher = document.querySelectorAll('.btn_filter_publisher');
+    btnFilterPublisher.forEach(btn => btn.addEventListener('click',function(event) {
+       event.preventDefault();
+       const publisherId = this.getAttribute('publisher-id');
+        loadMorePublisher(publisherId, 0);
+    }));
+
+    function loadMorePublisher(publisherId, currentPage) {
+        $.ajax({
+            url: '/filter-publisher',
+            type: 'get',
+            data: {
+                publisherId: publisherId,
+                currentPage: currentPage
+            },
+            success: function (data) {
+                if (currentPage === 0) {
+                    $('.product-list').empty();
+                }
+                $('.product-list').append(data);
+                document.querySelector('.current-page').setAttribute('page', Number(currentPage) + 1);
+                $('.filter').attr('filter-by', 'publisher');
+                $('.filter').attr('filter-id', publisherId);
+                console.log('Load page by publisher success');
+            },
+            error: function (dd) {
+
+            }
+        });
+    }
+
+
 </script>
 </body>
 
