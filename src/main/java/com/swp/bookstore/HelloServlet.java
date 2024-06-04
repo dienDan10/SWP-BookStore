@@ -17,7 +17,7 @@ public class HelloServlet extends HttpServlet {
         String s = "test123";
         String encryped = PasswordEncryptor.toSHA256(s);
         request.setAttribute("encrypted", encryped);
-
+        System.out.println("aal;sdkfjlkasdjf");
     }
 
 }

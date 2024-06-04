@@ -6543,6 +6543,12 @@ fieldset:disabled .btn {
     margin-left: auto;
   }
 
+  .modal-dialog-special {
+    max-width: 800px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
   .modal-sm {
     --bs-modal-width: 300px;
   }
