@@ -34,6 +34,7 @@
                                                 logout
                                             </a>
                                             <a class="dropdown-item" href="/view-cart">shopping cart</a>
+                                            <a class="dropdown-item" href="/view-address">Manage Address</a>
                                         </c:when>
                                         <c:otherwise>
                                             <a class="dropdown-item" href="/login">
@@ -56,11 +57,14 @@
                             <!--                                </div>-->
                             <!--                            </li>-->
 
-                            <c:if test="${user.hasRole('ADMIN')}">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/view-dashboard">Dashboard</a>
-                                </li>
-                            </c:if>
+<%--                            <c:if test="${user.hasRole('SELLER')}">--%>
+<%--                                <li class="nav-item">--%>
+<%--                                    <a class="nav-link" href="/view-dashboard">Dashboard</a>--%>
+<%--                                </li>--%>
+<%--                            </c:if>--%>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/view-dashboard">Dashboard</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="hearer_icon d-flex align-items-center">

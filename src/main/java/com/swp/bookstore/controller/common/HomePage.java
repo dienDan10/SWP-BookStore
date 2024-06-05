@@ -26,11 +26,6 @@ public class HomePage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        // check for google login
-        if (req.getParameter("googleLogin") != null) {
-            session.setAttribute("successMsg", "Login successful!");
-        }
-
         // get top 6 best seller book
         List<Book> bestSellers = bookService.findBestSeller(6);
         // add to request

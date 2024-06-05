@@ -45,6 +45,9 @@ public class User {
     @Column(name="image_url")
     private String imageURL;
 
+    @Column(name="is_active")
+    private boolean isActive;
+
     @ManyToMany(fetch = FetchType.EAGER,
     cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(

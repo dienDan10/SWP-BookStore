@@ -45,16 +45,21 @@ public class GoogleLogin extends HttpServlet {
         // check if email has been registered to an account
         User user = userService.findOneByEmail(googleUserDTO.getEmail());
         HttpSession session = request.getSession();
-        if (user != null) {
-            session.setAttribute("user", user);
-        } else {    // register a new user
+        if (user == null) { // register new user
             userService.saveUser(googleUserDTO);
             user = userService.findOneByEmail(googleUserDTO.getEmail());
-            session.setAttribute("user", user);
         }
-
+        // check for user is active
+        if (!user.isActive()) {
+            session.setAttribute("errMsg", "Your account has been blocked");
+            response.sendRedirect("/login");
+            return;
+        }
+        // save user to session
+        session.setAttribute("user", user);
         // return to home page
-        response.sendRedirect("/home-page?googleLogin=true");
+        session.setAttribute("successMsg", "Login successful!");
+        response.sendRedirect("/home-page");
     }
 
     @Override
