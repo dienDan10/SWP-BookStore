@@ -33,6 +33,7 @@
                                             <a class="dropdown-item" href="/logout">
                                                 logout
                                             </a>
+                                            <a class="dropdown-item" href="/view-cart">shopping cart</a>
                                         </c:when>
                                         <c:otherwise>
                                             <a class="dropdown-item" href="/login">
@@ -40,8 +41,6 @@
                                             </a>
                                         </c:otherwise>
                                     </c:choose>
-
-                                    <a class="dropdown-item" href="/view-cart">shopping cart</a>
                                     <a class="dropdown-item" href="confirmation.html">confirmation</a>
                                 </div>
                             </li>
@@ -57,9 +56,11 @@
                             <!--                                </div>-->
                             <!--                            </li>-->
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="/view-dashboard">Dashboard</a>
-                            </li>
+                            <c:if test="${user.hasRole('ADMIN')}">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/view-dashboard">Dashboard</a>
+                                </li>
+                            </c:if>
                         </ul>
                     </div>
                     <div class="hearer_icon d-flex align-items-center">
