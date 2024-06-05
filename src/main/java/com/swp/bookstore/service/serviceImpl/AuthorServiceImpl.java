@@ -15,4 +15,14 @@ public class AuthorServiceImpl implements AuthorService {
     public List<Author> findAll() {
         return authorDAO.findAll();
     }
+
+    @Override
+    public void addAuthor(Author author) {
+        authorDAO.addAuthor(author);
+    }
+
+    @Override
+    public Author findAuthorByName(String name) {
+        return authorDAO.findAuthorByName(name);
+    }
 }

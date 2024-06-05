@@ -15,4 +15,9 @@ public class PublisherServiceImpl implements PublisherService {
     public List<Publisher> findAll() {
         return publisherDAO.findAll();
     }
+
+    @Override
+    public Publisher findById(int id) {
+        return publisherDAO.findById(id);
+    }
 }

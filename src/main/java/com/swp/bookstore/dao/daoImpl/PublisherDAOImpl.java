@@ -15,4 +15,11 @@ public class PublisherDAOImpl implements PublisherDAO {
         TypedQuery<Publisher> query = em.createQuery("select a from Publisher a", Publisher.class);
         return query.getResultList();
     }
+
+    @Override
+    public Publisher findById(int id) {
+        EntityManager em = JPAUtil.getEntityManager();
+        Publisher publisher = em.find(Publisher.class, id);
+        return publisher;
+    }
 }

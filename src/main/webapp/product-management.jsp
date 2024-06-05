@@ -223,27 +223,36 @@
                     <div class="modal-body">
 
                         <!-- Form fields go here -->
-                            <form>
+                        <form action="/add-product" class="add-book-form" enctype="multipart/form-data" method="post">
                             <div class="mb-3">
                                 <label for="bookName" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="bookName" aria-describedby="bookNameHelp">
+                                <input type="text" class="form-control" id="bookName" required
+                                       name="bookName" aria-describedby="bookNameHelp">
                             </div>
                             <div class="mb-3 col-lg-5 me-lg-5 d-inline-block">
                                 <label for="bookDescription" class="form-label">Description</label>
-                                <input class="form-control" id="bookDescription">
+                                <input class="form-control" id="bookDescription" required name="description">
                             </div>
                             <div class="mb-3 col-lg-6 d-inline-block">
+
                                 <label for="bookPublishedDate" class="form-label">Published Date</label>
-                                <input type="date" class="form-control" id="bookPublishedDate">
+                                <div id="error-message" style="color: red; display: none; font-size: 0.75rem"> Cannot Be In The Future.</div>
+                                <input type="date" class="form-control" required id="bookPublishedDate" name="pubplishedDate">
+
                             </div>
-                            <div class="mb-3 col-lg-5 me-lg-5 d-inline-block">
-                                <label for="bookAuthorName" class="form-label">Author Name</label>
-                                <input type="text" class="form-control" id="bookAuthorName" name="author">
+                            <div class="mb-3 col-12 col-lg-5 me-lg-5 d-inline-block text-container">
+                                <label for="author" class="form-label">Author Name</label>
+                                <input type="text" class="form-control" list="authorList"
+                                       id="author" name="author" required>
+                                <datalist id="authorList">
+                                    <c:forEach items="${authors}" var="author">
+                                        <option value="${author.name}">${author.name}</option>
+                                    </c:forEach>
+                                </datalist>
                             </div>
                             <div class="mb-3 col-lg-6 d-inline-block">
-                                <label for="bookPublisherName" class="form-label">Publisher Name</label>
-<%--                                <input type="text" class="form-control" id="bookPublisherName" name ="publishedDate">--%>
-                                <select class="form-select" id="bookPublisherName" name="publisher">
+                                <label for="publisher" class="form-label">Publisher Name</label>
+                                <select class="form-select" id="publisher" name="publisherId" required>
                                     <c:forEach items="${publishers}" var="publisher">
                                         <option value="${publisher.id}">${publisher.name}</option>
                                     </c:forEach>
@@ -251,9 +260,8 @@
                             </div>
                             .
                             <div class="mb-3 col-lg-3 d-inline-block">
-                                <label for="bookCategoryName" class="form-label">Category Name</label>
-<%--                                <input type="text" class="form-control" id="bookCategoryName" name="category">--%>
-                                <select class="form-select" id="bookCategoryName" name="category">
+                                <label for="bookCategory" class="form-label">Category Name</label>
+                                <select class="form-select" id="bookCategory" name="categoryId" required>
                                     <c:forEach items="${categories}" var="category">
                                         <option value="${category.id}">${category.name}</option>
                                     </c:forEach>
@@ -261,34 +269,33 @@
                             </div>
                             <div class="mb-3 col-lg-2 me-lg-5 d-inline-block">
                                 <label for="bookQuantity" class="form-label">Quantity</label>
-                                <input type="number" class="form-control" id="bookQuantity" name="quantity">
+                                <input type="number" class="form-control" id="bookQuantity" name="quantity" required>
                             </div>
                             <div class="mb-3 col-lg-3 d-inline-block">
                                 <label for="bookNumberOfPages" class="form-label">Number of Pages</label>
-                                <input type="number" class="form-control" id="bookNumberOfPages" name="pageNum">
+                                <input type="number" class="form-control" id="bookNumberOfPages" name="pageNum" required>
                             </div>
                             <div class="mb-3 col-lg-3 d-inline-block">
                                 <label for="bookPrice" class="form-label">Price</label>
-                                <input type="number" class="form-control" id="bookPrice" name="price">
+                                <input type="number" class="form-control" id="bookPrice" name="price" required>
                             </div>
                             <div class="mb-3 col-lg-5 me-lg-5 d-inline-block">
                                 <label for="imgFront" class="form-label">Front Image</label>
-                                <input class="form-control" id="imgFront" name="imgFront">
+                                <input type="file" class="form-control form-control-lg " id="imgFront" name="imgFront" >
                             </div>
                             <div class="mb-3 col-lg-6 d-inline-block">
                                 <label for="imgBack" class="form-label">Back Image</label>
-                                <input class="form-control" id="imgBack" name="imgBack">
+                                <input type="file" class="form-control form-control-lg" id="imgBack" name="imgBack" >
                             </div>
                             <div class="mb-3">
                                 <label for="bookSummary" class="form-label">Summary</label>
-                                <textarea class="form-control" id="bookSummary" rows="5" name="summary"></textarea>
+                                <textarea class="form-control" id="bookSummary" rows="5" name="summary" required></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <p type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</p>
+                                <button type="submit" class="btn btn-primary">Save Book</button>
                             </div>
                         </form>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save Book</button>
                     </div>
                 </div>
             </div>
@@ -305,7 +312,7 @@
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
+                                <label class="form-label">Name</label>
                                 <input type="text" class="form-control" value="Name" readonly>
                             </div>
                             <div class="mb-3">
@@ -414,6 +421,31 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+<%--    Check date input--%>
+    <script>
+        document.querySelector(".add-book-form").addEventListener("submit", function(event) {
+            // Get the input date value
+            const dateInput = document.getElementById("bookPublishedDate").value;
+            const errorMessage = document.getElementById("error-message");
+
+            // Convert the input date to a JavaScript Date object
+            const inputDate = new Date(dateInput);
+
+            // Get the current date and set the time to midnight to compare only dates
+            const currentDate = new Date();
+            currentDate.setHours(0, 0, 0, 0);
+
+            // Check if the input date is in the future
+            if (inputDate > currentDate) {
+                // If it is, prevent form submission and show error message
+                event.preventDefault();
+                errorMessage.style.display = "inline";
+            } else {
+                // Otherwise, hide error message
+                errorMessage.style.display = "none";
+            }
+        });
+    </script>
 
     <!-- Delete -->
     <script>

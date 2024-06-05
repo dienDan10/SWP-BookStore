@@ -15,4 +15,12 @@ public class CategoryDAOImpl implements CategoryDAO {
         TypedQuery<Category> query = em.createQuery("select a from Category a", Category.class);
         return query.getResultList();
     }
+
+    @Override
+    public Category findById(int id) {
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<Category> query = em.createQuery("select a from Category a where a.id = :id", Category.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
 }

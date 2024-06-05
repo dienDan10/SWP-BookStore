@@ -1,5 +1,6 @@
 package com.swp.bookstore.controller.seller;
 
+import com.swp.bookstore.entity.Book;
 import com.swp.bookstore.service.BookService;
 import com.swp.bookstore.service.serviceImpl.BookServiceImpl;
 import jakarta.servlet.ServletException;
@@ -9,6 +10,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 @WebServlet(name="DeleteProduct",urlPatterns = "/delete-product")
 public class DeleteProduct extends HttpServlet {
@@ -24,11 +27,22 @@ public class DeleteProduct extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //get bookid from request
         int bookId = Integer.parseInt(req.getParameter("bookId"));
+        // get book from database
+        Book book = bookService.findById(bookId);
+        // delete book picture from server
+        String imgFront = book.getImageFront();
+        String imgBack = book.getImageBack();
+        String path = req.getServletContext().getRealPath("");
+        if (Files.exists(Path.of(path + imgFront))) {
+            Files.delete(Path.of(path + imgFront));
+        }
+        if (Files.exists(Path.of(path + imgBack))) {
+            Files.delete(Path.of(path + imgBack));
+        }
         //delete book
         bookService.deleteBook(bookId);
         //back to manage product
         resp.sendRedirect("/manage-product");
-
     }
 
     @Override

@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface PublisherDAO {
     List<Publisher> findAll();
+    Publisher findById(int id);
 }
