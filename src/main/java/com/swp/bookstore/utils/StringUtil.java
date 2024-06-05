@@ -21,7 +21,7 @@ public class StringUtil {
     }
 
     public static String formatBookPrice(double price) {
-        DecimalFormat df = new DecimalFormat("#.000");
+        DecimalFormat df = new DecimalFormat("###,###,###");
         return df.format(price);
     }
 

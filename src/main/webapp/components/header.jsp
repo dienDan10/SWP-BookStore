@@ -33,6 +33,8 @@
                                             <a class="dropdown-item" href="/logout">
                                                 logout
                                             </a>
+                                            <a class="dropdown-item" href="/view-cart">shopping cart</a>
+                                            <a class="dropdown-item" href="/view-address">Manage Address</a>
                                         </c:when>
                                         <c:otherwise>
                                             <a class="dropdown-item" href="/login">
@@ -40,8 +42,6 @@
                                             </a>
                                         </c:otherwise>
                                     </c:choose>
-
-                                    <a class="dropdown-item" href="/view-cart">shopping cart</a>
                                     <a class="dropdown-item" href="confirmation.html">confirmation</a>
                                 </div>
                             </li>
@@ -57,6 +57,11 @@
                             <!--                                </div>-->
                             <!--                            </li>-->
 
+<%--                            <c:if test="${user.hasRole('SELLER')}">--%>
+<%--                                <li class="nav-item">--%>
+<%--                                    <a class="nav-link" href="/view-dashboard">Dashboard</a>--%>
+<%--                                </li>--%>
+<%--                            </c:if>--%>
                             <li class="nav-item">
                                 <a class="nav-link" href="/view-dashboard">Dashboard</a>
                             </li>

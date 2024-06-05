@@ -1,5 +1,7 @@
 package com.swp.bookstore.controller.user;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.swp.bookstore.entity.Book;
 import com.swp.bookstore.entity.Cart;
 import com.swp.bookstore.entity.User;
@@ -14,6 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name="AddToCart", urlPatterns = "/add-to-cart")
 public class AddToCart extends HttpServlet {
@@ -48,10 +51,17 @@ public class AddToCart extends HttpServlet {
             item.setUserId(user.getId());
             cartService.addCart(item);
         }
-        // send a message
-        req.setAttribute("successMsg", "Add to cart successfully");
-        // return to single product page
-        resp.sendRedirect("/book-detail?id=" + bookId);
+//        // send a message
+//        req.setAttribute("successMsg", "Add to cart successfully");
+//        // return to single product page
+//        resp.sendRedirect("/book-detail?id=" + bookId);
+        // create a result json to send to server
+        resp.setContentType("application/json");
+        PrintWriter out = resp.getWriter();
+        Gson gson = new Gson();
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("successMsg", "Add to cart successfully");
+        out.print(gson.toJson(jsonObject));
     }
 
     @Override

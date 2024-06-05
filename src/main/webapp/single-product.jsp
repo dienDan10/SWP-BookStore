@@ -33,6 +33,49 @@
         .hover-pointer:hover{
             cursor: pointer;
         }
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            position: fixed;
+            z-index: 1;
+            right: 5%;
+            bottom: 50px;
+            font-size: 17px;
+            white-space: nowrap;
+            padding: 16px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #toast.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @-webkit-keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @-webkit-keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+
+        @keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
     </style>
 </head>
 
@@ -120,8 +163,8 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="card_area" style="margin-top: 30px">
-                            <form action="/add-to-cart" method="GET">
-                                <input type="hidden" name="id" value="${book.id}">
+                            <form action="/add-to-cart" method="GET" class="add_to_cart_form">
+                                <input type="hidden" name="id" class="item_id" value="${book.id}">
                                 <div class="product_count_area">
                                     <p>Quantity</p>
                                     <div class="product_count d-inline-block">
@@ -129,10 +172,10 @@
                                         <input name="amount" class="product_count_item input-number" style="height: fit-content;" type="text" value="1" min="1" max="10" readonly>
                                         <span class="product_count_item number-increment hover-pointer"> <i class="ti-plus"></i></span>
                                     </div>
-                                    <p><fmt:formatNumber type = "number" minFractionDigits = "3" value = "${book.price}" />đ</p>
+                                    <p><fmt:formatNumber type = "number" minFractionDigits = "0" value = "${book.price}" />đ</p>
                                 </div>
                                 <div class="add_to_cart text-center">
-                                    <button class="btn_3">add to cart</button>
+                                    <button class="btn_3 btn_add_to_cart">add to cart</button>
                                 </div>
                             </form>
 
@@ -227,7 +270,7 @@
     </div>
 </section>
 <!-- subscribe part end -->
-
+<div id="toast"></div>
 <!--::footer_part start::-->
 <%@ include file="components/footer.jsp"%>
 <!--::footer_part end::-->
@@ -251,7 +294,6 @@
 <script src="js/slick.min.js"></script>
 <script src="js/jquery.counterup.min.js"></script>
 <script src="js/waypoints.min.js"></script>
-<script src="js/contact.js"></script>
 <script src="js/jquery.ajaxchimp.min.js"></script>
 <script src="js/jquery.form.js"></script>
 <script src="js/jquery.validate.min.js"></script>
@@ -259,7 +301,38 @@
 
 <!-- custom js -->
 <script src="js/custom.js"></script>
+<script>
+    const formAddToCart = document.querySelector('.add_to_cart_form');
+    formAddToCart.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // get input value
+        const itemNum = Number(document.querySelector('.input-number').value);
+        const itemId = Number(document.querySelector('.item_id').value);
+        // send to server
+        $.ajax({
+            url: '/add-to-cart',
+            type: 'get',
+            data: {
+                amount: itemNum,
+                id: itemId
+            },
+            success: function (data) {
+                showToast(data.successMsg);
+            },
+            error: function (dd) {
 
+            }
+        });
+    })
+
+    // JavaScript function to show the toast
+    function showToast(message) {
+        var toast = document.getElementById("toast");
+        toast.className = "show";
+        toast.textContent = message;
+        setTimeout(function() { toast.className = toast.className.replace("show", ""); }, 3000);
+    }
+</script>
 </body>
 
 </html>

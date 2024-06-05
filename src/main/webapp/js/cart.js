@@ -62,22 +62,31 @@ function calcTotal() {
     for (let i = 0; i < itemPrices.length; i++) {
         const itemPrice = sliceLastCharacterAndConvertToNumber(itemPrices[i].textContent.trim());
         const itemQuantity = Number(itemQuantities[i].value);
-        itemTotalPrices[i].textContent = (itemPrice * itemQuantity).toFixed(3) + 'đ';
+        itemTotalPrices[i].textContent = formatToMoney(itemPrice * itemQuantity) + 'đ';
         total += itemPrice * itemQuantity;
     }
 
-    totalPrice.textContent = total.toFixed(3) + 'đ';
+    totalPrice.textContent = formatToMoney(total) + 'đ';
     //totalPrice.textContent = formatVND(total).toFixed(3) + 'đ';
+}
+
+// format a number to money format
+function formatToMoney(num) {
+    // Convert the number to a string
+    let numStr = num.toString();
+
+    // Use a regular expression to insert dots as thousand separators
+    let formattedStr = numStr.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+    return formattedStr;
 }
 
 // convert a string of price into a number of price
 function sliceLastCharacterAndConvertToNumber(inputString) {
     // Remove the last character from the string
-    let stringWithoutLastChar = inputString.slice(0, -1);
-
+    let stringWithoutLastChar = inputString.slice(0, -1).replace(/,/g, '');
     // Convert the remaining string to a number
-    let number = parseFloat(stringWithoutLastChar);
-
+    let number = parseInt(stringWithoutLastChar);
     // Return the resulting number
     return number;
 }

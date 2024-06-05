@@ -98,7 +98,7 @@
                                         </c:forEach>
                                     </div>
                                     <p  class="px-4">Chỉ với
-                                        <fmt:formatNumber type = "number" minFractionDigits = "3" value = "${book.price}" />đ
+                                        <fmt:formatNumber type = "number" minFractionDigits = "0" value = "${book.price}" />đ
                                     </p>
                                 </div>
                             </div>

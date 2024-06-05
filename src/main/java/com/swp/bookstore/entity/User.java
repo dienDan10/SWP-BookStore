@@ -45,6 +45,9 @@ public class User {
     @Column(name="image_url")
     private String imageURL;
 
+    @Column(name="is_active")
+    private boolean isActive;
+
     @ManyToMany(fetch = FetchType.EAGER,
     cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(
@@ -60,6 +63,17 @@ public class User {
         }
         for (Role item : roles) {
             if (item.getName().equals(role.name()))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean hasRole(String role) {
+        if (roles == null) {
+            return false;
+        }
+        for (Role item : roles) {
+            if (item.getName().equals(role))
                 return true;
         }
         return false;
