@@ -5,7 +5,7 @@
                 <div class="col-lg-8">
                     <div class="footer_menu">
                         <div class="footer_logo">
-                            <a href="/home-page"><img src="img/logo.png" alt="#"></a>
+                            <a href="/home-page"><img src="img/bb.jpg" alt="#"></a>
                         </div>
                         <div class="footer_menu_item">
                             <a href="/home-page">Home</a>

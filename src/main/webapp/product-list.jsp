@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Product</title>
-    <link rel="icon" href="img/favicon.png">
+    <link rel="icon" href="img/favicon.jpeg">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- animate CSS -->
@@ -57,26 +57,26 @@
                 <div class="product_sidebar">
                     <div class="single_sedebar">
                         <form action="#" class="search-form">
-                            <input type="text" name="searchValue" placeholder="Tìm kiếm" class="search-input" required>
+                            <input type="text" name="searchValue" placeholder="Tìm kiếm" class="search-input h6" style="font-family: 'Inter','Helvetica Neue', sans-serif" required>
                             <i class="ti-search"></i>
                         </form>
                     </div>
                     <div class="single_sedebar">
                         <div class="select_option">
-                            <div class="select_option_list">Thể loại <i class="right fas fa-caret-down"></i> </div>
+                            <div class="select_option_list h6" style="font-family: 'Inter','Helvetica Neue', sans-serif">Thể loại <i class="right fas fa-caret-down"></i> </div>
                             <div class="select_option_dropdown">
                                 <c:forEach var="category" items="${categories}">
-                                    <p><a href="#" class="btn_filter_category" category-id="${category.id}">${category.name}</a></p>
+                                    <p><a href="#" class="btn_filter_category h6" category-id="${category.id}">${category.name}</a></p>
                                 </c:forEach>
                             </div>
                         </div>
                     </div>
                     <div class="single_sedebar">
                         <div class="select_option">
-                            <div class="select_option_list">Nhà Xuất bản<i class="right fas fa-caret-down"></i> </div>
+                            <div class="select_option_list h6" style="font-family: 'Inter','Helvetica Neue', sans-serif">Nhà Xuất bản<i class="right fas fa-caret-down"></i> </div>
                             <div class="select_option_dropdown">
                                 <c:forEach var="publisher" items="${publishers}">
-                                    <p><a href="#" class="btn_filter_publisher" publisher-id="${publisher.id}">${publisher.name}</a></p>
+                                    <p><a href="#" class="btn_filter_publisher h6" publisher-id="${publisher.id}">${publisher.name}</a></p>
                                 </c:forEach>
                             </div>
                         </div>

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="img/favicon.jpeg">
     <title>
         Product Management
     </title>
@@ -42,7 +42,7 @@
                             <h6>Product Management</h6>
                         </div>
                         <div class="d-flex">
-                            <a href="#" class="btn btn-sm btn-info mb-0 d-lg-block ms-3" data-bs-toggle="modal"
+                            <a href="#" class="btn btn-sm btn-info d-lg-block ms-3 my-2" data-bs-toggle="modal"
                                 data-bs-target="#addBookModal">Add Book</a>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
