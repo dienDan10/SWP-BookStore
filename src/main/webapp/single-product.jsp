@@ -126,7 +126,7 @@
                                         <input name="amount" class="product_count_item input-number" style="height: fit-content;" type="text" value="1" min="1" max="10" readonly>
                                         <span class="product_count_item number-increment hover-pointer"> <i class="ti-plus"></i></span>
                                     </div>
-                                    <p><fmt:formatNumber type = "number" minFractionDigits = "0" value = "${book.price}" />đ</p>
+                                    <p class="book-price">${book.price}đ</p>
                                 </div>
                                 <div class="add_to_cart text-center">
                                     <button class="btn_3 btn_add_to_cart">add to cart</button>
@@ -262,6 +262,7 @@
 <!--MODAL FOR BUTTON SHARE END HERE -->
 <!-- subscribe part end -->
 <div id="toast"></div>
+<div style="display: none" class="user-check" user="${not empty user ? "yes" : "no"}"></div>
 <!--::footer_part start::-->
 <%@ include file="components/footer.jsp"%>
 <!--::footer_part end::-->
@@ -296,6 +297,13 @@
     const formAddToCart = document.querySelector('.add_to_cart_form');
     formAddToCart.addEventListener('submit', function(event) {
         event.preventDefault();
+        // check for user login
+        const user = document.querySelector('.user-check');
+        const status = user.getAttribute('user');
+        if (status === 'no') {
+            showToast("Please login to add to cart!");
+            return;
+        }
         // get input value
         const itemNum = Number(document.querySelector('.input-number').value);
         const itemId = Number(document.querySelector('.item_id').value);
@@ -323,6 +331,14 @@
         toast.textContent = message;
         setTimeout(function() { toast.className = toast.className.replace("show", ""); }, 3000);
     }
+
+    // format money
+    function formatMoney() {
+        const item = document.querySelector('.book-price');
+        const money = parseInt(item.textContent.slice(0, -1));
+        item.textContent = money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ';
+    }
+    formatMoney();
 
     // share button function
     const shareLink = encodeURI(window.location.href);

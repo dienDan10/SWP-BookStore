@@ -121,6 +121,7 @@
 .twitter-share{
     border: 1px solid #000;
     color: #000;
+    margin-left: 10px !important;
 }
 
 .twitter-share:hover {
@@ -134,6 +135,7 @@
     background: linear-gradient(rgb(255, 143, 178) 0%, rgb(167, 151, 255) 50%, rgb(0, 229, 255) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    margin-left: 10px !important;
 }
 
 .messenger-share:hover {
