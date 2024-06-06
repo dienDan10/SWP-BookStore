@@ -51,7 +51,6 @@ public class AddProduct extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         //Get book's information
         String bookName = req.getParameter("bookName");
         String description = req.getParameter("description");
@@ -77,34 +76,34 @@ public class AddProduct extends HttpServlet {
         Category category = categoryService.findById(Integer.parseInt(categoryId));
         Publisher publisher = publisherService.findById(Integer.parseInt(publisherId));
 
-        //Initialize book
-        Book book = new Book();
         // save image to server
         Part frontImgPart = req.getPart("imgFront");// get Img
         Part backImgPart = req.getPart("imgBack");
         String imageFront = frontImgPart.getSubmittedFileName();// get Img name
         String imageBack = backImgPart.getSubmittedFileName();
-        // Get folder path
+        // Get save folder path
         String path = req.getServletContext().getRealPath("/img/book-image");// set path
         if(!Files.exists(Path.of(path))){ // create folder
             Files.createDirectory(Path.of(path));
         }
 
+        // check if image with the same name already in the save folder
         String newFrontImgName = imageFront;
         String newBackImgName = imageBack;
         Path imgFrontPath = Path.of(path + File.separator + imageFront);
         Path imgBackPath = Path.of(path + File.separator + imageBack);
-        if (Files.exists(imgFrontPath)) {    // delete image
+        if (Files.exists(imgFrontPath)) {    // change image name
             newFrontImgName = RandomUtil.getOTPCode() + "-" + imageFront;
         }
-        if (Files.exists(imgBackPath)) {  // delete image
+        if (Files.exists(imgBackPath)) {  // change image name
             newBackImgName = RandomUtil.getOTPCode() + "-" + imageBack;
         }
         // save image
         frontImgPart.write(path + File.separator + newFrontImgName);
         backImgPart.write(path + File.separator + newBackImgName);
 
-        //Set Book object's info
+        // Create new Book
+        Book book = new Book();
         book.setName(bookName);
         book.setDescription(description);
         book.setPublishedDate(publishedDate);
@@ -114,13 +113,12 @@ public class AddProduct extends HttpServlet {
         book.setQuantity(Integer.parseInt(quantity));
         book.setPageCount(Integer.parseInt(pageNum));
         book.setPrice(Integer.parseInt(price));
-        book.setImageFront("/img/book-image/" + newFrontImgName);// set book path
+        book.setImageFront("/img/book-image/" + newFrontImgName);
         book.setImageBack("/img/book-image/" + newBackImgName);
         book.setSummary(summary);
         bookService.addBook(book);
 
-        //send success message
-//        req.setAttribute("mes", "sucessful");
+        // redirect back to manage product page
         resp.sendRedirect("/manage-product");
     }
 

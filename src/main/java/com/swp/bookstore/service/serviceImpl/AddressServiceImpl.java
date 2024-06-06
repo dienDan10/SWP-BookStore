@@ -12,7 +12,7 @@ public class AddressServiceImpl implements AddressService {
     private AddressDAO addressDAO = new AddressDAOImpl();
 
     @Override
-    public Address findById(int id) {
+    public Address findById(long id) {
         return addressDAO.findById(id);
     }
 
@@ -22,7 +22,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public void delete(int addressId) {
+    public void delete(long addressId) {
         addressDAO.delete(addressId);
     }
 
@@ -34,5 +34,15 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public List<Address> findAllByUserId(long userId) {
         return addressDAO.findAllByUserId(userId);
+    }
+
+    @Override
+    public int countByUserId(long userId) {
+        return addressDAO.countAddressByUserId(userId);
+    }
+
+    @Override
+    public void setDefaultAddress(long addressId, long userId) {
+        addressDAO.setDefaultAddress(addressId, userId);
     }
 }

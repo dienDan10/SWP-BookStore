@@ -3,9 +3,7 @@ package com.swp.bookstore.dao.daoImpl;
 import com.swp.bookstore.dao.AddressDAO;
 import com.swp.bookstore.entity.Address;
 import com.swp.bookstore.utils.JPAUtil;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +11,7 @@ import java.util.List;
 public class AddressDAOImpl implements AddressDAO {
 
     @Override
-    public Address findById(int id) {
+    public Address findById(long id) {
         EntityManager em = JPAUtil.getEntityManager();
         return em.find(Address.class, id);
     }
@@ -35,7 +33,7 @@ public class AddressDAOImpl implements AddressDAO {
     }
 
     @Override
-    public void delete(int addressId) {
+    public void delete(long addressId) {
         EntityManager em = JPAUtil.getEntityManager();
         em.getTransaction().begin();
         try {
@@ -70,7 +68,7 @@ public class AddressDAOImpl implements AddressDAO {
     @Override
     public List<Address> findAllByUserId(long userId) {
         EntityManager em = JPAUtil.getEntityManager();
-        TypedQuery<Address> query = em.createQuery("select a from Address a where a.userId = :userId", Address.class);
+        TypedQuery<Address> query = em.createQuery("select a from Address a where a.userId = :userId order by isDefault desc", Address.class);
         query.setParameter("userId", userId);
         List<Address> addressList = new ArrayList<>();
         try {
@@ -82,5 +80,36 @@ public class AddressDAOImpl implements AddressDAO {
             em.close();
         }
         return addressList;
+    }
+
+    @Override
+    public int countAddressByUserId(long userId) {
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<Address> query = em.createQuery("select count(a) from Address a where a.userId = :userId", Address.class);
+        int res = query.getFirstResult();
+        em.close();
+        return res;
+    }
+
+    @Override
+    public void setDefaultAddress(long addressId, long userId) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        Query queryUpdateAll = em.createQuery("update Address a set a.isDefault = false where a.userId = :userId");
+        queryUpdateAll.setParameter("userId", userId);
+        Query queryUpdate = em.createQuery("update Address a set a.isDefault = true where a.id = :addressId");
+        queryUpdate.setParameter("addressId", addressId);
+        try {
+            tx.begin();
+            queryUpdateAll.executeUpdate();
+            queryUpdate.executeUpdate();
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+            System.out.println("Set Default Address Failed");
+        } finally {
+            em.close();
+        }
     }
 }

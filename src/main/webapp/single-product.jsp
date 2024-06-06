@@ -29,54 +29,8 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- font-awesome star -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    <style>
-        .hover-pointer:hover{
-            cursor: pointer;
-        }
-        #toast {
-            visibility: hidden;
-            min-width: 250px;
-            margin-left: -125px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            border-radius: 2px;
-            position: fixed;
-            z-index: 1;
-            right: 5%;
-            bottom: 50px;
-            font-size: 17px;
-            white-space: nowrap;
-            padding: 16px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+    <link rel="stylesheet" href="css/single-product.css">
 
-        #toast.show {
-            visibility: visible;
-            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        }
-
-        @-webkit-keyframes fadein {
-            from {bottom: 0; opacity: 0;}
-            to {bottom: 30px; opacity: 1;}
-        }
-
-        @keyframes fadein {
-            from {bottom: 0; opacity: 0;}
-            to {bottom: 30px; opacity: 1;}
-        }
-
-        @-webkit-keyframes fadeout {
-            from {bottom: 30px; opacity: 1;}
-            to {bottom: 0; opacity: 0;}
-        }
-
-        @keyframes fadeout {
-            from {bottom: 30px; opacity: 1;}
-            to {bottom: 0; opacity: 0;}
-        }
-    </style>
 </head>
 
 <body>
@@ -113,7 +67,7 @@
             </div>
             <div class="col-lg-9">
                 <div class="single_product_text text-center" style="margin-bottom:100px">
-                    <h3>${book.name}</h3>
+                    <h3 class="book-title">${book.name}</h3>
                     <div class="d-flex flex-row align-items-center justify-content-between flex-row">
                         <div> </div><div> </div>
                         <h5 class="mb-0 mr-lg-5">${book.author.name}</h5>
@@ -269,6 +223,43 @@
         </div>
     </div>
 </section>
+<div class="share" data-toggle="modal" data-target="#share-modal">
+    <i class="fa-solid fa-share-nodes"></i>
+</div>
+
+<!-- MODAL FOR BUTTON SHARE  -->
+<div class="modal fade" id="share-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                <h3 id="exampleModalLabel">Chia sẻ</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control share-link" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append btn_copy">
+                        <span class="input-group-text" id="basic-addon2">Copy</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-start">
+                <div class="facebook-share">
+                    <a class="facebook text-decoration-none" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+                <div class="twitter-share">
+                    <a class="twitter text-decoration-none" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+                <div class="messenger-share">
+                    <a class="messenger text-decoration-none" target="_blank"><i class="fa-brands fa-facebook-messenger"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--MODAL FOR BUTTON SHARE END HERE -->
 <!-- subscribe part end -->
 <div id="toast"></div>
 <!--::footer_part start::-->
@@ -332,6 +323,31 @@
         toast.textContent = message;
         setTimeout(function() { toast.className = toast.className.replace("show", ""); }, 3000);
     }
+
+    // share button function
+    const shareLink = encodeURI(window.location.href);
+    const msg = encodeURIComponent("Quyển sách này thực sự rất thú vị!");
+    const title = encodeURIComponent(document.querySelector('.book-title').textContent);
+    function setShareLink() {
+        document.querySelector('.share-link').value = shareLink;
+    }
+    setShareLink();
+
+    // copy share link function
+    document.querySelector('.btn_copy').addEventListener('click', function() {
+        const link = document.querySelector('.share-link');
+        link.select();
+        navigator.clipboard.writeText(link.value);
+    });
+
+    const fb = document.querySelector('.facebook');
+    fb.href= `https://www.facebook.com/sharer/sharer.php?u=` + 'https://github.com/dienDan10';
+
+    const twitter = document.querySelector('.twitter');
+    twitter.href = `http://twitter.com/share?&url=${'https://github.com/dienDan10'}&text=${msg}&hashtags=book,interesting,awesome`;
+
+    const messenger = document.querySelector('.messenger');
+    messenger.href = `https://www.facebook.com/dialog/send?app_id=372609458675989&link=https://github.com/dienDan10&redirect_uri=https://github.com/dienDan10`;
 </script>
 </body>
 

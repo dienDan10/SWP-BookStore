@@ -33,11 +33,13 @@ public class DeleteProduct extends HttpServlet {
         String imgFront = book.getImageFront();
         String imgBack = book.getImageBack();
         String path = req.getServletContext().getRealPath("");
-        if (Files.exists(Path.of(path + imgFront))) {
-            Files.delete(Path.of(path + imgFront));
+        Path imageFrontPath = Path.of(path + imgFront);
+        Path imageBackPath = Path.of(path + imgBack);
+        if (Files.exists(imageFrontPath)) {
+            Files.delete(imageFrontPath);
         }
-        if (Files.exists(Path.of(path + imgBack))) {
-            Files.delete(Path.of(path + imgBack));
+        if (Files.exists(imageBackPath)) {
+            Files.delete(imageBackPath);
         }
         //delete book
         bookService.deleteBook(bookId);

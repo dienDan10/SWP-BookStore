@@ -42,8 +42,8 @@
                             <h6>Product Management</h6>
                         </div>
                         <div class="d-flex">
-                            <a href="#" class="btn btn-sm btn-info mb-0 d-none d-lg-block" data-bs-toggle="modal"
-                                data-bs-target="#addBookModal" style="margin: 0 auto;">Add Book</a>
+                            <a href="#" class="btn btn-sm btn-info mb-0 d-lg-block ms-3" data-bs-toggle="modal"
+                                data-bs-target="#addBookModal">Add Book</a>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-2">
@@ -147,7 +147,7 @@
 
                                 <label for="bookPublishedDate" class="form-label">Published Date</label>
                                 <div id="error-message" style="color: red; display: none; font-size: 0.75rem"> Cannot Be In The Future.</div>
-                                <input type="date" class="form-control" required id="bookPublishedDate" name="pubplishedDate">
+                                <input type="date" class="form-control" required id="bookPublishedDate" name="publishedDate">
 
                             </div>
                             <div class="mb-3 col-12 col-lg-5 me-lg-5 d-inline-block text-container">
@@ -168,7 +168,7 @@
                                     </c:forEach>
                                 </select>
                             </div>
-                            .
+                            
                             <div class="mb-3 col-lg-3 d-inline-block">
                                 <label for="bookCategory" class="form-label">Category Name</label>
                                 <select class="form-select" id="bookCategory" name="categoryId" required>
@@ -282,7 +282,7 @@
     <!--  Data Table  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
-<%--    Check date input--%>
+
     <script>
         document.querySelector(".add-book-form").addEventListener("submit", function(event) {
             // Get the input date value
