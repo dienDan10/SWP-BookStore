@@ -46,6 +46,8 @@ public class ManageProduct extends HttpServlet {
         List<Publisher> publishers = publisherService.findAll();
         List<Category> categories = categoryService.findAll();
         List<Author> authors = authorService.findAll();
+        // format date for book
+        books.forEach(book -> book.setPublishedDate(book.getPublishedDate().split(" ")[0]));
         //add book to request
         req.setAttribute("books", books);
         req.setAttribute("publishers", publishers);

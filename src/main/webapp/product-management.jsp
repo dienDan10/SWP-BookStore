@@ -101,17 +101,156 @@
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
                                                     <a href="#" class="badge badge-sm bg-gradient-success"
-                                                       data-bs-toggle="modal" data-bs-target="#productModal">Update</a>
+                                                       data-bs-toggle="modal" data-bs-target="#book-${book.id}">Update</a>
                                                 </td>
-                                                <!-- <td class="align-middle text-center text-sm">
-                                                    <a href="https://example.com/delete-link"
-                                                        class="badge badge-sm bg-gradient-success">Delete</a>
-                                                </td> -->
                                                 <td class="align-middle text-center text-sm">
                                                     <a href="/delete-product?bookId=${book.id}" onclick="if (!confirm('Do you want to delete?')) return false"
                                                        class="badge badge-sm bg-gradient-success">Delete</a>
                                                 </td>
                                             </tr>
+                                            <!-- popup Update book -->
+                                            <div class="modal fade" id="book-${book.id}" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-special">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="productModalLabel">Update Product</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="/update-product" class="add-book-form" enctype="multipart/form-data" method="post">
+                                                                <input type="hidden" name="id" value="${book.id}">
+                                                                <div class="mb-3">
+                                                                    <label for="bookName-u" class="form-label">Name</label>
+                                                                    <input type="text" class="form-control" id="bookName-u" required
+                                                                           name="bookName" aria-describedby="bookNameHelp" value="${book.name}">
+                                                                </div>
+                                                                <div class="mb-3 col-lg-5 me-lg-5 d-inline-block">
+                                                                    <label for="bookDescription-u" class="form-label">Description</label>
+                                                                    <input class="form-control" id="bookDescription-u" required name="description" value="${book.description}">
+                                                                </div>
+                                                                <div class="mb-3 col-lg-6 d-inline-block">
+                                                                    <label for="bookPublishedDate-u" class="form-label">Published Date</label>
+                                                                    <div id="error-message-u" style="color: red; display: none; font-size: 0.75rem"> Cannot Be In The Future.</div>
+                                                                    <input type="date" class="form-control" required id="bookPublishedDate-u" name="publishedDate" value="${book.publishedDate}">
+                                                                </div>
+                                                                <div class="mb-3 col-12 col-lg-5 me-lg-5 d-inline-block text-container">
+                                                                    <label for="author-u" class="form-label">Author Name</label>
+                                                                    <input type="text" class="form-control" list="authorList"
+                                                                           id="author-u" name="author" required  value="${book.author.name}">
+                                                                    <datalist id="authorList-u">
+                                                                        <c:forEach items="${authors}" var="author">
+                                                                            <option value="${author.name}">${author.name}</option>
+                                                                        </c:forEach>
+                                                                    </datalist>
+                                                                </div>
+                                                                <div class="mb-3 col-lg-6 d-inline-block">
+                                                                    <label for="publisher-u" class="form-label">Publisher Name</label>
+                                                                    <select class="form-select" id="publisher-u" name="publisherId" required  value="${book.publisher.name}">
+                                                                        <c:forEach items="${publishers}" var="publisher">
+                                                                            <c:choose>
+                                                                                <c:when test="${book.publisher.id == publisher.id}">
+                                                                                    <option value="${publisher.id}" selected>${publisher.name}</option>
+                                                                                </c:when>
+                                                                                <c:otherwise>
+                                                                                    <option value="${publisher.id}">${publisher.name}</option>
+                                                                                </c:otherwise>
+                                                                            </c:choose>
+                                                                        </c:forEach>
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="mb-3 col-lg-3 d-inline-block">
+                                                                    <label for="bookCategory-u" class="form-label">Category Name</label>
+                                                                    <select class="form-select" id="bookCategory-u" name="categoryId" required value="${book.category.name}">
+                                                                        <c:forEach items="${categories}" var="category">
+                                                                            <c:choose>
+                                                                                <c:when test="${book.category.id == category.id}">
+                                                                                    <option value="${category.id}" selected>${category.name}</option>
+                                                                                </c:when>
+                                                                                <c:otherwise>
+                                                                                    <option value="${category.id}">${category.name}</option>
+                                                                                </c:otherwise>
+                                                                            </c:choose>
+                                                                        </c:forEach>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="mb-3 col-lg-2 me-lg-5 d-inline-block">
+                                                                    <label for="bookQuantity-u" class="form-label">Quantity</label>
+                                                                    <input type="number" class="form-control" id="bookQuantity-u" name="quantity" required value="${book.quantity}">
+                                                                </div>
+                                                                <div class="mb-3 col-lg-3 d-inline-block">
+                                                                    <label for="bookNumberOfPages-u" class="form-label">Number of Pages</label>
+                                                                    <input type="number" class="form-control" id="bookNumberOfPages-u" name="pageNum" required value="${book.pageCount}">
+                                                                </div>
+                                                                <div class="mb-3 col-lg-3 d-inline-block">
+                                                                    <label for="bookPrice-u" class="form-label">Price</label>
+                                                                    <input type="number" class="form-control book-prices" id="bookPrice-u" name="price" required value="${book.price}" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
+                                                                </div>
+                                                                <div class="mb-3 col-lg-5 me-lg-5 d-inline-block">
+                                                                    <label for="imgFront-u" class="form-label">Front Image</label>
+                                                                    <input type="file" class="form-control form-control-lg " id="imgFront-u" name="imgFront">
+                                                                </div>
+                                                                <div class="mb-3 col-lg-6 d-inline-block">
+                                                                    <label for="imgBack-u" class="form-label">Back Image</label>
+                                                                    <input type="file" class="form-control form-control-lg" id="imgBack-u" name="imgBack">
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="bookSummary-u" class="form-label">Summary</label>
+                                                                    <textarea class="form-control" id="bookSummary-u" rows="5" name="summary" required>${book.summary}</textarea>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <p type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</p>
+                                                                    <button type="submit" class="btn btn-primary">Save Book</button>
+                                                                </div>
+                                                            </form>
+<%--                                                            <form>--%>
+<%--                                                                <div class="mb-3">--%>
+<%--                                                                    <label class="form-label">Name</label>--%>
+<%--                                                                    <input type="text" class="form-control" aria-describedby="nameHelp"--%>
+<%--                                                                           placeholder="Enter name" value="${book.name}">--%>
+<%--                                                                </div>--%>
+<%--                                                                <div class="mb-3">--%>
+<%--                                                                    <label class="form-label">Description</label>--%>
+<%--                                                                    <textarea class="form-control" rows="3"--%>
+<%--                                                                              placeholder="Enter description" value="${book.description}"></textarea>--%>
+<%--                                                                </div>--%>
+<%--                                                                <div class="mb-3">--%>
+<%--                                                                    <label class="form-label">Published Date</label>--%>
+<%--                                                                    <input type="date" class="form-control" value="${book.publishedDate}">--%>
+<%--                                                                </div>--%>
+<%--                                                                <div class="mb-3">--%>
+<%--                                                                    <label class="form-label">Author Name</label>--%>
+<%--                                                                    <input type="text" class="form-control" placeholder="Enter author name" value="${book.author.name}">--%>
+<%--                                                                </div>--%>
+<%--                                                                <div class="mb-3">--%>
+<%--                                                                    <label class="form-label">Category Name</label>--%>
+<%--                                                                    <input type="text" class="form-control"--%>
+<%--                                                                           placeholder="Enter category name" value="${book.category.name}">--%>
+<%--                                                                </div>--%>
+<%--                                                                <div class="mb-3">--%>
+<%--                                                                    <label for="numberOfPages" class="form-label">Number of Pages</label>--%>
+<%--                                                                    <input type="number" class="form-control" id="numberOfPages"--%>
+<%--                                                                           placeholder="Enter number of pages" value="${book.pageCount}">--%>
+<%--                                                                </div>--%>
+<%--                                                                <div class="mb-3">--%>
+<%--                                                                    <label class="form-label">Price</label>--%>
+<%--                                                                    <input type="number" class="form-control" placeholder="Enter price"  value="${book.price}">--%>
+<%--                                                                </div>--%>
+<%--                                                                <div class="mb-3">--%>
+<%--                                                                    <label class="form-label">Summary</label>--%>
+<%--                                                                    <textarea class="form-control" rows="3"--%>
+<%--                                                                              placeholder="Enter summary"  value="${book.summary}"></textarea>--%>
+<%--                                                                </div>--%>
+<%--                                                                <div class="modal-footer">--%>
+<%--                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--%>
+<%--                                                                    <button type="button" class="btn btn-primary">Save</button>--%>
+<%--                                                                </div>--%>
+<%--                                                            </form>--%>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- popup Update book end here -->
                                         </c:forEach>
                                     </tbody>
                                 </table>
@@ -147,7 +286,7 @@
 
                                 <label for="bookPublishedDate" class="form-label">Published Date</label>
                                 <div id="error-message" style="color: red; display: none; font-size: 0.75rem"> Cannot Be In The Future.</div>
-                                <input type="date" class="form-control" required id="bookPublishedDate" name="pubplishedDate">
+                                <input type="date" class="form-control" required id="bookPublishedDate" name="publishedDate">
 
                             </div>
                             <div class="mb-3 col-12 col-lg-5 me-lg-5 d-inline-block text-container">
@@ -168,7 +307,7 @@
                                     </c:forEach>
                                 </select>
                             </div>
-                            .
+
                             <div class="mb-3 col-lg-3 d-inline-block">
                                 <label for="bookCategory" class="form-label">Category Name</label>
                                 <select class="form-select" id="bookCategory" name="categoryId" required>
@@ -191,11 +330,11 @@
                             </div>
                             <div class="mb-3 col-lg-5 me-lg-5 d-inline-block">
                                 <label for="imgFront" class="form-label">Front Image</label>
-                                <input type="file" class="form-control form-control-lg " id="imgFront" name="imgFront" >
+                                <input type="file" class="form-control form-control-lg " id="imgFront" name="imgFront" required>
                             </div>
                             <div class="mb-3 col-lg-6 d-inline-block">
                                 <label for="imgBack" class="form-label">Back Image</label>
-                                <input type="file" class="form-control form-control-lg" id="imgBack" name="imgBack" >
+                                <input type="file" class="form-control form-control-lg" id="imgBack" name="imgBack" required>
                             </div>
                             <div class="mb-3">
                                 <label for="bookSummary" class="form-label">Summary</label>
@@ -211,62 +350,6 @@
             </div>
         </div>
 
-        <!-- popup Update book -->
-        <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="productModalLabel">Update Product</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="mb-3">
-                                <label class="form-label">Name</label>
-                                <input type="text" class="form-control" aria-describedby="nameHelp"
-                                    placeholder="Enter name">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Description</label>
-                                <textarea class="form-control" rows="3"
-                                    placeholder="Enter description"></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Published Date</label>
-                                <input type="date" class="form-control">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Author Name</label>
-                                <input type="text" class="form-control" placeholder="Enter author name">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Category Name</label>
-                                <input type="text" class="form-control"
-                                    placeholder="Enter category name">
-                            </div>
-                            <div class="mb-3">
-                                <label for="numberOfPages" class="form-label">Number of Pages</label>
-                                <input type="number" class="form-control" id="numberOfPages"
-                                    placeholder="Enter number of pages">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Price</label>
-                                <input type="number" class="form-control" placeholder="Enter price">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Summary</label>
-                                <textarea class="form-control" rows="3"
-                                    placeholder="Enter summary"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </main>
     <!--   Core JS Files   -->
@@ -282,6 +365,7 @@
     <!--  Data Table  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+
 <%--    Check date input--%>
     <script>
         document.querySelector(".add-book-form").addEventListener("submit", function(event) {
@@ -306,6 +390,15 @@
                 errorMessage.style.display = "none";
             }
         });
+
+        // format book price
+        function formatBookPrice() {
+            document.querySelectorAll('.book-prices').forEach(book => {
+                const newValue = parseInt(book.value);
+                book.value = newValue;
+            })
+        }
+        formatBookPrice();
     </script>
 
 
