@@ -98,7 +98,7 @@
                                         </c:forEach>
                                     </div>
                                     <p  class="px-4">Chỉ với
-                                        <fmt:formatNumber type = "number" minFractionDigits = "0" value = "${book.price}" />đ
+                                        <span class="book-price">${book.price}</span>đ
                                     </p>
                                 </div>
                             </div>
@@ -283,6 +283,7 @@
             success: function (data) {
                 $('.product-list').append(data);
                 document.querySelector('.current-page').setAttribute('page', Number(currentPage) + 1);
+                formatItemPrice();
                 console.log('Load page success');
             },
             error: function (dd) {
@@ -314,6 +315,7 @@
                 document.querySelector('.current-page').setAttribute('page', Number(currentPage) + 1);
                 $('.filter').attr('filter-by', 'category');
                 $('.filter').attr('filter-id', categoryId);
+                formatItemPrice();
                 console.log('Load page by category success');
             },
             error: function (dd) {
@@ -345,6 +347,7 @@
                 document.querySelector('.current-page').setAttribute('page', Number(currentPage) + 1);
                 $('.filter').attr('filter-by', 'publisher');
                 $('.filter').attr('filter-id', publisherId);
+                formatItemPrice();
                 console.log('Load page by publisher success');
             },
             error: function (dd) {
@@ -380,6 +383,7 @@
                 document.querySelector('.current-page').setAttribute('page', Number(currentPage) + 1);
                 $('.filter').attr('filter-by', 'search');
                 $('.filter').attr('filter-id', input);
+                formatItemPrice();
                 console.log('Load page by search success');
             },
             error: function (dd) {
@@ -387,6 +391,16 @@
             }
         });
     }
+
+    // format book price
+    function formatItemPrice() {
+        document.querySelectorAll('.book-price').forEach(item => {
+            const price = parseInt(item.textContent);
+            console.log(price);
+            item.textContent = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        })
+    }
+    formatItemPrice();
 
 </script>
 </body>

@@ -76,7 +76,7 @@ function formatToMoney(num) {
     let numStr = num.toString();
 
     // Use a regular expression to insert dots as thousand separators
-    let formattedStr = numStr.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    let formattedStr = numStr.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
     return formattedStr;
 }
@@ -84,12 +84,21 @@ function formatToMoney(num) {
 // convert a string of price into a number of price
 function sliceLastCharacterAndConvertToNumber(inputString) {
     // Remove the last character from the string
-    let stringWithoutLastChar = inputString.slice(0, -1).replace(/,/g, '');
+    let stringWithoutLastChar = inputString.slice(0, -1).replace(/,/g, '').replace('.','');
     // Convert the remaining string to a number
     let number = parseInt(stringWithoutLastChar);
     // Return the resulting number
     return number;
 }
+
+// format item price
+function formatItemPrice() {
+    document.querySelectorAll('.item-price').forEach(item => {
+        const price = parseInt(item.textContent.slice(0, -1));
+        item.textContent = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ';
+    })
+}
+formatItemPrice();
 
 // call the function right after the page render to update the price
 calcTotal();

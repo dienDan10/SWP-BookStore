@@ -98,8 +98,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h5 class="item-price">
-                                        <fmt:formatNumber type = "number" minFractionDigits = "0" value = "${item.book.price}" />đ
+                                    <h5 class="item-price">${item.book.price}đ
                                     </h5>
                                 </td>
                                 <td>

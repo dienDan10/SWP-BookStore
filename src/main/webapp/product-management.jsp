@@ -42,8 +42,8 @@
                             <h6>Product Management</h6>
                         </div>
                         <div class="d-flex">
-                            <a href="#" class="btn btn-sm btn-info mb-0 d-none d-lg-block" data-bs-toggle="modal"
-                                data-bs-target="#addBookModal" style="margin: 0 auto;">Add Book</a>
+                            <a href="#" class="btn btn-sm btn-info mb-0 d-lg-block ms-3" data-bs-toggle="modal"
+                                data-bs-target="#addBookModal">Add Book</a>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-2">
@@ -366,7 +366,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 
-<%--    Check date input--%>
     <script>
         document.querySelector(".add-book-form").addEventListener("submit", function(event) {
             // Get the input date value

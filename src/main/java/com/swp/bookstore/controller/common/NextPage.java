@@ -4,7 +4,6 @@ import com.swp.bookstore.config.Page;
 import com.swp.bookstore.entity.Book;
 import com.swp.bookstore.service.BookService;
 import com.swp.bookstore.service.serviceImpl.BookServiceImpl;
-import com.swp.bookstore.utils.StringUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -47,7 +46,7 @@ public class NextPage extends HttpServlet {
                    "                                    <h5 class=\"px-4\">Tác giả: "+ book.getAuthor().getName()+"</h5>\n" +
                                                         builder.toString() +
                    "                                    <p  class=\"px-4\">Chỉ với\n" +
-                   StringUtil.formatBookPrice(book.getPrice()) + "đ" +
+                   "<span class=\"book-price\">" + book.getPrice() + "</span>" + "đ" +
                    "                                    </p>\n" +
                    "                                </div>\n" +
                    "                            </div>") ;

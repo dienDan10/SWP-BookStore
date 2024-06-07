@@ -70,38 +70,38 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form action="" method="POST">
+                                    <form action="/add-address" method="POST" class="add-address-form">
                                         <div class="modal-body">
 
                                             <table class="w-100">
                                                 <tbody>
                                                 <tr class="mb-3">
                                                     <td><p>Số điện thoại:</p></td>
-                                                    <td><input type="text" class="form-control" name="receiver"></td>
+                                                    <td><input type="number" class="form-control add-phone" name="phone" min="1" required></td>
                                                 </tr>
                                                 <tr class="mb-3">
                                                     <td><p>Người nhận:</p></td>
-                                                    <td><input type="text" class="form-control" name="receiver"></td>
+                                                    <td><input type="text" class="form-control add-receiver" name="receiver" required></td>
                                                 </tr>
                                                 <tr class="mb-3">
                                                     <td><p>Tỉnh/Thành phố: </p></td>
-                                                    <td><input type="text" class="form-control" name="receiver"></td>
+                                                    <td><input type="text" class="form-control add-province" name="province" required></td>
                                                 </tr>
                                                 <tr class="mb-3">
                                                     <td><p>Quận huyện: </p></td>
-                                                    <td><input type="text" class="form-control" name="receiver"></td>
+                                                    <td><input type="text" class="form-control add-district" name="district"  required></td>
                                                 </tr>
                                                 <tr class="mb-3">
                                                     <td><p>Phường xã:</p></td>
-                                                    <td><input type="text" class="form-control" name="receiver"></td>
+                                                    <td><input type="text" class="form-control add-town" name="town"  required></td>
                                                 </tr>
                                                 <tr class="mb-3">
                                                     <td><p>Thôn xóm:</p></td>
-                                                    <td><input type="text" class="form-control" name="receiver"></td>
+                                                    <td><input type="text" class="form-control add-village" name="village"  required></td>
                                                 </tr>
                                                 <tr class="mb-3">
                                                     <td><p>Chi tiết:</p></td>
-                                                    <td><input type="text" class="form-control" name="receiver"></td>
+                                                    <td><input type="text" class="form-control add-detail" name="details"  required></td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -139,8 +139,11 @@
                                         </div>
                                         <h5 class="align-self-center mr-2 mb-0 hover-pointer" data-toggle="modal" data-target="#change-address-${address.id}">Chỉnh sửa</h5>
                                         <c:if test="${!address.isDefault()}">
-                                            <div style="color: #4B3049" class="align-self-center ml-2 mr-2 hover-pointer" address-id="${address.id}">
-                                                <i class="fa-solid fa-trash-can"></i>
+
+                                            <div style="color: #4B3049" class="align-self-center ml-2 mr-2 hover-pointer">
+                                                <a href="/delete-address?id=${address.id}" class="text-decoration-none text-danger" onclick="if (!confirm('Do you want to delete?')) return false">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </a>
                                             </div>
                                         </c:if>
                                         <!--===================== MODAL FOR UPDATE ADDRESS ==================================-->
@@ -153,7 +156,8 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <form action="" method="POST">
+                                                    <form action="/update-address" method="POST">
+                                                        <input type="hidden" name="id" value="${address.id}">
                                                         <div class="modal-body">
 
                                                             <table class="w-100">
@@ -250,8 +254,6 @@
 <script src="js/mail-script.js"></script>
 <!-- custom js -->
 <script src="js/custom.js"></script>
-
-
 </body>
 
 </html>

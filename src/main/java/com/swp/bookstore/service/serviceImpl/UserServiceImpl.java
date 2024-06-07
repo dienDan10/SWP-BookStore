@@ -32,6 +32,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(PasswordEncryptor.toSHA256(userDTO.getPassword()));
         user.setImageURL("img/user-image/default-user-image.png");
         user.setRoles(Arrays.asList(roleDAO.findRoleByName(ROLES.USER.name())));
+        user.setActive(true);
         userDAO.save(user);
     }
 
@@ -48,6 +49,7 @@ public class UserServiceImpl implements UserService {
         }
         user.setPassword(PasswordEncryptor.toSHA256(Constant.DEFAULT_PASSWORD));
         user.setRoles(Arrays.asList(roleDAO.findRoleByName(ROLES.USER.name())));
+        user.setActive(true);
         userDAO.save(user);
     }
 

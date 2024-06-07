@@ -1,6 +1,5 @@
 package com.swp.bookstore.utils;
 
-import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class StringUtil {
@@ -19,11 +18,5 @@ public class StringUtil {
 
         return res.toString();
     }
-
-    public static String formatBookPrice(double price) {
-        DecimalFormat df = new DecimalFormat("###,###,###");
-        return df.format(price);
-    }
-
 
 }
