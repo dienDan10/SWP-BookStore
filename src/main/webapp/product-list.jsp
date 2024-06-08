@@ -28,6 +28,50 @@
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <style>
+        #scrollToTopBtn {
+            position: fixed; /* Fixed position */
+            bottom: 20px; /* Place the button 20px from the bottom */
+            right: 30px; /* Place the button 30px from the right */
+            z-index: 99; /* Make sure it does not overlap */
+            outline: none; /* Remove outline */
+            color: #4B3049; /* Text color */
+            cursor: pointer; /* Add a mouse pointer on hover */
+            padding: 15px; /* Some padding */
+            border-radius: 10px; /* Rounded corners */
+            font-size: 18px; /* Increase font size */
+            width: 50px;
+            height: 50px;
+            border: 1px solid #4B3049;
+            background-color: transparent;
+            opacity: 0; /* Set initial opacity to 0 */
+            visibility: hidden; /* Set initial visibility to hidden */
+            transition: opacity 0.2s, visibility 0.2s, background-color 0.2s, color 0.2s; /* Add transition effects */
+        }
+
+        .fa-arrow-up {
+            transform: translateY(-3px);
+        }
+
+        #scrollToTopBtn.show {
+            opacity: 1; /* Make the button fully visible */
+            visibility: visible; /* Set visibility to visible */
+        }
+
+        #scrollToTopBtn:hover {
+            background-color: #4B3049;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 450px) {
+            #scrollToTopBtn {
+                bottom: 10px; /* Place the button 20px from the bottom */
+                right: 10px;
+            }
+        }
+
+    </style>
 </head>
 
 <body>
@@ -220,6 +264,8 @@
 <!--Current page-->
 <p style="display: none" class="current-page" page="${currentPage}"></p>
 <p style="display: none" class="filter" filter-by="none" ></p>
+<button id="scrollToTopBtn" title="Go to top"><i class="fa-solid fa-arrow-up"></i></button>
+
 <!--::footer_part start::-->
 <%@ include file="components/footer.jsp"%>
 <!--::footer_part end::-->
@@ -401,6 +447,26 @@
         })
     }
     formatItemPrice();
+
+    // scroll to top btn
+    // Get the button
+    let mybutton = document.getElementById("scrollToTopBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+            mybutton.classList.add("show");
+        } else {
+            mybutton.classList.remove("show");
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    mybutton.onclick = function() {
+        window.scrollTo({top: 200, behavior: 'smooth'});
+    }
 
 </script>
 </body>
