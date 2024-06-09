@@ -35,6 +35,7 @@
                                             </a>
                                             <a class="dropdown-item" href="/view-cart">shopping cart</a>
                                             <a class="dropdown-item" href="/view-address">Manage Address</a>
+                                            <a class="dropdown-item" href="/view-profile">Manage Profile</a>
                                         </c:when>
                                         <c:otherwise>
                                             <a class="dropdown-item" href="/login">

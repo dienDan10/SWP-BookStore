@@ -117,7 +117,7 @@
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form action="/update-product" class="add-book-form" enctype="multipart/form-data" method="post">
+                                                            <form action="/update-product" class="update-book-form" book-id="${book.id}" enctype="multipart/form-data" method="post">
                                                                 <input type="hidden" name="id" value="${book.id}">
                                                                 <div class="mb-3">
                                                                     <label for="bookName-u" class="form-label">Name</label>
@@ -129,9 +129,9 @@
                                                                     <input class="form-control" id="bookDescription-u" required name="description" value="${book.description}">
                                                                 </div>
                                                                 <div class="mb-3 col-lg-6 d-inline-block">
-                                                                    <label for="bookPublishedDate-u" class="form-label">Published Date</label>
-                                                                    <div id="error-message-u" style="color: red; display: none; font-size: 0.75rem"> Cannot Be In The Future.</div>
-                                                                    <input type="date" class="form-control" required id="bookPublishedDate-u" name="publishedDate" value="${book.publishedDate}">
+                                                                    <label for="bookPublishedDate-${book.id}" class="form-label">Published Date</label>
+                                                                    <div id="error-message-${book.id}" class="error-message-date" style="color: red; display: none; font-size: 0.75rem"> Cannot Be In The Future.</div>
+                                                                    <input type="date" class="form-control published-date-input" required id="bookPublishedDate-${book.id}" name="publishedDate" value="${book.publishedDate}">
                                                                 </div>
                                                                 <div class="mb-3 col-12 col-lg-5 me-lg-5 d-inline-block text-container">
                                                                     <label for="author-u" class="form-label">Author Name</label>
@@ -176,11 +176,11 @@
                                                                 </div>
                                                                 <div class="mb-3 col-lg-2 me-lg-5 d-inline-block">
                                                                     <label for="bookQuantity-u" class="form-label">Quantity</label>
-                                                                    <input type="number" class="form-control" id="bookQuantity-u" name="quantity" required value="${book.quantity}">
+                                                                    <input type="number" class="form-control" id="bookQuantity-u" name="quantity" min="0" required value="${book.quantity}" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
                                                                 </div>
                                                                 <div class="mb-3 col-lg-3 d-inline-block">
                                                                     <label for="bookNumberOfPages-u" class="form-label">Number of Pages</label>
-                                                                    <input type="number" class="form-control" id="bookNumberOfPages-u" name="pageNum" required value="${book.pageCount}">
+                                                                    <input type="number" class="form-control" id="bookNumberOfPages-u" name="pageNum" min="10" required value="${book.pageCount}" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
                                                                 </div>
                                                                 <div class="mb-3 col-lg-3 d-inline-block">
                                                                     <label for="bookPrice-u" class="form-label">Price</label>
@@ -203,49 +203,7 @@
                                                                     <button type="submit" class="btn btn-primary">Save Book</button>
                                                                 </div>
                                                             </form>
-<%--                                                            <form>--%>
-<%--                                                                <div class="mb-3">--%>
-<%--                                                                    <label class="form-label">Name</label>--%>
-<%--                                                                    <input type="text" class="form-control" aria-describedby="nameHelp"--%>
-<%--                                                                           placeholder="Enter name" value="${book.name}">--%>
-<%--                                                                </div>--%>
-<%--                                                                <div class="mb-3">--%>
-<%--                                                                    <label class="form-label">Description</label>--%>
-<%--                                                                    <textarea class="form-control" rows="3"--%>
-<%--                                                                              placeholder="Enter description" value="${book.description}"></textarea>--%>
-<%--                                                                </div>--%>
-<%--                                                                <div class="mb-3">--%>
-<%--                                                                    <label class="form-label">Published Date</label>--%>
-<%--                                                                    <input type="date" class="form-control" value="${book.publishedDate}">--%>
-<%--                                                                </div>--%>
-<%--                                                                <div class="mb-3">--%>
-<%--                                                                    <label class="form-label">Author Name</label>--%>
-<%--                                                                    <input type="text" class="form-control" placeholder="Enter author name" value="${book.author.name}">--%>
-<%--                                                                </div>--%>
-<%--                                                                <div class="mb-3">--%>
-<%--                                                                    <label class="form-label">Category Name</label>--%>
-<%--                                                                    <input type="text" class="form-control"--%>
-<%--                                                                           placeholder="Enter category name" value="${book.category.name}">--%>
-<%--                                                                </div>--%>
-<%--                                                                <div class="mb-3">--%>
-<%--                                                                    <label for="numberOfPages" class="form-label">Number of Pages</label>--%>
-<%--                                                                    <input type="number" class="form-control" id="numberOfPages"--%>
-<%--                                                                           placeholder="Enter number of pages" value="${book.pageCount}">--%>
-<%--                                                                </div>--%>
-<%--                                                                <div class="mb-3">--%>
-<%--                                                                    <label class="form-label">Price</label>--%>
-<%--                                                                    <input type="number" class="form-control" placeholder="Enter price"  value="${book.price}">--%>
-<%--                                                                </div>--%>
-<%--                                                                <div class="mb-3">--%>
-<%--                                                                    <label class="form-label">Summary</label>--%>
-<%--                                                                    <textarea class="form-control" rows="3"--%>
-<%--                                                                              placeholder="Enter summary"  value="${book.summary}"></textarea>--%>
-<%--                                                                </div>--%>
-<%--                                                                <div class="modal-footer">--%>
-<%--                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--%>
-<%--                                                                    <button type="button" class="btn btn-primary">Save</button>--%>
-<%--                                                                </div>--%>
-<%--                                                            </form>--%>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -318,15 +276,15 @@
                             </div>
                             <div class="mb-3 col-lg-2 me-lg-5 d-inline-block">
                                 <label for="bookQuantity" class="form-label">Quantity</label>
-                                <input type="number" class="form-control" id="bookQuantity" name="quantity" required>
+                                <input type="number" class="form-control" id="bookQuantity" min="0" name="quantity" required onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
                             </div>
                             <div class="mb-3 col-lg-3 d-inline-block">
                                 <label for="bookNumberOfPages" class="form-label">Number of Pages</label>
-                                <input type="number" class="form-control" id="bookNumberOfPages" name="pageNum" required>
+                                <input type="number" class="form-control" id="bookNumberOfPages" name="pageNum" min="10" required onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
                             </div>
                             <div class="mb-3 col-lg-3 d-inline-block">
                                 <label for="bookPrice" class="form-label">Price</label>
-                                <input type="number" class="form-control" id="bookPrice" name="price" required>
+                                <input type="number" class="form-control" id="bookPrice" name="price" min="1000" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
                             </div>
                             <div class="mb-3 col-lg-5 me-lg-5 d-inline-block">
                                 <label for="imgFront" class="form-label">Front Image</label>
@@ -389,6 +347,33 @@
                 errorMessage.style.display = "none";
             }
         });
+
+        document.querySelectorAll(".update-book-form").forEach(form => form.addEventListener('submit', function(event) {
+            // Get the input date value
+            event.preventDefault();
+            const form = event.target;
+            const bookId = form.getAttribute('book-id');
+            const dateInput = document.querySelector("#bookPublishedDate-" + bookId).value;
+            const errorMessage = document.getElementById("error-message-" + bookId);
+
+            // Convert the input date to a JavaScript Date object
+            const inputDate = new Date(dateInput);
+
+            // Get the current date and set the time to midnight to compare only dates
+            const currentDate = new Date();
+            currentDate.setHours(0, 0, 0, 0);
+
+            // Check if the input date is in the future
+            if (inputDate > currentDate) {
+                // If it is, prevent form submission and show error message
+                event.preventDefault();
+                errorMessage.style.display = "inline";
+            } else {
+                // Otherwise, hide error message
+                errorMessage.style.display = "none";
+            }
+        }));
+
 
         // format book price
         function formatBookPrice() {
