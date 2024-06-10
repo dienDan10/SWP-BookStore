@@ -7,7 +7,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Verification</title>
+    <title>Tài khoản</title>
     <link rel="icon" href="img/favicon.jpeg">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -28,6 +28,22 @@
     <link rel="stylesheet" href="css/style.css">
     <!--    Font awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="css/toast.css">
+    <style>
+        .btn_5 {
+            border: 1px solid #B08EAD;
+            margin-left: 12px;
+            background-color: transparent;
+            color: #B08EAD;
+            border-radius: 2px;
+            transition: 0.2s linear;
+        }
+
+        .btn_5:hover {
+            background-color: #B08EAD;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
@@ -83,6 +99,15 @@
                                     <td>Ngày sinh: </td>
 
                                     <td>${user.birthDate}</td>
+                                </tr>
+                                <tr>
+                                    <td>Password: </td>
+
+                                    <td>**********
+                                        <span>
+                                            <button class="btn_5" data-toggle="modal" data-target="#change-password-modal">Thay đổi</button>
+                                        </span>
+                                    </td>
                                 </tr>
                            </tbody>
                        </table>
@@ -173,11 +198,78 @@
 
 <!--================login_part end =================-->
 
+<!--============== MODAL FOR CHANGE PASSWORD ========================-->
+<div class="modal fade" id="change-password-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Đổi mật khẩu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/change-password" method="POST">
+                <div class="modal-body">
+                    <table class="w-100">
+                        <tbody>
+                        <tr style="height: 50px">
+                            <td><p>Mật khẩu cũ:</p></td>
+                            <td><input type="password" class="form-control old-password" name="old-password" min="1" required></td>
+                        </tr>
+                        <tr style="height: 50px">
+                            <td><p>Mật khẩu mới:</p></td>
+                            <td>
+                                <input type="password" class="form-control new-password" name="new-password" required>
+                                <p class="text-danger font-italic new-password-msg" style="font-size: 14px"></p>
+                            </td>
+                        </tr>
+                        <tr style="height: 50px">
+                            <td><p>Nhập lại: </p></td>
+                            <td>
+                                <input type="password" class="form-control re-new-password" name="re-new-password" required>
+                                <p class="text-danger font-italic re-password-msg" style="font-size: 14px"></p>
+                            </td>
+                        </tr>
+                        <tr style="height: 50px">
+                            <td></td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <input type="checkbox" id="f-option" class="see-password">
+                                    <label for="f-option" class="mb-0 ml-3"> <p>See password</p></label>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn_3 btn-change-password" disabled>Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--============== MODAL FOR CHANGE PASSWORD END HERE ========================-->
+
 <!--::footer_part start::-->
 <%@ include file="components/footer.jsp"%>
 <!--::footer_part end::-->
+<!--Toast box here-->
+<c:if test="${not empty successMsg}">
+    <div class="hidden" id="msg" type="success">${successMsg}</div>
+    <c:remove var="successMsg" scope="session"></c:remove>
+</c:if>
+<c:if test="${not empty errMsg}">
+    <div class="hidden" id="msg" type="error">${errMsg}</div>
+    <c:remove var="errMsg" scope="session"></c:remove>
+</c:if>
+<c:if test="${not empty invalidMsg}">
+    <div class="hidden" id="msg" type="invalid">${invalidMsg}</div>
+    <c:remove var="invalidMsg" scope="session"></c:remove>
+</c:if>
+<div id="toastBox"></div>
 
-
+<script src="js/toast.js"></script>
 <!-- jquery plugins here-->
 <script src="js/jquery-1.12.1.min.js"></script>
 <!-- popper js -->
@@ -204,6 +296,7 @@
 <!-- custom js -->
 <script src="js/custom.js"></script>
 <script>
+    // validate date input
     document.querySelector(".update-user-profile-form").addEventListener("submit", function(event) {
         // Get the input date value
         const dateInput = document.getElementById("user-birth-date").value;
@@ -234,6 +327,48 @@
             $(this).next('.custom-file-label').html(fileName);
         });
     });
+
+    // see password function
+    const btnSeePass = document.querySelector('.see-password');
+    const oldPass = document.querySelector('.old-password');
+    const newPass = document.querySelector('.new-password');
+    const reNewPass = document.querySelector('.re-new-password');
+    const rePassMsg = document.querySelector('.re-password-msg');
+    const newPassMsg = document.querySelector('.new-password-msg');
+    const btnChangePass = document.querySelector('.btn-change-password');
+
+    btnSeePass.addEventListener('click', function() {
+       if (btnSeePass.checked) {
+           oldPass.setAttribute('type', 'text');
+           newPass.setAttribute('type', 'text');
+           reNewPass.setAttribute('type', 'text');
+       }  else {
+           oldPass.setAttribute('type', 'password');
+           newPass.setAttribute('type', 'password');
+           reNewPass.setAttribute('type', 'password');
+       }
+    });
+
+    // validate change password input
+    reNewPass.addEventListener('input', function () {
+       const val1 = newPass.value;
+       const val2 = reNewPass.value;
+       if (val1 !== val2) {
+            rePassMsg.textContent = "Mật khẩu không khớp";
+            btnChangePass.disabled = true;
+       } else {
+           rePassMsg.textContent = "";
+           btnChangePass.disabled = false;
+       }
+    });
+
+    newPass.addEventListener('focus', function() {
+        newPassMsg.textContent = "Mật khẩu cần ít nhất 8 ký tự, cả chữ và số";
+    });
+    newPass.addEventListener('blur', function() {
+        newPassMsg.textContent = "";
+    });
+
 </script>
 
 </body>

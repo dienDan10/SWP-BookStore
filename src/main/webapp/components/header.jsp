@@ -15,37 +15,41 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/home-page">Home</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/home-page">about</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/product-list">Product</a>
-                            </li>
-
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
+                                <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2"
                                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     pages
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
                                     <c:choose>
                                         <c:when test="${not empty user}">
-                                            <a class="dropdown-item" href="/logout">
-                                                logout
-                                            </a>
                                             <a class="dropdown-item" href="/view-cart">shopping cart</a>
                                             <a class="dropdown-item" href="/view-address">Manage Address</a>
                                             <a class="dropdown-item" href="/view-profile">Manage Profile</a>
                                         </c:when>
                                         <c:otherwise>
-                                            <a class="dropdown-item" href="/login">
-                                                login
-                                            </a>
                                         </c:otherwise>
                                     </c:choose>
                                     <a class="dropdown-item" href="confirmation.html">confirmation</a>
                                 </div>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/product-list">Product</a>
+                            </li>
+                            <c:choose>
+                                <c:when test="${not empty user}">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/logout">Logout</a>
+                                    </li>
+                                </c:when>
+                                <c:otherwise>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/login">Login</a>
+                                    </li>
+                                </c:otherwise>
+                            </c:choose>
+
+
 
                             <!--                            <li class="nav-item dropdown">-->
                             <!--                                <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2"-->
@@ -72,17 +76,19 @@
                         <a href="/view-cart">
                             <i class="flaticon-shopping-cart-black-shape"></i>
                         </a>
-                        <!--  USER IMAGE   -->
-                        <c:if test="${not empty user}">
-                            <div class="rounded-circle overflow-hidden ml-2 ml-md-4"
-                                 style="width: 35px; height: 35px">
-                                <img src="${user.imageURL}"
-                                     class="w-100 h-100 object-fit-cover" style="object-position: center;"
-                                     alt="">
+                        <div class="d-flex align-items-center" >
+                                <!--  USER IMAGE   -->
+                                <c:if test="${not empty user}">
+                                    <div class="rounded-circle overflow-hidden ml-2 ml-md-4"
+                                         style="width: 35px; height: 35px">
+                                        <img src="${user.imageURL}"
+                                             class="w-100 h-100 object-fit-cover" style="object-position: center;"
+                                             alt="">
+                                    </div>
+                                    <h5 style="margin-bottom: 0" class="ml-2 d-none d-md-block">${user.name}</h5>
+                                </c:if>
                             </div>
-                        </c:if>
 
-                    </div>
                 </nav>
             </div>
         </div>

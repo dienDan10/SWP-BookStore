@@ -56,6 +56,7 @@ public class UpdateProfile extends HttpServlet {
         userService.updateUser(user);
         user = userService.findOneByEmail(user.getEmail());
         session.setAttribute("user", user);
+        session.setAttribute("successMsg", "Update profile successfully!");
         resp.sendRedirect("/view-profile");
     }
 }
