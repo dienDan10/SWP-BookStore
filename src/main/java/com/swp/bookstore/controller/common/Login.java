@@ -25,6 +25,13 @@ public class Login extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // check for user login
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            resp.sendRedirect("/home-page");
+            return;
+        }
         req.getRequestDispatcher("login.jsp").forward(req, resp);
     }
 

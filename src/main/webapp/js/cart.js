@@ -148,3 +148,39 @@ function handleNoCartLeft() {
     const table = document.querySelector('.table');
     table.insertAdjacentHTML("afterend", '<h5>Bạn chưa có sản phẩm nào trong giỏ hàng<h5>');
 }
+
+document.querySelector('.cart-form').addEventListener('submit', function(event) {
+    const items = document.querySelectorAll('.form-check-input');
+    // check if user does not select any book
+    let isSelected = false;
+    items.forEach(item => {
+        if (item.checked) {
+            isSelected = true;
+        }
+    })
+    if (!isSelected) {
+        event.preventDefault();
+        showToast();
+    }
+});
+
+// toast box
+const toastBox = document.querySelector('#toastBox');
+const invalidIcon = '<i class="fa-solid fa-circle-exclamation"></i>';
+const msg = 'Please choose a book!';
+
+
+function showToast() {
+    const toast = document.createElement('div');
+    toast.classList.add('toastItem');
+    let content = 'Hello';
+
+    toast.classList.add('invalid');
+    content = invalidIcon + msg;
+    toast.innerHTML = content;
+    toastBox.appendChild(toast);
+
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+}

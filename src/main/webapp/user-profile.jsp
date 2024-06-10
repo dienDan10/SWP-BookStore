@@ -241,6 +241,7 @@
                         </tr>
                         </tbody>
                     </table>
+                    <p style="font-size: 14px; font-style: italic">(Xin hãy dùng forget password nếu bạn đăng nhập bằng Google)</p>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn_3 btn-change-password" disabled>Lưu</button>

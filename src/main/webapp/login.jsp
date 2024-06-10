@@ -89,11 +89,11 @@
                             </c:if>
                             <div class="col-md-12 form-group p_star mb-4">
                                 <input type="email" class="form-control" id="email" name="email" value="${param.email}"
-                                       placeholder="Email">
+                                       placeholder="Email" required>
                             </div>
                             <div class="col-md-12 form-group p_star mb-4">
                                 <input type="password" class="form-control" id="password" name="password" value=""
-                                       placeholder="Password">
+                                       placeholder="Password" required>
                             </div>
                             <div class="col-md-12 form-group">
                                 <div class="creat_account d-flex align-items-center justify-content-between">
@@ -131,7 +131,7 @@
 <%@ include file="components/footer.jsp"%>
 <!--::footer_part end::-->
 
-<!-- Modal -->
+<!-- Modal forget password -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-0">

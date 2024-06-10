@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- Font awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="stylesheet" href="css/toast.css">
     <style>
 
         /* Keyframes for the vibration animation */
@@ -70,7 +71,7 @@
     <div class="container">
         <div class="cart_inner">
             <div class="table-responsive">
-                <form action="#" method="POST">
+                <form action="/checkout" method="POST" class="cart-form">
                     <table class="table">
                         <thead>
                         <tr>
@@ -130,7 +131,7 @@
                                     <h5>Total</h5>
                                 </td>
                                 <td>
-                                    <h5 class="total-price">$2160.00</h5>
+                                    <h5 class="total-price"></h5>
                                 </td>
                                 <td></td>
                             </tr>
@@ -141,7 +142,7 @@
                     <c:if test="${carts.size() != 0}">
                         <div class="checkout_btn_inner d-flex justify-content-between" style="font-family: 'Inter', 'Helvetica Neue', sans-serif">
                             <a class="btn_1" href="/product-list">Tiếp Tục Mua Sắm</a>
-                            <button class="btn_1 checkout_btn_1" href="#">Tiến Hành Thanh Toán</button>
+                            <button class="btn_1 checkout_btn_1" >Tiến Hành Thanh Toán</button>
                         </div>
                     </c:if>
                     <c:if test="${carts.size() == 0}">
@@ -157,6 +158,8 @@
 <!--::footer_part start::-->
 <%@ include file="components/footer.jsp"%>
 <!--::footer_part end::-->
+
+<div id="toastBox"></div>
 
 <!-- jquery plugins here-->
 <script src="js/jquery-1.12.1.min.js"></script>
@@ -185,7 +188,6 @@
 <script src="js/custom.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="js/cart.js"></script>
-
 </body>
 
 </html>
