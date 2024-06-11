@@ -68,10 +68,12 @@ public class OrderDAOImpl implements OrderDAO {
     public Order findOrderById(long id) {
         EntityManager em = JPAUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
+        TypedQuery<Order> query = em.createQuery("select o from Order o join fetch o.orderDetails where o.id = :id", Order.class);
+        query.setParameter("id", id);
         Order order = null;
         try {
             tx.begin();
-            order = em.find(Order.class, id);
+            order = query.getSingleResult();
             tx.commit();
         } catch (NoResultException e) {
             tx.rollback();

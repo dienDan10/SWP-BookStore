@@ -30,7 +30,7 @@
                                         <c:otherwise>
                                         </c:otherwise>
                                     </c:choose>
-                                    <a class="dropdown-item" href="confirmation.html">confirmation</a>
+<%--                                    <a class="dropdown-item" href="confirmation.html">confirmation</a>--%>
                                 </div>
                             </li>
                             <li class="nav-item">

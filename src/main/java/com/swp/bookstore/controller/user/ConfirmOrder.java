@@ -57,15 +57,49 @@ public class ConfirmOrder extends HttpServlet {
             session.setAttribute("errMsg", "Payment failed!");
             req.setAttribute("addresses", addresses);
             req.setAttribute("items", items);
-            System.out.println(transactionStatus + " " + responseCode);
             req.getRequestDispatcher("checkout.jsp").forward(req, resp);
             return;
         }
         // get address id and cart items from session
         String addressId = session.getAttribute("addressId").toString();
         List<Cart> items = (List<Cart>)session.getAttribute("cartItems");
-
-
+        long amount = Long.parseLong(req.getParameter("vnp_Amount")) / 100;
+        // get current time
+        String currentTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+        // create and save payment
+        Payment payment = new Payment();
+        payment.setStatus(PaymentStatus.PAYED);
+        payment.setAmount(amount);
+        payment.setType(PaymentType.VNPAY);
+        payment.setCreatedTime(currentTime);
+        // save payment
+        payment = paymentService.savePayment(payment);
+        // create and save order
+        Order order = new Order();
+        order.setUserId(user.getId());
+        order.setPayment(payment);
+        order.setStatus(OrderStatus.DANG_XU_LY);
+        order.setCreatedTime(currentTime);
+        order.setAddress(addressService.findById(Integer.parseInt(addressId)));
+        // save order
+        order = orderService.saveOrder(order);
+        // create order detail and remove item from cart
+        for(Cart cart : items) {
+            OrderDetail orderDetail = new OrderDetail();
+            orderDetail.setQuantity(cart.getQuantity());
+            orderDetail.setBook(cart.getBook());
+            orderDetail.setRated(false);
+            orderDetail.setPrice(cart.getBook().getPrice() * cart.getQuantity());
+            orderDetail.setOrder(order);
+            orderDetailService.addOrderDetail(orderDetail);
+            cartService.removeCart(cart.getId());
+        }
+        // remove order information from session
+        session.removeAttribute("cartItems");
+        session.removeAttribute("addressId");
+        // redirect to order detail page
+        session.setAttribute("successMsg", "Đặt hàng thành công!");
+        resp.sendRedirect("/view-order-detail?orderId=" + order.getId());
     }
 
     @Override
@@ -119,7 +153,7 @@ public class ConfirmOrder extends HttpServlet {
         order.setAddress(addressService.findById(Integer.parseInt(addressId)));
         // save order
         order = orderService.saveOrder(order);
-        // create order detail
+        // create order detail and remove item from cart
         for(Cart cart : cartItems) {
             OrderDetail orderDetail = new OrderDetail();
             orderDetail.setQuantity(cart.getQuantity());
@@ -128,9 +162,11 @@ public class ConfirmOrder extends HttpServlet {
             orderDetail.setPrice(cart.getBook().getPrice() * cart.getQuantity());
             orderDetail.setOrder(order);
             orderDetailService.addOrderDetail(orderDetail);
+            cartService.removeCart(cart.getId());
         }
-        // return to home-page
-        resp.sendRedirect("/home-page");
+        // redirect to order detail page
+        session.setAttribute("successMsg", "Đặt hàng thành công!");
+        resp.sendRedirect("/view-order-detail?orderId=" + order.getId());
 
     }
 
