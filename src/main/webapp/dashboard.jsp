@@ -23,6 +23,8 @@
   <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="css/toast.css">
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -253,6 +255,21 @@
       </div>
     </div>
   </main>
+  <!--Toast box here-->
+  <c:if test="${not empty successMsg}">
+    <div class="hidden" id="msg" type="success">${successMsg}</div>
+    <c:remove var="successMsg" scope="session"></c:remove>
+  </c:if>
+  <c:if test="${not empty errMsg}">
+    <div class="hidden" id="msg" type="error">${errMsg}</div>
+    <c:remove var="errMsg" scope="session"></c:remove>
+  </c:if>
+  <c:if test="${not empty invalidMsg}">
+    <div class="hidden" id="msg" type="invalid">${invalidMsg}</div>
+    <c:remove var="invalidMsg" scope="session"></c:remove>
+  </c:if>
+  <div id="toastBox"></div>
+  <!--Toast box end here-->
 
   <!--   Core JS Files   -->
   <script src="assets/js/core/popper.min.js"></script>
@@ -264,6 +281,7 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+<script src="js/toast.js"></script>
 </body>
 
 </html>

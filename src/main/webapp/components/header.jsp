@@ -59,14 +59,14 @@
                             <!--                                </div>-->
                             <!--                            </li>-->
 
-<%--                            <c:if test="${user.hasRole('SELLER')}">--%>
-<%--                                <li class="nav-item">--%>
-<%--                                    <a class="nav-link" href="/view-dashboard">Dashboard</a>--%>
-<%--                                </li>--%>
-<%--                            </c:if>--%>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/view-dashboard">Dashboard</a>
-                            </li>
+                            <c:if test="${user.hasRole('SELLER')}">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/view-dashboard">Dashboard</a>
+                                </li>
+                            </c:if>
+<%--                            <li class="nav-item">--%>
+<%--                                <a class="nav-link" href="/view-dashboard">Dashboard</a>--%>
+<%--                            </li>--%>
                         </ul>
                     </div>
                     <div class="hearer_icon d-flex align-items-center">
@@ -79,7 +79,7 @@
                                     <div class="rounded-circle overflow-hidden ml-2 ml-md-4"
                                          style="width: 35px; height: 35px">
                                         <img src="${user.imageURL}"
-                                             class="w-100 h-100 object-fit-cover" style="object-position: center;"
+                                             class="w-100 h-100" style="object-position: center; object-fit: cover"
                                              alt="">
                                     </div>
                                     <h5 style="margin-bottom: 0" class="ml-2 d-none d-md-block">${user.name}</h5>

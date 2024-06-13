@@ -11,6 +11,10 @@
         <error-code>404</error-code>
         <location>/ErrorPage.html</location>
     </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/AccessDenied.html</location>
+    </error-page>
 
     <filter>
         <filter-name>StaticResourceFilter</filter-name>
@@ -20,6 +24,11 @@
     <filter>
         <filter-name>UserFilter</filter-name>
         <filter-class>com.swp.bookstore.filter.UserFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>SellerFilter</filter-name>
+        <filter-class>com.swp.bookstore.filter.SellerFilter</filter-class>
     </filter>
 
     <filter-mapping>
@@ -32,6 +41,24 @@
         <filter-name>UserFilter</filter-name>
         <url-pattern>/add-to-cart</url-pattern>
         <url-pattern>/view-cart</url-pattern>
+        <url-pattern>/update-cart</url-pattern>
+        <url-pattern>/delete-cart</url-pattern>
+        <url-pattern>/add-address</url-pattern>
+        <url-pattern>/delete-address</url-pattern>
+        <url-pattern>/update-address</url-pattern>
+        <url-pattern>/view-address</url-pattern>
+        <url-pattern>/checkout</url-pattern>
+        <url-pattern>/confirm-order</url-pattern>
+        <url-pattern>/update-profile</url-pattern>
+        <url-pattern>/view-profile</url-pattern>
+        <url-pattern>/change-password</url-pattern>
+        <url-pattern>/view-order</url-pattern>
+        <url-pattern>/view-order-detail</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>SellerFilter</filter-name>
+        <url-pattern>/view-dashboard</url-pattern>
     </filter-mapping>
 
 </web-app>

@@ -48,7 +48,7 @@ public class AddAddress extends HttpServlet {
         address.setDetail(details);
         address.setDefault(false);
         // check if user don't have any address
-        if (addressService.countByUserId(user.getId()) == 0) {
+        if (addressService.countByUserId(user.getId()) == 0) {  // set address to default address
             address.setDefault(true);
         }
         // save address to database
