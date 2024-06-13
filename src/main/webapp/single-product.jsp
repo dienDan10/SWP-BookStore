@@ -261,7 +261,7 @@
 </div>
 <!--MODAL FOR BUTTON SHARE END HERE -->
 <!-- subscribe part end -->
-<div id="toast"></div>
+<div id="toastBox"></div>
 <div style="display: none" class="user-check" user="${not empty user ? "yes" : "no"}"></div>
 <!--::footer_part start::-->
 <%@ include file="components/footer.jsp"%>
@@ -325,11 +325,21 @@
     })
 
     // JavaScript function to show the toast
+    const toastBox = document.querySelector('#toastBox');
+    const successIcon = '<i class="fa-solid fa-circle-check"></i>';
+
     function showToast(message) {
-        var toast = document.getElementById("toast");
-        toast.className = "show";
-        toast.textContent = message;
-        setTimeout(function() { toast.className = toast.className.replace("show", ""); }, 3000);
+        const toast = document.createElement('div');
+        toast.classList.add('toastItem');
+
+        content = successIcon +  message;
+
+        toast.innerHTML = content;
+        toastBox.appendChild(toast);
+
+        setTimeout(() => {
+            toast.remove();
+        }, 3000);
     }
 
     // format money

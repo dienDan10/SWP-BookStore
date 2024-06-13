@@ -8,7 +8,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Product</title>
+    <title>Sản phẩm</title>
     <link rel="icon" href="img/favicon.jpeg">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -85,7 +85,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb_iner">
-                    <h2>product list</h2>
+                    <h2>Sản phẩm</h2>
                 </div>
             </div>
         </div>

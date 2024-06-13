@@ -8,6 +8,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDAOImpl implements OrderDAO {
@@ -108,12 +109,14 @@ public class OrderDAOImpl implements OrderDAO {
     public List<Order> findOrdersByUserIdAndStatus(long userId, String status) {
         EntityManager em = JPAUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
-        List<Order> orders = null;
-        TypedQuery<Order> query = em.createQuery("select o from Order o where o.userId = :userId and o.status = :status", Order.class);
+        List<Order> orders = new ArrayList<>();
+        TypedQuery<Order> query = em.createQuery("select o from Order o join fetch o.orderDetails where o.userId = :userId and o.status = :status", Order.class);
         query.setParameter("userId", userId);
         query.setParameter("status", status);
         try {
+            tx.begin();
             orders = query.getResultList();
+            tx.commit();
         } catch (NoResultException e) {
             e.printStackTrace();
             System.out.println("Cannot find order");

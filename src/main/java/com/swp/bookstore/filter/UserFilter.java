@@ -19,8 +19,8 @@ public class UserFilter implements Filter {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         if (user == null || !user.hasRole(ROLES.USER)) { // request user login
-            request.setAttribute("invalidMsg", "Please login first");
-            request.getRequestDispatcher("/login").forward(request, response);
+            session.setAttribute("invalidMsg", "Please login first");
+            response.sendRedirect("/login");
             return;
         }
 

@@ -1,50 +1,83 @@
-.hover-pointer:hover{
-    cursor: pointer;
-}
-#toast {
-    visibility: hidden;
-    min-width: 250px;
-    margin-left: -125px;
-    background-color: #d1e7dd;
-    color: #0a3622;
-    border: 1px solid #a3cfbb;
-    text-align: center;
-    border-radius: 2px;
+/*STYLE FOR TOAST*/
+
+#toastBox {
     position: fixed;
-    z-index: 1;
-    right: 5%;
-    bottom: 50px;
-    font-size: 17px;
-    white-space: nowrap;
-    padding: 16px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    bottom: 40px;
+    right: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    overflow: hidden;
+    padding: 20px;
+    z-index: 9999;
 }
 
-#toast.show {
-    visibility: visible;
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+.toastItem {
+    font-family: "Inter", sans-serif;
+    width: 400px;
+    height: 80px;
+    background: #fff;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,0.3);
+    font-weight: 500;
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+    transform: translateX(100%);
+    animation: moveLeft 0.5s linear forwards;
 }
 
-@-webkit-keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
+@keyframes moveLeft {
+    100% {
+        transform: translateX(0);
+    }
 }
 
-@keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
+.toastItem i {
+    font-size: 30px;
+    color: green;
+    margin: 0 20px;
 }
 
-@-webkit-keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+.error i {
+    color: red;
 }
 
-@keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+.invalid i {
+    color: orange;
 }
+
+.toastItem::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5px;
+    background: green;
+    z-index: 10;
+    animation: decrease 3s linear forwards;
+}
+
+.error::after {
+    background: red;
+}
+
+.invalid::after {
+    background: orange;
+}
+
+@keyframes decrease {
+    100% {
+        width: 0;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+
 /*    STYLE FOR SHARE BUTTON   */
 .share {
     width: 50px;

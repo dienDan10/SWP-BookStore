@@ -7,7 +7,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Login</title>
+    <title>Đăng nhập</title>
     <link rel="icon" href="img/favicon.jpeg">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -51,7 +51,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb_iner">
-                    <h2>login</h2>
+                    <h2>Đăng nhập</h2>
                 </div>
             </div>
         </div>
@@ -69,7 +69,7 @@
                         <h2>Khách hàng mới?</h2>
                         <p>Đọc sách mỗi ngày giúp bạn tiến gần hơn tới thành công và ước mơ,
                             vậy nên sao không bắt đầu từ hôm nay.</p>
-                        <a href="/register" class="btn_3">Create an Account</a>
+                        <a href="/register" class="btn_3">Đăng ký</a>
                     </div>
                 </div>
             </div>
@@ -99,22 +99,22 @@
                                 <div class="creat_account d-flex align-items-center justify-content-between">
                                     <div class="d-flex align-items-center">
                                         <input type="checkbox" id="f-option" name="selector">
-                                        <label for="f-option">See password</label>
+                                        <label for="f-option">Hiện mật khẩu</label>
                                     </div>
 
-                                    <a class="lost_pass" href="#" data-toggle="modal" data-target="#exampleModal">forget password?</a>
+                                    <a class="lost_pass" href="#" data-toggle="modal" data-target="#exampleModal">Quên mật khẩu?</a>
                                 </div>
 
                                 <button type="submit" value="submit" class="btn_3">
-                                    log in
+                                    Đăng nhập
                                 </button>
 
-                                <p class="text-center">or</p>
+                                <p class="text-center" style="font-size: 12px">hoặc</p>
 
                                 <a class="btn_3 btn-google-login" style="margin-top: 15px;" href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://localhost:8080/google-login&response_type=code&client_id=1076562173012-o60tjmrvu1e503kk1t1ent1411po522p.apps.googleusercontent.com&approval_prompt=force">
                                     <div class="d-flex gap-3 align-items-center justify-content-center">
                                         <i class="fa-brands fa-google" style="font-size: 20px; margin-right: 20px"></i>
-                                        Login with google
+                                        Đăng nhập với Google
                                     </div>
                                 </a>
                             </div>
@@ -136,22 +136,22 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-0">
             <div class="modal-header">
-                <h2 class="modal-title fs-5" id="exampleModalLabel">Forget password</h2>
+                <h2 class="modal-title fs-5" id="exampleModalLabel">Quên mật khẩu</h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="p-3">
                 <p class="fs-6 mb-3">
-                    We will send an email with a link to reset your password.
+                    Chúng tôi sẽ gửi link reset mật khẩu về email của bạn.
                     <br />
-                    Please enter your email to reset password:
+                    Làm ơn hãy điền email để được xác minh:
                 </p>
                 <form action="/forgot-password" class="form" method="POST">
                     <div class="form-group mb-3">
                         <input type="email" class="form-control" name="email">
                     </div>
-                    <button class="btn_1">Send</button>
+                    <button class="btn_1 text-uppercase" style="font-family: 'Inter', Arial, Helvetica, sans-serif">Gửi</button>
                 </form>
             </div>
         </div>
