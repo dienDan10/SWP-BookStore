@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -37,52 +37,111 @@
           <div class="card mb-4">
             <div class="card-header pb-0">
               <h6>Account Management</h6>
+              <h6>${RequestScope.mes}</h6>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
+<%--                  Table Head--%>
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
+                      <th class="text-uppercase text-secondary  text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Role</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status
                       </th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                        Employed</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action
                       </th>
                     </tr>
                   </thead>
+<%--                  Table Body--%>
                   <tbody>
-                    <tr>
-                      <td>
-                        <p class="text-xs font-weight-bold mb-0">1</p>
-                      </td>
-                      <td>
-                        <div class="d-flex px-2 py-1">
-                          <div>
-                            <img src="assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1">
+                    <c:forEach var="user" items="${users}">
+                      <tr>
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0">${user.id}</p>
+                        </td>
+                        <td>
+                          <div class="d-flex px-2 py-1">
+                            <div>
+                              <img src="${user.imageURL}" class="avatar avatar-sm me-3" alt="user1">
+                            </div>
+                            <div class="d-flex flex-column justify-content-center">
+                              <h6 class="mb-0 text-sm">${user.name}</h6>
+                              <p class="text-xs text-secondary mb-0">${user.email}</p>
+                            </div>
                           </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">UserName</h6>
-                            <p class="text-xs text-secondary mb-0">User@gmail.com</p>
+                        </td>
+                        <td>
+                          <p class="text-xs font-weight-bold mb-0">${user.roles.get(user.roles.size() - 1).name}</p>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                          <a href="/change-user-status?id=${user.id}"
+                             onclick="if(!confirm('Do you want to change the user\'s status?')) return false"
+                             class="badge badge-sm ${user.isActive() ? "bg-gradient-success" : "bg-gradient-danger"} ">
+                              ${user.isActive() ? "Active" : "Blocked"}
+                          </a>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                          <a href="#" class="badge badge-sm bg-gradient-success" data-bs-toggle="modal" data-bs-target="#user-${user.id}">View</a>
+                        </td>
+                        <!-- Modal -->
+                        <div class="modal fade" id="user-${user.id}" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="userModalLabel">User Information</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <form action="/update-user-role" method="post">
+                                <div class="modal-body">
+                                  <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" aria-describedby="nameHelp" value="${user.name}" readonly>
+                                  </div>
+                                  <div class="mb-3 d-inline-block col-md-6 me-md-4">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" value="${user.username}" readonly>
+                                  </div>
+                                  <div class="mb-3 d-inline-block ms-md-2 col-md-5">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone" aria-describedby="phoneHelp" value="${user.phoneNumber}" readonly>
+                                  </div>
+
+                                  <div class="mb-3 d-inline-block col-md-6 me-md-4">
+                                    <label for="birthdate" class="form-label">Birthdate</label>
+                                    <input type="text" class="form-control" id="birthdate" aria-describedby="birthdateHelp" value="${user.birthDate}" readonly>
+                                  </div>
+                                  <div class="mb-3 d-inline-block ms-md-2 col-md-5">
+                                    <label for="gender" class="form-label">Gender</label>
+                                    <input type="text" class="form-control" id="gender" aria-describedby="genderHelp" value="${user.gender ? "Male" : "Female"}" readonly>
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="hidden" name="email" value="${user.email}" />
+                                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" value="${user.email}" readonly>
+                                  </div>
+                                  <label class="form-label me-5">Role</label>
+                                  <div class="col-md-3 d-inline-block">
+                                    <input type="checkbox" class="mb-3 me-1" onclick="return false;"
+                                      ${user.hasRole('USER') ? "checked" : ""}>User
+                                  </div>
+                                  <div class="col-md-3 d-inline-block">
+                                    <input type="checkbox" class="mb-3 me-1" name="role" value="SELLER"
+                                      ${user.hasRole('SELLER') ? "checked" : ""}>Seller
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                              </form>
+                            </div>
                           </div>
                         </div>
-                      </td>
-                      <td>
-                        <p class="text-xs font-weight-bold mb-0">Admin</p>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <a href="https://example.com/delete-link" class="badge badge-sm bg-gradient-success">Active</a>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-                      </td>
-                      <td class="align-middle text-center text-sm">
-                        <a href="#" class="badge badge-sm bg-gradient-success" data-bs-toggle="modal" data-bs-target="#userModal">View</a>
-                      </td>
-                    </tr>
+                        <%--End Modal<--%>
+                      </tr>
+                    </c:forEach>
                   </tbody>
                 </table>
               </div>
@@ -94,48 +153,7 @@
 
 
     <!-- ---------------------------------------------------------------- -->
-<!-- Modal -->
-<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="userModalLabel">User Information</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" aria-describedby="nameHelp" value="Name" readonly>
-          </div>
-          <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" value="User name" readonly>
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" value="Email" readonly>
-          </div>
-          <div class="mb-3">
-            <label for="phone" class="form-label">Phone Number</label>
-            <input type="tel" class="form-control" id="phone" aria-describedby="phoneHelp" value="Phone Number" readonly>
-          </div>
-          <div class="mb-3">
-            <label for="gender" class="form-label">Gender</label>
-            <input type="text" class="form-control" id="gender" aria-describedby="genderHelp" value="Male" readonly>
-          </div>
-          <div class="mb-3">
-            <label for="birthdate" class="form-label">Birthdate</label>
-            <input type="text" class="form-control" id="birthdate" aria-describedby="birthdateHelp" value="02/06/2003" readonly>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 
 
@@ -151,29 +169,7 @@
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 
-  <script>
-    // Fetch user information and populate the modal
-    $('.badge.bg-gradient-success').on('click', function () {
-      // Make an AJAX request to fetch user information
-      $.ajax({
-        url: 'path/to/user-info-endpoint',
-        method: 'GET',
-        success: function (data) {
-          // Populate the modal with user information
-          $('#name').val(data.name);
-          $('#username').val(data.username);
-          $('#email').val(data.email);
-          $('#phone').val(data.phone);
-          $('#gender').val(data.gender);
-          $('#birthdate').val(data.birthdate);
-        },
-        error: function () {
-          // Handle error case
-          $('.modal-body').html('<p>Failed to load user information.</p>');
-        }
-      });
-    });
-  </script>
+
 
 </body>
 

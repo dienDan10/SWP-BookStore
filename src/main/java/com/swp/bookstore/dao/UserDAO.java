@@ -2,6 +2,8 @@ package com.swp.bookstore.dao;
 
 import com.swp.bookstore.entity.User;
 
+import java.util.List;
+
 public interface UserDAO {
     /*
      * Find a user by email
@@ -12,4 +14,8 @@ public interface UserDAO {
     void save(User user);
 
     void update(User user);
+
+    List<User> findAll();
+
+    User findById(long id);
 }

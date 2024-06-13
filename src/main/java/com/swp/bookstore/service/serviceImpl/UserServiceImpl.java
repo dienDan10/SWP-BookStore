@@ -13,6 +13,7 @@ import com.swp.bookstore.service.UserService;
 import com.swp.bookstore.utils.PasswordEncryptor;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
@@ -56,5 +57,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(User user) {
         userDAO.update(user);
+    }
+
+    @Override
+    public List<User> findAllUsers() {
+        return userDAO.findAll();
+    }
+
+    @Override
+    public User findOneUserById(long id) {
+        return userDAO.findById(id);
     }
 }

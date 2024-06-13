@@ -8,6 +8,8 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
+import java.util.List;
+
 public class UserDAOImpl implements UserDAO {
 
 
@@ -57,5 +59,18 @@ public class UserDAOImpl implements UserDAO {
         } finally {
             em.close();
         }
+    }
+
+    @Override
+    public List<User> findAll() {
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<User> query = em.createQuery("select u from User u", User.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public User findById(long id) {
+        EntityManager em = JPAUtil.getEntityManager();
+        return em.find(User.class, id);
     }
 }
