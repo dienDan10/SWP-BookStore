@@ -350,7 +350,6 @@
 
         document.querySelectorAll(".update-book-form").forEach(form => form.addEventListener('submit', function(event) {
             // Get the input date value
-            event.preventDefault();
             const form = event.target;
             const bookId = form.getAttribute('book-id');
             const dateInput = document.querySelector("#bookPublishedDate-" + bookId).value;

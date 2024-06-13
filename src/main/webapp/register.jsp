@@ -7,7 +7,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Login</title>
+    <title>Đăng ký</title>
     <link rel="icon" href="img/favicon.jpeg">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -43,7 +43,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb_iner">
-                    <h2>Register</h2>
+                    <h2>Đăng ký</h2>
                 </div>
             </div>
         </div>
@@ -86,14 +86,14 @@
                             <div class="col-md-12 form-group">
                                 <div class="creat_account d-flex align-items-center mb-3">
                                         <input type="checkbox" id="f-option" name="selector">
-                                        <label for="f-option">See password</label>
+                                        <label for="f-option">Hiện mật khẩu</label>
                                 </div>
                                 <div>
                                     <div class="g-recaptcha" data-sitekey="6LePUuwpAAAAANteno4UNkHQ-IWcK6KwiGLH3QAD"></div>
                                     <div class="fst-italic text-danger captcha-msg" ></div>
                                 </div>
                                 <button type="submit" value="submit" class="btn_3 btn-register" disabled>
-                                    Register
+                                    Đăng ký
                                 </button>
 
                             </div>

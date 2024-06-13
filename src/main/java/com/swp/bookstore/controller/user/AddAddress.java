@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -24,6 +25,7 @@ public class AddAddress extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
         // get address information
         String receiver = req.getParameter("receiver");
         String phone = req.getParameter("phone");
@@ -33,7 +35,7 @@ public class AddAddress extends HttpServlet {
         String village = req.getParameter("village");
         String details = req.getParameter("details");
         // get user from session
-        User user = (User) req.getSession().getAttribute("user");
+        User user = (User) session.getAttribute("user");
         // create a new address
         Address address = new Address();
         address.setUserId(user.getId());
@@ -46,11 +48,13 @@ public class AddAddress extends HttpServlet {
         address.setDetail(details);
         address.setDefault(false);
         // check if user don't have any address
-        if (addressService.countByUserId(user.getId()) == 0) {
+        if (addressService.countByUserId(user.getId()) == 0) {  // set address to default address
             address.setDefault(true);
         }
         // save address to database
         addressService.save(address);
+        // send message
+        session.setAttribute("successMsg", "Add Address successful");
         // return to manage address page
         resp.sendRedirect("/view-address");
 

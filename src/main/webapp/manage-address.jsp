@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="css/style.css">
     <!--    Font awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="css/toast.css">
     
     <style>
         .hover-pointer:hover {
@@ -224,6 +225,20 @@
 </section>
 <!--================login_part end =================-->
 
+<c:if test="${not empty successMsg}">
+    <div class="hidden" id="msg" type="success">${successMsg}</div>
+    <c:remove var="successMsg" scope="session"></c:remove>
+</c:if>
+<c:if test="${not empty errMsg}">
+    <div class="hidden" id="msg" type="error">${errMsg}</div>
+    <c:remove var="errMsg" scope="session"></c:remove>
+</c:if>
+<c:if test="${not empty invalidMsg}">
+    <div class="hidden" id="msg" type="invalid">${invalidMsg}</div>
+    <c:remove var="invalidMsg" scope="session"></c:remove>
+</c:if>
+<div id="toastBox"></div>
+
 <!--::footer_part start::-->
 <%@ include file="components/footer.jsp"%>
 <!--::footer_part end::-->
@@ -254,6 +269,7 @@
 <script src="js/mail-script.js"></script>
 <!-- custom js -->
 <script src="js/custom.js"></script>
+<script src="js/toast.js"></script>
 </body>
 
 </html>

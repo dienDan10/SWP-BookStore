@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <header class="main_menu home_menu">
     <div class="container">
         <div class="row align-items-center justify-content-center">
@@ -13,38 +14,34 @@
                     <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="/home-page">Home</a>
+                                <a class="nav-link" href="/home-page">Trang chủ</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2"
-                                   role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    pages
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                    <c:choose>
-                                        <c:when test="${not empty user}">
-                                            <a class="dropdown-item" href="/view-cart">shopping cart</a>
-                                            <a class="dropdown-item" href="/view-address">Manage Address</a>
-                                            <a class="dropdown-item" href="/view-profile">Manage Profile</a>
-                                        </c:when>
-                                        <c:otherwise>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <a class="dropdown-item" href="confirmation.html">confirmation</a>
-                                </div>
-                            </li>
+                            <c:if test="${not empty user}">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2"
+                                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Điều hướng
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                        <a class="dropdown-item" href="/view-cart">Giỏ hàng</a>
+                                        <a class="dropdown-item" href="/view-address">Sổ địa chỉ</a>
+                                        <a class="dropdown-item" href="/view-profile">Tài khoản</a>
+                                        <a class="dropdown-item" href="/view-order">Đơn hàng</a>
+                                    </div>
+                                </li>
+                            </c:if>
                             <li class="nav-item">
-                                <a class="nav-link" href="/product-list">Product</a>
+                                <a class="nav-link" href="/product-list">Sản phẩm</a>
                             </li>
                             <c:choose>
                                 <c:when test="${not empty user}">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/logout">Logout</a>
+                                        <a class="nav-link" href="/logout">Đăng xuất</a>
                                     </li>
                                 </c:when>
                                 <c:otherwise>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/login">Login</a>
+                                        <a class="nav-link" href="/login">Đăng nhập</a>
                                     </li>
                                 </c:otherwise>
                             </c:choose>
@@ -62,14 +59,14 @@
                             <!--                                </div>-->
                             <!--                            </li>-->
 
-<%--                            <c:if test="${user.hasRole('SELLER')}">--%>
-<%--                                <li class="nav-item">--%>
-<%--                                    <a class="nav-link" href="/view-dashboard">Dashboard</a>--%>
-<%--                                </li>--%>
-<%--                            </c:if>--%>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/view-dashboard">Dashboard</a>
-                            </li>
+                            <c:if test="${user.hasRole('SELLER')}">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/view-dashboard">Dashboard</a>
+                                </li>
+                            </c:if>
+<%--                            <li class="nav-item">--%>
+<%--                                <a class="nav-link" href="/view-dashboard">Dashboard</a>--%>
+<%--                            </li>--%>
                         </ul>
                     </div>
                     <div class="hearer_icon d-flex align-items-center">
@@ -82,7 +79,7 @@
                                     <div class="rounded-circle overflow-hidden ml-2 ml-md-4"
                                          style="width: 35px; height: 35px">
                                         <img src="${user.imageURL}"
-                                             class="w-100 h-100 object-fit-cover" style="object-position: center;"
+                                             class="w-100 h-100" style="object-position: center; object-fit: cover"
                                              alt="">
                                     </div>
                                     <h5 style="margin-bottom: 0" class="ml-2 d-none d-md-block">${user.name}</h5>

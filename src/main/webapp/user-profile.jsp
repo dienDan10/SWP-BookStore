@@ -43,6 +43,18 @@
             background-color: #B08EAD;
             color: #fff;
         }
+
+        .table {
+            font-size: 15px;
+        }
+
+        @media screen and (max-width: 759px) {
+            .table {
+                width: 100% !important;
+                font-size: 14px;
+            }
+
+        }
     </style>
 </head>
 
@@ -58,12 +70,12 @@
         <div class="row align-items-center">
             <div class="col-lg-10 col-md-12 mx-auto">
                 <div class="login_part_form mx-auto" style="display: block; height: auto">
-                    <div class="login_part_form_iner d-flex flex-column flex-sm-row align-items-center align-items-sm-start justify-content-around" >
-                        <div class="d-flex flex-column align-items-center mb-5 mb-sm-0">
+                    <div class="login_part_form_iner d-flex flex-column flex-md-row align-items-center align-items-md-center justify-content-around" >
+                        <div class="d-flex flex-column align-items-center mb-5">
                             <div class="rounded-circle overflow-hidden mb-5"
                                  style="width: 150px; height: 150px;">
                                 <img src="${user.imageURL}"
-                                     class="w-100 h-100 object-fit-cover" style="object-position: center;"
+                                     class="w-100 h-100" style="object-position: center; object-fit: cover"
                                      alt="">
                             </div>
                             <button class="btn_3" data-toggle="modal" data-target="#change-user-info">Chỉnh sửa</button>
@@ -241,6 +253,7 @@
                         </tr>
                         </tbody>
                     </table>
+                    <p style="font-size: 14px; font-style: italic">(Xin hãy dùng forget password nếu bạn đăng nhập bằng Google)</p>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn_3 btn-change-password" disabled>Lưu</button>

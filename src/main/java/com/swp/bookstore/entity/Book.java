@@ -27,7 +27,7 @@ public class Book {
     @Column(name="number_of_page")
     private int pageCount;
     @Column(name="price")
-    private double price;
+    private long price;
     @Column(name="image_front")
     private String imageFront;
     @Column(name="image_back")

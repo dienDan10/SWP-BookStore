@@ -51,11 +51,8 @@ public class AddToCart extends HttpServlet {
             item.setUserId(user.getId());
             cartService.addCart(item);
         }
-//        // send a message
-//        req.setAttribute("successMsg", "Add to cart successfully");
-//        // return to single product page
-//        resp.sendRedirect("/book-detail?id=" + bookId);
-        // create a result json to send to server
+
+        // send success message
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         Gson gson = new Gson();

@@ -17,10 +17,10 @@
                             <div class="rounded-circle overflow-hidden ml-2 ml-md-4"
                                  style="width: 35px; height: 35px">
                                 <img src="${user.imageURL}"
-                                     class="w-100 h-100 object-fit-cover" style="object-position: center;"
+                                     class="w-100 h-100" style="object-position: center; object-fit: cover"
                                      alt="">
                             </div>
-                            <span class="text-white text-uppercase ms-2 d-inline-block">ADMIN</span>
+                            <span class="text-white ms-2 d-inline-block">${user.name}</span>
                         </c:when>
                         <c:otherwise>
                             <a href="/login" class="nav-link text-white font-weight-bold px-0">

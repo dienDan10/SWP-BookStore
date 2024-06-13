@@ -1,6 +1,7 @@
 package com.swp.bookstore.controller.common;
 
 import com.swp.bookstore.entity.User;
+import com.swp.bookstore.enums.ROLES;
 import com.swp.bookstore.service.UserService;
 import com.swp.bookstore.service.serviceImpl.UserServiceImpl;
 import com.swp.bookstore.utils.PasswordEncryptor;
@@ -25,6 +26,13 @@ public class Login extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // check for user login
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            resp.sendRedirect("/home-page");
+            return;
+        }
         req.getRequestDispatcher("login.jsp").forward(req, resp);
     }
 
@@ -47,6 +55,12 @@ public class Login extends HttpServlet {
 
         session.setAttribute("user", user);
         session.setAttribute("successMsg", "Login successful!");
+
+        if (user.hasRole(ROLES.SELLER)) {
+            resp.sendRedirect("/view-dashboard");
+            return;
+        }
+
         resp.sendRedirect("/home-page");
     }
 }
