@@ -35,6 +35,12 @@ public class ViewCart extends HttpServlet {
         if (carts == null) { // return a empty list
             carts = new ArrayList<>();
         }
+        for (Cart cart : carts) {
+            if (cart.getQuantity() > cart.getBook().getQuantity()) {
+                cart.setQuantity(cart.getBook().getQuantity());
+                cartService.updateCart(cart);
+            }
+        }
         // send cart to view cart page
         req.setAttribute("carts", carts);
         req.getRequestDispatcher("cart.jsp").forward(req, resp);

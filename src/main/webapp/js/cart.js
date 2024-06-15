@@ -38,6 +38,10 @@ btn_update.forEach(btn => btn.addEventListener('click', function(event) {
             action: _action
         },
         success: function (data) {
+            if (data) {
+                showToast(data.message);
+                return;
+            }
             if (_action === 'minus') {
                 decrease();
             } else {
@@ -160,17 +164,16 @@ document.querySelector('.cart-form').addEventListener('submit', function(event) 
     })
     if (!isSelected) {
         event.preventDefault();
-        showToast();
+        showToast('Please choose a book!');
     }
 });
 
 // toast box
 const toastBox = document.querySelector('#toastBox');
 const invalidIcon = '<i class="fa-solid fa-circle-exclamation"></i>';
-const msg = 'Please choose a book!';
 
 
-function showToast() {
+function showToast(msg) {
     const toast = document.createElement('div');
     toast.classList.add('toastItem');
     let content = 'Hello';

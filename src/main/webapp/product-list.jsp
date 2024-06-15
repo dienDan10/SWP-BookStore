@@ -442,7 +442,6 @@
     function formatItemPrice() {
         document.querySelectorAll('.book-price').forEach(item => {
             const price = parseInt(item.textContent);
-            console.log(price);
             item.textContent = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         })
     }

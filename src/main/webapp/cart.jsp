@@ -133,7 +133,7 @@
                                         <a class="input-number-decrement btn-update" style="color: #212529" href="#?" action="minus" cart-id="${item.id}">
                                             <i class="ti-minus"></i>
                                         </a>
-                                        <input class="item-quantity" type="number" value="${item.quantity}" min="1" max="20" readonly>
+                                        <input class="item-quantity" type="number" value="${item.quantity}" min="1" max="5" readonly>
                                         <a class="input-number-increment btn-update" style="color: #212529" href="#?" action="plus" cart-id="${item.id}">
                                             <i class="ti-plus"></i>
                                         </a>

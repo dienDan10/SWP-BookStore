@@ -153,7 +153,7 @@
                         <a href="/view-order-detail?orderId=${order.id}" class="badge badge-sm bg-gradient-success" target="_blank">View</a>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <a href="#" class="badge badge-sm bg-gradient-danger" >${order.status}</a>
+                        <p class="mb-0 text-danger font-weight-bold">${order.status}</p>
                       </td>
                     </tr>
                   </c:forEach>

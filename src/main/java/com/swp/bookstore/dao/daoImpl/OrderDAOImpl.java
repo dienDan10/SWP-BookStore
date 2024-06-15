@@ -91,7 +91,7 @@ public class OrderDAOImpl implements OrderDAO {
         EntityManager em = JPAUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Order> orders = null;
-        TypedQuery<Order> query = em.createQuery("select o from Order o where o.userId = :userId", Order.class);
+        TypedQuery<Order> query = em.createQuery("select o from Order o where o.user.id = :userId", Order.class);
         query.setParameter("userId", userId);
         try {
             orders = query.getResultList();
@@ -110,7 +110,7 @@ public class OrderDAOImpl implements OrderDAO {
         EntityManager em = JPAUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Order> orders = new ArrayList<>();
-        TypedQuery<Order> query = em.createQuery("select o from Order o join fetch o.orderDetails where o.userId = :userId and o.status = :status", Order.class);
+        TypedQuery<Order> query = em.createQuery("select o from Order o join fetch o.orderDetails where o.user.id = :userId and o.status = :status", Order.class);
         query.setParameter("userId", userId);
         query.setParameter("status", status);
         try {
