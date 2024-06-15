@@ -44,4 +44,21 @@ public class PaymentDAOImpl implements PaymentDAO {
         }
         return payment;
     }
+
+    @Override
+    public void updatePayment(Payment payment) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.merge(payment);
+            tx.commit();
+        } catch (Exception ex) {
+            tx.rollback();
+            System.out.println("find payment failed");
+            ex.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }
 }

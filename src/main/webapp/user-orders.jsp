@@ -53,15 +53,15 @@
                     <span>Đang Xử Lý</span>
                   </a>
                 </li>
-                <li class="nav-item" role="presentation">
-                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
+                <li class="nav-item " role="presentation">
+                  <a class="nav-link nav-link-special-1" id="profile-tab" data-toggle="tab" href="#profile"
                      role="tab" aria-controls="profile" aria-selected="false">
                     <i class="fa-solid fa-truck-fast"></i>
                     <span>Đang Giao</span>
                   </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages"
+                  <a class="nav-link nav-link-special-2" id="messages-tab" data-toggle="tab" href="#messages"
                      role="tab" aria-controls="messages" aria-selected="false">
                     <i class="fa-solid fa-circle-check"></i>
                     <span>Đã Nhận</span>
@@ -142,6 +142,9 @@
                         </c:forEach>
                         <div class="order-footer">
                           <a class="btn_5" href="/view-order-detail?orderId=${order.id}">Chi tiết</a>
+                          <a class="btn_5 ml-2" href="/receive-order?orderId=${order.id}"
+                            onclick="if(!confirm('Bạn có chắc muốn nhận đơn hàng này?')) return false"
+                          >Nhận hàng</a>
                           <div class="order-total">
                             Tổng tiền: <span class="order-price">${order.payment.amount}</span>
                           </div>
@@ -174,8 +177,56 @@
                                 ${item.bookName} <br>
                               <span class="quantity">Số lượng: ${item.quantity}</span>
                             </div>
-                            <div class="item-price">
-                                ${item.price}
+                            <div class="d-flex flex-column justify-content-start align-items-end">
+                              <div class="item-price mb-1">
+                                  ${item.price}
+                              </div>
+                              <c:if test="${!item.isRated()}">
+                                <a class="btn_6" href="#" data-toggle="modal" data-target="#product-rating-${item.id}">Đánh giá</a>
+                                <!-- Modal Rating Product-->
+                                <div class="modal fade" id="product-rating-${item.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">${item.bookName}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <form action="/rating?orderDetailId=${item.id}" method="POST" class="rating-form">
+                                        <input type="hidden" name="bookId" value="${item.bookId}">
+                                        <div class="modal-body">
+                                          <div>
+                                            <h5 class="text-center">Đánh giá</h5>
+                                            <div class="wrapper">
+                                              <input type="checkbox" id="st1" class="input-star" name="star" value="5" />
+                                              <label for="st1"></label>
+                                              <input type="checkbox" id="st2" class="input-star" name="star" value="4" />
+                                              <label for="st2"></label>
+                                              <input type="checkbox" id="st3" class="input-star" name="star" value="3" />
+                                              <label for="st3"></label>
+                                              <input type="checkbox" id="st4" class="input-star" name="star" value="2" />
+                                              <label for="st4"></label>
+                                              <input type="checkbox" id="st5" class="input-star" name="star" value="1" />
+                                              <label for="st5"></label>
+                                            </div>
+                                          </div>
+                                          <hr>
+                                          <div>
+                                            <h5 class="text-center">Bình luận</h5>
+                                            <input type="text" class="form-control" placeholder="Tiêu đề" name="title" required>
+                                            <textarea class="form-control mt-3" rows="5" style="min-height: 100px" placeholder="Nội dung" name="content" required></textarea>
+                                          </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="submit" class="btn_5">Lưu</button>
+                                        </div>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- Modal Rating Product end here-->
+                              </c:if>
                             </div>
                           </div>
                         </c:forEach>
@@ -242,7 +293,8 @@
   </div>
 </section>
 <!--================End Checkout Area =================-->
-
+<div style="display: none" page="${not empty page ? page : 'none'}" class="page"></div>
+<c:remove var="page" scope="session"></c:remove>
 <!--::footer_part start::-->
 <%@ include file="components/footer.jsp"%>
 <!--::footer_part end::-->
@@ -274,13 +326,6 @@
 <!-- custom js -->
 <script src="js/custom.js"></script>
 <script>
-  // const items = document.querySelectorAll('.disabled');
-  // items.forEach(item => {
-  //   item.addEventListener('click', (e) => {
-  //     e.preventDefault();
-  //     return false;
-  //   })
-  // });
 
   //format price
   function formatPrice() {
@@ -301,12 +346,13 @@
   }
 
   formatPrice();
+  const page = document.querySelector('.page').getAttribute('page');
+  if (page === '1') {
+    document.querySelector('.nav-link-special-1').click();
+  } else if (page === '2') {
+    document.querySelector('.nav-link-special-2').click();
+  }
 
-  // document.querySelectorAll('.payment-type').forEach(type => {
-  //   type.addEventListener('click', function() {
-  //     document.querySelector('.btn_order').textContent = type.getAttribute('button-name');
-  //   });
-  // });
 
 </script>
 </body>

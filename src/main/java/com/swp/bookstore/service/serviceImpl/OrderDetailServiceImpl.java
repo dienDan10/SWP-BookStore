@@ -12,4 +12,14 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     public void addOrderDetail(OrderDetail orderDetail) {
         orderDetailDAO.addOrderDetail(orderDetail);
     }
+
+    @Override
+    public void updateOrderDetail(OrderDetail orderDetail) {
+        orderDetailDAO.updateOrderDetail(orderDetail);
+    }
+
+    @Override
+    public OrderDetail findById(long id) {
+        return orderDetailDAO.findById(id);
+    }
 }

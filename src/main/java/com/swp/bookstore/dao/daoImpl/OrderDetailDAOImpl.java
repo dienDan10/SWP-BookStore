@@ -23,4 +23,40 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
             em.close();
         }
     }
+
+    @Override
+    public void updateOrderDetail(OrderDetail orderDetail) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.merge(orderDetail);
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+            System.out.println("Save Order Detail Failed");
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public OrderDetail findById(long id) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        OrderDetail orderDetail = null;
+        try {
+            tx.begin();
+            orderDetail = em.find(OrderDetail.class, id);
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+            System.out.println("Save Order Detail Failed");
+        } finally {
+            em.close();
+        }
+        return orderDetail;
+    }
 }
