@@ -7,8 +7,8 @@ import java.util.List;
 public interface BookService {
 
     void updateBook(Book book);
-    void deleteBook(int id);
-    Book findById(int id);
+    void deleteBook(long id);
+    Book findById(long id);
     void addBook(Book book);
     List<Book> findBestSeller(int num);
     List<Book> getNextProductPage(int pageSize, int currentPage);

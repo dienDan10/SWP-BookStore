@@ -17,12 +17,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void deleteBook(int id) {
+    public void deleteBook(long id) {
         bookDAO.deleteBook(id);
     }
 
     @Override
-    public Book findById(int id) {
+    public Book findById(long id) {
         return bookDAO.findById(id);
     }
 

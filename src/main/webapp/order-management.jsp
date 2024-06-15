@@ -31,6 +31,7 @@
     <%@include file="components/dashboard-navbar.jsp" %>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
+        <%--    Order Management Navbar--%>
         <div class="row">
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                 <a href="/manage-order" class="card">
@@ -105,6 +106,7 @@
                 </a>
             </div>
         </div>
+<%--            End Order Management Navbar--%>
         <div class="row mt-4">
             <div class="col-12">
                 <div class="card mb-4">
@@ -160,7 +162,7 @@
                                                 <a href="/view-order-detail?orderId=${order.id}" class="badge badge-sm bg-gradient-success" target="_blank">View</a>
                                             </td>
                                             <td class="align-middle text-center text-sm">
-                                                <a href="#" class="badge badge-sm bg-gradient-info"
+                                                <a href="/accept-order?orderId=${order.id}" class="badge badge-sm bg-gradient-info"
                                                    onclick="if (!confirm('Do you want to accept this order?')) return false"
                                                 >Accept</a>
                                             </td>

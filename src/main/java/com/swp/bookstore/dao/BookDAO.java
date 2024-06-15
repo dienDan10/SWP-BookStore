@@ -8,8 +8,8 @@ public interface BookDAO {
 
     void addBook(Book book);
     void updateBook(Book book);
-    void deleteBook(int id);
-    Book findById(int id);
+    void deleteBook(long id);
+    Book findById(long id);
     List<Book> findBestSeller(int num);
     List<Book> getNextProductPage(int pageSize, int currentPage);
     List<Book> getBookByCategoryByPage(int pageSize, int currentPage, int categoryId);
