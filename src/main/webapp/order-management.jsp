@@ -52,7 +52,7 @@
                 </a>
             </div>
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <a href="deliveringorder.html" class="card">
+                <a href="/view-delivering-order" class="card">
                     <div class="card-body p-3">
                         <div class="row">
                             <div class="col-8">
@@ -70,7 +70,7 @@
                 </a>
             </div>
             <div class="col-xl-3 col-sm-6">
-                <a href="receivedorder.html" class="card">
+                <a href="/view-received-order" class="card">
                     <div class="card-body p-3">
                         <div class="row">
                             <div class="col-8">
@@ -88,7 +88,7 @@
                 </a>
             </div>
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <a href="cancelorder.html" class="card">
+                <a href="/view-cancel-order" class="card">
                     <div class="card-body p-3">
                         <div class="row">
                             <div class="col-8">
@@ -171,7 +171,7 @@
                                                                   class="badge badge-sm bg-gradient-success">Delete</a>
                                                           </td> -->
                                             <td class="align-middle text-center text-sm">
-                                                <a href="#" onclick="if (!confirm('Do you want to cancel this order?')) return false"
+                                                <a href="/cancel-order?id=${order.id}" onclick="if (!confirm('Do you want to cancel this order?')) return false"
                                                    class="badge badge-sm bg-gradient-danger">Cancel</a>
                                             </td>
                                         </tr>
