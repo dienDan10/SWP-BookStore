@@ -155,7 +155,6 @@
                       <td class="align-middle text-center text-sm">
                         <a href="#" class="badge badge-sm bg-gradient-success" data-bs-toggle="modal"
                            data-bs-target="#bookModal">View</a>
-                        <p class="mb-0 text-danger font-weight-bold">${order.status}</p>
                       </td>
                     </tr>
                   </c:forEach>
