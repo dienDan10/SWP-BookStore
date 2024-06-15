@@ -1,6 +1,5 @@
 package com.swp.bookstore.filter;
 
-
 import com.swp.bookstore.entity.User;
 import com.swp.bookstore.enums.ROLES;
 import jakarta.servlet.*;
@@ -10,7 +9,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-public class SellerFilter implements Filter {
+public class AdminFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
@@ -23,7 +22,7 @@ public class SellerFilter implements Filter {
             request.getRequestDispatcher("login.jsp").forward(request, response);
             return;
         }
-        if (!user.hasRole(ROLES.SELLER)) {   // block user
+        if (!user.hasRole(ROLES.ADMIN)) {   // block user
             response.sendError(HttpServletResponse.SC_FORBIDDEN);
             return;
         }

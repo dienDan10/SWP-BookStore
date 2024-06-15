@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <aside
         class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
         id="sidenav-main">
@@ -22,14 +23,16 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="/home-page">
+                <a class="nav-link active" href="/home-page">
                     <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-shop text-warning text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Store</span>
                 </a>
-                <a class="nav-link " href="/manage-order">
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/manage-order">
                     <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
@@ -37,22 +40,33 @@
                     <span class="nav-link-text ms-1">Order Management</span>
                 </a>
             </li>
+            <c:if test="${user.hasRole('ADMIN')}">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/manage-account">
+                        <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-user-run text-warning text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Account Management</span>
+                    </a>
+                </li>
+            </c:if>
             <li class="nav-item">
-                <a class="nav-link " href="/manage-account">
-                    <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-user-run text-warning text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Account Management</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="/manage-product">
+                <a class="nav-link active" href="/manage-product">
                     <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-books text-warning text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Product Management</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/logout">
+                    <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-app text-warning text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Đăng xuất</span>
                 </a>
             </li>
         </ul>
