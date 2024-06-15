@@ -37,7 +37,6 @@
           <div class="card mb-4">
             <div class="card-header pb-0">
               <h6>Account Management</h6>
-              <h6>${RequestScope.mes}</h6>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
@@ -64,7 +63,7 @@
                         <td>
                           <div class="d-flex px-2 py-1">
                             <div>
-                              <img src="${user.imageURL}" class="avatar avatar-sm me-3" alt="user1">
+                              <img src="${user.imageURL}" style="object-fit: cover; object-position: center" class="avatar avatar-sm me-3" alt="user1">
                             </div>
                             <div class="d-flex flex-column justify-content-center">
                               <h6 class="mb-0 text-sm">${user.name}</h6>

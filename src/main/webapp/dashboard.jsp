@@ -62,7 +62,7 @@
           </a>
         </div>
         <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-          <a href="accountmanagement.html" class="card">
+          <a href="/manage-account" class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">

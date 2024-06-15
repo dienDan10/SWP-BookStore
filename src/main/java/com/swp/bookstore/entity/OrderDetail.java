@@ -23,6 +23,12 @@ public class OrderDetail {
     private long price;
     @Column(name="is_rated")
     private boolean isRated;
+    @Column(name="book_name")
+    private String bookName;
+    @Column(name="book_image_front")
+    private String bookImageFront;
+    @Column(name="book_id")
+    private long bookId;
 
     @ManyToOne(
             fetch = FetchType.LAZY,
@@ -31,11 +37,5 @@ public class OrderDetail {
     @JoinColumn(name="order_id")
     private Order order;
 
-    @OneToOne(
-            fetch = FetchType.EAGER,
-            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH}
-    )
-    @JoinColumn(name="book_id")
-    private Book book;
 
 }

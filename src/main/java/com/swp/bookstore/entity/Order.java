@@ -45,7 +45,7 @@ public class Order {
             fetch = FetchType.EAGER,
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH}
     )
-    @JoinColumn(name="delivery_address_id")
-    private Address address;
+    @JoinColumn(name="order_address_id")
+    private OrderAddress address;
 
 }

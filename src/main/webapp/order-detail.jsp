@@ -134,7 +134,7 @@
                         <tbody>
                         <c:forEach var="item" items="${order.orderDetails}">
                             <tr>
-                                <th colspan="2"><span>${item.book.name}</span></th>
+                                <th colspan="2"><span>${item.bookName}</span></th>
                                 <th>x${item.quantity}</th>
                                 <th> <span class="item-price">${item.price}</span></th>
                             </tr>

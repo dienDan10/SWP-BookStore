@@ -90,14 +90,14 @@
                         <c:forEach var="item" items="${order.orderDetails}">
                           <div class="item d-flex flex-row">
                             <div class="item-picture">
-                              <img src="${item.book.imageFront}" alt="">
+                              <img src="${item.bookImageFront}" alt="">
                             </div>
                             <div class="item-name">
-                              ${item.book.name} <br>
+                              ${item.bookName} <br>
                               <span class="quantity">Số lượng: ${item.quantity}</span>
                             </div>
                             <div class="item-price">
-                                ${item.book.price * item.quantity}
+                                ${item.price}
                             </div>
                           </div>
                         </c:forEach>
@@ -129,14 +129,14 @@
                         <c:forEach var="item" items="${order.orderDetails}">
                           <div class="item d-flex flex-row">
                             <div class="item-picture">
-                              <img src="${item.book.imageFront}" alt="">
+                              <img src="${item.bookImageFront}" alt="">
                             </div>
                             <div class="item-name">
-                                ${item.book.name} <br>
+                                ${item.bookName} <br>
                               <span class="quantity">Số lượng: ${item.quantity}</span>
                             </div>
                             <div class="item-price">
-                                ${item.book.price * item.quantity}
+                                ${item.price}
                             </div>
                           </div>
                         </c:forEach>
@@ -168,14 +168,14 @@
                         <c:forEach var="item" items="${order.orderDetails}">
                           <div class="item d-flex flex-row">
                             <div class="item-picture">
-                              <img src="${item.book.imageFront}" alt="">
+                              <img src="${item.bookImageFront}" alt="">
                             </div>
                             <div class="item-name">
-                                ${item.book.name} <br>
+                                ${item.bookName} <br>
                               <span class="quantity">Số lượng: ${item.quantity}</span>
                             </div>
                             <div class="item-price">
-                                ${item.book.price * item.quantity}
+                                ${item.price}
                             </div>
                           </div>
                         </c:forEach>
@@ -207,14 +207,14 @@
                         <c:forEach var="item" items="${order.orderDetails}">
                           <div class="item d-flex flex-row">
                             <div class="item-picture">
-                              <img src="${item.book.imageFront}" alt="">
+                              <img src="${item.bookImageFront}" alt="">
                             </div>
                             <div class="item-name">
-                                ${item.book.name} <br>
+                                ${item.bookName} <br>
                               <span class="quantity">Số lượng: ${item.quantity}</span>
                             </div>
                             <div class="item-price">
-                                ${item.book.price * item.quantity}
+                                ${item.price}
                             </div>
                           </div>
                         </c:forEach>

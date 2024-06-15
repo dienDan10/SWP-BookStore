@@ -110,7 +110,7 @@
                                 <tr>
                                     <td>Ngày sinh: </td>
 
-                                    <td>${user.birthDate}</td>
+                                    <td class="birth-date">${user.birthDate}</td>
                                 </tr>
                                 <tr>
                                     <td>Password: </td>
@@ -130,7 +130,7 @@
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content rounded-0">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Thêm địa chỉ mới</h5>
+                                    <h5 class="modal-title">Chỉnh sửa thông tin</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -381,6 +381,19 @@
     newPass.addEventListener('blur', function() {
         newPassMsg.textContent = "";
     });
+
+    function convertDateFormat(dateString) {
+        // Split the input date string into its components
+        let parts = dateString.split("-");
+
+        // Rearrange the components into dd-MM-yyyy format
+        let newDateString = parts[2] + "-" + parts[1] + "-" + parts[0];
+
+        return newDateString;
+    }
+
+    const date = document.querySelector('.birth-date');
+    date.textContent = convertDateFormat(date.textContent);
 
 </script>
 

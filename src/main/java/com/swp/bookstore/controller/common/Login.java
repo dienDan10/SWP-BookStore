@@ -51,6 +51,7 @@ public class Login extends HttpServlet {
         if (!user.isActive()) {
             session.setAttribute("errMsg", "Your account has been blocked");
             req.getRequestDispatcher("login.jsp").forward(req, resp);
+            return;
         }
 
         session.setAttribute("user", user);

@@ -31,6 +31,7 @@ public class ConfirmOrder extends HttpServlet {
     private OrderService orderService;
     private PaymentService paymentService;
     private OrderDetailService orderDetailService;
+    private OrderAddressService orderAddressService;
 
     @Override
     public void init() throws ServletException {
@@ -39,6 +40,7 @@ public class ConfirmOrder extends HttpServlet {
         orderService = new OrderServiceImpl();
         paymentService = new PaymentServiceImpl();
         orderDetailService = new OrderDetailServiceImpl();
+        orderAddressService = new OrderAddressServiceImpl();
     }
 
     @Override
@@ -80,14 +82,18 @@ public class ConfirmOrder extends HttpServlet {
         order.setPayment(payment);
         order.setStatus(OrderStatus.DANG_XU_LY);
         order.setCreatedTime(currentTime);
-        order.setAddress(addressService.findById(Integer.parseInt(addressId)));
+        Address address = addressService.findById(Integer.parseInt(addressId));
+        OrderAddress orderAddress = orderAddressService.saveOrderAddress(address);
+        order.setAddress(orderAddress);
         // save order
         order = orderService.saveOrder(order);
         // create order detail and remove item from cart
         for(Cart cart : items) {
             OrderDetail orderDetail = new OrderDetail();
             orderDetail.setQuantity(cart.getQuantity());
-            orderDetail.setBook(cart.getBook());
+            orderDetail.setBookId(cart.getBook().getId());
+            orderDetail.setBookName(cart.getBook().getName());
+            orderDetail.setBookImageFront(cart.getBook().getImageFront());
             orderDetail.setRated(false);
             orderDetail.setPrice(cart.getBook().getPrice() * cart.getQuantity());
             orderDetail.setOrder(order);
@@ -150,14 +156,18 @@ public class ConfirmOrder extends HttpServlet {
         order.setPayment(payment);
         order.setStatus(OrderStatus.DANG_XU_LY);
         order.setCreatedTime(currentTime);
-        order.setAddress(addressService.findById(Integer.parseInt(addressId)));
+        Address address = addressService.findById(Integer.parseInt(addressId));
+        OrderAddress orderAddress = orderAddressService.saveOrderAddress(address);
+        order.setAddress(orderAddress);
         // save order
         order = orderService.saveOrder(order);
         // create order detail and remove item from cart
         for(Cart cart : cartItems) {
             OrderDetail orderDetail = new OrderDetail();
             orderDetail.setQuantity(cart.getQuantity());
-            orderDetail.setBook(cart.getBook());
+            orderDetail.setBookId(cart.getBook().getId());
+            orderDetail.setBookName(cart.getBook().getName());
+            orderDetail.setBookImageFront(cart.getBook().getImageFront());
             orderDetail.setRated(false);
             orderDetail.setPrice(cart.getBook().getPrice() * cart.getQuantity());
             orderDetail.setOrder(order);
