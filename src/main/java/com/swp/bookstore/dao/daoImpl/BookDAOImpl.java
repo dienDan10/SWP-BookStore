@@ -46,7 +46,7 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
-    public void deleteBook(int id) {
+    public void deleteBook(long id) {
         EntityManager em = JPAUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         try {
@@ -63,7 +63,7 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
-    public Book findById(int id) {
+    public Book findById(long id) {
         EntityManager em = JPAUtil.getEntityManager();
         return em.find(Book.class, id);
     }
