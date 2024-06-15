@@ -112,6 +112,10 @@
                                 <td>Số trang</td>
                                 <td>${book.pageCount}</td>
                             </tr>
+                            <tr>
+                                <td>Số lượng</td>
+                                <td>${book.quantity}</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -123,13 +127,21 @@
                                     <p>Quantity</p>
                                     <div class="product_count d-inline-block">
                                         <span class="product_count_item number-decrement hover-pointer"> <i class="ti-minus"></i></span>
-                                        <input name="amount" class="product_count_item input-number" style="height: fit-content;" type="text" value="1" min="1" max="10" readonly>
+                                        <input name="amount" class="product_count_item input-number" style="height: fit-content;" type="text" value="1" min="1" max="${book.quantity}" readonly>
                                         <span class="product_count_item number-increment hover-pointer"> <i class="ti-plus"></i></span>
                                     </div>
                                     <p class="book-price">${book.price}đ</p>
                                 </div>
                                 <div class="add_to_cart text-center">
-                                    <button class="btn_3 btn_add_to_cart">add to cart</button>
+                                    <c:choose>
+                                        <c:when test="${book.quantity > 0}">
+                                            <button class="btn_3 btn_add_to_cart">add to cart</button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <h5>Sản phẩm hiện đang hết hàng</h5>
+                                        </c:otherwise>
+                                    </c:choose>
+
                                 </div>
                             </form>
 

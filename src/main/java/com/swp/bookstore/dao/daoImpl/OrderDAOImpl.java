@@ -126,4 +126,23 @@ public class OrderDAOImpl implements OrderDAO {
         }
         return orders;
     }
+
+    @Override
+    public List<Order> findOrderByStatus(String status) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        List<Order> orders = null;
+        TypedQuery<Order> query = em.createQuery("select o from Order o where o.status = :status order by o.id desc", Order.class);
+        query.setParameter("status", status);
+        try {
+            orders = query.getResultList();
+        } catch (NoResultException e) {
+            e.printStackTrace();
+            System.out.println("Cannot find order");
+            tx.rollback();
+        } finally {
+            em.close();
+        }
+        return orders;
+    }
 }

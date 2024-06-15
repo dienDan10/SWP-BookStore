@@ -44,6 +44,27 @@
         .fa-trash-can:hover {
             animation: vibrate 0.5s linear 2; /* Animation lasts 1 second with 2 iterations */
         }
+
+        tr {
+            position: relative;
+        }
+
+        .no-product {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 93%;
+            background-color: #ffffffdd;
+            z-index: 10;
+            font-size: 16px;
+            font-style: italic;
+            color: red;
+        }
+
     </style>
 </head>
 
@@ -85,11 +106,16 @@
                         <tbody class="table-body">
                         <c:forEach var="item" items="${carts}">
                             <tr>
+                                <c:if test="${item.book.quantity == 0}">
+                                    <td class="no-product">
+                                        Sản phẩm hiện đang hết hàng
+                                    </td>
+                                </c:if>
                                 <td class="d-flex align-items-center">
-                                    <div class="d-flex align-items-center mr-2">
-                                        <input class="form-check-input" style="width: 16px; height: 16px" type="checkbox" name="id" value="${item.id}">
+                                    <div class="d-flex align-items-center">
+                                        <input class="form-check-input" style="width: 16px; height: 16px; left: 20px" type="checkbox" name="id" value="${item.id}">
                                     </div>
-                                    <div class="media">
+                                    <div class="media ml-3">
                                         <div class="d-flex">
                                             <img src="${item.book.imageFront}" alt="" />
                                         </div>

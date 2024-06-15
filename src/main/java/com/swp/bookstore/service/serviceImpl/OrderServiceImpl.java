@@ -40,4 +40,9 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> findOrdersByUserIdAndStatus(long userId, String status) {
         return orderDAO.findOrdersByUserIdAndStatus(userId, status);
     }
+
+    @Override
+    public List<Order> findOrdersByStatus(String status) {
+        return orderDAO.findOrderByStatus(status);
+    }
 }

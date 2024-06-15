@@ -19,13 +19,17 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private long id;
-    @Column(name="user_id")
-    private long userId;
     @Column(name="order_status")
     private String status;
     @Column(name="create_time")
     private String createdTime;
 
+    @OneToOne(
+            fetch = FetchType.EAGER,
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.REMOVE}
+    )
+    @JoinColumn(name="user_id")
+    private User user;
 
     @OneToOne(
             fetch = FetchType.EAGER,

@@ -29,12 +29,12 @@
                     </div>
                     <span class="nav-link-text ms-1">Store</span>
                 </a>
-                <a class="nav-link " href="tables.html">
+                <a class="nav-link " href="/manage-order">
                     <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Sales</span>
+                    <span class="nav-link-text ms-1">Order Management</span>
                 </a>
             </li>
             <li class="nav-item">

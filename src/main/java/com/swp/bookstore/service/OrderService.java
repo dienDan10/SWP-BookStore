@@ -11,4 +11,5 @@ public interface OrderService {
     Order findOrderById(long id);
     List<Order> findOrdersByUserId(long userId);
     List<Order> findOrdersByUserIdAndStatus(long userId, String status);
+    List<Order> findOrdersByStatus(String status);
 }

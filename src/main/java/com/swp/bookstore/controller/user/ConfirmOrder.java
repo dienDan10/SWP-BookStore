@@ -78,7 +78,7 @@ public class ConfirmOrder extends HttpServlet {
         payment = paymentService.savePayment(payment);
         // create and save order
         Order order = new Order();
-        order.setUserId(user.getId());
+        order.setUser(user);
         order.setPayment(payment);
         order.setStatus(OrderStatus.DANG_XU_LY);
         order.setCreatedTime(currentTime);
@@ -90,6 +90,7 @@ public class ConfirmOrder extends HttpServlet {
         // create order detail and remove item from cart
         for(Cart cart : items) {
             OrderDetail orderDetail = new OrderDetail();
+            Book book = cart.getBook();
             orderDetail.setQuantity(cart.getQuantity());
             orderDetail.setBookId(cart.getBook().getId());
             orderDetail.setBookName(cart.getBook().getName());
@@ -152,7 +153,7 @@ public class ConfirmOrder extends HttpServlet {
         payment = paymentService.savePayment(payment);
         // create order
         Order order = new Order();
-        order.setUserId(user.getId());
+        order.setUser(user);
         order.setPayment(payment);
         order.setStatus(OrderStatus.DANG_XU_LY);
         order.setCreatedTime(currentTime);
@@ -164,10 +165,11 @@ public class ConfirmOrder extends HttpServlet {
         // create order detail and remove item from cart
         for(Cart cart : cartItems) {
             OrderDetail orderDetail = new OrderDetail();
+            Book book = cart.getBook();
             orderDetail.setQuantity(cart.getQuantity());
-            orderDetail.setBookId(cart.getBook().getId());
-            orderDetail.setBookName(cart.getBook().getName());
-            orderDetail.setBookImageFront(cart.getBook().getImageFront());
+            orderDetail.setBookId(book.getId());
+            orderDetail.setBookName(book.getName());
+            orderDetail.setBookImageFront(book.getImageFront());
             orderDetail.setRated(false);
             orderDetail.setPrice(cart.getBook().getPrice() * cart.getQuantity());
             orderDetail.setOrder(order);
