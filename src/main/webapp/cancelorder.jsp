@@ -124,22 +124,23 @@
                         Create Time</th>
                     
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                        Action</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                         Status</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                        Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                  <c:forEach var="order" items="${orders}">
+                  <c:forEach items="${orders}" var="order">
                     <tr>
                       <td>
                         <p class="text-xs font-weight-bold mb-0">${order.id}</p>
                       </td>
                       <td>
                         <div class="d-flex px-2 py-1">
-                           <div>
-                            <img src="${order.user.imageURL}" class="avatar avatar-sm me-3" alt="user1">
-                          </div> 
+                          <div>
+                            <img src="${order.user.imageURL}" class="avatar avatar-sm me-3"
+                                 style="object-fit: cover; object-position: center" alt="user1">
+                          </div>
                           <div class="d-flex flex-column justify-content-center">
                             <h6 class="mb-0 text-sm">${order.user.name}</h6>
                           </div>
@@ -148,12 +149,12 @@
                       <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold">${order.createdTime}</span>
                       </td>
-                      
                       <td class="align-middle text-center text-sm">
-                        <a href="/view-order-detail?orderId=${order.id}" class="badge badge-sm bg-gradient-success" target="_blank">View</a>
+                        <span class="text-secondary text-xs font-weight-bold">${order.status}</span>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <a href="#" class="badge badge-sm bg-gradient-danger" >${order.status}</a>
+                        <a href="#" class="badge badge-sm bg-gradient-success" data-bs-toggle="modal"
+                           data-bs-target="#bookModal">View</a>
                       </td>
                     </tr>
                   </c:forEach>
