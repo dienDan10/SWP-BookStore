@@ -145,7 +145,7 @@
                                                         <img src="${order.user.imageURL}" class="avatar avatar-sm me-3" alt="user1" style="object-fit: cover; object-position: center">
                                                     </div>
                                                     <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">${user.name}</h6>
+                                                        <h6 class="mb-0 text-sm">${order.user.name}</h6>
                                                     </div>
                                                 </div>
                                             </td>
@@ -160,14 +160,16 @@
                                                 <a href="/view-order-detail?orderId=${order.id}" class="badge badge-sm bg-gradient-success" target="_blank">View</a>
                                             </td>
                                             <td class="align-middle text-center text-sm">
-                                                <a href="#" class="badge badge-sm bg-gradient-info" >Accept</a>
+                                                <a href="#" class="badge badge-sm bg-gradient-info"
+                                                   onclick="if (!confirm('Do you want to accept this order?')) return false"
+                                                >Accept</a>
                                             </td>
                                             <!-- <td class="align-middle text-center text-sm">
                                                               <a href="https://example.com/delete-link"
                                                                   class="badge badge-sm bg-gradient-success">Delete</a>
                                                           </td> -->
                                             <td class="align-middle text-center text-sm">
-                                                <a href="#" onclick="confirmCancel('https://example.com/delete-link')"
+                                                <a href="#" onclick="if (!confirm('Do you want to cancel this order?')) return false"
                                                    class="badge badge-sm bg-gradient-danger">Cancel</a>
                                             </td>
                                         </tr>
@@ -180,52 +182,7 @@
             </div>
         </div>
     </div>
-    <!-- popup view information order -->
-    <div class="modal fade" id="bookModal" tabindex="-1" aria-labelledby="bookModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="bookModalLabel">Order Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="UserName" class="form-label">UserName</label>
-                            <input type="text" class="form-control" id="Username" value="Jone" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label for="Email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="Email" value="jone@123" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label for="phoneNumber" class="form-label">Phone Number</label>
-                            <input type="text" class="form-control" id="phonenumber" value="0989374567" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label for="bookName" class="form-label">Book Name</label>
-                            <input type="text" class="form-control" id="bookName" value="Sách chữa lành tâm hồn" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label for="quantity" class="form-label">Quantity</label>
-                            <input type="text" class="form-control" id="quantity" value="2" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label for="price" class="form-label">Price</label>
-                            <input type="text" class="form-control" id="price" value="100000" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label for="TotalPrice" class="form-label">TotalPrice</label>
-                            <input type="text" class="form-control" id="totalprice" value="200000" readonly>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </main>
 
 <!--   Core JS Files   -->
