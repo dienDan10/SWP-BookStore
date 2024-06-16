@@ -153,8 +153,7 @@
                         <span class="text-secondary text-xs font-weight-bold">${order.status}</span>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <a href="#" class="badge badge-sm bg-gradient-success" data-bs-toggle="modal"
-                           data-bs-target="#bookModal">View</a>
+                        <a href="/view-order-detail?orderId=${order.id}" class="badge badge-sm bg-gradient-success" target="_blank">View</a>
                       </td>
                     </tr>
                   </c:forEach>
@@ -169,15 +168,15 @@
   </main>
 
   <!--   Core JS Files   -->
-  <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script src="../assets/js/plugins/chartjs.min.js"></script>
+  <script src="assets/js/core/popper.min.js"></script>
+  <script src="assets/js/core/bootstrap.min.js"></script>
+  <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="assets/js/plugins/chartjs.min.js"></script>
 
   <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-  <script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+  <script src="assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 </body>
 
 </html>
