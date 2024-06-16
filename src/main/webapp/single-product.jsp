@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 
@@ -149,71 +148,40 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12" style="background-color: #F4EDF278;">
+<%--================= KHACH HANG DANH GIA ====================--%>
+            <div class="col-12 mb-5" style="background-color: #F4EDF278;">
                 <h4 style="margin-bottom: 20px; padding: 20px; padding-left: 0px">Khách hàng đánh giá</h4>
-                <div class="d-flex flex-column mb-5 flex-sm-row">
-                    <div class="user-info mr-3 mr-lg-5 w-25" style="min-width: 180px">
-                        <h5>UsernameTaVietHoang</h5>
-                        <p class="font-italic my-0" style="font-size: 14px">31-05-2024</p>
-                    </div>
-                    <div class="user-comment">
-                        <h5>Vận chuyển nhanh chóng!</h5>
-                        <div class="d-inline-block" style="font-size: 10px;">
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
+                <c:forEach var="rating" items="${ratings}">
+                    <div class="d-flex flex-column mb-5 flex-sm-row">
+                        <div class="user-info mr-3 mr-lg-5 w-25" style="min-width: 180px">
+                            <h5>${rating.user.name}</h5>
+                            <p class="font-italic my-0" style="font-size: 14px">${rating.createTime}</p>
                         </div>
-                        <p>
-                            Một đêm vội vã lẩn trốn sau phi vụ khoắng đồ nhà người, Atsuya, Shota và Kouhei đã rẽ vào lánh tạm trong một căn nhà hoang bên con dốc vắng người qua lại. Căn nhà có vẻ khi xưa là một tiệm tạp hóa với biển hiệu cũ kỹ bám đầy bồ hóng, khiến người ta khó lòng đọc được trên đó viết gì. Định bụng nghỉ tạm một đêm rồi sáng hôm sau chuồn sớm, cả ba
-                        </p>
-                    </div>
-                </div>
-                <div class="d-flex flex-column mb-5 flex-sm-row">
-                    <div class="user-info mr-3 mr-lg-5 w-25" style="min-width: 180px">
-                        <h5>UsernameTaVietHoang</h5>
-                        <p class="font-italic my-0" style="font-size: 14px">31-05-2024</p>
-                    </div>
-                    <div class="user-comment">
-                        <h5>Vận chuyển nhanh chóng!</h5>
-                        <div class="d-inline-block" style="font-size: 10px;">
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
+                        <div class="user-comment">
+                            <h5>${rating.title}</h5>
+                            <div class="d-inline-block" style="font-size: 10px;">
+                                <c:forEach var="i" begin="1" end="${rating.ratingScore}">
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                </c:forEach>
+                            </div>
+                            <p>
+                                ${rating.content}
+                            </p>
                         </div>
-                        <p>
-                            Một đêm vội vã lẩn trốn sau phi vụ khoắng đồ nhà người, Atsuya, Shota và Kouhei đã rẽ vào lánh tạm trong một căn nhà hoang bên con dốc vắng người qua lại. Căn nhà có vẻ khi xưa là một tiệm tạp hóa với biển hiệu cũ kỹ bám đầy bồ hóng, khiến người ta khó lòng đọc được trên đó viết gì. Định bụng nghỉ tạm một đêm rồi sáng hôm sau chuồn sớm, cả ba
-                        </p>
                     </div>
-                </div>
-                <div class="d-flex flex-column mb-5 flex-sm-row">
-                    <div class="user-info mr-3 mr-lg-5 w-25" style="min-width: 180px">
-                        <h5>UsernameTaVietHoang</h5>
-                        <p class="font-italic my-0" style="font-size: 14px">31-05-2024</p>
-                    </div>
-                    <div class="user-comment">
-                        <h5>Vận chuyển nhanh chóng!</h5>
-                        <div class="d-inline-block" style="font-size: 10px;">
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
-                            <i class="fa-solid fa-star text-warning"></i>
+                </c:forEach>
+                <c:choose>
+                    <c:when test="${ratings.size() == 0}">
+                        <h5 class="mb-5 text-center">Sản phẩm hiện chưa có đánh giá</h5>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="text-center">
+                            <button class="btn_1 mb-5 mt-3">Load more</button>
                         </div>
-                        <p>
-                            Một đêm vội vã lẩn trốn sau phi vụ khoắng đồ nhà người, Atsuya, Shota và Kouhei đã rẽ vào lánh tạm trong một căn nhà hoang bên con dốc vắng người qua lại. Căn nhà có vẻ khi xưa là một tiệm tạp hóa với biển hiệu cũ kỹ bám đầy bồ hóng, khiến người ta khó lòng đọc được trên đó viết gì. Định bụng nghỉ tạm một đêm rồi sáng hôm sau chuồn sớm, cả ba
-                        </p>
-                    </div>
-                </div>
-
-                <div class="text-center">
-                    <button class="btn_1 mb-5 mt-3">Load more</button>
-                </div>
+                    </c:otherwise>
+                </c:choose>
             </div>
-
+<%--================= KHACH HANG DANH GIA END HERE ====================--%>
         </div>
     </div>
 </div>

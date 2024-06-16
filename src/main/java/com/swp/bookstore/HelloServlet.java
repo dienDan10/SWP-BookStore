@@ -1,23 +1,21 @@
 package com.swp.bookstore;
 
-import java.io.*;
-
-import com.swp.bookstore.utils.JPAUtil;
-import com.swp.bookstore.utils.PasswordEncryptor;
-import jakarta.persistence.EntityManager;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "helloServlet", value = "/hello-servlet")
+import java.io.IOException;
+import java.io.PrintWriter;
+
+@WebServlet(name = "helloServlet", value = "/hello")
 public class HelloServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-        String s = "test123";
-        String encryped = PasswordEncryptor.toSHA256(s);
-        request.setAttribute("encrypted", encryped);
-        System.out.println("aal;sdkfjlkasdjf");
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("Xin chào!");
     }
 
 }
