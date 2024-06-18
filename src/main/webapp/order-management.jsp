@@ -157,7 +157,6 @@
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary text-xs font-weight-bold">${order.status}</span>
                                             </td>
-
                                             <td class="align-middle text-center text-sm">
                                                 <a href="/view-order-detail?orderId=${order.id}" class="badge badge-sm bg-gradient-success" target="_blank">View</a>
                                             </td>
@@ -166,10 +165,6 @@
                                                    onclick="if (!confirm('Do you want to accept this order?')) return false"
                                                 >Accept</a>
                                             </td>
-                                            <!-- <td class="align-middle text-center text-sm">
-                                                              <a href="https://example.com/delete-link"
-                                                                  class="badge badge-sm bg-gradient-success">Delete</a>
-                                                          </td> -->
                                             <td class="align-middle text-center text-sm">
                                                 <a href="/cancel-order?id=${order.id}" onclick="if (!confirm('Do you want to cancel this order?')) return false"
                                                    class="badge badge-sm bg-gradient-danger">Cancel</a>
