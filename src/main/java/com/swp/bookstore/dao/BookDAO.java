@@ -16,4 +16,5 @@ public interface BookDAO {
     List<Book> getBookByPublisherByPage(int pageSize, int currentPage, int publisherId);
     List<Book> getBookBySearchByPage(int pageSize, int currentPage, String search);
     List<Book> findAll();
+    long countBooks();
 }

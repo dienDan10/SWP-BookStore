@@ -122,6 +122,8 @@
                         User Name</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                         Create Time</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                        Amount</th>
                     
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                         Status</th>
@@ -148,6 +150,9 @@
                       </td>
                       <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold">${order.createdTime}</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold amount">${order.payment.amount}</span>
                       </td>
                       <td class="align-middle text-center text-sm">
                         <span class="text-secondary text-xs font-weight-bold">${order.status}</span>
@@ -177,6 +182,14 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
 
   <script src="assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+<script>
+  function formatPrice() {
+    document.querySelectorAll('.amount').forEach(item => {
+      item.textContent = item.textContent.replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ';
+    });
+  }
+  formatPrice();
+</script>
 </body>
 
 </html>

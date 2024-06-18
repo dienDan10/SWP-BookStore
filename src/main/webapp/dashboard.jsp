@@ -37,18 +37,18 @@
     <div class="container-fluid py-4">
       <div class="row">
         <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-          <a href="tables.html" class="card">
+          <a class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Sales</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Tổng lợi nhuận </p>
                     <h5 class="font-weight-bolder">
                       10000$
                     </h5>
                     <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+10%</span>
-                      than last month
+
+                      Tổng lợi nhuận
                     </p>
                   </div>
                 </div>
@@ -62,18 +62,92 @@
           </a>
         </div>
         <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-          <a href="/manage-account" class="card">
+          <a class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Account Management</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Tổng khách hàng </p>
+                    <h5 class="font-weight-bolder">
+                      ${userNumber - 1}
+                    </h5>
+                    <p class="mb-0">Tổng khách hàng quản lý</p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-xl-4 col-sm-6 mb-4">
+          <a class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Tổng sản phẩm</p>
+                    <h5 class="font-weight-bolder">
+                      ${bookNumber}
+                    </h5>
+                    <p class="mb-0">
+                      Tổng sản phẩm quản lý
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+                    <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+
+        <div class="col-xl-4 col-sm-6 mb-4 mb-xl-0 ">
+          <a class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Tổng THU NHẬP</p>
+                    <h5 class="font-weight-bolder">
+                      10000$
+                    </h5>
+                    <p class="mb-0">
+
+                      Tổng thu nhập 7 ngày gần nhất
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+          <a class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">TỔNG PHẢN HỒI</p>
                     <h5 class="font-weight-bolder">
                       50
                     </h5>
                     <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+20%</span>
-                      since last week
+
+                      Tổng số phản hồi
                     </p>
                   </div>
                 </div>
@@ -86,172 +160,53 @@
             </div>
           </a>
         </div>
-        <div class="col-xl-4 col-sm-6">
-          <a href="/manage-product" class="card">
+
+        <div class="col-xl-4 col-sm-6 mb-4">
+          <a class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Product Management</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">TỔNG ĐƠN HÀNG</p>
                     <h5 class="font-weight-bolder">
-                      500
+                      ${orderNumber}
                     </h5>
                     <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+5%</span> than last month
+                      Tổng số đơn hàng
                     </p>
                   </div>
                 </div>
                 <div class="col-4 text-end">
                   <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
-                    <i class="ni ni-books text-lg opacity-10" aria-hidden="true"></i>
+                    <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
                   </div>
                 </div>
               </div>
             </div>
           </a>
         </div>
-      </div>
 
-      <div class="row mt-4">
-        <div class="col-lg-12 mb-lg-0 mb-4">
-          <div class="card ">
-            <div class="card-header pb-0 p-3">
-              <div class="d-flex justify-content-between">
-                <h6 class="mb-2">Sales by City</h6>
-              </div>
-            </div>
-            <div class="table-responsive">
-              <table class="table align-items-center ">
-                <tbody>
-                  <tr>
-                    <td class="w-30">
-                      <div class="d-flex px-2 py-1 align-items-center">
-                        <!-- <div>
-                          <img src="assets/img/icons/flags/US.png" alt="Country flag">
-                        </div> -->
-                        <div class="ms-4">
-                          <p class="text-xs font-weight-bold mb-0">City:</p>
-                          <h6 class="text-sm mb-0">Hà Nội</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                        <h6 class="text-sm mb-0">500</h6>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Value:</p>
-                        <h6 class="text-sm mb-0">$5000</h6>
-                      </div>
-                    </td>
-                    <td class="align-middle text-sm">
-                      <div class="col text-center">
-                        <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                        <h6 class="text-sm mb-0">15%</h6>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="w-30">
-                      <div class="d-flex px-2 py-1 align-items-center">
-                        <!-- <div>
-                          <img src="assets/img/icons/flags/DE.png" alt="Country flag">
-                        </div> -->
-                        <div class="ms-4">
-                          <p class="text-xs font-weight-bold mb-0">City:</p>
-                          <h6 class="text-sm mb-0">Ninh Bình</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                        <h6 class="text-sm mb-0">50</h6>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Value:</p>
-                        <h6 class="text-sm mb-0">2500$</h6>
-                      </div>
-                    </td>
-                    <td class="align-middle text-sm">
-                      <div class="col text-center">
-                        <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                        <h6 class="text-sm mb-0">5%</h6>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="w-30">
-                      <div class="d-flex px-2 py-1 align-items-center">
-                        <!-- <div>
-                          <img src="assets/img/icons/flags/GB.png" alt="Country flag">
-                        </div> -->
-                        <div class="ms-4">
-                          <p class="text-xs font-weight-bold mb-0">City:</p>
-                          <h6 class="text-sm mb-0">Thành Phố Hồ Chí Minh</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                        <h6 class="text-sm mb-0">500</h6>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Value:</p>
-                        <h6 class="text-sm mb-0">$3000</h6>
-                      </div>
-                    </td>
-                    <td class="align-middle text-sm">
-                      <div class="col text-center">
-                        <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                        <h6 class="text-sm mb-0">10%</h6>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="w-30">
-                      <div class="d-flex px-2 py-1 align-items-center">
-                        <!-- <div>
-                          <img src="assets/img/icons/flags/BR.png" alt="Country flag">
-                        </div> -->
-                        <div class="ms-4">
-                          <p class="text-xs font-weight-bold mb-0">City:</p>
-                          <h6 class="text-sm mb-0">Thanh Hóa</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                        <h6 class="text-sm mb-0">100</h6>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Value:</p>
-                        <h6 class="text-sm mb-0">$2000</h6>
-                      </div>
-                    </td>
-                    <td class="align-middle text-sm">
-                      <div class="col text-center">
-                        <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                        <h6 class="text-sm mb-0">10%</h6>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+        <h1 style="font-size: 24px; font-weight: bold; text-align: center; margin-bottom: 20px; margin-top: 30px;">TOP
+          10 SẢN PHẨM BÁN CHẠY</h1>
+        <table style="width:100%; border-collapse: collapse; font-size: 14px; ">
+          <thead>
+          <tr style="background-color: #5E72E4; color: white;">
+            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">ID</th>
+            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Tên sản phẩm</th>
+            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Tổng số lượng</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">1</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">Sản phẩm 1</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">1000</td>
+          </tr>
+
+          </tr>
+          </tbody>
+        </table>
+
       </div>
     </div>
   </main>

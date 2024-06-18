@@ -18,4 +18,6 @@ public interface UserDAO {
     List<User> findAll();
 
     User findById(long id);
+
+    long countUsers();
 }

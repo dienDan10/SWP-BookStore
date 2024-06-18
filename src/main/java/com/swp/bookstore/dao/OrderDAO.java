@@ -13,4 +13,5 @@ public interface OrderDAO {
     List<Order> findOrdersByUserId(long userId);
     List<Order> findOrdersByUserIdAndStatus(long userId, String status);
     List<Order> findOrderByStatus(String status);
+    long findOrderCount();
 }

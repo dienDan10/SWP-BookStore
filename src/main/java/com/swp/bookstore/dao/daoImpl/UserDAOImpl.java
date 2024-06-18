@@ -3,10 +3,7 @@ package com.swp.bookstore.dao.daoImpl;
 import com.swp.bookstore.dao.UserDAO;
 import com.swp.bookstore.entity.User;
 import com.swp.bookstore.utils.JPAUtil;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -72,5 +69,24 @@ public class UserDAOImpl implements UserDAO {
     public User findById(long id) {
         EntityManager em = JPAUtil.getEntityManager();
         return em.find(User.class, id);
+    }
+
+    @Override
+    public long countUsers() {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        Query query = em.createQuery("select count(u) from User u");
+        long count = 0;
+        try {
+            tx.begin();
+            count = (Long) query.getSingleResult();
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return count;
     }
 }
