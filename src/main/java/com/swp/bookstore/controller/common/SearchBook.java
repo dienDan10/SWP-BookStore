@@ -4,7 +4,6 @@ import com.swp.bookstore.config.Page;
 import com.swp.bookstore.entity.Book;
 import com.swp.bookstore.service.BookService;
 import com.swp.bookstore.service.serviceImpl.BookServiceImpl;
-import com.swp.bookstore.utils.StringUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -44,7 +43,7 @@ public class SearchBook extends HttpServlet {
             out.println("<div class=\"col-lg-6 col-sm-6\">\n" +
                     "                                <div class=\"single_product_item\">\n" +
                     "                                    <img src=\""+ book.getImageFront()+"\" alt=\"#\" class=\"img-fluid\">\n" +
-                    "                                    <h3 class=\"px-4\"> <a href=\"/book-detail?id="+book.getId()+"\">"+ book.getName()+"</a> </h3>\n" +
+                    "                                    <h3 class=\"px-4\"> <a href=\""+req.getContextPath()+"/book-detail?id="+book.getId()+"\">"+ book.getName()+"</a> </h3>\n" +
                     "                                    <h5 class=\"px-4\">Tác giả: "+ book.getAuthor().getName()+"</h5>\n" +
                     builder.toString() +
                     "                                    <p  class=\"px-4\">Chỉ với\n" +

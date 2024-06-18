@@ -55,6 +55,6 @@ public class OTPVerification extends HttpServlet {
         // send register success message
         session.setAttribute("successMsg", "Register successful!");
         // redirect to login page
-        resp.sendRedirect("/login");
+        resp.sendRedirect( req.getContextPath() + "/login");
     }
 }

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="context" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html lang="en">
 
@@ -120,7 +121,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="card_area" style="margin-top: 30px">
-                            <form action="/add-to-cart" method="GET" class="add_to_cart_form">
+                            <form action="${context}/add-to-cart" method="GET" class="add_to_cart_form">
                                 <input type="hidden" name="id" class="item_id" value="${book.id}">
                                 <div class="product_count_area">
                                     <p>Quantity</p>
@@ -281,7 +282,7 @@
         const user = document.querySelector('.user-check');
         const status = user.getAttribute('user');
         if (status === 'no') {
-            showToast("Please login to add to cart!");
+            showToast("invalid","Please login to add to cart!");
             return;
         }
         // get input value
@@ -289,14 +290,14 @@
         const itemId = Number(document.querySelector('.item_id').value);
         // send to server
         $.ajax({
-            url: '/add-to-cart',
+            url: '${context}/add-to-cart',
             type: 'get',
             data: {
                 amount: itemNum,
                 id: itemId
             },
             success: function (data) {
-                showToast(data.successMsg);
+                showToast('success' ,data.successMsg);
             },
             error: function (dd) {
 
@@ -307,12 +308,18 @@
     // JavaScript function to show the toast
     const toastBox = document.querySelector('#toastBox');
     const successIcon = '<i class="fa-solid fa-circle-check"></i>';
+    const invalidIcon = '<i class="fa-solid fa-circle-exclamation"></i>';
 
-    function showToast(message) {
+    function showToast(action, message) {
         const toast = document.createElement('div');
         toast.classList.add('toastItem');
+        if (action === 'success') {
+            content = successIcon +  message;
+        } else if (action === 'invalid') {
+            toast.classList.add('invalid');
+            content = invalidIcon + message;
+        }
 
-        content = successIcon +  message;
 
         toast.innerHTML = content;
         toastBox.appendChild(toast);

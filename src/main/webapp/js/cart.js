@@ -1,3 +1,5 @@
+// get context path
+const context = document.querySelector('.context').getAttribute('context');
 // event for update a cart item
 const btn_update = document.querySelectorAll('.btn-update');
 btn_update.forEach(btn => btn.addEventListener('click', function(event) {
@@ -31,7 +33,7 @@ btn_update.forEach(btn => btn.addEventListener('click', function(event) {
 
     // send request to server
     $.ajax({
-        url: '/update-cart',
+        url: context + '/update-cart',
         type: 'get',
         data: {
             cartId: cart_id,
@@ -120,7 +122,7 @@ btn_deletes.forEach(btn => btn.addEventListener('click', function(event) {
     const row = this.closest('tr');
     // send request to server
     $.ajax({
-        url: '/delete-cart',
+        url: context + '/delete-cart',
         type: 'get',
         data: {
             cartId: cartId,

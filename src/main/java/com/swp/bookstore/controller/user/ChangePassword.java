@@ -35,7 +35,7 @@ public class ChangePassword extends HttpServlet {
         // check for correct old password
         if (!user.getPassword().equals(PasswordEncryptor.toSHA256(oldPass))) {
             session.setAttribute("errMsg", "Old password incorrect");
-            resp.sendRedirect("/view-profile");
+            resp.sendRedirect( req.getContextPath() + "/view-profile");
             return;
         }
 
@@ -43,7 +43,7 @@ public class ChangePassword extends HttpServlet {
         user.setPassword(PasswordEncryptor.toSHA256(newPass));
         userService.updateUser(user);
         session.setAttribute("successMsg", "Password changed successfully");
-        resp.sendRedirect("/view-profile");
+        resp.sendRedirect(req.getContextPath() + "/view-profile");
 
     }
 }

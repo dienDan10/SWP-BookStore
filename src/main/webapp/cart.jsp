@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="context" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html lang="en">
 
@@ -92,7 +92,7 @@
     <div class="container">
         <div class="cart_inner">
             <div class="table-responsive">
-                <form action="/checkout" method="POST" class="cart-form">
+                <form action="${context}/checkout" method="POST" class="cart-form">
                     <table class="table">
                         <thead>
                         <tr>
@@ -167,7 +167,7 @@
                     </table>
                     <c:if test="${carts.size() != 0}">
                         <div class="checkout_btn_inner d-flex justify-content-between" style="font-family: 'Inter', 'Helvetica Neue', sans-serif">
-                            <a class="btn_1" href="/product-list">Tiếp Tục Mua Sắm</a>
+                            <a class="btn_1" href="${context}/product-list">Tiếp Tục Mua Sắm</a>
                             <button class="btn_1 checkout_btn_1" >Tiến Hành Thanh Toán</button>
                         </div>
                     </c:if>
@@ -184,7 +184,7 @@
 <!--::footer_part start::-->
 <%@ include file="components/footer.jsp"%>
 <!--::footer_part end::-->
-
+<div style="display: none" class="context" context="${context}"></div>
 <div id="toastBox"></div>
 
 <!-- jquery plugins here-->

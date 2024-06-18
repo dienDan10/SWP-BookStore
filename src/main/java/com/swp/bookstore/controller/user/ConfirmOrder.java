@@ -106,7 +106,7 @@ public class ConfirmOrder extends HttpServlet {
         session.removeAttribute("addressId");
         // redirect to order detail page
         session.setAttribute("successMsg", "Đặt hàng thành công!");
-        resp.sendRedirect("/view-order-detail?orderId=" + order.getId());
+        resp.sendRedirect(req.getContextPath() + "/view-order-detail?orderId=" + order.getId());
     }
 
     @Override
@@ -178,7 +178,7 @@ public class ConfirmOrder extends HttpServlet {
         }
         // redirect to order detail page
         session.setAttribute("successMsg", "Đặt hàng thành công!");
-        resp.sendRedirect("/view-order-detail?orderId=" + order.getId());
+        resp.sendRedirect( req.getContextPath() + "/view-order-detail?orderId=" + order.getId());
 
     }
 

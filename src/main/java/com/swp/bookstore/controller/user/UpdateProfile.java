@@ -48,6 +48,7 @@ public class UpdateProfile extends HttpServlet {
         // check for user want to change picture
         if (!image.getSubmittedFileName().isEmpty()) {  // change user picture
             String realPath = req.getServletContext().getRealPath("");
+            System.out.println(realPath);
             user.setImageURL("/img/user-image/" + image.getSubmittedFileName());
             image.write(realPath + user.getImageURL());
         }
@@ -57,6 +58,6 @@ public class UpdateProfile extends HttpServlet {
         user = userService.findOneByEmail(user.getEmail());
         session.setAttribute("user", user);
         session.setAttribute("successMsg", "Update profile successfully!");
-        resp.sendRedirect("/view-profile");
+        resp.sendRedirect(req.getContextPath() + "/view-profile");
     }
 }

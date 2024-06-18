@@ -56,7 +56,7 @@ public class AddAddress extends HttpServlet {
         // send message
         session.setAttribute("successMsg", "Add Address successful");
         // return to manage address page
-        resp.sendRedirect("/view-address");
+        resp.sendRedirect( req.getContextPath() + "/view-address");
 
     }
 

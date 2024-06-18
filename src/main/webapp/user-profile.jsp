@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="context" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html lang="en">
 
@@ -74,7 +75,7 @@
                         <div class="d-flex flex-column align-items-center mb-5">
                             <div class="rounded-circle overflow-hidden mb-5"
                                  style="width: 150px; height: 150px;">
-                                <img src="${user.imageURL}"
+                                <img src="${context}${user.imageURL}"
                                      class="w-100 h-100" style="object-position: center; object-fit: cover"
                                      alt="">
                             </div>
@@ -135,7 +136,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="/update-profile" method="POST" class="update-user-profile-form" enctype="multipart/form-data">
+                                <form action="${context}/update-profile" method="POST" class="update-user-profile-form" enctype="multipart/form-data">
                                     <div class="modal-body">
 
                                         <table class="w-100">
@@ -220,7 +221,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="/change-password" method="POST">
+            <form action="${context}/change-password" method="POST">
                 <div class="modal-body">
                     <table class="w-100">
                         <tbody>
@@ -393,7 +394,10 @@
     }
 
     const date = document.querySelector('.birth-date');
-    date.textContent = convertDateFormat(date.textContent);
+    if (date.textContent !== null && date.textContent.trim() !== "") {
+        date.textContent = convertDateFormat(date.textContent);
+    }
+
 
 </script>
 

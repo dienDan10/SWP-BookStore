@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="context" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html lang="en">
 
@@ -134,7 +134,7 @@
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_item">
                                     <img src="${book.imageFront}" alt="#" class="img-fluid">
-                                    <h3 class="px-4"> <a href="/book-detail?id=${book.id}">${book.name}</a> </h3>
+                                    <h3 class="px-4"> <a href="${context}/book-detail?id=${book.id}">${book.name}</a> </h3>
                                     <h5 class="px-4">Tác giả: ${book.author.name}</h5>
                                     <div class="d-inline-block px-4" style="font-size: 10px;">
                                         <c:forEach var="i" begin="1" end="${book.averageRating}">
@@ -321,7 +321,7 @@
     // load more without filter option
     function loadMoreDefault(currentPage) {
         $.ajax({
-            url: '/next-page',
+            url: '${context}/next-page',
             type: 'get',
             data: {
                 page: currentPage,
@@ -347,7 +347,7 @@
     // load more with category filter
     function loadMoreCategory(categoryId, currentPage) {
         $.ajax({
-            url: '/filter-category',
+            url: '${context}/filter-category',
             type: 'get',
             data: {
                 categoryId: categoryId,
@@ -379,7 +379,7 @@
     // load more with publisher filter
     function loadMorePublisher(publisherId, currentPage) {
         $.ajax({
-            url: '/filter-publisher',
+            url: '${context}/filter-publisher',
             type: 'get',
             data: {
                 publisherId: publisherId,
@@ -415,7 +415,7 @@
 
     function loadMoreSearch(input, currentPage) {
         $.ajax({
-            url: '/search-book',
+            url: '${context}/search-book',
             type: 'GET',
             data: {
                 searchInput: input,

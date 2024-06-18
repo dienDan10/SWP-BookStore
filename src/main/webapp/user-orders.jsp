@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="context" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html lang="en">
 
@@ -102,7 +103,7 @@
                           </div>
                         </c:forEach>
                         <div class="order-footer">
-                          <a class="btn_5" href="/view-order-detail?orderId=${order.id}">Chi tiết</a>
+                          <a class="btn_5" href="${context}/view-order-detail?orderId=${order.id}">Chi tiết</a>
                           <div class="order-total">
                             Tổng tiền: <span class="order-price">${order.payment.amount}</span>
                           </div>
@@ -141,8 +142,8 @@
                           </div>
                         </c:forEach>
                         <div class="order-footer">
-                          <a class="btn_5" href="/view-order-detail?orderId=${order.id}">Chi tiết</a>
-                          <a class="btn_5 ml-2" href="/receive-order?orderId=${order.id}"
+                          <a class="btn_5" href="${context}/view-order-detail?orderId=${order.id}">Chi tiết</a>
+                          <a class="btn_5 ml-2" href="${context}/receive-order?orderId=${order.id}"
                             onclick="if(!confirm('Bạn có chắc muốn nhận đơn hàng này?')) return false"
                           >Nhận hàng</a>
                           <div class="order-total">
@@ -193,7 +194,7 @@
                                           <span aria-hidden="true">&times;</span>
                                         </button>
                                       </div>
-                                      <form action="/rating?orderDetailId=${item.id}" method="POST" class="rating-form">
+                                      <form action="${context}/rating?orderDetailId=${item.id}" method="POST" class="rating-form">
                                         <input type="hidden" name="bookId" value="${item.bookId}">
                                         <div class="modal-body">
                                           <div>
@@ -231,7 +232,7 @@
                           </div>
                         </c:forEach>
                         <div class="order-footer">
-                          <a class="btn_5" href="/view-order-detail?orderId=${order.id}">Chi tiết</a>
+                          <a class="btn_5" href="${context}/view-order-detail?orderId=${order.id}">Chi tiết</a>
                           <div class="order-total">
                             Tổng tiền: <span class="order-price">${order.payment.amount}</span>
                           </div>
@@ -270,7 +271,7 @@
                           </div>
                         </c:forEach>
                         <div class="order-footer">
-                          <a class="btn_5" href="/view-order-detail?orderId=${order.id}">Chi tiết</a>
+                          <a class="btn_5" href="${context}/view-order-detail?orderId=${order.id}">Chi tiết</a>
                           <div class="order-total">
                             Tổng tiền: <span class="order-price">${order.payment.amount}</span>
                           </div>

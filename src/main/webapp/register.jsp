@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="context" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html lang="en">
 
@@ -61,7 +62,7 @@
                     <div class="login_part_form_iner">
                         <h3>Khách Hàng Mới ? <br>
                             Đăng ký tại đây</h3>
-                        <form class="row contact_form myform" action="/register" method="post" novalidate="novalidate">
+                        <form class="row contact_form myform" action="${context}/register" method="post" novalidate="novalidate">
                             <div class="col-md-12 form-group p_star mb-4">
                                 <input type="text" class="form-control" id="name" name="name" value="${param.name}"
                                        placeholder="Name">
