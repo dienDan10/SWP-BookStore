@@ -3,10 +3,7 @@ package com.swp.bookstore.dao.daoImpl;
 import com.swp.bookstore.dao.OrderDAO;
 import com.swp.bookstore.entity.Order;
 import com.swp.bookstore.utils.JPAUtil;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -144,5 +141,25 @@ public class OrderDAOImpl implements OrderDAO {
             em.close();
         }
         return orders;
+    }
+
+    @Override
+    public long findOrderCount() {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        Query query = em.createQuery("select count(o) from Order o");
+        long count = 0;
+        try {
+            tx.begin();
+            count = (long) query.getSingleResult();
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+            System.out.println("Cannot find order");
+        } finally {
+            em.close();
+        }
+        return count;
     }
 }

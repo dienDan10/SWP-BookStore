@@ -28,6 +28,35 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link rel="stylesheet" href="css/toast.css">
+    <style>
+
+        #print-header {
+            display: none;
+        }
+
+        @media print {
+            .breadcrumb_part {
+                display: none;
+            }
+
+            .confirmation_tittle {
+                display: none;
+            }
+
+            .print-order {
+                display: none;
+            }
+
+            .footer_part {
+                display: none;
+            }
+
+            #print-header {
+                display: block;
+            }
+
+        }
+    </style>
 </head>
 
 <body>
@@ -50,12 +79,15 @@
 <!-- breadcrumb part end-->
 
 <!--================ confirmation part start =================-->
-<section class="confirmation_part section_padding">
+<section class="confirmation_part py-3 py-lg-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="confirmation_tittle">
                     <span>Cảm ơn bạn. Đơn hàng của bạn đã được nhận.</span>
+                </div>
+                <div class="my-5 text-center" id="print-header">
+                    <h2>Hóa Đơn Bán Hàng</h2>
                 </div>
             </div>
             <div class="col-lg-6 col-lx-4">
@@ -157,6 +189,11 @@
     </div>
 </section>
 <!--================ confirmation part end =================-->
+<c:if test="${user.hasRole('SELLER')}">
+    <div class="print-order text-center" style="font-family: 'Inter', sans-serif ">
+        <button class="btn_3 btn_print">Print</button>
+    </div>
+</c:if>
 
 <!--::footer_part start::-->
 <%@ include file="components/footer.jsp"%>
@@ -217,6 +254,11 @@
     }
 
     formatPrice();
+
+    document.querySelector('.btn_print').addEventListener('click', function() {
+        window.print();
+    })
+
 </script>
 </body>
 

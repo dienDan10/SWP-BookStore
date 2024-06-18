@@ -30,7 +30,7 @@ public class Login extends HttpServlet {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         if (user != null) {
-            resp.sendRedirect("/home-page");
+            resp.sendRedirect(req.getContextPath() + "/home-page");
             return;
         }
         req.getRequestDispatcher("login.jsp").forward(req, resp);
@@ -58,10 +58,10 @@ public class Login extends HttpServlet {
         session.setAttribute("successMsg", "Login successful!");
 
         if (user.hasRole(ROLES.SELLER)) {
-            resp.sendRedirect("/view-dashboard");
+            resp.sendRedirect( req.getContextPath() + "/view-dashboard");
             return;
         }
 
-        resp.sendRedirect("/home-page");
+        resp.sendRedirect( req.getContextPath() + "/home-page");
     }
 }

@@ -60,4 +60,9 @@ public class BookServiceImpl implements BookService {
     public List<Book> findAll() {
         return bookDAO.findAll();
     }
+
+    @Override
+    public long countBooks() {
+        return bookDAO.countBooks();
+    }
 }

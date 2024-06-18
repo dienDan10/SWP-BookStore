@@ -45,4 +45,9 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> findOrdersByStatus(String status) {
         return orderDAO.findOrderByStatus(status);
     }
+
+    @Override
+    public long countOrders() {
+        return orderDAO.findOrderCount();
+    }
 }

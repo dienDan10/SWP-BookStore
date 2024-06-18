@@ -17,4 +17,9 @@ public class PaymentServiceImpl implements PaymentService {
     public Payment findById(long id) {
         return paymentDAO.findById(id);
     }
+
+    @Override
+    public void updatePayment(Payment payment) {
+        paymentDAO.updatePayment(payment);
+    }
 }

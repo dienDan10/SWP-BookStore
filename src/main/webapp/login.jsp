@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="context" value="${pageContext.request.contextPath}"></c:set>
 <!doctype html>
 <html lang="en">
 
@@ -69,7 +70,7 @@
                         <h2>Khách hàng mới?</h2>
                         <p>Đọc sách mỗi ngày giúp bạn tiến gần hơn tới thành công và ước mơ,
                             vậy nên sao không bắt đầu từ hôm nay.</p>
-                        <a href="/register" class="btn_3">Đăng ký</a>
+                        <a href="${context}/register" class="btn_3">Đăng ký</a>
                     </div>
                 </div>
             </div>
@@ -78,7 +79,7 @@
                     <div class="login_part_form_iner">
                         <h3>Chào bạn trở lại ! <br>
                             Đăng nhập ngay</h3>
-                        <form class="row contact_form" action="/login" method="post" novalidate="novalidate">
+                        <form class="row contact_form" action="${context}/login" method="post" novalidate="novalidate">
                             <c:if test="${not empty emailError}">
                                 <div class="alert alert-danger alert-dismissible fade show col-md-12" role="alert">
                                     <strong>Error!</strong> ${emailError}.
@@ -111,7 +112,7 @@
 
                                 <p class="text-center" style="font-size: 12px">hoặc</p>
 
-                                <a class="btn_3 btn-google-login" style="margin-top: 15px;" href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://localhost:8080/google-login&response_type=code&client_id=1076562173012-o60tjmrvu1e503kk1t1ent1411po522p.apps.googleusercontent.com&approval_prompt=force">
+                                <a class="btn_3 btn-google-login" style="margin-top: 15px;" href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://localhost:8080${context}/google-login&response_type=code&client_id=1076562173012-o60tjmrvu1e503kk1t1ent1411po522p.apps.googleusercontent.com&approval_prompt=force">
                                     <div class="d-flex gap-3 align-items-center justify-content-center">
                                         <i class="fa-brands fa-google" style="font-size: 20px; margin-right: 20px"></i>
                                         Đăng nhập với Google

@@ -19,4 +19,6 @@ public interface UserService {
     List<User> findAllUsers();
 
     User findOneUserById(long id);
+
+    long countUsers();
 }

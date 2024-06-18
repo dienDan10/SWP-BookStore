@@ -39,7 +39,6 @@ public class ViewOrder extends HttpServlet {
         // sort order by newest
         Collections.reverse(processingOrders);
         Collections.reverse(deliveringOrders);
-        Collections.reverse(receivedOrders);
         Collections.reverse(cancelledOrders);
         // save to request
         req.setAttribute("processingOrders", processingOrders);

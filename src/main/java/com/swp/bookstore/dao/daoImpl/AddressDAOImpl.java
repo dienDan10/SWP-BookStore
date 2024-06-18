@@ -85,11 +85,11 @@ public class AddressDAOImpl implements AddressDAO {
     @Override
     public int countAddressByUserId(long userId) {
         EntityManager em = JPAUtil.getEntityManager();
-        TypedQuery<Address> query = em.createQuery("select a from Address a where a.userId = :userId", Address.class);
+        Query query = em.createQuery("select count(a) from Address a where a.userId = :userId");
         query.setParameter("userId", userId);
         int res = 0;
         try {
-            res = query.getResultList().size();
+            res = ((Long) query.getSingleResult()).intValue();
         } catch (NoResultException e) {
         } finally {
             em.close();

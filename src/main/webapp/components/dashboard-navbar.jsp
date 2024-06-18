@@ -23,7 +23,7 @@
                             <span class="text-white ms-2 d-inline-block">${user.name}</span>
                         </c:when>
                         <c:otherwise>
-                            <a href="/login" class="nav-link text-white font-weight-bold px-0">
+                            <a href="${context}/login" class="nav-link text-white font-weight-bold px-0">
                                 <i class="fa fa-user me-sm-1"></i>
                                 <span class="d-sm-inline d-none">Đăng nhập</span>
                             </a>
