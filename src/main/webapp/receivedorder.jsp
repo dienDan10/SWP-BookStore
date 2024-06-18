@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<c:set var="context" value="${pageContext.request.contextPath}"/>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -33,7 +34,7 @@
     <div class="container-fluid py-4">
       <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <a href="/manage-order" class="card">
+          <a href="${context}/manage-order" class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
@@ -51,7 +52,7 @@
           </a>
         </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <a href="/view-delivering-order" class="card">
+          <a href="${context}/view-delivering-order" class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
@@ -69,7 +70,7 @@
           </a>
         </div>
         <div class="col-xl-3 col-sm-6">
-          <a href="/view-received-order" class="card">
+          <a href="${context}/view-received-order" class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
@@ -87,7 +88,7 @@
           </a>
         </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <a href="/view-cancel-order" class="card">
+          <a href="${context}/view-cancel-order" class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
@@ -140,7 +141,7 @@
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div>
-                            <img src="${order.user.imageURL}" class="avatar avatar-sm me-3"
+                            <img src="${context}${order.user.imageURL}" class="avatar avatar-sm me-3"
                                  style="object-fit: cover; object-position: center" alt="user1">
                           </div>
                           <div class="d-flex flex-column justify-content-center">

@@ -29,7 +29,10 @@ public class UpdateUserRole extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //get context path
+        String context = req.getContextPath();
 
+        //get role from form and update
         String role = req.getParameter("role");
         System.out.println(role);
         String email = req.getParameter("email");
@@ -41,7 +44,7 @@ public class UpdateUserRole extends HttpServlet {
             list.add(roleService.findRoleByName(role));
         }
         userService.updateUser(user);
-        resp.sendRedirect("/manage-account");
+        resp.sendRedirect(context + "/manage-account");
     }
 
     @Override

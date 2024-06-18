@@ -3,6 +3,7 @@
 <!doctype html>
 <html lang="en">
 
+<c:set var="context" value="${pageContext.request.contextPath}"/>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -57,10 +58,10 @@
             <div class="col-lg-6">
                 <div class="product_img_slide owl-carousel">
                     <div class="single_product_img">
-                        <img src="${book.imageFront}" alt="#" class="img-fluid">
+                        <img src="${context}${book.imageFront}" alt="#" class="img-fluid">
                     </div>
                     <div class="single_product_img">
-                        <img src="${book.imageBack}" alt="#" class="img-fluid">
+                        <img src="${context}${book.imageBack}" alt="#" class="img-fluid">
                     </div>
                 </div>
             </div>

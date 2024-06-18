@@ -23,6 +23,8 @@ public class ChangeUserStatus extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //Get context path
+        String context = req.getContextPath();
 
         //Get user id
         String id = req.getParameter("id");
@@ -32,6 +34,6 @@ public class ChangeUserStatus extends HttpServlet{
         //Change user status
         user.setActive(!user.isActive());
         userService.updateUser(user);
-        resp.sendRedirect("/manage-account");
+        resp.sendRedirect(context + "/manage-account");
     }
 }

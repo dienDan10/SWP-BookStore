@@ -23,12 +23,13 @@ public class CancelOrder extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //get Order process by id
+        String context = req.getContextPath();
         int id = Integer.parseInt(req.getParameter("id"));
         Order order = orderService.findOrderById(id);
         //update status order process
         order.setStatus(OrderStatus.DA_HUY);
         orderService.updateOrder(order);
         // send to order management page
-        resp.sendRedirect("/manage-order");
+        resp.sendRedirect(context + "/manage-order");
     }
 }

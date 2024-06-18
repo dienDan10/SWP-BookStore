@@ -1,26 +1,28 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="context" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
     <title>
         Sales
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
-    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
-    <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+    <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -34,7 +36,7 @@
         <%--    Order Management Navbar--%>
         <div class="row">
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <a href="/manage-order" class="card">
+                <a href="${context}/manage-order" class="card">
                     <div class="card-body p-3">
                         <div class="row">
                             <div class="col-8">
@@ -52,7 +54,7 @@
                 </a>
             </div>
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <a href="/view-delivering-order" class="card">
+                <a href="${context}/view-delivering-order" class="card">
                     <div class="card-body p-3">
                         <div class="row">
                             <div class="col-8">
@@ -70,7 +72,7 @@
                 </a>
             </div>
             <div class="col-xl-3 col-sm-6">
-                <a href="/view-received-order" class="card">
+                <a href="${context}/view-received-order" class="card">
                     <div class="card-body p-3">
                         <div class="row">
                             <div class="col-8">
@@ -88,7 +90,7 @@
                 </a>
             </div>
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <a href="/view-cancel-order" class="card">
+                <a href="${context}/view-cancel-order" class="card">
                     <div class="card-body p-3">
                         <div class="row">
                             <div class="col-8">
@@ -144,7 +146,7 @@
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div>
-                                                        <img src="${order.user.imageURL}" class="avatar avatar-sm me-3" alt="user1" style="object-fit: cover; object-position: center">
+                                                        <img src="${context}${order.user.imageURL}" class="avatar avatar-sm me-3" alt="user1" style="object-fit: cover; object-position: center">
                                                     </div>
                                                     <div class="d-flex flex-column justify-content-center">
                                                         <h6 class="mb-0 text-sm">${order.user.name}</h6>
@@ -158,15 +160,16 @@
                                                 <span class="text-secondary text-xs font-weight-bold">${order.status}</span>
                                             </td>
                                             <td class="align-middle text-center text-sm">
-                                                <a href="/view-order-detail?orderId=${order.id}" class="badge badge-sm bg-gradient-success" target="_blank">View</a>
+                                                <a href="${context}/view-order-detail?orderId=${order.id}"
+                                                   class="badge badge-sm bg-gradient-success" target="_blank">View</a>
                                             </td>
                                             <td class="align-middle text-center text-sm">
-                                                <a href="/accept-order?orderId=${order.id}" class="badge badge-sm bg-gradient-info"
+                                                <a href="${context}/accept-order?orderId=${order.id}" class="badge badge-sm bg-gradient-info"
                                                    onclick="if (!confirm('Do you want to accept this order?')) return false"
                                                 >Accept</a>
                                             </td>
                                             <td class="align-middle text-center text-sm">
-                                                <a href="/cancel-order?id=${order.id}" onclick="if (!confirm('Do you want to cancel this order?')) return false"
+                                                <a href="${context}/cancel-order?id=${order.id}" onclick="if (!confirm('Do you want to cancel this order?')) return false"
                                                    class="badge badge-sm bg-gradient-danger">Cancel</a>
                                             </td>
                                         </tr>
@@ -183,15 +186,15 @@
 </main>
 
 <!--   Core JS Files   -->
-<script src="../assets/js/core/popper.min.js"></script>
-<script src="../assets/js/core/bootstrap.min.js"></script>
-<script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-<script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-<script src="../assets/js/plugins/chartjs.min.js"></script>
+<script src="assets/js/core/popper.min.js"></script>
+<script src="assets/js/core/bootstrap.min.js"></script>
+<script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
+<script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
+<script src="assets/js/plugins/chartjs.min.js"></script>
 
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-<script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+<script src="assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 <!-- Delete -->
 <script>
 

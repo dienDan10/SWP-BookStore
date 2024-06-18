@@ -33,6 +33,10 @@ public class AcceptOrder extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //Get context path
+        String context = req.getContextPath();
+
+        //Get order by Id then accept it
         String orderId = req.getParameter("orderId");
         Order order = orderService.findOrderById(Long.parseLong(orderId));
         List<OrderDetail> orderDetails = order.getOrderDetails();
@@ -47,7 +51,7 @@ public class AcceptOrder extends HttpServlet {
         }
         order.setStatus(OrderStatus.DANG_GIAO);
         orderService.updateOrder(order);
-        resp.sendRedirect("/manage-order");
+        resp.sendRedirect(context + "/manage-order");
     }
 
     @Override

@@ -2,6 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<c:set var="context" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,7 +83,7 @@
                                                 <td>
                                                     <div class="d-flex px-2 py-1">
                                                         <div>
-                                                            <img src="${book.imageFront}" class="avatar avatar-sm me-3"
+                                                            <img src="${context}${book.imageFront}" class="avatar avatar-sm me-3"
                                                                  alt="user1">
                                                         </div>
                                                         <div class="d-flex flex-column justify-content-center flex-fill">
@@ -97,14 +98,14 @@
                                                     <span class="text-secondary text-xs font-weight-bold">${book.quantity}</span>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
-                                                    <a href="/book-detail?id=${book.id}" target="_blank" class="badge badge-sm bg-gradient-success">View</a>
+                                                    <a href="${context}/book-detail?id=${book.id}" target="_blank" class="badge badge-sm bg-gradient-success">View</a>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
                                                     <a href="#" class="badge badge-sm bg-gradient-success"
                                                        data-bs-toggle="modal" data-bs-target="#book-${book.id}">Update</a>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
-                                                    <a href="/delete-product?bookId=${book.id}" onclick="if (!confirm('Do you want to delete?')) return false"
+                                                    <a href="${context}/delete-product?bookId=${book.id}" onclick="if (!confirm('Do you want to delete?')) return false"
                                                        class="badge badge-sm bg-gradient-success">Delete</a>
                                                 </td>
                                             </tr>
@@ -117,7 +118,7 @@
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form action="/update-product" class="update-book-form" book-id="${book.id}" enctype="multipart/form-data" method="post">
+                                                            <form action="${context}/update-product" class="update-book-form" book-id="${book.id}" enctype="multipart/form-data" method="post">
                                                                 <input type="hidden" name="id" value="${book.id}">
                                                                 <div class="mb-3">
                                                                     <label for="bookName-u" class="form-label">Name</label>
@@ -230,7 +231,7 @@
                     <div class="modal-body">
 
                         <!-- Form fields go here -->
-                        <form action="/add-product" class="add-book-form" enctype="multipart/form-data" method="post">
+                        <form action="${context}/add-product" class="add-book-form" enctype="multipart/form-data" method="post">
                             <div class="mb-3">
                                 <label for="bookName" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="bookName" required

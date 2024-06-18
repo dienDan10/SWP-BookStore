@@ -139,7 +139,7 @@
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div>
-                            <img src="${order.user.imageURL}" class="avatar avatar-sm me-3"
+                            <img src="${context}${order.user.imageURL}" class="avatar avatar-sm me-3"
                                  style="object-fit: cover; object-position: center" alt="user1">
                           </div>
                           <div class="d-flex flex-column justify-content-center">

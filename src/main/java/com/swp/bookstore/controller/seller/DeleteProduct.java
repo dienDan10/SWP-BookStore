@@ -25,6 +25,9 @@ public class DeleteProduct extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //get context path
+        String context = req.getContextPath();
+
         //get bookid from request
         int bookId = Integer.parseInt(req.getParameter("bookId"));
         // get book from database
@@ -44,7 +47,7 @@ public class DeleteProduct extends HttpServlet {
         //delete book
         bookService.deleteBook(bookId);
         //back to manage product
-        resp.sendRedirect("/manage-product");
+        resp.sendRedirect(context + "/manage-product");
     }
 
     @Override

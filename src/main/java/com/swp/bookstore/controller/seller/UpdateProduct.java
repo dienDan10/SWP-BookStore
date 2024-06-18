@@ -51,6 +51,8 @@ public class UpdateProduct extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //Get context path
+        String context = req.getContextPath();
 
         //Get book's information
         String id = req.getParameter("id");
@@ -126,7 +128,7 @@ public class UpdateProduct extends HttpServlet {
         book.setSummary(summary);
         bookService.updateBook(book);
 
-        resp.sendRedirect("/manage-product");
+        resp.sendRedirect(context + "/manage-product");
     }
 
     @Override
