@@ -42,12 +42,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setName(userGoogleDto.getName());
         user.setEmail(userGoogleDto.getEmail());
-        // set default user image
-        if (userGoogleDto.getPicture().isEmpty() || userGoogleDto.getPicture().isBlank()) {
-            user.setImageURL("img/user-image/default-user-image.png");
-        } else {
-            user.setImageURL(userGoogleDto.getPicture());
-        }
+        user.setImageURL("img/user-image/default-user-image.png");
         user.setPassword(PasswordEncryptor.toSHA256(Constant.DEFAULT_PASSWORD));
         user.setRoles(Arrays.asList(roleDAO.findRoleByName(ROLES.USER.name())));
         user.setActive(true);

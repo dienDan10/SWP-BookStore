@@ -52,7 +52,7 @@ public class ForgotPassword extends HttpServlet {
 
         // create a reset password link to send to user via email
         String authenticationCode = RandomUtil.getOTPCode();
-        String link = "http://localhost:8080/forgot-password?code=" + authenticationCode;
+        String link = "http://localhost:8080" + req.getContextPath()+ "/forgot-password?code=" + authenticationCode;
         System.out.println(link);
 
         // save the authentication code and email in session

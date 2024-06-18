@@ -60,7 +60,7 @@ public class Register extends HttpServlet {
         session.setAttribute("userdto", userdto);
 
         // redirect to otp verification
-        resp.sendRedirect("/otp-verification");
+        resp.sendRedirect(req.getContextPath() + "/otp-verification");
     }
 
 

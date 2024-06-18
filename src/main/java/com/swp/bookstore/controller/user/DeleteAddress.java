@@ -30,7 +30,7 @@ public class DeleteAddress extends HttpServlet {
         HttpSession session = req.getSession();
         session.setAttribute("successMsg", "Delete address successful");
         // redirect back to view address page
-        resp.sendRedirect("/view-address");
+        resp.sendRedirect(req.getContextPath() + "/view-address");
     }
 
     @Override

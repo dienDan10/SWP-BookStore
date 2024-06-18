@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="context" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <!doctype html>
 <html lang="en">
@@ -71,7 +71,7 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form action="/add-address" method="POST" class="add-address-form">
+                                    <form action="${context}/add-address" method="POST" class="add-address-form">
                                         <div class="modal-body">
 
                                             <table class="w-100">
@@ -142,7 +142,7 @@
                                         <c:if test="${!address.isDefault()}">
 
                                             <div style="color: #4B3049" class="align-self-center ml-2 mr-2 hover-pointer">
-                                                <a href="/delete-address?id=${address.id}" class="text-decoration-none text-danger" onclick="if (!confirm('Do you want to delete?')) return false">
+                                                <a href="${context}/delete-address?id=${address.id}" class="text-decoration-none text-danger" onclick="if (!confirm('Do you want to delete?')) return false">
                                                     <i class="fa-solid fa-trash-can"></i>
                                                 </a>
                                             </div>
@@ -157,7 +157,7 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <form action="/update-address" method="POST">
+                                                    <form action="${context}/update-address" method="POST">
                                                         <input type="hidden" name="id" value="${address.id}">
                                                         <div class="modal-body">
 

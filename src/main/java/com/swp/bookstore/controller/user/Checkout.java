@@ -30,11 +30,6 @@ public class Checkout extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
-    }
-
-    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // get user from session
         HttpSession session = req.getSession();
@@ -43,7 +38,7 @@ public class Checkout extends HttpServlet {
         List<Address> addresses = addressService.findAllByUserId(user.getId());
         if (addresses.size() == 0) {    // ask user to create an address
             session.setAttribute("invalidMsg", "Bạn cần tạo địa chỉ trước!");
-            resp.sendRedirect("/view-address");
+            resp.sendRedirect( req.getContextPath() + "/view-address");
             return;
         }
         // get all item id

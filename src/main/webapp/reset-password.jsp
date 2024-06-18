@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="context" value="${pageContext.request.contextPath}"></c:set>
 <!doctype html>
 <html lang="en">
 
@@ -48,7 +49,7 @@
                             more than 8 characters.
                             <br />
                             Text and numbers included.</p>
-                        <form class="row contact_form" action="/reset-password" method="post" novalidate="novalidate">
+                        <form class="row contact_form" action="${context}/reset-password" method="post" novalidate="novalidate">
                             <div class="col-md-12 form-group p_star mb-4">
                                 <input type="password" class="form-control" id="password" name="password" value=""
                                        placeholder="Password">

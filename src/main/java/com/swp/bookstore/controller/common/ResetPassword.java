@@ -38,6 +38,6 @@ public class ResetPassword extends HttpServlet {
         user.setPassword(PasswordEncryptor.toSHA256(password));
         userService.updateUser(user);
         session.setAttribute("successMsg", "Reset password successful");
-        resp.sendRedirect("/login");
+        resp.sendRedirect( req.getContextPath() + "/login");
     }
 }

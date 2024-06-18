@@ -33,7 +33,7 @@ public class RatingDAOImpl implements RatingDAO {
     public List<Rating> findAllRatingByBookId(long bookId) {
         EntityManager em = JPAUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
-        TypedQuery<Rating> query = em.createQuery("select r from Rating r where r.bookId = :bookId", Rating.class);
+        TypedQuery<Rating> query = em.createQuery("select r from Rating r where r.bookId = :bookId order by r.id desc ", Rating.class);
         query.setParameter("bookId", bookId);
         List<Rating> ratings = new ArrayList<Rating>();
         try {

@@ -41,7 +41,6 @@ public class GoogleLogin extends HttpServlet {
 
         String accessToken = getToken(code);
         UserGoogleDto googleUserDTO = getUserInfo(accessToken);
-
         // check if email has been registered to an account
         User user = userService.findOneByEmail(googleUserDTO.getEmail());
         HttpSession session = request.getSession();
@@ -84,7 +83,6 @@ public class GoogleLogin extends HttpServlet {
                                 .add("grant_type", Constant.GOOGLE_GRANT_TYPE)
                                 .build()
                 ).execute().returnContent().toString();
-        System.out.println("Response: " + response);
         JsonObject jobj = new Gson().fromJson(response, JsonObject.class);
         String accessToken = jobj.get("access_token").toString().replaceAll("\"", "");
         return accessToken;

@@ -31,11 +31,6 @@ public class AddRating extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
-    }
-
-    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // get rating score
         String[] scores = req.getParameterValues("star");
@@ -73,6 +68,6 @@ public class AddRating extends HttpServlet {
         orderDetailService.updateOrderDetail(orderDetail);
         // return to user orders page
         session.setAttribute("page", 2);
-        resp.sendRedirect("/view-order");
+        resp.sendRedirect( req.getContextPath() + "/view-order");
     }
 }
