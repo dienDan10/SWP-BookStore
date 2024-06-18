@@ -1,6 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="context" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,7 +75,7 @@
                           <p class="text-xs font-weight-bold mb-0">${user.roles.get(user.roles.size() - 1).name}</p>
                         </td>
                         <td class="align-middle text-center text-sm">
-                          <a href="/change-user-status?id=${user.id}"
+                          <a href="${context}/change-user-status?id=${user.id}"
                              onclick="if(!confirm('Do you want to change the user\'s status?')) return false"
                              class="badge badge-sm ${user.isActive() ? "bg-gradient-success" : "bg-gradient-danger"} ">
                               ${user.isActive() ? "Active" : "Blocked"}
@@ -92,7 +92,7 @@
                                 <h5 class="modal-title" id="userModalLabel">User Information</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
-                              <form action="/update-user-role" method="post">
+                              <form action="${context}/update-user-role" method="post">
                                 <div class="modal-body">
                                   <div class="mb-3">
                                     <label for="name" class="form-label">Name</label>

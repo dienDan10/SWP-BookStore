@@ -52,14 +52,14 @@ public class GoogleLogin extends HttpServlet {
         // check for user is active
         if (!user.isActive()) {
             session.setAttribute("errMsg", "Your account has been blocked");
-            response.sendRedirect("/login");
+            response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
         // save user to session
         session.setAttribute("user", user);
         // return to home page
         session.setAttribute("successMsg", "Login successful!");
-        response.sendRedirect("/home-page");
+        response.sendRedirect(request.getContextPath() + "/home-page");
     }
 
     @Override

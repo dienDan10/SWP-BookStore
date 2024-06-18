@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<c:set var="context" value="${pageContext.request.contextPath}"></c:set>
 <footer class="footer_part">
     <div class="footer_iner">
         <div class="container">
@@ -5,15 +7,14 @@
                 <div class="col-lg-8">
                     <div class="footer_menu">
                         <div class="footer_logo">
-                            <a href="/home-page"><img src="img/bb.jpg" alt="#"></a>
+                            <a href="${context}/home-page"><img src="img/bb.jpg" alt="#"></a>
                         </div>
                         <div class="footer_menu_item">
-                            <a href="/home-page">Home</a>
-                            <a href="/home-page">About</a>
-                            <a href="#">Products</a>
-                            <a href="/home-page">Pages</a>
-                            <a href="/home-page">Blog</a>
-                            <a href="/home-page">Contact</a>
+                            <a href="${context}/home-page">Home</a>
+                            <a href="${context}/home-page">About</a>
+                            <a href="${context}/product-list">Products</a>
+                            <a href="${context}/home-page">Blog</a>
+                            <a href="${context}/home-page">Contact</a>
                         </div>
                     </div>
                 </div>

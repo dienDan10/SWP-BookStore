@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="context" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,13 +15,13 @@
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
-  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
-  <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+  <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -33,7 +34,7 @@
     <div class="container-fluid py-4">
       <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <a href="/manage-order" class="card">
+          <a href="${context}/manage-order" class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
@@ -51,7 +52,7 @@
           </a>
         </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <a href="/view-delivering-order" class="card">
+          <a href="${context}/view-delivering-order" class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
@@ -69,7 +70,7 @@
           </a>
         </div>
         <div class="col-xl-3 col-sm-6">
-          <a href="/view-received-order" class="card">
+          <a href="${context}/view-received-order" class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
@@ -87,7 +88,7 @@
           </a>
         </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <a href="/view-cancel-order" class="card">
+          <a href="${context}/view-cancel-order" class="card">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
@@ -153,7 +154,7 @@
                         <span class="text-secondary text-xs font-weight-bold">${order.status}</span>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <a href="/view-order-detail?orderId=${order.id}" class="badge badge-sm bg-gradient-success" target="_blank">View</a>
+                        <a href="${context}/view-order-detail?orderId=${order.id}" class="badge badge-sm bg-gradient-success" target="_blank">View</a>
                       </td>
                     </tr>
                   </c:forEach>
