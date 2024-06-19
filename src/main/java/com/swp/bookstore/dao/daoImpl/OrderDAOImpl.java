@@ -129,7 +129,7 @@ public class OrderDAOImpl implements OrderDAO {
         EntityManager em = JPAUtil.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         List<Order> orders = null;
-        TypedQuery<Order> query = em.createQuery("select o from Order o where o.status = :status order by o.id desc", Order.class);
+        TypedQuery<Order> query = em.createQuery("select o from Order o where o.status = :status", Order.class);
         query.setParameter("status", status);
         try {
             orders = query.getResultList();

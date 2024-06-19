@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name="rating")
 @Data
@@ -26,7 +28,7 @@ public class Rating {
     @Column(name="rating_score")
     private int ratingScore;
     @Column(name="create_time")
-    private String createTime;
+    private LocalDate createTime;
 
     @ManyToOne(
             fetch = FetchType.EAGER,

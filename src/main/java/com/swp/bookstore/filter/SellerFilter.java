@@ -20,7 +20,7 @@ public class SellerFilter implements Filter {
         User user = (User) session.getAttribute("user");
         if (user == null) { // request user login
             session.setAttribute("invalidMsg", "Please login first");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            response.sendRedirect( request.getContextPath() + "/login");
             return;
         }
         if (!user.hasRole(ROLES.SELLER)) {   // block user

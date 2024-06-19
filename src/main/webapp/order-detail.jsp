@@ -98,7 +98,7 @@
                             <p>Mã đơn hàng</p><span>: ${order.id}</span>
                         </li>
                         <li>
-                            <p>Ngày tạo</p><span>: ${order.createdTime}</span>
+                            <p>Ngày tạo</p><span class="order-date">: ${order.createdTime}</span>
                         </li>
                         <li>
                             <p>Đơn giá</p><span class="order-price">: USD 2210</span>
@@ -254,6 +254,23 @@
     }
 
     formatPrice();
+
+    const orderDate = document.querySelector('.order-date');
+    orderDate.textContent = ': ' + formatDateTime(orderDate.textContent.trim());
+
+    function formatDateTime(input) {
+        input = input.slice(2);
+        // Split the input string into date and time parts
+        const [datePart, timePart] = input.split('T');
+
+        // Further split the date and time parts into individual components
+        const [year, month, day] = datePart.split('-');
+        const [hours, minutes, seconds] = timePart.split(':');
+
+        // Construct the formatted date-time string
+        const formattedDateTime = day + '/' + month + '/' + year + ' ' + hours + ':' + minutes + ':' + seconds;
+        return formattedDateTime;
+    }
 
     document.querySelector('.btn_print').addEventListener('click', function() {
         window.print();

@@ -7,4 +7,5 @@ import java.util.List;
 public interface RatingService {
     void saveRating(Rating rating);
     List<Rating> findAllRatingsByBookId(long bookId);
+    long countRatings();
 }

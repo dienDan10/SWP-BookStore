@@ -1,5 +1,6 @@
 package com.swp.bookstore.controller.seller;
 
+import com.swp.bookstore.entity.Book;
 import com.swp.bookstore.service.BookService;
 import com.swp.bookstore.service.OrderService;
 import com.swp.bookstore.service.RatingService;
@@ -15,6 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name="ViewDashboard",urlPatterns = "/view-dashboard")
 public class ViewDashboard extends HttpServlet {
@@ -36,9 +38,13 @@ public class ViewDashboard extends HttpServlet {
         long orderNumber = orderService.countOrders();
         long bookNumber = bookService.countBooks();
         long userNumber = userService.countUsers();
+        long ratingNumber = ratingService.countRatings();
+        List<Book> topSellers = bookService.findBestSeller(10);
         req.setAttribute("orderNumber", orderNumber);
         req.setAttribute("bookNumber", bookNumber);
         req.setAttribute("userNumber", userNumber);
+        req.setAttribute("ratingNumber", ratingNumber);
+        req.setAttribute("topSellers", topSellers);
         req.getRequestDispatcher("dashboard.jsp").forward(req, resp);
     }
 

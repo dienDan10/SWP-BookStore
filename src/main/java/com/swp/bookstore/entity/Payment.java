@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name="payment")
 @Data
@@ -24,5 +26,5 @@ public class Payment {
     @Column(name="amount")
     private long amount;
     @Column(name="create_time")
-    private String createdTime;
+    private LocalDateTime createdTime;
 }

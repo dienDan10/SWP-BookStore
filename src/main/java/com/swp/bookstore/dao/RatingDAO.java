@@ -7,4 +7,5 @@ import java.util.List;
 public interface RatingDAO {
     void saveRating(Rating rating);
     List<Rating> findAllRatingByBookId(long bookId);
+    long countRatings();
 }

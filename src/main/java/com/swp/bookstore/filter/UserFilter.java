@@ -20,7 +20,7 @@ public class UserFilter implements Filter {
         User user = (User) session.getAttribute("user");
         if (user == null || !user.hasRole(ROLES.USER)) { // request user login
             session.setAttribute("invalidMsg", "Please login first");
-            response.sendRedirect("/login");
+            response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
 

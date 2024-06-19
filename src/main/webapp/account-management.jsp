@@ -22,6 +22,8 @@
   <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+  <%-- Data Table --%>
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css">
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -39,8 +41,8 @@
               <h6>Account Management</h6>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
+              <div class="table-responsive p-3">
+                <table class="table align-items-center mb-0" id="my-table" style="width: 100%">
 <%--                  Table Head--%>
                   <thead>
                     <tr>
@@ -168,7 +170,13 @@
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 
+  <!--  Data Table  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 
+  <script>
+    new DataTable('#my-table');
+  </script>
 
 </body>
 

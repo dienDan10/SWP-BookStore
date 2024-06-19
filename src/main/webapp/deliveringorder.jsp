@@ -7,10 +7,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <title>
-    Sales
+    Delivering Orders
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -124,10 +124,15 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                         User Name</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                        Create Time</th>
-                    
+                        Order Time</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                        Deliver Time</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                        Amount</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                         Status</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                        Action</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                         Action</th>
                     </tr>
@@ -150,13 +155,23 @@
                         </div>
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">${order.createdTime}</span>
+                        <span class="text-secondary text-xs font-weight-bold order-date">${order.createdTime}</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold order-date">${order.deliverTime}</span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold amount">${order.payment.amount}</span>
                       </td>
                       <td class="align-middle text-center text-sm">
                         <span class="text-secondary text-xs font-weight-bold">${order.status}</span>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <a href="/view-order-detail?orderId=${order.id}" class="badge badge-sm bg-gradient-success" target="_blank">View</a>
+                        <a href="${context}/view-order-detail?orderId=${order.id}" class="badge badge-sm bg-gradient-success" target="_blank">View</a>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <a href="${context}/cancel-order?id=${order.id}" onclick="if (!confirm('Do you want to cancel this order?')) return false"
+                           class="badge badge-sm bg-gradient-danger">Cancel</a>
                       </td>
                     </tr>
                   </c:forEach>
@@ -175,6 +190,15 @@
   <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="assets/js/argon-dashboard.min.js?v=2.0.4"></script>
   <script async defer src="https://buttons.github.io/buttons.js"></script>
+<script src="js/format-order-date.js"></script>
+  <script>
+    function formatPrice() {
+      document.querySelectorAll('.amount').forEach(item => {
+        item.textContent = item.textContent.replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ';
+      });
+    }
+    formatPrice();
+  </script>
 </body>
 
 </html>

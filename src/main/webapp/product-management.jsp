@@ -48,7 +48,7 @@
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-2">
-                                <table class="table align-items-center mb-0" id="my-table">
+                                <table class="table align-items-center mb-0" id="my-table" style="width: 100%">
                                     <thead>
                                         <tr>
                                             <th
@@ -83,7 +83,7 @@
                                                 <td>
                                                     <div class="d-flex px-2 py-1">
                                                         <div>
-                                                            <img src="${context}${book.imageFront}" class="avatar avatar-sm me-3"
+                                                            <img src="${book.imageFront}" class="avatar avatar-sm me-3"
                                                                  alt="user1">
                                                         </div>
                                                         <div class="d-flex flex-column justify-content-center flex-fill">

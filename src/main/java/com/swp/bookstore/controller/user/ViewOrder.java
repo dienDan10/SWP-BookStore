@@ -37,9 +37,18 @@ public class ViewOrder extends HttpServlet {
         List<Order> receivedOrders = orderService.findOrdersByUserIdAndStatus(user.getId(), OrderStatus.DA_NHAN);
         List<Order> cancelledOrders = orderService.findOrdersByUserIdAndStatus(user.getId(), OrderStatus.DA_HUY);
         // sort order by newest
-        Collections.reverse(processingOrders);
-        Collections.reverse(deliveringOrders);
-        Collections.reverse(cancelledOrders);
+        Collections.sort(processingOrders, (o1, o2) -> {
+            return o1.getCreatedTime().isAfter(o2.getCreatedTime()) ? -1 : 1;
+        });
+        Collections.sort(deliveringOrders, (o1, o2) -> {
+            return o1.getDeliverTime().isAfter(o2.getDeliverTime()) ? -1 : 1;
+        });
+        Collections.sort(receivedOrders, (o1, o2) -> {
+            return o1.getReceivedTime().isAfter(o2.getReceivedTime()) ? -1 : 1;
+        });
+        Collections.sort(cancelledOrders, (o1, o2) -> {
+            return o1.getCreatedTime().isAfter(o2.getCreatedTime()) ? -1 : 1;
+        });
         // save to request
         req.setAttribute("processingOrders", processingOrders);
         req.setAttribute("deliveringOrders", deliveringOrders);

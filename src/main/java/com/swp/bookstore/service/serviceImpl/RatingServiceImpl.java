@@ -19,4 +19,9 @@ public class RatingServiceImpl implements RatingService {
     public List<Rating> findAllRatingsByBookId(long bookId) {
         return ratingDAO.findAllRatingByBookId(bookId);
     }
+
+    @Override
+    public long countRatings() {
+        return ratingDAO.countRatings();
+    }
 }
