@@ -209,17 +209,6 @@
               </td>
             </tr>
           </c:forEach>
-          <tr>
-            <td style="padding: 8px; border: 1px solid #ddd;">1</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">Sản phẩm 1</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">NXB Kim Đồng</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">1000</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">
-              <a href="#" class="badge badge-sm bg-gradient-success" target="_blank">View</a>
-            </td>
-          </tr>
-
-          </tr>
           </tbody>
         </table>
 

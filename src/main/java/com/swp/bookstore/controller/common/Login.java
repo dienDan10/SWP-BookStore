@@ -1,7 +1,7 @@
 package com.swp.bookstore.controller.common;
 
+import com.swp.bookstore.config.ROLES;
 import com.swp.bookstore.entity.User;
-import com.swp.bookstore.enums.ROLES;
 import com.swp.bookstore.service.UserService;
 import com.swp.bookstore.service.serviceImpl.UserServiceImpl;
 import com.swp.bookstore.utils.PasswordEncryptor;

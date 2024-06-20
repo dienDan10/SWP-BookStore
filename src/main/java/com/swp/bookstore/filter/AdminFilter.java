@@ -1,7 +1,7 @@
 package com.swp.bookstore.filter;
 
+import com.swp.bookstore.config.ROLES;
 import com.swp.bookstore.entity.User;
-import com.swp.bookstore.enums.ROLES;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
