@@ -114,13 +114,13 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Tổng THU NHẬP</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Đơn hàng trong tháng</p>
                     <h5 class="font-weight-bolder">
                       10000$
                     </h5>
                     <p class="mb-0">
 
-                      Tổng thu nhập 7 ngày gần nhất
+                      Tổng số đơn hàng trong tháng
                     </p>
                   </div>
                 </div>

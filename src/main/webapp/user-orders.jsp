@@ -94,7 +94,7 @@
                         <c:forEach var="item" items="${order.orderDetails}">
                           <div class="item d-flex flex-row">
                             <div class="item-picture">
-                              <img src="${item.bookImageFront}" alt="">
+                              <img src="${context}${item.bookImageFront}" alt="">
                             </div>
                             <div class="item-name">
                               ${item.bookName} <br>
@@ -136,7 +136,7 @@
                         <c:forEach var="item" items="${order.orderDetails}">
                           <div class="item d-flex flex-row">
                             <div class="item-picture">
-                              <img src="${item.bookImageFront}" alt="">
+                              <img src="${context}${item.bookImageFront}" alt="">
                             </div>
                             <div class="item-name">
                                 ${item.bookName} <br>
@@ -182,7 +182,7 @@
                         <c:forEach var="item" items="${order.orderDetails}">
                           <div class="item d-flex flex-row">
                             <div class="item-picture">
-                              <img src="${item.bookImageFront}" alt="">
+                              <img src="${context}${item.bookImageFront}" alt="">
                             </div>
                             <div class="item-name">
                                 ${item.bookName} <br>
@@ -272,7 +272,7 @@
                         <c:forEach var="item" items="${order.orderDetails}">
                           <div class="item d-flex flex-row">
                             <div class="item-picture">
-                              <img src="${item.bookImageFront}" alt="">
+                              <img src="${context}${item.bookImageFront}" alt="">
                             </div>
                             <div class="item-name">
                                 ${item.bookName} <br>

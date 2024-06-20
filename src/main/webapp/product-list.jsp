@@ -133,7 +133,7 @@
                         <c:forEach var="book" items="${books}">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_item">
-                                    <img src="${book.imageFront}" alt="#" class="img-fluid">
+                                    <img src="${context}${book.imageFront}" alt="#" class="img-fluid">
                                     <h3 class="px-4"> <a href="${context}/book-detail?id=${book.id}">${book.name}</a> </h3>
                                     <h5 class="px-4">Tác giả: ${book.author.name}</h5>
                                     <div class="d-inline-block px-4" style="font-size: 10px;">
