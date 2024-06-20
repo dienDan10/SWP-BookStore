@@ -25,6 +25,7 @@ import jakarta.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 
 @WebServlet(name="UpdateProduct", urlPatterns = "/update-product")
@@ -90,29 +91,15 @@ public class UpdateProduct extends HttpServlet {
         Part frontImgPart = req.getPart("imgFront");// get Img
         Part backImgPart = req.getPart("imgBack");
 
-        if(!frontImgPart.getSubmittedFileName().isEmpty()){ //Add new front image
-            //delete image in folder
-            String imgFront = book.getImageFront();
-            if(Files.exists(Path.of(contextPath + imgFront))){
-                Files.delete(Path.of(contextPath + imgFront));
-            }
-
-            // save new image to server
-            String imageFront = "/img/book-image/" + frontImgPart.getSubmittedFileName();// get Img name
-            Path imgFrontPath = Path.of(contextPath + imageFront);
-            frontImgPart.write(imgFrontPath.toString());// save image
-            book.setImageFront(imageFront);// set front img book path
+        try {
+            saveNewImage(frontImgPart, contextPath, book, true);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
-
-        if(!backImgPart.getSubmittedFileName().isEmpty()){
-            String imgBack = book.getImageBack();
-            if(Files.exists(Path.of(contextPath + imgBack))){
-                Files.delete(Path.of(contextPath + imgBack));
-            }
-            String imageBack = "/img/book-image/" + backImgPart.getSubmittedFileName();
-            Path imgBackPath = Path.of(contextPath + imageBack);
-            backImgPart.write(imgBackPath.toString());
-            book.setImageBack(imageBack);
+        try {
+            saveNewImage(backImgPart, contextPath, book, false);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
 
         //Set Book object's info
@@ -129,6 +116,37 @@ public class UpdateProduct extends HttpServlet {
         bookService.updateBook(book);
 
         resp.sendRedirect(context + "/manage-product");
+    }
+
+    //Delete old image and Save image
+    private void saveNewImage(Part imgPart, String contextPath, Book book, boolean isFront) throws IOException {
+
+        if(!imgPart.getSubmittedFileName().isEmpty()){ //Add new front image
+            try {
+                //delete image in folder
+                String img;
+                if(isFront) {
+                    img = book.getImageFront();
+                } else {
+                    img = book.getImageBack();
+                }
+                if (Files.exists(Path.of(contextPath + img))) {
+                    Files.delete(Path.of(contextPath + img));
+                }
+            } catch (IOException | InvalidPathException e) {
+                throw new IOException("CANNOT DELETE IMAGE");
+            } finally {
+                // save new image to server and folder
+                String image = "/img/book-image/" + imgPart.getSubmittedFileName();// get Img name
+                Path imgPath = Path.of(contextPath + image);
+                imgPart.write(imgPath.toString()); // save image
+                if (isFront) {
+                    book.setImageFront(image); // set front img book path
+                } else {
+                    book.setImageBack(image); // set back img book path
+                }
+            }
+        }
     }
 
     @Override

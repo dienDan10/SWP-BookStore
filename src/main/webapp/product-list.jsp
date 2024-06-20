@@ -141,7 +141,7 @@
                                             <i class="fa-solid fa-star text-warning"></i>
                                         </c:forEach>
                                     </div>
-                                    <p  class="px-4">Chỉ với
+                                    <p  class="px-4">Giá
                                         <span class="book-price">${book.price}</span>đ
                                     </p>
                                 </div>

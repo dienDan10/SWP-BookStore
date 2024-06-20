@@ -4,6 +4,7 @@
 <!doctype html>
 <html lang="en">
 
+<c:set var="context" value="${pageContext.request.contextPath}"/>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -46,7 +47,7 @@
                         <h1>Sách Trending 
                             <br/>Hiện Nay</h1>
                         <p>Những quyển sách chứa nhiều thông tin giá trị nhưng cũng không kém phần giải trí</p>
-                        <a href="/product-list" class="btn_1">truy cập ngay</a>
+                        <a href="${context}/product-list" class="btn_1">truy cập ngay</a>
                     </div>
                 </div>
             </div>
@@ -54,7 +55,7 @@
     </div>
     <div class="banner_img">
         <img src="img/banner-1.jpg" alt="#" class="img-fluid">
-        <img src="img/banner_pattern.png " alt="#" class="pattern_img img-fluid">
+        <img src="img/banner_pattern.png" alt="#" class="pattern_img img-fluid">
     </div>
 </section>
 <!-- banner part start-->
@@ -77,7 +78,7 @@
                                 <h5>Chỉ từ 70.000đ</h5>
                                 <h2> <a href="#" onclick="return false">Lựa chọn ngay quyển sách
                                     phù hợp với bạn</a> </h2>
-                                <a href="/product-list" class="btn_3">khám phá</a>
+                                <a href="${context}/product-list" class="btn_3">khám phá</a>
                             </div>
                         </div>
                     </div>
@@ -96,7 +97,7 @@
                                 <h2> <a href="#" onclick="return false">Sở hữu ngay bộ sách kinh điển
                                     trong lịch sử văn học Việt Nam cũng như toàn thế giới
                                 </a> </h2>
-                                <a href="/product-list" class="btn_3">Sở hữu ngay</a>
+                                <a href="${context}/product-list" class="btn_3">Sở hữu ngay</a>
                             </div>
                         </div>
                     </div>
@@ -114,7 +115,7 @@
                                 <h5>Với tất cả số tiền của bạn</h5>
                                 <h2> <a href="#" onclick="return false">Tri thức là
                                     vô giá vì bạn không biết trước được bạn cần dùng khi nào</a> </h2>
-                                <a href="/product-list" class="btn_3">Đồng ý và truy cập</a>
+                                <a href="${context}/product-list" class="btn_3">Đồng ý và truy cập</a>
                             </div>
                         </div>
                     </div>
@@ -144,7 +145,7 @@
                             <img src="${book.imageFront}"
                                  alt="#" class="img-fluid">
                         </div>
-                        <h3> <a href="/book-detail?id=${book.id}">${book.name}</a> </h3>
+                        <h3> <a href="${context}/book-detail?id=${book.id}">${book.name}</a> </h3>
                         <h5>Tác giả: ${book.author.name}</h5>
                         <div class="d-inline-block" style="font-size: 10px;">
                             <c:forEach var="i" begin="1" end="${book.averageRating}">
