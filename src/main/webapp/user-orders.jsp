@@ -87,6 +87,9 @@
                         <div class="status pb-3">
                           <i class="fa-solid fa-clock"></i>
                           <span class="ml-2">Đang xử lý</span>
+                          <div class="order-date">
+                              ${order.createdTime}
+                          </div>
                         </div>
                         <c:forEach var="item" items="${order.orderDetails}">
                           <div class="item d-flex flex-row">
@@ -126,6 +129,9 @@
                         <div class="status pb-3">
                           <i class="fa-solid fa-truck-fast"></i>
                           <span class="ml-2">Đang giao</span>
+                          <div class="order-date">
+                              ${order.deliverTime}
+                          </div>
                         </div>
                         <c:forEach var="item" items="${order.orderDetails}">
                           <div class="item d-flex flex-row">
@@ -168,7 +174,11 @@
                         <div class="status pb-3">
                           <i class="fa-solid fa-circle-check"></i>
                           <span class="ml-2">Đã nhận</span>
+                          <div class="order-date">
+                              ${order.receivedTime}
+                          </div>
                         </div>
+
                         <c:forEach var="item" items="${order.orderDetails}">
                           <div class="item d-flex flex-row">
                             <div class="item-picture">
@@ -255,6 +265,9 @@
                         <div class="status pb-3">
                           <i class="fa-solid fa-ban"></i>
                           <span class="ml-2">Đã hủy</span>
+                          <div class="order-date">
+                              ${order.createdTime}
+                          </div>
                         </div>
                         <c:forEach var="item" items="${order.orderDetails}">
                           <div class="item d-flex flex-row">
@@ -326,6 +339,7 @@
 <script src="js/mail-script.js"></script>
 <!-- custom js -->
 <script src="js/custom.js"></script>
+<script src="js/format-order-date.js"></script>
 <script>
 
   //format price
@@ -345,15 +359,15 @@
     })
 
   }
-
   formatPrice();
+
+
   const page = document.querySelector('.page').getAttribute('page');
   if (page === '1') {
     document.querySelector('.nav-link-special-1').click();
   } else if (page === '2') {
     document.querySelector('.nav-link-special-2').click();
   }
-
 
 </script>
 </body>

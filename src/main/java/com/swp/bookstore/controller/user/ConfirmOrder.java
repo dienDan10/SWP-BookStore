@@ -20,7 +20,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @WebServlet(name="ConfirmOrder", urlPatterns = "/confirm-order")
@@ -66,14 +65,12 @@ public class ConfirmOrder extends HttpServlet {
         String addressId = session.getAttribute("addressId").toString();
         List<Cart> items = (List<Cart>)session.getAttribute("cartItems");
         long amount = Long.parseLong(req.getParameter("vnp_Amount")) / 100;
-        // get current time
-        String currentTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
         // create and save payment
         Payment payment = new Payment();
         payment.setStatus(PaymentStatus.PAYED);
         payment.setAmount(amount);
         payment.setType(PaymentType.VNPAY);
-        payment.setCreatedTime(currentTime);
+        payment.setCreatedTime(LocalDateTime.now());
         // save payment
         payment = paymentService.savePayment(payment);
         // create and save order
@@ -81,7 +78,7 @@ public class ConfirmOrder extends HttpServlet {
         order.setUser(user);
         order.setPayment(payment);
         order.setStatus(OrderStatus.DANG_XU_LY);
-        order.setCreatedTime(currentTime);
+        order.setCreatedTime(LocalDateTime.now());
         Address address = addressService.findById(Integer.parseInt(addressId));
         OrderAddress orderAddress = orderAddressService.saveOrderAddress(address);
         order.setAddress(orderAddress);
@@ -141,14 +138,12 @@ public class ConfirmOrder extends HttpServlet {
             return;
         }
         // handle pay by cash
-        // get current time
-        String currentTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
         // create payment
         Payment payment = new Payment();
         payment.setStatus(PaymentStatus.NOT_PAY);
         payment.setAmount(totalPrice);
         payment.setType(PaymentType.OCD);
-        payment.setCreatedTime(currentTime);
+        payment.setCreatedTime(LocalDateTime.now());
         // save payment
         payment = paymentService.savePayment(payment);
         // create order
@@ -156,7 +151,7 @@ public class ConfirmOrder extends HttpServlet {
         order.setUser(user);
         order.setPayment(payment);
         order.setStatus(OrderStatus.DANG_XU_LY);
-        order.setCreatedTime(currentTime);
+        order.setCreatedTime(LocalDateTime.now());
         Address address = addressService.findById(Integer.parseInt(addressId));
         OrderAddress orderAddress = orderAddressService.saveOrderAddress(address);
         order.setAddress(orderAddress);

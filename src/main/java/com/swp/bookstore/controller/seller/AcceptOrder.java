@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @WebServlet(name= "AcceptOrder", urlPatterns = "/accept-order")
@@ -50,6 +51,7 @@ public class AcceptOrder extends HttpServlet {
             bookService.updateBook(book);
         }
         order.setStatus(OrderStatus.DANG_GIAO);
+        order.setDeliverTime(LocalDateTime.now());
         orderService.updateOrder(order);
         resp.sendRedirect(context + "/manage-order");
     }

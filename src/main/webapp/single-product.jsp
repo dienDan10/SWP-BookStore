@@ -59,10 +59,10 @@
             <div class="col-lg-6">
                 <div class="product_img_slide owl-carousel">
                     <div class="single_product_img">
-                        <img src="${context}${book.imageFront}" alt="#" class="img-fluid">
+                        <img src="${book.imageFront}" alt="#" class="img-fluid">
                     </div>
                     <div class="single_product_img">
-                        <img src="${context}${book.imageBack}" alt="#" class="img-fluid">
+                        <img src="${book.imageBack}" alt="#" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -157,7 +157,7 @@
                     <div class="d-flex flex-column mb-5 flex-sm-row">
                         <div class="user-info mr-3 mr-lg-5 w-25" style="min-width: 180px">
                             <h5>${rating.user.name}</h5>
-                            <p class="font-italic my-0" style="font-size: 14px">${rating.createTime}</p>
+                            <p class="font-italic my-0 rating-date" style="font-size: 14px">${rating.createTime}</p>
                         </div>
                         <div class="user-comment">
                             <h5>${rating.title}</h5>
@@ -362,6 +362,21 @@
 
     const messenger = document.querySelector('.messenger');
     messenger.href = `https://www.facebook.com/dialog/send?app_id=372609458675989&link=https://github.com/dienDan10&redirect_uri=https://github.com/dienDan10`;
+
+    function convertDateFormat(dateString) {
+        // Split the input date string into its components
+        let parts = dateString.split("-");
+
+        // Rearrange the components into dd-MM-yyyy format
+        let newDateString = parts[2] + "-" + parts[1] + "-" + parts[0];
+
+        return newDateString;
+    }
+
+    const date = document.querySelector('.rating-date');
+    if (date.textContent !== null && date.textContent.trim() !== "") {
+        date.textContent = convertDateFormat(date.textContent.trim());
+    }
 </script>
 </body>
 

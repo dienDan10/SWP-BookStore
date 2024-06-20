@@ -16,7 +16,6 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 @WebServlet(name="AddRating", urlPatterns = "/rating")
 public class AddRating extends HttpServlet {
@@ -46,8 +45,6 @@ public class AddRating extends HttpServlet {
         String content = req.getParameter("content");
         // get book id
         String bookId = req.getParameter("bookId");
-        // get current date
-        String currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         // get user from session
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
@@ -58,7 +55,7 @@ public class AddRating extends HttpServlet {
         rating.setUser(user);
         rating.setRatingScore(score);
         rating.setBookId(Long.parseLong(bookId));
-        rating.setCreateTime(currentDate);
+        rating.setCreateTime(LocalDate.now());
         // save rating
         ratingService.saveRating(rating);
         // update order detail rating status

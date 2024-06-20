@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -22,7 +23,11 @@ public class Order {
     @Column(name="order_status")
     private String status;
     @Column(name="create_time")
-    private String createdTime;
+    private LocalDateTime createdTime;
+    @Column(name="deliver_time")
+    private LocalDateTime deliverTime;
+    @Column(name="received_time")
+    private LocalDateTime receivedTime;
 
     @OneToOne(
             fetch = FetchType.EAGER,

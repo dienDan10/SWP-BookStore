@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 @WebServlet(name="ViewDeliveringOrder", urlPatterns = "/view-delivering-order")
@@ -24,6 +25,9 @@ public class ViewDeliveringOrder extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // get new order
         List<Order> deliveringOrders = orderService.findOrdersByStatus(OrderStatus.DANG_GIAO);
+        Collections.sort(deliveringOrders, (o1, o2) -> {
+            return o1.getDeliverTime().isAfter(o2.getDeliverTime()) ? -1 : 1;
+        });
         // send to order management page
         req.setAttribute("orders", deliveringOrders);
         req.getRequestDispatcher("deliveringorder.jsp").forward(req, resp);

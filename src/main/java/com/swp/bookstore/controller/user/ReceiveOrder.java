@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @WebServlet(name="ReceiveOrder", urlPatterns = "/receive-order")
 public class ReceiveOrder extends HttpServlet {
@@ -35,6 +36,7 @@ public class ReceiveOrder extends HttpServlet {
         Order order = orderService.findOrderById(Integer.parseInt(orderId));
         // update order status
         order.setStatus(OrderStatus.DA_NHAN);
+        order.setReceivedTime(LocalDateTime.now());
         orderService.updateOrder(order);
         // update payment status
         Payment payment = order.getPayment();
@@ -43,6 +45,6 @@ public class ReceiveOrder extends HttpServlet {
         // send to user orders page
         HttpSession session = req.getSession();
         session.setAttribute("page", "1");
-        resp.sendRedirect("/view-order");
+        resp.sendRedirect(req.getContextPath() +  "/view-order");
     }
 }

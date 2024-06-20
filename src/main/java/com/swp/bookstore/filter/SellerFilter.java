@@ -1,8 +1,8 @@
 package com.swp.bookstore.filter;
 
 
+import com.swp.bookstore.config.ROLES;
 import com.swp.bookstore.entity.User;
-import com.swp.bookstore.enums.ROLES;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,7 +20,7 @@ public class SellerFilter implements Filter {
         User user = (User) session.getAttribute("user");
         if (user == null) { // request user login
             session.setAttribute("invalidMsg", "Please login first");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            response.sendRedirect( request.getContextPath() + "/login");
             return;
         }
         if (!user.hasRole(ROLES.SELLER)) {   // block user

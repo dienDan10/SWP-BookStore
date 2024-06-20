@@ -1,8 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-<c:set var="context" value="${pageContext.request.contextPath}"></c:set>
+<c:set var="context" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -144,7 +142,7 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">TỔNG PHẢN HỒI</p>
                     <h5 class="font-weight-bolder">
-                      50
+                      ${ratingNumber}
                     </h5>
                     <p class="mb-0">
 
@@ -189,22 +187,28 @@
 
         <h1 style="font-size: 24px; font-weight: bold; text-align: center; margin-bottom: 20px; margin-top: 30px;">TOP
           10 SẢN PHẨM BÁN CHẠY</h1>
-        <table style="width:100%; border-collapse: collapse; font-size: 14px; ">
+        <table style="width:100%; border-collapse: collapse; font-size: 14px; " class="mb-10q">
           <thead>
           <tr style="background-color: #5E72E4; color: white;">
             <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">ID</th>
             <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Tên sản phẩm</th>
-            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Tổng số lượng</th>
+            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Nhà xuất bản</th>
+            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Số lượng bán ra</th>
+            <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Chi tiết</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td style="padding: 8px; border: 1px solid #ddd;">1</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">Sản phẩm 1</td>
-            <td style="padding: 8px; border: 1px solid #ddd;">1000</td>
-          </tr>
-
-          </tr>
+          <c:forEach var="book" items="${topSellers}">
+            <tr>
+              <td style="padding: 8px; border: 1px solid #ddd;">${book.id}</td>
+              <td style="padding: 8px; border: 1px solid #ddd;">${book.name}</td>
+              <td style="padding: 8px; border: 1px solid #ddd;">${book.publisher.name}</td>
+              <td style="padding: 8px; border: 1px solid #ddd;">${book.soldNum}</td>
+              <td style="padding: 8px; border: 1px solid #ddd;">
+                <a href="${context}/book-detail?id=${book.id}" class="badge badge-sm bg-gradient-success" target="_blank">View</a>
+              </td>
+            </tr>
+          </c:forEach>
           </tbody>
         </table>
 
