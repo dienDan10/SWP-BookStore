@@ -232,7 +232,7 @@
                         <tr style="height: 50px">
                             <td><p>Mật khẩu mới:</p></td>
                             <td>
-                                <input type="password" class="form-control new-password" name="new-password" required>
+                                <input type="password" class="form-control new-password" name="new-password" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,64}$" required>
                                 <p class="text-danger font-italic new-password-msg" style="font-size: 14px"></p>
                             </td>
                         </tr>

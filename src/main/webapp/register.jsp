@@ -75,7 +75,7 @@
                                 </c:if>
                             </div>
                             <div class="col-md-12 form-group p_star mb-4">
-                                <input type="password" class="form-control" id="password" name="password" value=""
+                                <input type="password" class="form-control" id="password" name="password" value="" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,64}$"
                                        placeholder="Password">
                                 <div class="font-italic text-danger password-constraint"></div>
                             </div>
