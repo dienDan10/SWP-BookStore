@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 
@@ -142,7 +141,7 @@
                 <div class="col-lg-4 col-sm-6">
                     <div class="single_product_item">
                         <div class="single_product_item_thumb">
-                            <img src="${book.imageFront}"
+                            <img src="${context}${book.imageFront}"
                                  alt="#" class="img-fluid">
                         </div>
                         <h3> <a href="${context}/book-detail?id=${book.id}">${book.name}</a> </h3>
