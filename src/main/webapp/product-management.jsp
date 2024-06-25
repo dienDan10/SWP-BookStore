@@ -45,6 +45,8 @@
                         <div class="d-flex">
                             <a href="#" class="btn btn-sm btn-info d-lg-block ms-3 my-2" data-bs-toggle="modal"
                                 data-bs-target="#addBookModal">Add Book</a>
+                            <a href="#" class="btn btn-sm btn-info d-lg-block ms-3 my-2" data-bs-toggle="modal"
+                               data-bs-target="#import-excel">Import Excel</a>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-2">
@@ -289,11 +291,11 @@
                             </div>
                             <div class="mb-3 col-lg-5 me-lg-5 d-inline-block">
                                 <label for="imgFront" class="form-label">Front Image</label>
-                                <input type="file" class="form-control form-control-lg " id="imgFront" name="imgFront" required>
+                                <input type="file" class="form-control form-control-lg " id="imgFront" name="imgFront" accept=".jpeg,.jpg,.png,.webp" required>
                             </div>
                             <div class="mb-3 col-lg-6 d-inline-block">
                                 <label for="imgBack" class="form-label">Back Image</label>
-                                <input type="file" class="form-control form-control-lg" id="imgBack" name="imgBack" required>
+                                <input type="file" class="form-control form-control-lg" id="imgBack" name="imgBack" accept=".jpeg,.jpg,.png,.webp" required>
                             </div>
                             <div class="mb-3">
                                 <label for="bookSummary" class="form-label">Summary</label>
@@ -309,7 +311,34 @@
             </div>
         </div>
 
-
+        <!--POP UP IMPORT EXCEL-->
+        <!-- Modal -->
+        <div class="modal fade" id="import-excel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Excel Import</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form" action="${context}/excel-import" enctype="multipart/form-data" method="POST">
+                            <div class="form-group mb-3">
+                                <label>Excel file</label>
+                                <input type="file" name="excel" class="form-control" accept=".xlsx" required>
+                                <div class="fst-italic fs-6">(.xlsx file only)</div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>Upload pictures</label>
+                                <input type="file" name="images" class="form-control" multiple required>
+                                <div class="fst-italic">(.jpg, .jpeg, .png, .webp only)</div>
+                            </div>
+                            <button class="btn btn-primary mt-3">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--POP UP IMPORT EXCEL END-->
     </main>
     <!--   Core JS Files   -->
     <script src="assets/js/core/popper.min.js"></script>

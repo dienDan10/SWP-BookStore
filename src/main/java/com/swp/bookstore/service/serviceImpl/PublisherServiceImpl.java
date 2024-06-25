@@ -20,4 +20,9 @@ public class PublisherServiceImpl implements PublisherService {
     public Publisher findById(int id) {
         return publisherDAO.findById(id);
     }
+
+    @Override
+    public Publisher findByName(String name) {
+        return publisherDAO.findByName(name);
+    }
 }

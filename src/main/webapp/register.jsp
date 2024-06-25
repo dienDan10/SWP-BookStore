@@ -75,7 +75,7 @@
                                 </c:if>
                             </div>
                             <div class="col-md-12 form-group p_star mb-4">
-                                <input type="password" class="form-control" id="password" name="password" value="" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,64}$"
+                                <input type="password" class="form-control" id="password" name="password" value=""
                                        placeholder="Password">
                                 <div class="font-italic text-danger password-constraint"></div>
                             </div>
@@ -180,18 +180,43 @@
     // implement captcha
     const form = document.querySelector('.myform');
     form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const isValid = validateRecaptcha();
-        if (isValid) {
-            form.submit();
-        } else {
 
+        const isValid = validateRecaptcha();
+        if (!isValid || !validatePassword() || !validateEmail()) {
+            event.preventDefault();
+        } else {
+            form.submit();
         }
     })
     function validateRecaptcha() {
         const response = grecaptcha.getResponse();
         if (response.length === 0) {
             document.querySelector('.captcha-msg').textContent = "Please finish the captcha";
+            return false;
+        }
+        return true;
+    }
+
+    function validatePassword() {
+        if (password.value.length < 8) {
+            alert("For your safety, password should contains at least 8 character, text and number included")
+            return false;
+        } else if (!/[A-Za-z]/.test(password.value)) {
+            alert("For your safety, password should contains at least 8 character, text and number included")
+            return false;
+        } else if (!/[0-9]/.test(password.value)) {
+            alert("For your safety, password should contains at least 8 character, text and number included")
+            return false;
+        }
+
+        return true;
+    }
+
+    function validateEmail() {
+        var email = document.getElementById('email').value;
+        var emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+        if (!emailPattern.test(email)) {
+            alert('Please enter a valid email address (e.g., user@example.com).');
             return false;
         }
         return true;

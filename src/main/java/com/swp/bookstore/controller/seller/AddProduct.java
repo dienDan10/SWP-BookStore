@@ -24,6 +24,7 @@ import jakarta.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 
 @WebServlet(name="AddProduct",urlPatterns="/add-product")
@@ -67,7 +68,6 @@ public class AddProduct extends HttpServlet {
 
         //Create or Get Author (Add book will automatically add new author)
         Author author = authorService.findAuthorByName(authorName);
-        System.out.println(author);
         if (author == null) { //Create new author
             author = new Author();
             author.setName(authorName);
@@ -78,51 +78,57 @@ public class AddProduct extends HttpServlet {
         Category category = categoryService.findById(Integer.parseInt(categoryId));
         Publisher publisher = publisherService.findById(Integer.parseInt(publisherId));
 
-
-        // save image to server
+        // get image parts
         Part frontImgPart = req.getPart("imgFront");// get Img
         Part backImgPart = req.getPart("imgBack");
         String imageFront = frontImgPart.getSubmittedFileName();// get Img name
         String imageBack = backImgPart.getSubmittedFileName();
-        // Get save folder path
-        String path = req.getServletContext().getRealPath("/img/book-image");// set path
-        if(!Files.exists(Path.of(path))){ // create folder
-            Files.createDirectory(Path.of(path));
+        String realPath = req.getServletContext().getRealPath("/img/book-image");
+        try {
+            imageFront = saveImage(frontImgPart, imageFront, realPath);
+            imageBack = saveImage(backImgPart, imageBack, realPath);
+            // Create new Book
+            Book book = new Book();
+            book.setName(bookName);
+            book.setDescription(description);
+            book.setPublishedDate(publishedDate);
+            book.setAuthor(author);
+            book.setPublisher(publisher);
+            book.setCategory(category);
+            book.setQuantity(Integer.parseInt(quantity));
+            book.setPageCount(Integer.parseInt(pageNum));
+            book.setPrice(Long.parseLong(price));
+            book.setImageFront("/img/book-image/" + imageFront);// set book path
+            book.setImageBack("/img/book-image/" + imageBack);
+            book.setSummary(summary);
+            bookService.addBook(book);
+        }catch (IOException e) {
+            System.out.println(e.getMessage());
         }
-
-        // check if image with the same name already in the save folder
-        String newFrontImgName = imageFront;
-        String newBackImgName = imageBack;
-        Path imgFrontPath = Path.of(path + File.separator + imageFront);
-        Path imgBackPath = Path.of(path + File.separator + imageBack);
-        if (Files.exists(imgFrontPath)) {    // change image name
-            newFrontImgName = RandomUtil.getOTPCode() + "-" + imageFront;
-        }
-        if (Files.exists(imgBackPath)) {  // change image name
-            newBackImgName = RandomUtil.getOTPCode() + "-" + imageBack;
-        }
-        // save image
-        frontImgPart.write(path + File.separator + newFrontImgName);
-        backImgPart.write(path + File.separator + newBackImgName);
-
-        // Create new Book
-        Book book = new Book();
-        book.setName(bookName);
-        book.setDescription(description);
-        book.setPublishedDate(publishedDate);
-        book.setAuthor(author);
-        book.setPublisher(publisher);
-        book.setCategory(category);
-        book.setQuantity(Integer.parseInt(quantity));
-        book.setPageCount(Integer.parseInt(pageNum));
-        book.setPrice(Long.parseLong(price));
-        book.setImageFront("/img/book-image/" + newFrontImgName);// set book path
-        book.setImageBack("/img/book-image/" + newBackImgName);
-        book.setSummary(summary);
-        bookService.addBook(book);
-
         // redirect back to manage product page
         resp.sendRedirect(context + "/manage-product");
+    }
+
+    private String saveImage(Part imagePart, String imageName, String realPath) throws IOException {
+        String newImageName = imageName;
+        try {
+            // check if the folder not exist
+            if (!Files.exists(Path.of(realPath))) { // create folder
+                Files.createDirectories(Path.of(realPath));
+            }
+            // check if image with the same name exists
+            if (Files.exists(Path.of(realPath + File.separator + imageName))) { //create new image name
+                newImageName = RandomUtil.getOTPCode() + "-" + imageName;
+            }
+            // save image
+            imagePart.write(realPath + File.separator + newImageName);
+
+        } catch (InvalidPathException | IOException e) {
+            e.printStackTrace();
+            throw new IOException("Cannot save image");
+        }
+
+        return newImageName;
     }
 
     @Override

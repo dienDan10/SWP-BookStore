@@ -117,7 +117,7 @@
                                     </div>
                                     <div class="media ml-3">
                                         <div class="d-flex">
-                                            <img src="${item.book.imageFront}" alt="" />
+                                            <img src="${context}${item.book.imageFront}" alt="" />
                                         </div>
                                         <div class="media-body">
                                             <p>${item.book.name}</p>

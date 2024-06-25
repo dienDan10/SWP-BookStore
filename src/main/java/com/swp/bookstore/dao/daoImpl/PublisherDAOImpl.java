@@ -4,6 +4,8 @@ import com.swp.bookstore.dao.PublisherDAO;
 import com.swp.bookstore.entity.Publisher;
 import com.swp.bookstore.utils.JPAUtil;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
 import java.util.List;
@@ -20,6 +22,27 @@ public class PublisherDAOImpl implements PublisherDAO {
     public Publisher findById(int id) {
         EntityManager em = JPAUtil.getEntityManager();
         Publisher publisher = em.find(Publisher.class, id);
+        return publisher;
+    }
+
+    @Override
+    public Publisher findByName(String name) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        TypedQuery<Publisher> query = em.createQuery("select p from Publisher p where lower(p.name) = :name", Publisher.class);
+        query.setParameter("name", name.toLowerCase());
+        Publisher publisher = null;
+        try {
+            tx.begin();
+            publisher = query.getSingleResult();
+            tx.commit();
+        } catch (NoResultException e) {
+            tx.rollback();
+            System.out.println("Cannot find publisher with name " + name);
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
         return publisher;
     }
 }

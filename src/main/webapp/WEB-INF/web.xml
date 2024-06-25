@@ -76,6 +76,7 @@
         <url-pattern>/cancel-order</url-pattern>
         <url-pattern>/add-product</url-pattern>
         <url-pattern>/accept-order</url-pattern>
+        <url-pattern>/excel-import</url-pattern>
     </filter-mapping>
 
     <filter-mapping>
