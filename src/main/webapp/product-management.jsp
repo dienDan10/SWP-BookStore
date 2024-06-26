@@ -40,7 +40,7 @@
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">
-                    <div class="card mb-4">
+                    <div class="card mb-4 rounded-1 px-2">
                         <div class="card-header pb-0">
                             <h6>Product Management</h6>
                         </div>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-2">
-                                <table class="table align-items-center mb-0" id="my-table" style="width: 100%">
+                                <table class="table align-items-center mb-0 table-hover" id="my-table" style="width: 100%">
                                     <thead>
                                         <tr>
                                             <th
