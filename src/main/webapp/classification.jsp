@@ -1,0 +1,309 @@
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="context" value="${pageContext.request.contextPath}"></c:set>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <title>
+        Classification Management
+    </title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <!-- Nucleo Icons -->
+    <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+    <%-- Data Table --%>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css">
+</head>
+
+<body class="g-sidenav-show   bg-gray-100">
+<div class="min-height-300 bg-primary position-absolute w-100"></div>
+<%@include file="components/dashboard-aside.jsp"%>
+<main class="main-content position-relative border-radius-lg ">
+    <!-- Navbar -->
+    <%@include file="components/dashboard-navbar.jsp"%>
+    <!-- End Navbar -->
+
+    <!-- ---------------------- Author --------------------------------- -->
+    <div class="container-fluid py-4 justify-content-center">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <div class="card mb-4 rounded-1">
+                    <div class="card-header pb-0">
+                        <h6>Author Management</h6>
+                    </div>
+                    <div class="d-flex">
+                        <a href="#" class="btn btn-sm btn-info mb-0 d-none d-lg-block" data-bs-toggle="modal"
+                           data-bs-target="#addAuthorModal" style="margin: 0 auto;">Add New</a>
+                    </div>
+                    <div class="card-body px-0 pt-0 pb-2">
+                        <div class="table-responsive px-3">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                                </tr>
+                                </thead>
+                                    <tbody>
+                                    <c:forEach var="author" items="${authors}">
+                                    <tr>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">${author.id}</p>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">${author.name}</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            <a href="#" class="badge badge-sm bg-gradient-success" data-bs-toggle="modal" data-bs-target="#userModal">Update</a>
+                                            <a href="#" onclick="if (!confirm('Do you want to delete?')) return false"
+                                               class="badge badge-sm bg-gradient-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                    </c:forEach>
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ----------------------Category--------------------------------- -->
+    <div class="container-fluid py-4 justify-content-center">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <div class="card mb-4 rounded-1">
+                    <div class="card-header pb-0">
+                        <h6>Category Management</h6>
+                    </div>
+                    <div class="d-flex">
+                        <a href="#" class="btn btn-sm btn-info mb-0 d-none d-lg-block" data-bs-toggle="modal"
+                           data-bs-target="#addCategoryModal" style="margin: 0 auto;">Add New</a>
+                    </div>
+                    <div class="card-body px-0 pt-0 pb-2">
+                        <div class="table-responsive px-3">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="category" items="${categories}">
+                                <tr>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">${category.id}</p>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm">${category.name}</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
+                                        <a href="#" class="badge badge-sm bg-gradient-success" data-bs-toggle="modal" data-bs-target="#userModal">Update</a>
+                                        <a href="#" onclick="if (!confirm('Do you want to delete?')) return false"
+                                           class="badge badge-sm bg-gradient-danger">Delete</a>
+                                    </td>
+                                </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ---------------------- Publisher --------------------------------- -->
+    <div class="container-fluid py-4 justify-content-center">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <div class="card mb-4 rounded-1">
+                    <div class="card-header pb-0">
+                        <h6>Pushlisher Management</h6>
+                    </div>
+                    <div class="d-flex">
+                        <a href="#" class="btn btn-sm btn-info mb-0 d-none d-lg-block" data-bs-toggle="modal"
+                           data-bs-target="#addPublisherModal" style="margin: 0 auto;">Add New</a>
+                    </div>
+                    <div class="card-body px-0 pt-0 pb-2">
+                        <div class="table-responsive px-3">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="publisher" items="${publishers}">
+                                <tr>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">${publisher.id}</p>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm">${publisher.name}</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
+                                        <a href="#" class="badge badge-sm bg-gradient-success"
+                                           data-bs-toggle="modal" data-bs-target="#publisher-${publisher.id}">Update</a>
+                                        <a href="${context}/delete-publisher?publisherId=${publisher.id}" onclick="if (!confirm('Do you want to delete?')) return false"
+                                           class="badge badge-sm bg-gradient-danger">Delete</a>
+                                    </td>
+                                </tr>
+                                <!-- popup Update Publisher -->
+                                <div class="modal fade" id="publisher-${publisher.id}" tabindex="-1" aria-labelledby="publisherModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-special">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="publisherModalLabel">Update Publisher</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="${context}/update-publisher" publisher-id="${publisher.id}" method="post">
+                                                    <input type="hidden" name="id" value="${publisher.id}">
+                                                    <div class="mb-3">
+                                                        <label for="publisherName-u" class="form-label">Name</label>
+                                                        <input type="text" class="form-control" id="publisherName-u" required
+                                                               name="publisherName" aria-describedby="publisherNameHelp" value="${publisher.name}">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <p type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</p>
+                                                        <button type="submit" class="btn btn-primary">Save Book</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- popup Update publisher end here -->
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- pop up add category -->
+    <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCategoryLabel">Add New Category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form fields go here -->
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" id="bookName" aria-describedby="categoryNameHelp">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save Category</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- pop up add author -->
+    <div class="modal fade" id="addAuthorModal" tabindex="-1" aria-labelledby="addAuthorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addAuthorModalLabel">Add New Author</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form fields go here -->
+                    <form>
+                        <div class="mb-3">
+                            <label for="authorName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="authorName" aria-describedby="authorNameHelp">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save Author</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- pop up add publisher -->
+    <div class="modal fade" id="addPublisherModal" tabindex="-1" aria-labelledby="addPublisherLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addPublisherModalLabel">Add New Publisher</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form fields go here -->
+                    <form action="${context}/add-publisher" method="post">
+                        <div class="mb-3">
+                            <label for="publisherName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="publisherName" name="publisherName" aria-describedby="publisherNameHelp">
+                        </div>
+                        <div class="modal-footer">
+                            <p type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</p>
+                            <button type="submit" class="btn btn-primary">Save Publisher</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ---------------------------------------------------------------- -->
+</main>
+<!--   Core JS Files   -->
+<script src="assets/js/core/popper.min.js"></script>
+<script src="assets/js/core/bootstrap.min.js"></script>
+<script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
+<script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
+<!-- Github buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+
+<!--  Data Table  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+
+</body>
+
+</html>
