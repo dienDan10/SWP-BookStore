@@ -12,17 +12,12 @@ import com.swp.bookstore.service.serviceImpl.AuthorServiceImpl;
 import com.swp.bookstore.service.serviceImpl.BookServiceImpl;
 import com.swp.bookstore.service.serviceImpl.CategoryServiceImpl;
 import com.swp.bookstore.service.serviceImpl.PublisherServiceImpl;
-import com.swp.bookstore.utils.RandomUtil;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
+import jakarta.servlet.http.*;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
@@ -114,7 +109,9 @@ public class UpdateProduct extends HttpServlet {
         book.setPrice(Long.parseLong(price));
         book.setSummary(summary);
         bookService.updateBook(book);
-
+        // send message
+        HttpSession session = req.getSession();
+        session.setAttribute("successMsg", "Update Successfully!");
         resp.sendRedirect(context + "/manage-product");
     }
 

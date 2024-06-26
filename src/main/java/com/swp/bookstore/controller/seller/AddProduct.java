@@ -16,10 +16,7 @@ import com.swp.bookstore.utils.RandomUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
+import jakarta.servlet.http.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -52,6 +49,8 @@ public class AddProduct extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // get session
+        HttpSession session = req.getSession();
         //Get context path string
         String context = req.getContextPath();
         //Get book's information
@@ -102,7 +101,10 @@ public class AddProduct extends HttpServlet {
             book.setImageBack("/img/book-image/" + imageBack);
             book.setSummary(summary);
             bookService.addBook(book);
+            // send message
+            session.setAttribute("successMsg", "Add book successful!");
         }catch (IOException e) {
+            session.setAttribute("errMsg", "Add book failed!");
             System.out.println(e.getMessage());
         }
         // redirect back to manage product page

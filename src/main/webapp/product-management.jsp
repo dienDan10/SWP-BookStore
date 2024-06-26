@@ -26,6 +26,8 @@
     <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
     <%-- Data Table --%>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="css/toast.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -340,6 +342,22 @@
         </div>
         <!--POP UP IMPORT EXCEL END-->
     </main>
+
+    <!--Toast box here-->
+    <c:if test="${not empty successMsg}">
+        <div class="hidden" id="msg" type="success">${successMsg}</div>
+        <c:remove var="successMsg" scope="session"></c:remove>
+    </c:if>
+    <c:if test="${not empty errMsg}">
+        <div class="hidden" id="msg" type="error">${errMsg}</div>
+        <c:remove var="errMsg" scope="session"></c:remove>
+    </c:if>
+    <c:if test="${not empty invalidMsg}">
+        <div class="hidden" id="msg" type="invalid">${invalidMsg}</div>
+        <c:remove var="invalidMsg" scope="session"></c:remove>
+    </c:if>
+    <div id="toastBox"></div>
+    <!--Toast box end here-->
     <!--   Core JS Files   -->
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
@@ -353,7 +371,7 @@
     <!--  Data Table  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
-
+    <script src="js/toast.js"></script>
     <script>
         document.querySelector(".add-book-form").addEventListener("submit", function(event) {
             // Get the input date value
