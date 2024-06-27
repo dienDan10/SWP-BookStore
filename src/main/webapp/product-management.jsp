@@ -345,7 +345,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label>Upload pictures</label>
-                                <input type="file" name="images" class="form-control" multiple required>
+                                <input type="file" name="images" class="form-control" multiple required accept=".jpg, .jpeg, .png, .webp">
                                 <div class="fst-italic">(.jpg, .jpeg, .png, .webp only)</div>
                             </div>
                             <button class="btn btn-primary mt-3">Submit</button>
