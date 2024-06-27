@@ -135,11 +135,14 @@
                                 </div>
                                 <div class="add_to_cart text-center">
                                     <c:choose>
-                                        <c:when test="${book.quantity > 0}">
-                                            <button class="btn_3 btn_add_to_cart">add to cart</button>
+                                        <c:when test="${!book.isActive()}">
+                                            <h5>Sản phẩm hiện đã ngừng kinh doanh</h5>
+                                        </c:when>
+                                        <c:when test="${book.quantity == 0}">
+                                            <h5>Sản phẩm hiện đang hết hàng</h5>
                                         </c:when>
                                         <c:otherwise>
-                                            <h5>Sản phẩm hiện đang hết hàng</h5>
+                                            <button class="btn_3 btn_add_to_cart">add to cart</button>
                                         </c:otherwise>
                                     </c:choose>
 

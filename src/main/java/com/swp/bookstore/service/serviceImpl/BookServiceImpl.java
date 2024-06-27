@@ -65,4 +65,7 @@ public class BookServiceImpl implements BookService {
     public long countBooks() {
         return bookDAO.countBooks();
     }
+
+    @Override
+    public void deactivateBook(long id) { bookDAO.deactivateBook(id); }
 }

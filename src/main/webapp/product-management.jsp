@@ -76,6 +76,9 @@
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Action</th>
+                                            <th
+                                                    class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -109,8 +112,19 @@
                                                        data-bs-toggle="modal" data-bs-target="#book-${book.id}">Update</a>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
-                                                    <a href="${context}/delete-product?bookId=${book.id}" onclick="if (!confirm('Do you want to delete?')) return false"
+                                                    <a href="${context}/delete-product?bookId=${book.id}" onclick="if (!confirm('Do you want to delete this book?')) return false"
                                                        class="badge badge-sm bg-gradient-success">Delete</a>
+                                                </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <c:choose>
+                                                        <c:when test="${book.isActive()}">
+                                                            <a href="${context}/deactivate-product?bookId=${book.id}" onclick="if (!confirm('Do you want to deactivate this book?')) return false"
+                                                               class="badge badge-sm bg-gradient-success">Deactivate</a>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <div class="badge badge-sm bg-gradient-secondary">Inactive</div>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </td>
                                             </tr>
                                             <!-- popup Update book -->

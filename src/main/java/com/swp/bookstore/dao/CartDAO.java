@@ -11,4 +11,5 @@ public interface CartDAO {
     void updateCart(Cart cart);
     Cart findCartByUserIdAndBookId(long userId, long bookId);
     List<Cart> findAllByUserId(long userId);
+    List<Cart> findCartsByBookId(long bookId);
 }
