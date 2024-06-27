@@ -140,6 +140,9 @@
                                         <c:forEach var="i" begin="1" end="${book.averageRating}">
                                             <i class="fa-solid fa-star text-warning"></i>
                                         </c:forEach>
+                                        <c:forEach var="i" begin="1" end="${5 - book.averageRating}">
+                                            <i class="fa-solid fa-star text-black-50"></i>
+                                        </c:forEach>
                                     </div>
                                     <p  class="px-4">Giá
                                         <span class="book-price">${book.price}</span>đ
