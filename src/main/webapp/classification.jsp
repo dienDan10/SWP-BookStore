@@ -140,7 +140,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <p type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</p>
-                                                            <button type="submit" class="btn btn-primary">Save Book</button>
+                                                            <button type="submit" class="btn btn-primary">Save Publisher</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -194,11 +194,38 @@
                                             </div>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            <a href="#" class="badge badge-sm bg-gradient-success" data-bs-toggle="modal" data-bs-target="#userModal">Update</a>
-                                            <a href="#" onclick="if (!confirm('Do you want to delete?')) return false"
+                                            <a href="#" class="badge badge-sm bg-gradient-success"
+                                               data-bs-toggle="modal" data-bs-target="#author-${author.id}">Update</a>
+                                            <a href="${context}/delete-author?authorId=${author.id}" onclick="if (!confirm('Do you want to delete?')) return false"
                                                class="badge badge-sm bg-gradient-danger">Delete</a>
                                         </td>
                                     </tr>
+                                        <!-- popup Update Author -->
+                                        <div class="modal fade" id="author-${author.id}" tabindex="-1" aria-labelledby="authorModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-special">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="authorModalLabel">Update Author</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="${context}/update-author" author-id="${author.id}" method="post">
+                                                            <input type="hidden" name="id" value="${author.id}">
+                                                            <div class="mb-3">
+                                                                <label for="authorName-u" class="form-label">Name</label>
+                                                                <input type="text" class="form-control" id="authorName-u" required
+                                                                       name="authorName" aria-describedby="authorNameHelp" value="${author.name}">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <p type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</p>
+                                                                <button type="submit" class="btn btn-primary">Save Author</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- popup Update publisher end here -->
                                     </c:forEach>
                                     </tbody>
                             </table>
@@ -246,16 +273,16 @@
                 </div>
                 <div class="modal-body">
                     <!-- Form fields go here -->
-                    <form>
+                    <form action="${context}/add-author" method="post">
                         <div class="mb-3">
                             <label for="authorName" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="authorName" aria-describedby="authorNameHelp">
+                            <input type="text" class="form-control" id="authorName" name="authorName" aria-describedby="authorNameHelp">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save Author</button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save Author</button>
                 </div>
             </div>
         </div>

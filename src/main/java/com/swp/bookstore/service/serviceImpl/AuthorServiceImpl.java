@@ -25,4 +25,13 @@ public class AuthorServiceImpl implements AuthorService {
     public Author findAuthorByName(String name) {
         return authorDAO.findAuthorByName(name);
     }
+
+    @Override
+    public void updateAuthor(Author author) { authorDAO.updateAuthor(author); }
+
+    @Override
+    public void deleteAuthor(int id) { authorDAO.deleteAuthor(id); }
+
+    @Override
+    public Author findById(int id){ return authorDAO.findById(id); }
 }

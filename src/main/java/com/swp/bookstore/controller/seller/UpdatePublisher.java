@@ -18,6 +18,7 @@ public class UpdatePublisher extends HttpServlet {
     //Initialize service
     PublisherService publisherService;
 
+    @Override
     public void init(ServletConfig config) throws ServletException{
         publisherService = new PublisherServiceImpl();
     }
@@ -29,7 +30,7 @@ public class UpdatePublisher extends HttpServlet {
         //Get publisher's information
         String id = req.getParameter("id");
         String bookName = req.getParameter("publisherName");
-        //Get a book that was chosen to update
+        //Get a publisher that was chosen to update
         Publisher publisher = publisherService.findById(Integer.parseInt(id));
         //Set Publisher object's info
         publisher.setName(bookName);

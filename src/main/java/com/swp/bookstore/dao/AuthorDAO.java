@@ -8,4 +8,7 @@ public interface AuthorDAO {
     List<Author> findAll();
     void addAuthor(Author author);
     Author findAuthorByName(String name);
+    void updateAuthor(Author author);
+    void deleteAuthor(int id);
+    Author findById(int id);
 }

@@ -50,4 +50,44 @@ public class AuthorDAOImpl implements AuthorDAO {
         }
         return author;
     }
+
+    @Override
+    public void updateAuthor(Author author) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.merge(author);
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public void deleteAuthor(int id) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            Author author = em.find(Author.class, id);
+            em.remove(author);
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public Author findById(int id) {
+        EntityManager em = JPAUtil.getEntityManager();
+        Author author = em.find(Author.class, id);
+        return author;
+    }
 }
