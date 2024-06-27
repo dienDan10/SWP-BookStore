@@ -24,6 +24,11 @@
     <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
     <%-- Data Table --%>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css">
+    <style>
+        .dt-search > label {
+            display: none;
+        }
+    </style>
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -48,7 +53,7 @@
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive px-3">
-                            <table class="table align-items-center mb-0 table-hover">
+                            <table class="table align-items-center mb-0 table-hover" id="category-table" style="width: 100%">
                                 <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
@@ -94,7 +99,7 @@
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive px-3">
-                            <table class="table align-items-center mb-0 table-hover">
+                            <table class="table align-items-center mb-0 table-hover" id="publisher-table" style="width: 100%">
                                 <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
@@ -172,7 +177,7 @@
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive px-3">
-                            <table class="table align-items-center mb-0 table-hover" id="my-table" style="width: 100%">
+                            <table class="table align-items-center mb-0 table-hover" id="author-table" style="width: 100%">
                                 <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-start">ID</th>
@@ -328,7 +333,30 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 <script>
-    new DataTable("#my-table");
+    new DataTable("#author-table", {
+        "pageLength": 5,
+        "lengthMenu": [5,10,15,20],
+        "initComplete": function() {
+            var $searchInput = $('.dt-input');
+            $searchInput.attr('placeholder', 'Search...'); // Add placeholder
+        }
+    });
+    new DataTable("#publisher-table", {
+        "pageLength": 5,
+        "lengthMenu": [5,10,15,20],
+        "initComplete": function() {
+            var $searchInput = $('.dt-input');
+            $searchInput.attr('placeholder', 'Search...'); // Add placeholder
+        }
+    });
+    new DataTable("#category-table", {
+        "pageLength": 5,
+        "lengthMenu": [5,10,15,20],
+        "initComplete": function() {
+            var $searchInput = $('.dt-input');
+            $searchInput.attr('placeholder', 'Search...'); // Add placeholder
+        }
+    })
 </script>
 </body>
 
