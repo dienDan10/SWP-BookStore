@@ -70,11 +70,37 @@
                                             </div>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            <a href="#" class="badge badge-sm bg-gradient-success" data-bs-toggle="modal" data-bs-target="#userModal">Update</a>
-                                            <a href="#" onclick="if (!confirm('Do you want to delete?')) return false"
+                                            <a href="#" class="badge badge-sm bg-gradient-success" data-bs-toggle="modal" data-bs-target="#category-${category.id}">Update</a>
+                                            <a href="${context}/delete-category?categoryId=${category.id}" onclick="if (!confirm('Do you want to delete?')) return false"
                                                class="badge badge-sm bg-gradient-danger">Delete</a>
                                         </td>
                                     </tr>
+                                    <!-- popup Update Category -->
+                                    <div class="modal fade" id="category-${category.id}" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-special">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="categoryModalLabel">Update Category</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="${context}/update-category" category-id="${category.id}" method="post">
+                                                        <input type="hidden" name="id" value="${category.id}">
+                                                        <div class="mb-3">
+                                                            <label for="categoryName-u" class="form-label">Name</label>
+                                                            <input type="text" class="form-control" id="categoryName-u" required
+                                                                   name="categoryName" aria-describedby="categoryNameHelp" value="${category.name}">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <p type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</p>
+                                                            <button type="submit" class="btn btn-primary">Save Category</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- popup Update category end here -->
                                 </c:forEach>
                                 </tbody>
                             </table>
@@ -225,7 +251,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- popup Update publisher end here -->
+                                        <!-- popup Update author end here -->
                                     </c:forEach>
                                     </tbody>
                             </table>
@@ -248,17 +274,18 @@
                 </div>
                 <div class="modal-body">
                     <!-- Form fields go here -->
-                    <form>
+                    <form action="${context}/add-category" method="post">
                         <div class="mb-3">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-control" id="bookName" aria-describedby="categoryNameHelp">
+                            <label for="categoryName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="categoryName" name="categoryName" aria-describedby="categoryNameHelp">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save Category</button>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save Category</button>
-                </div>
+
             </div>
         </div>
     </div>

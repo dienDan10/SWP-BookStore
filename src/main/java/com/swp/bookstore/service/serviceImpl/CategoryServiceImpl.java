@@ -25,4 +25,12 @@ public class CategoryServiceImpl implements CategoryService {
     public Category findByName(String name) {
         return categoryDAO.findByName(name);
     }
+
+    public void updateCategory(Category category) { categoryDAO.updateCategory(category); }
+
+
+    public void deleteCategory(int id) { categoryDAO.deleteCategory(id); }
+
+
+    public void addCategory(Category category) { categoryDAO.addCategory(category); }
 }

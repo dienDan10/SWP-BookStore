@@ -2,6 +2,7 @@ package com.swp.bookstore.dao.daoImpl;
 
 import com.swp.bookstore.dao.CategoryDAO;
 import com.swp.bookstore.entity.Category;
+import com.swp.bookstore.entity.Publisher;
 import com.swp.bookstore.utils.JPAUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -45,5 +46,51 @@ public class CategoryDAOImpl implements CategoryDAO {
             em.close();
         }
         return category;
+    }
+
+    public void addCategory(Category category) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.persist(category);
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }
+
+    public void updateCategory(Category category) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            em.merge(category);
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }
+
+    public void deleteCategory(int id){
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            Category category = em.find(Category.class, id);
+            em.remove(category);
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
     }
 }
