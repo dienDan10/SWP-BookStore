@@ -100,6 +100,7 @@ public class AddProduct extends HttpServlet {
             book.setImageFront("/img/book-image/" + imageFront);// set book path
             book.setImageBack("/img/book-image/" + imageBack);
             book.setSummary(summary);
+            book.setActive(true);
             bookService.addBook(book);
             // send message
             session.setAttribute("successMsg", "Add book successful!");

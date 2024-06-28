@@ -11,8 +11,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name = "DeactivateProduct", urlPatterns = "/deactivate-product")
-public class DeactivateProduct extends HttpServlet {
+@WebServlet(name="ChangeBookStatus", urlPatterns = "/change-book-status")
+public class ChangeBookStatus extends HttpServlet {
 
     private BookService bookService;
 
@@ -23,19 +23,10 @@ public class DeactivateProduct extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        String context = req.getContextPath();
-
-        String id = req.getParameter("bookId");
-
-        Book book = bookService.findById(Long.parseLong(id));
-        book.setActive(false);
+        Long id = Long.parseLong(req.getParameter("bookId"));
+        Book book = bookService.findById(id);
+        book.setActive(!book.isActive());
         bookService.updateBook(book);
-        resp.sendRedirect(context + "/manage-product");
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
+        resp.sendRedirect(req.getContextPath() + "/manage-product");
     }
 }
