@@ -103,6 +103,22 @@ public class CartDAOImpl implements CartDAO {
     }
 
     @Override
+    public List<Cart> findCartsByBookId(long bookId) {
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<Cart> query = em.createQuery("select c from Cart c where c.book.id = :bookId", Cart.class);
+        query.setParameter("bookId", bookId);
+        List<Cart> carts = null;
+        try {
+            carts = query.getResultList();
+        } catch (NoResultException e) {
+            System.out.println("find cart failed");
+        } finally {
+            em.close();
+        }
+        return carts;
+    }
+
+    @Override
     public List<Cart> findAllByUserId(long userId) {
         EntityManager em = JPAUtil.getEntityManager();
         TypedQuery<Cart> query = em.createQuery("select c from Cart c where c.userId = :userId", Cart.class);

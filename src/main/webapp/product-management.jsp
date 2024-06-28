@@ -72,10 +72,8 @@
                                                 Action</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Action</th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Action</th>
+                                                Status</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -102,15 +100,29 @@
                                                     <span class="text-secondary text-xs font-weight-bold">${book.quantity}</span>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
-                                                    <a href="${context}/book-detail?id=${book.id}" target="_blank" class="badge badge-sm bg-gradient-success">View</a>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <a href="#" class="badge badge-sm bg-gradient-success"
+                                                    <a href="${context}/book-detail?id=${book.id}" target="_blank" class="badge badge-sm bg-gradient-primary">View</a>
+                                                    <a href="#" class="badge badge-sm bg-gradient-warning"
                                                        data-bs-toggle="modal" data-bs-target="#book-${book.id}">Update</a>
+                                                    <a href="${context}/delete-product?bookId=${book.id}" onclick="if (!confirm('Do you want to delete this book?')) return false"
+                                                       class="badge badge-sm bg-gradient-danger">Delete</a>
                                                 </td>
+<%--                                                <td class="align-middle text-center text-sm">--%>
+
+<%--                                                </td>--%>
+<%--                                                <td class="align-middle text-center text-sm">--%>
+
+<%--                                                </td>--%>
                                                 <td class="align-middle text-center text-sm">
-                                                    <a href="${context}/delete-product?bookId=${book.id}" onclick="if (!confirm('Do you want to delete?')) return false"
-                                                       class="badge badge-sm bg-gradient-success">Delete</a>
+                                                    <c:choose>
+                                                        <c:when test="${book.isActive()}">
+                                                            <a href="${context}/change-book-status?bookId=${book.id}" onclick="if (!confirm('Do you want to inactivate this book?')) return false"
+                                                               class="badge badge-sm bg-gradient-success">Active</a>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <a href="${context}/change-book-status?bookId=${book.id}" onclick="if (!confirm('Do you want to activate this book?')) return false"
+                                                               class="badge badge-sm bg-gradient-secondary">InActive</a>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </td>
                                             </tr>
                                             <!-- popup Update book -->
@@ -331,7 +343,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label>Upload pictures</label>
-                                <input type="file" name="images" class="form-control" multiple required>
+                                <input type="file" name="images" class="form-control" multiple required accept=".jpg, .jpeg, .png, .webp">
                                 <div class="fst-italic">(.jpg, .jpeg, .png, .webp only)</div>
                             </div>
                             <button class="btn btn-primary mt-3">Submit</button>

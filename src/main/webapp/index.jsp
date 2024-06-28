@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 
@@ -149,6 +150,9 @@
                         <div class="d-inline-block" style="font-size: 10px;">
                             <c:forEach var="i" begin="1" end="${book.averageRating}">
                                 <i class="fa-solid fa-star text-warning"></i>
+                            </c:forEach>
+                            <c:forEach var="i" begin="1" end="${5-book.averageRating}">
+                                <i class="fa-solid fa-star text-black-50"></i>
                             </c:forEach>
                         </div>
                         <p>Chỉ với

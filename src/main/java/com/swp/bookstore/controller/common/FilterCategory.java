@@ -37,6 +37,7 @@ public class FilterCategory extends HttpServlet {
             builder.append("<div class=\"d-inline-block px-4\" style=\"font-size: 10px;\">\n");
             int rating = (int) Math.ceil(book.getAverageRating());
             builder.append("<i class=\"fa-solid fa-star text-warning\"></i>\n".repeat(Math.max(0, rating)));
+            builder.append("<i class=\"fa-solid fa-star text-black-50\"></i>\n".repeat(5 - rating));
             builder.append("</div>\n");
 
             out.println("<div class=\"col-lg-6 col-sm-6\">\n" +

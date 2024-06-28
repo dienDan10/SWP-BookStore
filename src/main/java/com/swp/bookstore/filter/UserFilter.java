@@ -24,6 +24,11 @@ public class UserFilter implements Filter {
             return;
         }
 
+        if (user.hasRole(ROLES.ADMIN) || user.hasRole(ROLES.SELLER)) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN);
+            return;
+        }
+
         filterChain.doFilter(request, response);
     }
 

@@ -39,4 +39,7 @@ public class CartServiceImpl implements CartService {
     public List<Cart> findAllByUserId(long userId) {
         return cartDAO.findAllByUserId(userId);
     }
+
+    @Override
+    public List<Cart> findCartsByBookId(long bookId) { return cartDAO.findCartsByBookId(bookId); }
 }

@@ -40,6 +40,8 @@ public class Book {
     private double averageRating;
     @Column(name="sold_num")
     private int soldNum;
+    @Column(name="is_active")
+    private boolean isActive;
 
     @ManyToOne(
             fetch = FetchType.EAGER,

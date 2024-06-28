@@ -182,4 +182,22 @@ public class BookDAOImpl implements BookDAO {
         }
         return count;
     }
+
+    @Override
+    public void deactivateBook(long id) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+            Book book = em.find(Book.class, id);
+            book.setActive(false);
+            em.merge(book);
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }
 }

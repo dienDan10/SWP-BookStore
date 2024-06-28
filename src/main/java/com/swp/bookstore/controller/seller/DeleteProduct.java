@@ -1,8 +1,9 @@
 package com.swp.bookstore.controller.seller;
 
 import com.swp.bookstore.entity.Book;
-import com.swp.bookstore.service.BookService;
-import com.swp.bookstore.service.serviceImpl.BookServiceImpl;
+import com.swp.bookstore.entity.Cart;
+import com.swp.bookstore.service.*;
+import com.swp.bookstore.service.serviceImpl.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,17 +12,24 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.util.List;
 
 @WebServlet(name="DeleteProduct",urlPatterns = "/delete-product")
 public class DeleteProduct extends HttpServlet {
 
     private BookService bookService;
+    private AuthorService authorService;
+    private CartService cartService;
+    private CategoryService categoryService;
+    private PublisherService publisherService;
 
     @Override
     public void init() throws ServletException {
         bookService = new BookServiceImpl();
+        authorService = new AuthorServiceImpl();
+        cartService = new CartServiceImpl();
+        categoryService = new CategoryServiceImpl();
+        publisherService = new PublisherServiceImpl();
     }
 
     @Override
@@ -29,29 +37,33 @@ public class DeleteProduct extends HttpServlet {
         //get context path
         String context = req.getContextPath();
 
-        //get bookid from request
-        int bookId = Integer.parseInt(req.getParameter("bookId"));
-        // get book from database
+        //get book from request's bookId
+        Long bookId = Long.parseLong(req.getParameter("bookId"));
         Book book = bookService.findById(bookId);
-        // delete book picture from server
-        String imgFront = book.getImageFront();
-        String imgBack = book.getImageBack();
-        String path = req.getServletContext().getRealPath("");
-        Path imageFrontPath = Path.of(path + imgFront);
-        Path imageBackPath = Path.of(path + imgBack);
-        if (Files.exists(imageFrontPath)) {
-            Files.delete(imageFrontPath);
+//        book.setAuthor(null);
+//        book.setCategory(null);
+//        book.setPublisher(null);
+        //Delete book condition
+        if(book.isActive()){
+            // send message
+            HttpSession session = req.getSession();
+            session.setAttribute("invalidMsg", "The book is still actively being sold");
+            resp.sendRedirect(context + "/manage-product");
+        } else {
+
+            //update Cart, Author, Category from book
+            List<Cart> carts = cartService.findCartsByBookId(bookId);
+            for (Cart cart : carts) {
+                cartService.removeCart(cart.getId());
+            }
+            //delete book
+            bookService.deleteBook(bookId);
+            // send message
+            HttpSession session = req.getSession();
+            session.setAttribute("successMsg", "Book deleted successfully");
+            //back to manage product
+            resp.sendRedirect(context + "/manage-product");
         }
-        if (Files.exists(imageBackPath)) {
-            Files.delete(imageBackPath);
-        }
-        //delete book
-        bookService.deleteBook(bookId);
-        // send message
-        HttpSession session = req.getSession();
-        session.setAttribute("successMsg", "Book deleted successfully");
-        //back to manage product
-        resp.sendRedirect(context + "/manage-product");
     }
 
     @Override

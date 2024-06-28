@@ -106,11 +106,18 @@
                         <tbody class="table-body">
                         <c:forEach var="item" items="${carts}">
                             <tr>
-                                <c:if test="${item.book.quantity == 0}">
-                                    <td class="no-product">
-                                        Sản phẩm hiện đang hết hàng
-                                    </td>
-                                </c:if>
+                                <c:choose>
+                                    <c:when test="${!item.book.isActive()}">
+                                        <td class="no-product">
+                                            Sản phẩm hiện đã ngừng kinh doanh
+                                        </td>
+                                    </c:when>
+                                    <c:when test="${item.book.quantity == 0}">
+                                        <td class="no-product">
+                                            Sản phẩm hiện đang hết hàng
+                                        </td>
+                                    </c:when>
+                                </c:choose>
                                 <td class="d-flex align-items-center">
                                     <div class="d-flex align-items-center">
                                         <input class="form-check-input" style="width: 16px; height: 16px; left: 20px" type="checkbox" name="id" value="${item.id}">
