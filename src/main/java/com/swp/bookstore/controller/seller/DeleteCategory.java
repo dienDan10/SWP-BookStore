@@ -34,12 +34,15 @@ public class DeleteCategory extends HttpServlet {
         int categoryId = Integer.parseInt(req.getParameter("categoryId"));
 
         try{
+            //get all book with category id
             List<Book> books = bookService.getBookByCategory(categoryId);
+            //update book with category
             for (Book book : books) {
                 book.setCategory(null);
                 book.setActive(false);
                 bookService.updateBook(book);
             }
+            //delete category with category id
             categoryService.deleteCategory(categoryId);
         }
         catch(Exception e){
