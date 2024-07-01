@@ -215,4 +215,36 @@ public class BookDAOImpl implements BookDAO {
         }
         return books;
     }
+
+    public List<Book> getBookByPublisherId(int publisherId) {
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<Book> query = em.createQuery("SELECT b FROM Book b WHERE b.publisher.id = :publisherId", Book.class);
+        query.setParameter("publisherId", publisherId);
+        List<Book> books = new ArrayList<>();
+        try {
+            books = query.getResultList();
+        } catch (NoResultException e) {
+            System.out.println("No books found for the given publisher");
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return books;
+    }
+
+    public List<Book> getBookByAuthorId(int authorId) {
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<Book> query = em.createQuery("SELECT b FROM Book b WHERE b.author.id = :authorId", Book.class);
+        query.setParameter("authorId", authorId);
+        List<Book> books = new ArrayList<>();
+        try {
+            books = query.getResultList();
+        } catch (NoResultException e) {
+            System.out.println("No books found for the given author");
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return books;
+    }
 }

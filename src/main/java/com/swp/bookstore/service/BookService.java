@@ -19,4 +19,6 @@ public interface BookService {
     long countBooks();
     void deactivateBook(long id);
     List<Book> getBookByCategory(int categoryId);
+    List<Book> getBookByPublisherId(int publisherId);
+    List<Book> getBookByAuthorId(int authorId);
 }
