@@ -200,4 +200,19 @@ public class BookDAOImpl implements BookDAO {
             em.close();
         }
     }
+    public List<Book> getBookByCategory(int categoryId) {
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<Book> query = em.createQuery("SELECT b FROM Book b WHERE b.category.id = :categoryId", Book.class);
+        query.setParameter("categoryId", categoryId);
+        List<Book> books = new ArrayList<>();
+        try {
+            books = query.getResultList();
+        } catch (NoResultException e) {
+            System.out.println("No books found for the given category");
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return books;
+    }
 }
