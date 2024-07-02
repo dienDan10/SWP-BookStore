@@ -65,7 +65,7 @@
                         <td>
                           <div class="d-flex px-2 py-1">
                             <div>
-                              <img src="${context}${user.imageURL}" style="object-fit: cover; object-position: center" class="avatar avatar-sm me-3" alt="user1">
+                              <img src="${context}/img/user-image/${user.imageURL}" style="object-fit: cover; object-position: center" class="avatar avatar-sm me-3" alt="user1">
                             </div>
                             <div class="d-flex flex-column justify-content-center">
                               <h6 class="mb-0 text-sm">${user.name}</h6>
