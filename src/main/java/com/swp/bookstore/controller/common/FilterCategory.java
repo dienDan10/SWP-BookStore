@@ -40,7 +40,7 @@ public class FilterCategory extends HttpServlet {
             builder.append("<i class=\"fa-solid fa-star text-black-50\"></i>\n".repeat(5 - rating));
             builder.append("</div>\n");
 
-            out.println("<div class=\"col-lg-6 col-sm-6\">\n" +
+            out.println("<div class=\"col-sm-6 col-lg-4 col-xl-3 px-2\">\n" +
                     "                                <div class=\"single_product_item\">\n" +
                     "                                    <img src=\""+ req.getContextPath() +"/img/book-image/"+book.getImageFront()+"\" alt=\"#\" class=\"img-fluid\">\n" +
                     "                                    <h3 class=\"px-4\"> "+book.getName()+" </h3>\n" +

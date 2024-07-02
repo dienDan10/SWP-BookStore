@@ -83,12 +83,28 @@
             transform: translateY(-10px);
         }
 
+        @media screen and (max-width: 1450px) {
+            .single_product_item > h3 {
+                font-size: 20px;
+            }
+
+            .single_product_item > p {
+                font-size: 16px;
+            }
+
+            .single_product_item > h5 {
+                font-size: 15px;
+            }
+        }
+
         @media screen and (max-width: 450px) {
             #scrollToTopBtn {
-                bottom: 10px; /* Place the button 20px from the bottom */
+                bottom: 10px;
                 right: 10px;
             }
         }
+
+
 
     </style>
 </head>
@@ -114,9 +130,9 @@
 
 <!-- product list part start-->
 <section class="product_list section_padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
+    <div class="container-fluid ">
+        <div class="row mx-lg-3 mx-xl-5">
+            <div class="col-md-3">
                 <div class="product_sidebar">
                     <div class="single_sedebar">
                         <form action="#" class="search-form">
@@ -130,6 +146,7 @@
                             <div class="select_option_dropdown">
                                 <c:forEach var="category" items="${categories}">
                                     <p><a href="#" class="btn_filter_category h6" category-id="${category.id}">${category.name}</a></p>
+                                    <hr style="margin: 5px 0px;">
                                 </c:forEach>
                             </div>
                         </div>
@@ -140,17 +157,18 @@
                             <div class="select_option_dropdown">
                                 <c:forEach var="publisher" items="${publishers}">
                                     <p><a href="#" class="btn_filter_publisher h6" publisher-id="${publisher.id}">${publisher.name}</a></p>
+                                    <hr style="margin: 5px 0px;">
                                 </c:forEach>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="product_list">
                     <div class="row product-list">
                         <c:forEach var="book" items="${books}">
-                            <div class="col-lg-6 col-sm-6">
+                            <div class=" col-sm-6 col-lg-4 col-xl-3 px-2">
                                 <div class="single_product_item">
                                     <img src="${context}/img/book-image/${book.imageFront}" alt="#" class="img-fluid">
                                     <h3 class="px-4"> ${book.name} </h3>

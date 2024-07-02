@@ -69,13 +69,24 @@
         <url-pattern>/view-received-order</url-pattern>
         <url-pattern>/view-cancel-order</url-pattern>
         <url-pattern>/update-product</url-pattern>
+        <url-pattern>/update-author</url-pattern>
+        <url-pattern>/update-category</url-pattern>
+        <url-pattern>/update-publisher</url-pattern>
         <url-pattern>/manage-product</url-pattern>
         <url-pattern>/manage-order</url-pattern>
         <url-pattern>/delete-product</url-pattern>
+        <url-pattern>/delete-author</url-pattern>
+        <url-pattern>/delete-category</url-pattern>
+        <url-pattern>/delete-publisher</url-pattern>
         <url-pattern>/cancel-order</url-pattern>
         <url-pattern>/add-product</url-pattern>
+        <url-pattern>/add-author</url-pattern>
+        <url-pattern>/add-publisher</url-pattern>
+        <url-pattern>/add-category</url-pattern>
         <url-pattern>/accept-order</url-pattern>
         <url-pattern>/excel-import</url-pattern>
+        <url-pattern>/classification</url-pattern>
+        <url-pattern>/change-book-status</url-pattern>
     </filter-mapping>
 
     <filter-mapping>
