@@ -148,7 +148,7 @@
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div>
-                                                        <img src="${context}${order.user.imageURL}" class="avatar avatar-sm me-3" alt="user1" style="object-fit: cover; object-position: center">
+                                                        <img src="${context}/img/user-image/${order.user.imageURL}" class="avatar avatar-sm me-3" alt="user1" style="object-fit: cover; object-position: center">
                                                     </div>
                                                     <div class="d-flex flex-column justify-content-center">
                                                         <h6 class="mb-0 text-sm">${order.user.name}</h6>
