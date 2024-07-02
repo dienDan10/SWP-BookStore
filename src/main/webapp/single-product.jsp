@@ -71,7 +71,9 @@
                     <h3 class="book-title">${book.name}</h3>
                     <div class="d-flex flex-row align-items-center justify-content-between flex-row">
                         <div> </div><div> </div>
-                        <h5 class="mb-0 mr-lg-5">${book.author.name}</h5>
+                        <h5 class="mb-0 mr-lg-5">
+                            <a href="${context}/search-by-author?authorId=${book.author.id}" class="author-name">${book.author.name}</a>
+                        </h5>
                         <div class="d-inline-block" style="font-size: 10px;">
                             <span style="font-size: 12px;">Đánh giá: </span>
                             <c:forEach var="i" begin="1" end="${book.averageRating}">

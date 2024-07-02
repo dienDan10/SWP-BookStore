@@ -88,6 +88,10 @@
                 bottom: 10px; /* Place the button 20px from the bottom */
                 right: 10px;
             }
+
+            div > h3 {
+                font-size: 18px;
+            }
         }
 
     </style>
@@ -113,44 +117,17 @@
 <!-- breadcrumb part end-->
 
 <!-- product list part start-->
-<section class="product_list section_padding">
+<section class="product_list section_padding" style="padding-top: 50px">
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <div class="product_sidebar">
-                    <div class="single_sedebar">
-                        <form action="#" class="search-form">
-                            <input type="text" name="searchValue" placeholder="Tìm kiếm" class="search-input h6" style="font-family: 'Inter','Helvetica Neue', sans-serif" required>
-                            <i class="ti-search"></i>
-                        </form>
-                    </div>
-                    <div class="single_sedebar">
-                        <div class="select_option">
-                            <div class="select_option_list h6" style="font-family: 'Inter','Helvetica Neue', sans-serif">Thể loại <i class="right fas fa-caret-down"></i> </div>
-                            <div class="select_option_dropdown">
-                                <c:forEach var="category" items="${categories}">
-                                    <p><a href="#" class="btn_filter_category h6" category-id="${category.id}">${category.name}</a></p>
-                                </c:forEach>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single_sedebar">
-                        <div class="select_option">
-                            <div class="select_option_list h6" style="font-family: 'Inter','Helvetica Neue', sans-serif">Nhà Xuất bản<i class="right fas fa-caret-down"></i> </div>
-                            <div class="select_option_dropdown">
-                                <c:forEach var="publisher" items="${publishers}">
-                                    <p><a href="#" class="btn_filter_publisher h6" publisher-id="${publisher.id}">${publisher.name}</a></p>
-                                </c:forEach>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-12 mb-5">
+                <h3 class="text-center">Tác giả: ${author.name}</h3>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="product_list">
                     <div class="row product-list">
                         <c:forEach var="book" items="${books}">
-                            <div class="col-lg-6 col-sm-6">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                                 <div class="single_product_item">
                                     <img src="${context}/img/book-image/${book.imageFront}" alt="#" class="img-fluid">
                                     <h3 class="px-4"> ${book.name} </h3>
@@ -217,76 +194,8 @@
 </section>
 <!-- client review part end -->
 
-<!-- feature part here -->
-<section class="feature_part section_padding">
-    <div class="container">
-        <div class="row justify-content-between">
-            <div class="col-lg-6">
-                <div class="feature_part_tittle">
-                    <h3>Những cảm xúc đặc biệt khi đọc một cuốn sách hay là mô tả chính xác nhất về bạn</h3>
-                </div>
-            </div>
-            <div class="col-lg-5">
-                <div class="feature_part_content">
-                    <p>Thông thường khi ta đọc sách, ta thường sử dụng trí tưởng tượng,
-                        tự tạo nên những khung cảnh, hàng động của nhân vật.
-                        Và trong một lúc vô tình nào đó,
-                        ta thấy mình như đang sống trong trang sách cùng với tác giả và cả nhân vật của y</p>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-3 col-sm-6">
-                <div class="single_feature_part">
-                    <img src="img/icon/feature_icon_1.svg" alt="#">
-                    <h4>Hỗ trợ thẻ tín dụng</h4>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="single_feature_part">
-                    <img src="img/icon/feature_icon_2.svg" alt="#">
-                    <h4>Đặt hàng trực tuyến</h4>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="single_feature_part">
-                    <img src="img/icon/feature_icon_3.svg" alt="#">
-                    <h4>Miễn phí vận chuyển</h4>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-                <div class="single_feature_part">
-                    <img src="img/icon/feature_icon_4.svg" alt="#">
-                    <h4>Kèm theo quà tặng</h4>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- feature part end -->
-
-<!-- subscribe part here -->
-<section class="subscribe_part section_padding">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="subscribe_part_content">
-                    <h2>Get promotions & updates!</h2>
-                    <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources credibly innovate granular internal .</p>
-                    <div class="subscribe_form">
-                        <input type="email" placeholder="Enter your mail">
-                        <a href="#" class="btn_1">Subscribe</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- subscribe part end -->
-
 <!--Current page-->
 <p style="display: none" class="current-page" page="${currentPage}"></p>
-<p style="display: none" class="filter" filter-by="none" ></p>
 <button id="scrollToTopBtn" title="Go to top"><i class="fa-solid fa-arrow-up"></i></button>
 <div id="toastBox"></div>
 <!--::footer_part start::-->
@@ -321,33 +230,16 @@
 <script>
     const btnLoadMore = document.querySelector('.btn_loadMore');
     btnLoadMore.addEventListener('click', function(event) {
-       event.preventDefault();
-       // get current page
+        event.preventDefault();
+        // get current page
         const currentPage = document.querySelector('.current-page').getAttribute('page');
-        // get filter by action
-        const filterBy = $('.filter').attr('filter-by');
-        if (filterBy === 'none') {
-            loadMoreDefault(currentPage);
-        } else if (filterBy === 'category') {
-            const filterId = $('.filter').attr('filter-id');
-            loadMoreCategory(filterId, currentPage);
-        } else if (filterBy === 'publisher') {
-            const filterId = $('.filter').attr('filter-id');
-            loadMorePublisher(filterId, currentPage);
-        } else if (filterBy === 'search') {
-            const input = $('.filter').attr('filter-id');
-            loadMoreSearch(input, currentPage);
-        }
-
-    });
-
-    // load more without filter option
-    function loadMoreDefault(currentPage) {
+        // get next 12 product
         $.ajax({
-            url: '${context}/next-page',
-            type: 'get',
+            url: '${context}/search-by-author',
+            type: 'post',
             data: {
                 page: currentPage,
+                authorId: ${author.id}
             },
             success: function (data) {
                 if (data === '') {
@@ -363,119 +255,7 @@
 
             }
         });
-    }
-    // click event for btn category
-    const btnFilterCategory = document.querySelectorAll('.btn_filter_category');
-    btnFilterCategory.forEach(btn => btn.addEventListener('click', function(event) {
-        event.preventDefault();
-        const categoryId = this.getAttribute('category-id');
-        loadMoreCategory(categoryId, 0);
-    }));
-    // load more with category filter
-    function loadMoreCategory(categoryId, currentPage) {
-        $.ajax({
-            url: '${context}/filter-category',
-            type: 'get',
-            data: {
-                categoryId: categoryId,
-                currentPage: currentPage
-            },
-            success: function (data) {
-                if (data === '') {
-                    showToast();
-                    return;
-                }
-                if (currentPage === 0) {
-                    $('.product-list').empty();
-                }
-                $('.product-list').append(data);
-                document.querySelector('.current-page').setAttribute('page', Number(currentPage) + 1);
-                $('.filter').attr('filter-by', 'category');
-                $('.filter').attr('filter-id', categoryId);
-                formatItemPrice();
-                console.log('Load page by category success');
-            },
-            error: function (dd) {
-
-            }
-        });
-    }
-    // click event for btn publisher
-    const btnFilterPublisher = document.querySelectorAll('.btn_filter_publisher');
-    btnFilterPublisher.forEach(btn => btn.addEventListener('click',function(event) {
-       event.preventDefault();
-       const publisherId = this.getAttribute('publisher-id');
-        loadMorePublisher(publisherId, 0);
-    }));
-    // load more with publisher filter
-    function loadMorePublisher(publisherId, currentPage) {
-        $.ajax({
-            url: '${context}/filter-publisher',
-            type: 'get',
-            data: {
-                publisherId: publisherId,
-                currentPage: currentPage
-            },
-            success: function (data) {
-                if (data === '') {
-                    showToast();
-                    return;
-                }
-                if (currentPage === 0) {
-                    $('.product-list').empty();
-                }
-                $('.product-list').append(data);
-                document.querySelector('.current-page').setAttribute('page', Number(currentPage) + 1);
-                $('.filter').attr('filter-by', 'publisher');
-                $('.filter').attr('filter-id', publisherId);
-                formatItemPrice();
-                console.log('Load page by publisher success');
-            },
-            error: function (dd) {
-
-            }
-        });
-    }
-
-    // submit event for search book
-    const searchForm = document.querySelector('.search-form');
-    searchForm.addEventListener('submit', function(event) {
-       event.preventDefault();
-       // get form input
-        const input = document.querySelector('.search-input').value;
-        const currentPage = 0;
-        // send to server to get data
-        loadMoreSearch(input, currentPage);
     });
-
-    function loadMoreSearch(input, currentPage) {
-        $.ajax({
-            url: '${context}/search-book',
-            type: 'GET',
-            data: {
-                searchInput: input,
-                currentPage: currentPage
-            },
-            success: function (data) {
-                if (data === '') {
-                    showToast();
-                    return;
-                }
-                if (currentPage === 0) {
-                    $('.product-list').empty();
-                }
-                $('.product-list').append(data);
-                document.querySelector('.current-page').setAttribute('page', Number(currentPage) + 1);
-                $('.filter').attr('filter-by', 'search');
-                $('.filter').attr('filter-id', input);
-                formatItemPrice();
-                console.log('Load page by search success');
-            },
-            error: function (dd) {
-
-            }
-        });
-    }
 
     // format book price
     function formatItemPrice() {
@@ -489,7 +269,7 @@
 
     // scroll to top btn
     // Get the button
-    let mybutton = document.getElementById("scrollToTopBtn");
+    const mybutton = document.getElementById("scrollToTopBtn");
 
     // When the user scrolls down 20px from the top of the document, show the button
     window.onscroll = function() {scrollFunction()};

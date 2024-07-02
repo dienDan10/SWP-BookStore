@@ -66,10 +66,9 @@ public class BookServiceImpl implements BookService {
         return bookDAO.countBooks();
     }
 
-    @Override
-    public void deactivateBook(long id) { bookDAO.deactivateBook(id); }
-
-    public List<Book>  getBookByCategory(int categoryId){return bookDAO.getBookByCategory(categoryId);}
+    public List<Book>  getBookByCategory(int categoryId){
+        return bookDAO.getBookByCategory(categoryId);
+    }
 
     public List<Book> getBookByPublisherId(int publisherId) {
         return bookDAO.getBookByPublisherId(publisherId);
@@ -77,5 +76,10 @@ public class BookServiceImpl implements BookService {
 
     public List<Book> getBookByAuthorId(int authorId) {
         return bookDAO.getBookByAuthorId(authorId);
+    }
+
+    @Override
+    public List<Book> getBookByAuthorByPage(int pageSize, int currentPage, int authorId) {
+        return bookDAO.getBookByAuthorByPage(pageSize,currentPage,authorId);
     }
 }
