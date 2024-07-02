@@ -28,6 +28,7 @@
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="css/toast.css">
     <style>
         #scrollToTopBtn {
             position: fixed; /* Fixed position */
@@ -133,7 +134,7 @@
                         <c:forEach var="book" items="${books}">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_item">
-                                    <img src="${context}${book.imageFront}" alt="#" class="img-fluid">
+                                    <img src="${context}/img/book-image/${book.imageFront}" alt="#" class="img-fluid">
                                     <h3 class="px-4"> <a href="${context}/book-detail?id=${book.id}">${book.name}</a> </h3>
                                     <h5 class="px-4">Tác giả: ${book.author.name}</h5>
                                     <div class="d-inline-block px-4" style="font-size: 10px;">
@@ -268,7 +269,7 @@
 <p style="display: none" class="current-page" page="${currentPage}"></p>
 <p style="display: none" class="filter" filter-by="none" ></p>
 <button id="scrollToTopBtn" title="Go to top"><i class="fa-solid fa-arrow-up"></i></button>
-
+<div id="toastBox"></div>
 <!--::footer_part start::-->
 <%@ include file="components/footer.jsp"%>
 <!--::footer_part end::-->
@@ -330,6 +331,10 @@
                 page: currentPage,
             },
             success: function (data) {
+                if (data === '') {
+                    showToast();
+                    return;
+                }
                 $('.product-list').append(data);
                 document.querySelector('.current-page').setAttribute('page', Number(currentPage) + 1);
                 formatItemPrice();
@@ -357,6 +362,10 @@
                 currentPage: currentPage
             },
             success: function (data) {
+                if (data === '') {
+                    showToast();
+                    return;
+                }
                 if (currentPage === 0) {
                     $('.product-list').empty();
                 }
@@ -389,6 +398,10 @@
                 currentPage: currentPage
             },
             success: function (data) {
+                if (data === '') {
+                    showToast();
+                    return;
+                }
                 if (currentPage === 0) {
                     $('.product-list').empty();
                 }
@@ -425,6 +438,10 @@
                 currentPage: currentPage
             },
             success: function (data) {
+                if (data === '') {
+                    showToast();
+                    return;
+                }
                 if (currentPage === 0) {
                     $('.product-list').empty();
                 }
@@ -469,6 +486,26 @@
     // When the user clicks on the button, scroll to the top of the document
     mybutton.onclick = function() {
         window.scrollTo({top: 200, behavior: 'smooth'});
+    }
+
+    const toastBox = document.querySelector('#toastBox');
+    const invalidIcon = '<i class="fa-solid fa-circle-exclamation"></i>';
+    const msg = 'Không còn sản phẩm nào!';
+
+
+    function showToast() {
+        const toast = document.createElement('div');
+        toast.classList.add('toastItem');
+        let content = 'Hello';
+        toast.classList.add('invalid');
+        content = invalidIcon + msg;
+
+        toast.innerHTML = content;
+        toastBox.appendChild(toast);
+
+        setTimeout(() => {
+            toast.remove();
+        }, 3000);
     }
 
 </script>

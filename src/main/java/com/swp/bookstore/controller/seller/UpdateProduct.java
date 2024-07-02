@@ -18,10 +18,8 @@ import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
-import java.io.IOException;
-import java.nio.file.Files;
+import java.io.*;
 import java.nio.file.InvalidPathException;
-import java.nio.file.Path;
 
 @WebServlet(name="UpdateProduct", urlPatterns = "/update-product")
 @MultipartConfig(
@@ -81,8 +79,8 @@ public class UpdateProduct extends HttpServlet {
         Publisher publisher = publisherService.findById(Integer.parseInt(publisherId));
 
         // Get folder path
-        String contextPath = req.getServletContext().getRealPath("");// set path
-        //Get img text
+        String contextPath = req.getServletContext().getRealPath("/img/book-image");// set path
+        //Get img part
         Part frontImgPart = req.getPart("imgFront");// get Img
         Part backImgPart = req.getPart("imgBack");
 
@@ -115,6 +113,7 @@ public class UpdateProduct extends HttpServlet {
         resp.sendRedirect(context + "/manage-product");
     }
 
+
     //Delete old image and Save image
     private void saveNewImage(Part imgPart, String contextPath, Book book, boolean isFront) throws IOException {
 
@@ -127,16 +126,23 @@ public class UpdateProduct extends HttpServlet {
                 } else {
                     img = book.getImageBack();
                 }
-                if (Files.exists(Path.of(contextPath + img))) {
-                    Files.delete(Path.of(contextPath + img));
+                File imageFile = new File(contextPath + File.separator + img);
+                if (imageFile.exists()) {
+                    imageFile.delete();
                 }
-            } catch (IOException | InvalidPathException e) {
+            } catch (InvalidPathException e) {
                 throw new IOException("CANNOT DELETE IMAGE");
             } finally {
                 // save new image to server and folder
-                String image = "/img/book-image/" + imgPart.getSubmittedFileName();// get Img name
-                Path imgPath = Path.of(contextPath + image);
-                imgPart.write(imgPath.toString()); // save image
+                String image = System.currentTimeMillis() + "-" + imgPart.getSubmittedFileName();// get Img name
+                InputStream inputStream = imgPart.getInputStream();
+                byte[] imageByte = new byte[inputStream.available()];
+                inputStream.read(imageByte);
+                inputStream.close();
+                File saveFolder = new File(contextPath + File.separator + image);
+                BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(saveFolder));
+                outputStream.write(imageByte);
+                outputStream.close();
                 if (isFront) {
                     book.setImageFront(image); // set front img book path
                 } else {

@@ -75,7 +75,7 @@
                         <div class="d-flex flex-column align-items-center mb-5">
                             <div class="rounded-circle overflow-hidden mb-5"
                                  style="width: 150px; height: 150px;">
-                                <img src="${context}${user.imageURL}"
+                                <img src="${context}/img/user-image/${user.imageURL}"
                                      class="w-100 h-100" style="object-position: center; object-fit: cover"
                                      alt="">
                             </div>

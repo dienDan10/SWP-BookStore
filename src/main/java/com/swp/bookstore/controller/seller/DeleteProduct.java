@@ -38,7 +38,7 @@ public class DeleteProduct extends HttpServlet {
         String context = req.getContextPath();
 
         //get book from request's bookId
-        Long bookId = Long.parseLong(req.getParameter("bookId"));
+        long bookId = Long.parseLong(req.getParameter("bookId"));
         Book book = bookService.findById(bookId);
 //        book.setAuthor(null);
 //        book.setCategory(null);

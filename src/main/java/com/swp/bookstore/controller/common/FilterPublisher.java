@@ -43,7 +43,7 @@ public class FilterPublisher extends HttpServlet {
 
             out.println("<div class=\"col-lg-6 col-sm-6\">\n" +
                     "                                <div class=\"single_product_item\">\n" +
-                    "                                    <img src=\""+ req.getContextPath() + book.getImageFront()+"\" alt=\"#\" class=\"img-fluid\">\n" +
+                    "                                    <img src=\""+ req.getContextPath() + "/img/book-image/" + book.getImageFront()+"\" alt=\"#\" class=\"img-fluid\">\n" +
                     "                                    <h3 class=\"px-4\"> <a href=\""+req.getContextPath()+"/book-detail?id="+book.getId()+"\">"+ book.getName()+"</a> </h3>\n" +
                     "                                    <h5 class=\"px-4\">Tác giả: "+ book.getAuthor().getName()+"</h5>\n" +
                     builder.toString() +

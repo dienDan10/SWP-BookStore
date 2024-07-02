@@ -142,7 +142,7 @@
                 <div class="col-lg-4 col-sm-6">
                     <div class="single_product_item">
                         <div class="single_product_item_thumb">
-                            <img src="${context}${book.imageFront}"
+                            <img src="${context}/img/book-image/${book.imageFront}"
                                  alt="#" class="img-fluid">
                         </div>
                         <h3> <a href="${context}/book-detail?id=${book.id}">${book.name}</a> </h3>

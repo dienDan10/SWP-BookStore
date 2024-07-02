@@ -58,7 +58,6 @@
         <url-pattern>/view-profile</url-pattern>
         <url-pattern>/change-password</url-pattern>
         <url-pattern>/view-order</url-pattern>
-        <url-pattern>/view-order-detail</url-pattern>
         <url-pattern>/receive-order</url-pattern>
         <url-pattern>/rating</url-pattern>
     </filter-mapping>

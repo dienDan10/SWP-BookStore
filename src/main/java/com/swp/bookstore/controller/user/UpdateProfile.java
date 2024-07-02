@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
+import java.io.File;
 import java.io.IOException;
 
 @WebServlet(name="UpdateProfile", urlPatterns = "/update-profile")
@@ -32,7 +33,7 @@ public class UpdateProfile extends HttpServlet {
         String username = req.getParameter("username");
         String phone = req.getParameter("phone");
         String birthDate = req.getParameter("birth");
-        Part image = req.getPart("user-picture");
+        Part imagePart = req.getPart("user-picture");
         int gender = Integer.parseInt(req.getParameter("gender"));
 
         // get user from session
@@ -46,11 +47,11 @@ public class UpdateProfile extends HttpServlet {
         user.setGender(gender == 1);
 
         // check for user want to change picture
-        if (!image.getSubmittedFileName().isEmpty()) {  // change user picture
-            String realPath = req.getServletContext().getRealPath("");
-            System.out.println(realPath);
-            user.setImageURL("/img/user-image/" + image.getSubmittedFileName());
-            image.write(realPath + user.getImageURL());
+        if (!imagePart.getSubmittedFileName().isEmpty()) {  // change user picture
+            String realPath = req.getServletContext().getRealPath("/img/user-image");
+            String imageName = System.currentTimeMillis() + "-" + imagePart.getSubmittedFileName();
+            user.setImageURL(imageName);
+            imagePart.write(realPath + File.separator +  user.getImageURL());
         }
 
         // update user

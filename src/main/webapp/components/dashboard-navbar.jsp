@@ -16,7 +16,7 @@
                         <c:when test="${not empty user}">
                             <div class="rounded-circle overflow-hidden ml-2 ml-md-4"
                                  style="width: 35px; height: 35px">
-                                <img src="${context}${user.imageURL}"
+                                <img src="${context}/img/user-image/${user.imageURL}"
                                      class="w-100 h-100" style="object-position: center; object-fit: cover"
                                      alt="">
                             </div>
