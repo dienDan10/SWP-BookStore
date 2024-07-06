@@ -41,7 +41,7 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">NEW ORDER</p>
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">ĐƠN HÀNG MỚI</p>
                                 </div>
                             </div>
                             <div class="col-4 text-end">
@@ -59,7 +59,7 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">DELIVERING ORDER</p>
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">ĐƠN HÀNG ĐANG GIAO</p>
                                 </div>
                             </div>
                             <div class="col-4 text-end">
@@ -77,7 +77,7 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">RECEIVED ORDER</p>
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">ĐƠN HÀNG ĐÃ NHẬN</p>
                                 </div>
                             </div>
                             <div class="col-4 text-end">
@@ -95,7 +95,7 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">CANCEL ORDER</p>
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">ĐƠN HÀNG ĐÃ HỦY</p>
                                 </div>
                             </div>
                             <div class="col-4 text-end">
@@ -113,7 +113,7 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
-                        <h6>New Order</h6>
+                        <h6>Đơn hàng mới </h6>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
@@ -123,20 +123,20 @@
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                         ID</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        User Name</th>
+                                        Tên tài khoản</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Create Time</th>
+                                        Ngày tạo</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Amount</th>
+                                        Tổng tiền</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Status</th>
+                                        Trạng Thái</th>
 
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Action</th>
+                                        Hoạt động</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Action</th>
+                                        Hoạt động</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Action</th>
+                                        Hoạt động</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -166,16 +166,16 @@
                                             </td>
                                             <td class="align-middle text-center text-sm">
                                                 <a href="${context}/view-order-detail?orderId=${order.id}"
-                                                   class="badge badge-sm bg-gradient-success" target="_blank">View</a>
+                                                   class="badge badge-sm bg-gradient-success" target="_blank">Xem</a>
                                             </td>
                                             <td class="align-middle text-center text-sm">
                                                 <a href="${context}/accept-order?orderId=${order.id}" class="badge badge-sm bg-gradient-info"
                                                    onclick="if (!confirm('Do you want to accept this order?')) return false"
-                                                >Accept</a>
+                                                >Chấp nhận</a>
                                             </td>
                                             <td class="align-middle text-center text-sm">
                                                 <a href="${context}/cancel-order?id=${order.id}" onclick="if (!confirm('Do you want to cancel this order?')) return false"
-                                                   class="badge badge-sm bg-gradient-danger">Cancel</a>
+                                                   class="badge badge-sm bg-gradient-danger">Hủy</a>
                                             </td>
                                         </tr>
                                     </c:forEach>

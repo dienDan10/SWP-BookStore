@@ -45,11 +45,11 @@
             <div class="col-12 col-lg-6">
                 <div class="card mb-4 rounded-1">
                     <div class="card-header pb-0">
-                        <h6>Category Management</h6>
+                        <h6>Quản Lý Thể Loại</h6>
                     </div>
                     <div class="d-flex">
                         <a href="#" class="btn btn-sm btn-info mb-0 d-none d-lg-block" data-bs-toggle="modal"
-                           data-bs-target="#addCategoryModal" style="margin: 0 auto;">Add New</a>
+                           data-bs-target="#addCategoryModal" style="margin: 0 auto;">Thêm mới</a>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive px-3">
@@ -57,8 +57,8 @@
                                 <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tên</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hoạt động</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -75,9 +75,9 @@
                                             </div>
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            <a href="#" class="badge badge-sm bg-gradient-success" data-bs-toggle="modal" data-bs-target="#category-${category.id}">Update</a>
+                                            <a href="#" class="badge badge-sm bg-gradient-success" data-bs-toggle="modal" data-bs-target="#category-${category.id}">Cập Nhật</a>
                                             <a href="${context}/delete-category?categoryId=${category.id}" onclick="if (!confirm('Do you want to delete?')) return false"
-                                               class="badge badge-sm bg-gradient-danger">Delete</a>
+                                               class="badge badge-sm bg-gradient-danger">Xóa</a>
                                         </td>
                                     </tr>
                                     <!-- popup Update Category -->
@@ -85,20 +85,20 @@
                                         <div class="modal-dialog modal-dialog-special">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="categoryModalLabel">Update Category</h5>
+                                                    <h5 class="modal-title" id="categoryModalLabel">Cập Nhật Thể Loại</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <form action="${context}/update-category" category-id="${category.id}" method="post">
                                                         <input type="hidden" name="id" value="${category.id}">
                                                         <div class="mb-3">
-                                                            <label for="categoryName-u" class="form-label">Name</label>
+                                                            <label for="categoryName-u" class="form-label">Tên</label>
                                                             <input type="text" class="form-control" id="categoryName-u" required
                                                                    name="categoryName" aria-describedby="categoryNameHelp" value="${category.name}">
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <p type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</p>
-                                                            <button type="submit" class="btn btn-primary">Save Category</button>
+                                                            <p type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</p>
+                                                            <button type="submit" class="btn btn-primary">Lưu </button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -117,11 +117,11 @@
             <div class="col-12 col-lg-6">
                 <div class="card mb-4 rounded-1">
                     <div class="card-header pb-0">
-                        <h6>Pushlisher Management</h6>
+                        <h6>Quản Lý Nhà Xuất Bản</h6>
                     </div>
                     <div class="d-flex">
                         <a href="#" class="btn btn-sm btn-info mb-0 d-none d-lg-block" data-bs-toggle="modal"
-                           data-bs-target="#addPublisherModal" style="margin: 0 auto;">Add New</a>
+                           data-bs-target="#addPublisherModal" style="margin: 0 auto;">Thêm mới</a>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive px-3">
@@ -129,8 +129,8 @@
                                 <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tên</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hoạt động</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -148,9 +148,9 @@
                                         </td>
                                         <td class="align-middle text-center text-sm">
                                             <a href="#" class="badge badge-sm bg-gradient-success"
-                                               data-bs-toggle="modal" data-bs-target="#publisher-${publisher.id}">Update</a>
+                                               data-bs-toggle="modal" data-bs-target="#publisher-${publisher.id}">Cập Nhật</a>
                                             <a href="${context}/delete-publisher?publisherId=${publisher.id}" onclick="if (!confirm('Do you want to delete?')) return false"
-                                               class="badge badge-sm bg-gradient-danger">Delete</a>
+                                               class="badge badge-sm bg-gradient-danger">Xóa</a>
                                         </td>
                                     </tr>
                                     <!-- popup Update Publisher -->
@@ -158,20 +158,20 @@
                                         <div class="modal-dialog modal-dialog-special">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="publisherModalLabel">Update Publisher</h5>
+                                                    <h5 class="modal-title" id="publisherModalLabel">Cập Nhật Nhà Xuất Bản</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <form action="${context}/update-publisher" publisher-id="${publisher.id}" method="post">
                                                         <input type="hidden" name="id" value="${publisher.id}">
                                                         <div class="mb-3">
-                                                            <label for="publisherName-u" class="form-label">Name</label>
+                                                            <label for="publisherName-u" class="form-label">Tên</label>
                                                             <input type="text" class="form-control" id="publisherName-u" required
                                                                    name="publisherName" aria-describedby="publisherNameHelp" value="${publisher.name}">
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <p type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</p>
-                                                            <button type="submit" class="btn btn-primary">Save Publisher</button>
+                                                            <p type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</p>
+                                                            <button type="submit" class="btn btn-primary">Lưu</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -195,11 +195,11 @@
             <div class="col-12">
                 <div class="card mb-4 rounded-1">
                     <div class="card-header pb-0">
-                        <h6>Author Management</h6>
+                        <h6>Quản Lý Tác Giả</h6>
                     </div>
                     <div class="d-flex">
                         <a href="#" class="btn btn-sm btn-info mb-0 d-none d-lg-block" data-bs-toggle="modal"
-                           data-bs-target="#addAuthorModal" style="margin: 0 auto;">Add New</a>
+                           data-bs-target="#addAuthorModal" style="margin: 0 auto;">Thêm mới</a>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive px-3">
@@ -207,8 +207,8 @@
                                 <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-start">ID</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tên</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hoạt động</th>
                                 </tr>
                                 </thead>
                                     <tbody>
@@ -226,9 +226,9 @@
                                         </td>
                                         <td class="align-middle text-center text-sm">
                                             <a href="#" class="badge badge-sm bg-gradient-success"
-                                               data-bs-toggle="modal" data-bs-target="#author-${author.id}">Update</a>
+                                               data-bs-toggle="modal" data-bs-target="#author-${author.id}">Cập Nhật</a>
                                             <a href="${context}/delete-author?authorId=${author.id}" onclick="if (!confirm('Do you want to delete?')) return false"
-                                               class="badge badge-sm bg-gradient-danger">Delete</a>
+                                               class="badge badge-sm bg-gradient-danger">Xóa</a>
                                         </td>
                                     </tr>
                                         <!-- popup Update Author -->
@@ -236,20 +236,20 @@
                                             <div class="modal-dialog modal-dialog-special">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="authorModalLabel">Update Author</h5>
+                                                        <h5 class="modal-title" id="authorModalLabel">Cập Nhật Tác Giả</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <form action="${context}/update-author" author-id="${author.id}" method="post">
                                                             <input type="hidden" name="id" value="${author.id}">
                                                             <div class="mb-3">
-                                                                <label for="authorName-u" class="form-label">Name</label>
+                                                                <label for="authorName-u" class="form-label">Tên</label>
                                                                 <input type="text" class="form-control" id="authorName-u" required
                                                                        name="authorName" aria-describedby="authorNameHelp" value="${author.name}">
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <p type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</p>
-                                                                <button type="submit" class="btn btn-primary">Save Author</button>
+                                                                <p type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</p>
+                                                                <button type="submit" class="btn btn-primary">Lưu</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -274,19 +274,19 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addCategoryLabel">Add New Category</h5>
+                    <h5 class="modal-title" id="addCategoryLabel">Thêm thể loại mới</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <!-- Form fields go here -->
                     <form action="${context}/add-category" method="post">
                         <div class="mb-3">
-                            <label for="categoryName" class="form-label">Name</label>
+                            <label for="categoryName" class="form-label">Tên</label>
                             <input type="text" class="form-control" id="categoryName" name="categoryName" aria-describedby="categoryNameHelp">
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save Category</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
                         </div>
                     </form>
                 </div>
@@ -300,19 +300,19 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addAuthorModalLabel">Add New Author</h5>
+                    <h5 class="modal-title" id="addAuthorModalLabel">Thêm Tác Giả Mới</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <!-- Form fields go here -->
                     <form action="${context}/add-author" method="post">
                         <div class="mb-3">
-                            <label for="authorName" class="form-label">Name</label>
+                            <label for="authorName" class="form-label">Tên</label>
                             <input type="text" class="form-control" id="authorName" name="authorName" aria-describedby="authorNameHelp">
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save Author</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-primary">Lưu </button>
                         </div>
                     </form>
                 </div>
@@ -325,19 +325,19 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addPublisherModalLabel">Add New Publisher</h5>
+                    <h5 class="modal-title" id="addPublisherModalLabel">Thêm Nhà Xuất Bản</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <!-- Form fields go here -->
                     <form action="${context}/add-publisher" method="post">
                         <div class="mb-3">
-                            <label for="publisherName" class="form-label">Name</label>
+                            <label for="publisherName" class="form-label">Tên</label>
                             <input type="text" class="form-control" id="publisherName" name="publisherName" aria-describedby="publisherNameHelp">
                         </div>
                         <div class="modal-footer">
-                            <p type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</p>
-                            <button type="submit" class="btn btn-primary">Save Publisher</button>
+                            <p type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</p>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
                         </div>
                     </form>
                 </div>

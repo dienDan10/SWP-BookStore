@@ -38,7 +38,7 @@
         <div class="col-12">
           <div class="card mb-3 rounded-1">
             <div class="card-header pb-0">
-              <h6>Account Management</h6>
+              <h6>Quản lý tài khoản</h6>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-3">
@@ -47,11 +47,11 @@
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary  text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Role</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Người dùng</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Vai trò</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Trạng thái
                       </th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hoạt động
                       </th>
                     </tr>
                   </thead>
@@ -80,41 +80,41 @@
                           <a href="${context}/change-user-status?id=${user.id}"
                              onclick="if(!confirm('Do you want to change the user\'s status?')) return false"
                              class="badge badge-sm ${user.isActive() ? "bg-gradient-success" : "bg-gradient-danger"} ">
-                              ${user.isActive() ? "Active" : "Blocked"}
+                              ${user.isActive() ? "Hoạt động" : "Bị chặn"}
                           </a>
                         </td>
                         <td class="align-middle text-center text-sm">
-                          <a href="#" class="badge badge-sm bg-gradient-success" data-bs-toggle="modal" data-bs-target="#user-${user.id}">View</a>
+                          <a href="#" class="badge badge-sm bg-gradient-success" data-bs-toggle="modal" data-bs-target="#user-${user.id}">Xem</a>
                         </td>
                         <!-- Modal -->
                         <div class="modal fade" id="user-${user.id}" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
                           <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h5 class="modal-title" id="userModalLabel">User Information</h5>
+                                <h5 class="modal-title" id="userModalLabel">Thông tin người dùng</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
                               <form action="${context}/update-user-role" method="post">
                                 <div class="modal-body">
                                   <div class="mb-3">
-                                    <label for="name" class="form-label">Name</label>
+                                    <label for="name" class="form-label">Tên</label>
                                     <input type="text" class="form-control" id="name" aria-describedby="nameHelp" value="${user.name}" readonly>
                                   </div>
                                   <div class="mb-3 d-inline-block col-md-6 me-md-4">
-                                    <label for="username" class="form-label">Username</label>
+                                    <label for="username" class="form-label">Tên người dùng</label>
                                     <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" value="${user.username}" readonly>
                                   </div>
                                   <div class="mb-3 d-inline-block ms-md-2 col-md-5">
-                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <label for="phone" class="form-label">Số điện thoại</label>
                                     <input type="tel" class="form-control" id="phone" aria-describedby="phoneHelp" value="${user.phoneNumber}" readonly>
                                   </div>
 
                                   <div class="mb-3 d-inline-block col-md-6 me-md-4">
-                                    <label for="birthdate" class="form-label">Birthdate</label>
+                                    <label for="birthdate" class="form-label">Ngày sinh</label>
                                     <input type="text" class="form-control" id="birthdate" aria-describedby="birthdateHelp" value="${user.birthDate}" readonly>
                                   </div>
                                   <div class="mb-3 d-inline-block ms-md-2 col-md-5">
-                                    <label for="gender" class="form-label">Gender</label>
+                                    <label for="gender" class="form-label">Giới tính</label>
                                     <input type="text" class="form-control" id="gender" aria-describedby="genderHelp" value="${user.gender ? "Male" : "Female"}" readonly>
                                   </div>
                                   <div class="mb-3">
@@ -122,7 +122,7 @@
                                     <input type="hidden" name="email" value="${user.email}" />
                                     <input type="email" class="form-control" id="email" aria-describedby="emailHelp" value="${user.email}" readonly>
                                   </div>
-                                  <label class="form-label me-5">Role</label>
+                                  <label class="form-label me-5">Vai trò</label>
                                   <div class="col-md-3 d-inline-block">
                                     <input type="checkbox" class="mb-3 me-1" onclick="return false;"
                                       ${user.hasRole('USER') ? "checked" : ""}>User
@@ -133,8 +133,8 @@
                                   </div>
                                 </div>
                                 <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                  <button type="submit" class="btn btn-primary">Save</button>
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                  <button type="submit" class="btn btn-primary">Lưu</button>
                                 </div>
                               </form>
                             </div>

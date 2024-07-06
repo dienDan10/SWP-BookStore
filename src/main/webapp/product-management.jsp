@@ -42,13 +42,13 @@
                 <div class="col-12">
                     <div class="card mb-4 rounded-1 px-2">
                         <div class="card-header pb-0">
-                            <h6>Product Management</h6>
+                            <h6>Quản lý sản phẩm</h6>
                         </div>
                         <div class="d-flex">
                             <a href="#" class="btn btn-sm btn-info d-lg-block ms-3 my-2" data-bs-toggle="modal"
-                                data-bs-target="#addBookModal">Add Book</a>
+                                data-bs-target="#addBookModal">Thêm Sách</a>
                             <a href="#" class="btn btn-sm btn-info d-lg-block ms-3 my-2" data-bs-toggle="modal"
-                               data-bs-target="#import-excel">Import Excel</a>
+                               data-bs-target="#import-excel">Thêm bằng Excel</a>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-2">
@@ -60,19 +60,19 @@
                                                 ID</th>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Name</th>
+                                                Tên</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Publisher</th>
+                                                Nhà xuất bản</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Quantity</th>
+                                                Số lượng</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Action</th>
+                                                Hoạt động</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Status</th>
+                                                Trạng thái</th>
 
                                         </tr>
                                     </thead>
@@ -100,11 +100,11 @@
                                                     <span class="text-secondary text-xs font-weight-bold">${book.quantity}</span>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
-                                                    <a href="${context}/book-detail?id=${book.id}" target="_blank" class="badge badge-sm bg-gradient-primary">View</a>
+                                                    <a href="${context}/book-detail?id=${book.id}" target="_blank" class="badge badge-sm bg-gradient-primary">Xem</a>
                                                     <a href="#" class="badge badge-sm bg-gradient-warning"
-                                                       data-bs-toggle="modal" data-bs-target="#book-${book.id}">Update</a>
+                                                       data-bs-toggle="modal" data-bs-target="#book-${book.id}">Cập nhật</a>
                                                     <a href="${context}/delete-product?bookId=${book.id}" onclick="if (!confirm('Do you want to delete this book?')) return false"
-                                                       class="badge badge-sm bg-gradient-danger">Delete</a>
+                                                       class="badge badge-sm bg-gradient-danger">Xóa</a>
                                                 </td>
 <%--                                                <td class="align-middle text-center text-sm">--%>
 
@@ -116,11 +116,11 @@
                                                     <c:choose>
                                                         <c:when test="${book.isActive()}">
                                                             <a href="${context}/change-book-status?bookId=${book.id}" onclick="if (!confirm('Do you want to inactivate this book?')) return false"
-                                                               class="badge badge-sm bg-gradient-success">Active</a>
+                                                               class="badge badge-sm bg-gradient-success">Đang bán</a>
                                                         </c:when>
                                                         <c:otherwise>
                                                             <a href="${context}/change-book-status?bookId=${book.id}" onclick="if (!confirm('Do you want to activate this book?')) return false"
-                                                               class="badge badge-sm bg-gradient-secondary">InActive</a>
+                                                               class="badge badge-sm bg-gradient-secondary">Dừng bán</a>
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </td>
@@ -130,28 +130,28 @@
                                                 <div class="modal-dialog modal-dialog-special">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="productModalLabel">Update Product</h5>
+                                                            <h5 class="modal-title" id="productModalLabel">Cập nhật sản phẩm</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
                                                             <form action="${context}/update-product" class="update-book-form" book-id="${book.id}" enctype="multipart/form-data" method="post">
                                                                 <input type="hidden" name="id" value="${book.id}">
                                                                 <div class="mb-3">
-                                                                    <label for="bookName-u" class="form-label">Name</label>
+                                                                    <label for="bookName-u" class="form-label">Tên</label>
                                                                     <input type="text" class="form-control" id="bookName-u" required
                                                                            name="bookName" aria-describedby="bookNameHelp" value="${book.name}">
                                                                 </div>
                                                                 <div class="mb-3 col-lg-5 me-lg-5 d-inline-block">
-                                                                    <label for="bookDescription-u" class="form-label">Description</label>
+                                                                    <label for="bookDescription-u" class="form-label">Mô tả</label>
                                                                     <input class="form-control" id="bookDescription-u" required name="description" value="${book.description}">
                                                                 </div>
                                                                 <div class="mb-3 col-lg-6 d-inline-block">
-                                                                    <label for="bookPublishedDate-${book.id}" class="form-label">Published Date</label>
-                                                                    <div id="error-message-${book.id}" class="error-message-date" style="color: red; display: none; font-size: 0.75rem"> Cannot Be In The Future.</div>
+                                                                    <label for="bookPublishedDate-${book.id}" class="form-label">Ngày xuất bản</label>
+                                                                    <div id="error-message-${book.id}" class="error-message-date" style="color: red; display: none; font-size: 0.75rem"> Không thể ở trong tương lai.</div>
                                                                     <input type="date" class="form-control published-date-input" required id="bookPublishedDate-${book.id}" name="publishedDate" value="${book.publishedDate}">
                                                                 </div>
                                                                 <div class="mb-3 col-12 col-lg-5 me-lg-5 d-inline-block text-container">
-                                                                    <label for="author-u" class="form-label">Author Name</label>
+                                                                    <label for="author-u" class="form-label">Tác giả</label>
                                                                     <input type="text" class="form-control" list="authorList"
                                                                            id="author-u" name="author" required  value="${book.author.name}">
                                                                     <datalist id="authorList-u">
@@ -161,7 +161,7 @@
                                                                     </datalist>
                                                                 </div>
                                                                 <div class="mb-3 col-lg-6 d-inline-block">
-                                                                    <label for="publisher-u" class="form-label">Publisher Name</label>
+                                                                    <label for="publisher-u" class="form-label">Nhà xuất bản </label>
                                                                     <select class="form-select" id="publisher-u" name="publisherId" required  value="${book.publisher.name}">
                                                                         <c:forEach items="${publishers}" var="publisher">
                                                                             <c:choose>
@@ -177,7 +177,7 @@
                                                                 </div>
 
                                                                 <div class="mb-3 col-lg-3 d-inline-block">
-                                                                    <label for="bookCategory-u" class="form-label">Category Name</label>
+                                                                    <label for="bookCategory-u" class="form-label">Thể loại</label>
                                                                     <select class="form-select" id="bookCategory-u" name="categoryId" required value="${book.category.name}">
                                                                         <c:forEach items="${categories}" var="category">
                                                                             <c:choose>
@@ -192,32 +192,32 @@
                                                                     </select>
                                                                 </div>
                                                                 <div class="mb-3 col-lg-2 me-lg-5 d-inline-block">
-                                                                    <label for="bookQuantity-u" class="form-label">Quantity</label>
+                                                                    <label for="bookQuantity-u" class="form-label">Số lượng</label>
                                                                     <input type="number" class="form-control" id="bookQuantity-u" name="quantity" min="0" required value="${book.quantity}" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
                                                                 </div>
                                                                 <div class="mb-3 col-lg-3 d-inline-block">
-                                                                    <label for="bookNumberOfPages-u" class="form-label">Number of Pages</label>
+                                                                    <label for="bookNumberOfPages-u" class="form-label">Số trang</label>
                                                                     <input type="number" class="form-control" id="bookNumberOfPages-u" name="pageNum" min="10" required value="${book.pageCount}" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
                                                                 </div>
                                                                 <div class="mb-3 col-lg-3 d-inline-block">
-                                                                    <label for="bookPrice-u" class="form-label">Price</label>
+                                                                    <label for="bookPrice-u" class="form-label">Giá</label>
                                                                     <input type="number" class="form-control book-prices" id="bookPrice-u" name="price" required value="${book.price}" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
                                                                 </div>
                                                                 <div class="mb-3 col-lg-5 me-lg-5 d-inline-block">
-                                                                    <label for="imgFront-u" class="form-label">Front Image</label>
+                                                                    <label for="imgFront-u" class="form-label">Ảnh phía trước</label>
                                                                     <input type="file" class="form-control form-control-lg " id="imgFront-u" name="imgFront">
                                                                 </div>
                                                                 <div class="mb-3 col-lg-6 d-inline-block">
-                                                                    <label for="imgBack-u" class="form-label">Back Image</label>
+                                                                    <label for="imgBack-u" class="form-label">Ảnh phía sau</label>
                                                                     <input type="file" class="form-control form-control-lg" id="imgBack-u" name="imgBack">
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label for="bookSummary-u" class="form-label">Summary</label>
+                                                                    <label for="bookSummary-u" class="form-label">Tóm tắt</label>
                                                                     <textarea class="form-control" id="bookSummary-u" rows="5" name="summary" required>${book.summary}</textarea>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <p type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</p>
-                                                                    <button type="submit" class="btn btn-primary">Save Book</button>
+                                                                    <p type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</p>
+                                                                    <button type="submit" class="btn btn-primary">Lưu</button>
                                                                 </div>
                                                             </form>
 
@@ -241,7 +241,7 @@
             <div class="modal-dialog modal-dialog-special">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addBookModalLabel">Add New Book</h5>
+                        <h5 class="modal-title" id="addBookModalLabel">Thêm sách mới</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -249,23 +249,23 @@
                         <!-- Form fields go here -->
                         <form action="${context}/add-product" class="add-book-form" enctype="multipart/form-data" method="post">
                             <div class="mb-3">
-                                <label for="bookName" class="form-label">Name</label>
+                                <label for="bookName" class="form-label">Tên</label>
                                 <input type="text" class="form-control" id="bookName" required
                                        name="bookName" aria-describedby="bookNameHelp">
                             </div>
                             <div class="mb-3 col-lg-5 me-lg-5 d-inline-block">
-                                <label for="bookDescription" class="form-label">Description</label>
+                                <label for="bookDescription" class="form-label">Mô tả</label>
                                 <input class="form-control" id="bookDescription" required name="description">
                             </div>
                             <div class="mb-3 col-lg-6 d-inline-block">
 
-                                <label for="bookPublishedDate" class="form-label">Published Date</label>
+                                <label for="bookPublishedDate" class="form-label">Ngày xuất bản</label>
                                 <div id="error-message" style="color: red; display: none; font-size: 0.75rem"> Cannot Be In The Future.</div>
                                 <input type="date" class="form-control" required id="bookPublishedDate" name="publishedDate">
 
                             </div>
                             <div class="mb-3 col-12 col-lg-5 me-lg-5 d-inline-block text-container">
-                                <label for="author" class="form-label">Author Name</label>
+                                <label for="author" class="form-label">Tác giả</label>
                                 <input type="text" class="form-control" list="authorList"
                                        id="author" name="author" required>
                                 <datalist id="authorList">
@@ -275,7 +275,7 @@
                                 </datalist>
                             </div>
                             <div class="mb-3 col-lg-6 d-inline-block">
-                                <label for="publisher" class="form-label">Publisher Name</label>
+                                <label for="publisher" class="form-label">Nhà xuất bản</label>
                                 <select class="form-select" id="publisher" name="publisherId" required>
                                     <c:forEach items="${publishers}" var="publisher">
                                         <option value="${publisher.id}">${publisher.name}</option>
@@ -284,7 +284,7 @@
                             </div>
 
                             <div class="mb-3 col-lg-3 d-inline-block">
-                                <label for="bookCategory" class="form-label">Category Name</label>
+                                <label for="bookCategory" class="form-label">Thể loại</label>
                                 <select class="form-select" id="bookCategory" name="categoryId" required>
                                     <c:forEach items="${categories}" var="category">
                                         <option value="${category.id}">${category.name}</option>
@@ -292,32 +292,32 @@
                                 </select>
                             </div>
                             <div class="mb-3 col-lg-2 me-lg-5 d-inline-block">
-                                <label for="bookQuantity" class="form-label">Quantity</label>
+                                <label for="bookQuantity" class="form-label">Số lượng</label>
                                 <input type="number" class="form-control" id="bookQuantity" min="0" name="quantity" required onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
                             </div>
                             <div class="mb-3 col-lg-3 d-inline-block">
-                                <label for="bookNumberOfPages" class="form-label">Number of Pages</label>
+                                <label for="bookNumberOfPages" class="form-label">Số trang</label>
                                 <input type="number" class="form-control" id="bookNumberOfPages" name="pageNum" min="10" required onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
                             </div>
                             <div class="mb-3 col-lg-3 d-inline-block">
-                                <label for="bookPrice" class="form-label">Price</label>
+                                <label for="bookPrice" class="form-label">Giá</label>
                                 <input type="number" class="form-control" id="bookPrice" name="price" min="1000" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
                             </div>
                             <div class="mb-3 col-lg-5 me-lg-5 d-inline-block">
-                                <label for="imgFront" class="form-label">Front Image</label>
+                                <label for="imgFront" class="form-label">Ảnh phía trước</label>
                                 <input type="file" class="form-control form-control-lg " id="imgFront" name="imgFront" accept=".jpeg,.jpg,.png,.webp" required>
                             </div>
                             <div class="mb-3 col-lg-6 d-inline-block">
-                                <label for="imgBack" class="form-label">Back Image</label>
+                                <label for="imgBack" class="form-label">Ảnh phía sau</label>
                                 <input type="file" class="form-control form-control-lg" id="imgBack" name="imgBack" accept=".jpeg,.jpg,.png,.webp" required>
                             </div>
                             <div class="mb-3">
-                                <label for="bookSummary" class="form-label">Summary</label>
+                                <label for="bookSummary" class="form-label">Tóm tắt</label>
                                 <textarea class="form-control" id="bookSummary" rows="5" name="summary" required></textarea>
                             </div>
                             <div class="modal-footer">
-                                <p type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</p>
-                                <button type="submit" class="btn btn-primary">Save Book</button>
+                                <p type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</p>
+                                <button type="submit" class="btn btn-primary">Lưu</button>
                             </div>
                         </form>
                     </div>
@@ -331,18 +331,18 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Excel Import</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm bằng Excel</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form class="form" action="${context}/excel-import" enctype="multipart/form-data" method="POST">
                             <div class="form-group mb-3">
-                                <label>Excel file</label>
+                                <label>Tệp Excel</label>
                                 <input type="file" name="excel" class="form-control" accept=".xlsx" required>
                                 <div class="fst-italic fs-6">(.xlsx file only)</div>
                             </div>
                             <div class="form-group mb-3">
-                                <label>Upload pictures</label>
+                                <label>Tải hình ảnh</label>
                                 <input type="file" name="images" class="form-control" multiple required accept=".jpg, .jpeg, .png, .webp">
                                 <div class="fst-italic">(.jpg, .jpeg, .png, .webp only)</div>
                             </div>

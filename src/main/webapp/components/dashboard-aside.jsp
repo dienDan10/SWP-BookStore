@@ -29,7 +29,7 @@
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-shop text-warning text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Store</span>
+                    <span class="nav-link-text ms-1">Cửa hàng</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -38,7 +38,7 @@
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Order Management</span>
+                    <span class="nav-link-text ms-1">Quản Lý Đơn Hàng</span>
                 </a>
             </li>
             <c:if test="${user.hasRole('ADMIN')}">
@@ -48,7 +48,7 @@
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="ni ni-user-run text-warning text-sm opacity-10"></i>
                         </div>
-                        <span class="nav-link-text ms-1">Account Management</span>
+                        <span class="nav-link-text ms-1">Quản Lý Tài Khoản</span>
                     </a>
                 </li>
             </c:if>
@@ -58,7 +58,7 @@
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-books text-warning text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Product Management</span>
+                    <span class="nav-link-text ms-1">Quản Lý Sản Phẩm</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -67,7 +67,7 @@
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-app text-warning text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Classification</span>
+                    <span class="nav-link-text ms-1">Phân Loại</span>
                 </a>
             </li>
             <li class="nav-item">
