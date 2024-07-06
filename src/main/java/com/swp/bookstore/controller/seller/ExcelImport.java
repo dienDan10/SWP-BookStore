@@ -12,26 +12,18 @@ import com.swp.bookstore.service.serviceImpl.PublisherServiceImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
+import jakarta.servlet.http.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
+import java.io.*;
 import java.nio.file.InvalidPathException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @WebServlet(name="ExcelImport", urlPatterns = "/excel-import")
 @MultipartConfig (
@@ -56,13 +48,13 @@ public class ExcelImport extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
         // get Excel file
         Part excelFilePart = req.getPart("excel");
         // Read excel file
         InputStream fileContent = excelFilePart.getInputStream();
         Workbook workbook = new XSSFWorkbook(fileContent);
         Sheet sheet = workbook.getSheetAt(0);
-
         // get pictures parts
         Collection<Part> parts = req.getParts();
         // Map to store image file names and corresponding parts
@@ -74,11 +66,12 @@ public class ExcelImport extends HttpServlet {
             }
         }
 
+        // create a list to store books
+        List<Book> books = new ArrayList<>();
         // parse each row in excel file
         try {
             for (Row row : sheet) {
-                if (row.getRowNum() == 0)
-                    continue;
+                if (row.getRowNum() == 0) continue; // omit the first row
 
                 Cell bookNameCell = row.getCell(0);
                 Cell descriptionCell = row.getCell(1);
@@ -94,8 +87,11 @@ public class ExcelImport extends HttpServlet {
                 Cell backImgCell = row.getCell(11);
 
                 String bookName = bookNameCell.getStringCellValue();
+                if (bookName == null || bookName.equals("")) { // break the loop because no more row to read
+                    break;
+                }
                 String description = descriptionCell.getStringCellValue();
-                String publishDate = publishDateCell.getStringCellValue();
+                String publishDate = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(publishDateCell.getLocalDateTimeCellValue());
                 String authorName = authorNameCell.getStringCellValue();
                 String publisherName = publisherNameCell.getStringCellValue();
                 String categoryName = categoryNameCell.getStringCellValue();
@@ -110,57 +106,75 @@ public class ExcelImport extends HttpServlet {
                     // Save the image if it was uploaded
                     if (imageFileMap.containsKey(frontImg)) {
                         Part imagePart = imageFileMap.get(frontImg);
-                        saveImage(imagePart, frontImg, req.getServletContext().getRealPath("/img/book-image"));
+                        frontImg = saveImage(imagePart, req.getServletContext().getRealPath("/img"));
                     }
 
                     if (imageFileMap.containsKey(backImg)) {
                         Part imagePart = imageFileMap.get(backImg);
-                        saveImage(imagePart, backImg, req.getServletContext().getRealPath("/img/book-image"));
+                        backImg = saveImage(imagePart, req.getServletContext().getRealPath("/img"));
                     }
                 } catch (IOException e) {
+                    e.printStackTrace();
                     System.out.println(e.getMessage());
                 }
 
                 // create book
                 Book book = new Book();
-                try {
-                    book.setName(bookName);
-                    book.setDescription(description);
-                    book.setPublishedDate(publishDate);
-                    book.setAuthor(authorService.findAuthorByName(authorName));
-                    book.setCategory(categoryService.findByName(categoryName));
-                    book.setPublisher(publisherService.findByName(publisherName));
-                    book.setQuantity(quantity);
-                    book.setPageCount(pageNumber);
-                    book.setPrice(price);
-                    book.setSummary(summary);
-                    book.setImageFront("/img/book-image/" + frontImg);
-                    book.setImageBack("/img/book-image/" + backImg);
-                } catch (NumberFormatException e) {
-                    System.out.println("Error create book");
-                }
-
-                // Save the product to the database or file system
-                bookService.addBook(book);
+                book.setName(bookName);
+                book.setDescription(description);
+                book.setPublishedDate(publishDate);
+                book.setAuthor(authorService.findAuthorByName(authorName));
+                book.setCategory(categoryService.findByName(categoryName));
+                book.setPublisher(publisherService.findByName(publisherName));
+                book.setQuantity(quantity);
+                book.setPageCount(pageNumber);
+                book.setPrice(price);
+                book.setSummary(summary);
+                book.setImageFront(frontImg);
+                book.setImageBack(backImg);
+                book.setActive(true);
+                // add book to list
+                books.add(book);
             }
         } catch (Exception e) {
             e.printStackTrace();
+            session.setAttribute("errMsg", "Lưu sách không thành công!");
+            resp.sendRedirect(req.getContextPath() +  "/manage-product");
+            return;
         }
 
+        // save books
+        books.forEach(book -> bookService.addBook(book));
+        session.setAttribute("successMsg", "Lưu sách thành công!");
         resp.sendRedirect(req.getContextPath() +  "/manage-product");
-
     }
 
-    private void saveImage(Part imagePart, String imageName, String realPath) throws IOException {
+    private String saveImage (Part part, String realPath) throws IOException {
+        String imageName = "";
         try {
-            if (!Files.exists(Path.of(realPath))) {
-                Files.createDirectories(Path.of(realPath));
+            // transfer part data in to bytes array
+            InputStream inputStream = part.getInputStream();
+            byte[] imageByte = new byte[inputStream.available()];
+            inputStream.read(imageByte);
+            inputStream.close();
+            // create a new folder to contains image if not exist
+            File saveFolder = new File(realPath + File.separator + "book-image");
+            if (!saveFolder.exists()) {
+                saveFolder.mkdirs();
             }
 
-            imagePart.write(realPath + File.separator + imageName);
+            // create image file to save data into, rename image
+            imageName = System.currentTimeMillis() + "-" + part.getSubmittedFileName();
+            File imageFile = new File(saveFolder.getAbsolutePath() + File.separator + imageName);
 
-        } catch (IOException | InvalidPathException e) {
+            // save image
+            BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(imageFile));
+            outputStream.write(imageByte);
+            outputStream.close();
+
+        } catch (InvalidPathException | IOException e) {
             throw new IOException("Cannot save image");
         }
+        return imageName;
     }
 }

@@ -346,7 +346,8 @@
                                 <input type="file" name="images" class="form-control" multiple required accept=".jpg, .jpeg, .png, .webp">
                                 <div class="fst-italic">(.jpg, .jpeg, .png, .webp only)</div>
                             </div>
-                            <button class="btn btn-primary mt-3">Submit</button>
+                            <button class="btn btn-primary mt-3 me-3">Submit</button>
+                            <a href="${context}/download-excel-template" class="fst-italic text-primary text-decoration-underline">Download Template</a>
                         </form>
                     </div>
                 </div>
