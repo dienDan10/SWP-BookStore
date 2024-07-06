@@ -53,7 +53,7 @@ public class UpdateAddress extends HttpServlet {
             addressService.setDefaultAddress(id, user.getId());
         }
         // send message
-        session.setAttribute("successMsg", "Update successful");
+        session.setAttribute("successMsg", "Cập nhật thành công");
         // return to manage address page
         resp.sendRedirect( req.getContextPath() + "/view-address");
     }

@@ -50,14 +50,14 @@ public class GoogleLogin extends HttpServlet {
         }
         // check for user is active
         if (!user.isActive()) {
-            session.setAttribute("errMsg", "Your account has been blocked");
+            session.setAttribute("errMsg", "Tài khoản của bạn đã bị khóa");
             response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
         // save user to session
         session.setAttribute("user", user);
         // return to home page
-        session.setAttribute("successMsg", "Login successful!");
+        session.setAttribute("successMsg", "Đăng nhập thành công!");
         response.sendRedirect(request.getContextPath() + "/home-page");
     }
 

@@ -58,7 +58,7 @@ public class UpdateProfile extends HttpServlet {
         userService.updateUser(user);
         user = userService.findOneByEmail(user.getEmail());
         session.setAttribute("user", user);
-        session.setAttribute("successMsg", "Update profile successfully!");
+        session.setAttribute("successMsg", "Cập nhật hồ sơ thành công!");
         resp.sendRedirect(req.getContextPath() + "/view-profile");
     }
 }

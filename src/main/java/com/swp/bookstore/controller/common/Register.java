@@ -36,7 +36,7 @@ public class Register extends HttpServlet {
         // check for email has been registered
         User user = userService.findOneByEmail(req.getParameter("email"));
         if (user != null) {
-            req.setAttribute("emailExist", "This email has already been registered.");
+            req.setAttribute("emailExist", "Email này đã được đăng ký.");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
             return;
         }
@@ -49,7 +49,7 @@ public class Register extends HttpServlet {
         String mailHeader = "OTP Authentication Code.";
         boolean isSuccess = Email.sendEmail(req.getParameter("email"), mailHeader, mailContent);
         if (!isSuccess) { // send a notification
-            req.setAttribute("sendMailError", "Fail to send verification email, please try to reload.");
+            req.setAttribute("sendMailError", "Không gửi được email xác minh, vui lòng thử tải lại.");
         }
 
         // create a user dto object and save to session

@@ -55,7 +55,7 @@ public class ConfirmOrder extends HttpServlet {
             List<Address> addresses = addressService.findAllByUserId(user.getId());
             List<Cart> items = (List<Cart>)session.getAttribute("cartItems");
             // return to checkout page
-            session.setAttribute("errMsg", "Payment failed!");
+            session.setAttribute("errMsg", "Thanh toán không thành công!");
             req.setAttribute("addresses", addresses);
             req.setAttribute("items", items);
             req.getRequestDispatcher("checkout.jsp").forward(req, resp);

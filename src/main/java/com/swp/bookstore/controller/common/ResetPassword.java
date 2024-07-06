@@ -37,7 +37,7 @@ public class ResetPassword extends HttpServlet {
         User user = userService.findOneByEmail(email);
         user.setPassword(PasswordEncryptor.toSHA256(password));
         userService.updateUser(user);
-        session.setAttribute("successMsg", "Reset password successful");
+        session.setAttribute("successMsg", "Đặt lại mật khẩu thành công");
         resp.sendRedirect( req.getContextPath() + "/login");
     }
 }

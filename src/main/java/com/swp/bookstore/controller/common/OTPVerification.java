@@ -42,7 +42,7 @@ public class OTPVerification extends HttpServlet {
         String OTP = session.getAttribute("OTP").toString();
         String otpInput = req.getParameter("otp");
         if (OTP == null || !OTP.equals(otpInput)) { // send messsage
-            req.setAttribute("otpErr", "Your OTP verification code is incorrect.");
+            req.setAttribute("otpErr", "Mã xác minh OTP của bạn không chính xác.");
             req.getRequestDispatcher("otp-verification.jsp").forward(req, resp);
             return;
         }
@@ -53,7 +53,7 @@ public class OTPVerification extends HttpServlet {
         session.removeAttribute("userdto");
         session.removeAttribute("OTP");
         // send register success message
-        session.setAttribute("successMsg", "Register successful!");
+        session.setAttribute("successMsg", "Đăng ký thành công!");
         // redirect to login page
         resp.sendRedirect( req.getContextPath() + "/login");
     }

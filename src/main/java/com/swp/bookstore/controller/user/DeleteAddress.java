@@ -28,7 +28,7 @@ public class DeleteAddress extends HttpServlet {
         addressService.delete(id);
         // send message
         HttpSession session = req.getSession();
-        session.setAttribute("successMsg", "Delete address successful");
+        session.setAttribute("successMsg", "Xóa địa chỉ thành công");
         // redirect back to view address page
         resp.sendRedirect(req.getContextPath() + "/view-address");
     }

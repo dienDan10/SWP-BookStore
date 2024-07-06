@@ -45,7 +45,7 @@ public class ForgotPassword extends HttpServlet {
         // check if email exist with an user in the database
         User user = userService.findOneByEmail(email);
         if (user == null) {     // return to login page and display message
-            req.setAttribute("emailError", "Sorry! Your email doesn't register with any account.");
+            req.setAttribute("emailError", "Email của bạn không đăng ký với bất kỳ tài khoản nào.");
             req.getRequestDispatcher("login.jsp").forward(req, resp);
             return;
         }
@@ -63,13 +63,13 @@ public class ForgotPassword extends HttpServlet {
         String content = "<p>Click this link to change your password: <a href=\"" + link + "\">change_password</a></p>";
         boolean isSuccess = Email.sendEmail(req.getParameter("email"), "Reset Password", content);
         if (!isSuccess) {   // return to login and display message.
-            req.setAttribute("emailError", "Can't send email! please try again.");
+            req.setAttribute("emailError", "Không thể gửi email! vui lòng thử lại.");
             req.getRequestDispatcher("login.jsp").forward(req, resp);
             return;
         }
 
         // redirect to the reset password page
-        session.setAttribute("successMsg", "Success! please check your email");
+        session.setAttribute("successMsg", "Thành công! vui lòng kiểm tra email của bạn");
         req.getRequestDispatcher("login.jsp").forward(req, resp);
     }
 }

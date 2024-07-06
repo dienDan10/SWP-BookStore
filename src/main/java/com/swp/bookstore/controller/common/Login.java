@@ -43,19 +43,19 @@ public class Login extends HttpServlet {
         String password = req.getParameter("password");
         User user = userService.findOneByEmail(email);
         if (user == null || !user.getPassword().equals(PasswordEncryptor.toSHA256(password))) { //display error message
-            session.setAttribute("errMsg", "Invalid email or password");
+            session.setAttribute("errMsg", "Email hoặc mật khẩu không hợp lệ.");
             req.getRequestDispatcher("login.jsp").forward(req, resp);
             return;
         }
 
         if (!user.isActive()) {
-            session.setAttribute("errMsg", "Your account has been blocked");
+            session.setAttribute("errMsg", "Tài khoản của bạn đã bị khóa");
             req.getRequestDispatcher("login.jsp").forward(req, resp);
             return;
         }
 
         session.setAttribute("user", user);
-        session.setAttribute("successMsg", "Login successful!");
+        session.setAttribute("successMsg", "Đăng nhập thành công!");
 
         if (user.hasRole(ROLES.SELLER)) {
             resp.sendRedirect( req.getContextPath() + "/view-dashboard");

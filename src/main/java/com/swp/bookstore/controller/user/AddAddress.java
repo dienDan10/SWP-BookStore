@@ -54,7 +54,7 @@ public class AddAddress extends HttpServlet {
         // save address to database
         addressService.save(address);
         // send message
-        session.setAttribute("successMsg", "Add Address successful");
+        session.setAttribute("successMsg", "Thêm địa chỉ thành công");
         // return to manage address page
         resp.sendRedirect( req.getContextPath() + "/view-address");
 
