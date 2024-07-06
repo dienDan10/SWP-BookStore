@@ -22,4 +22,19 @@ public class PaymentServiceImpl implements PaymentService {
     public void updatePayment(Payment payment) {
         paymentDAO.updatePayment(payment);
     }
+
+    @Override
+    public long getTotalIncomeByDayAgo(int day) {
+        return paymentDAO.getTotalIncomeByDayAgo(day);
+    }
+
+    @Override
+    public long getTotalIncomeByMonthAgo(int month) {
+        return paymentDAO.getTotalIncomeByMonthAgo(month);
+    }
+
+    @Override
+    public long getTotalIncome() {
+        return paymentDAO.getTotalIncome();
+    }
 }

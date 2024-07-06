@@ -1,14 +1,8 @@
 package com.swp.bookstore.controller.seller;
 
 import com.swp.bookstore.entity.Book;
-import com.swp.bookstore.service.BookService;
-import com.swp.bookstore.service.OrderService;
-import com.swp.bookstore.service.RatingService;
-import com.swp.bookstore.service.UserService;
-import com.swp.bookstore.service.serviceImpl.BookServiceImpl;
-import com.swp.bookstore.service.serviceImpl.OrderServiceImpl;
-import com.swp.bookstore.service.serviceImpl.RatingServiceImpl;
-import com.swp.bookstore.service.serviceImpl.UserServiceImpl;
+import com.swp.bookstore.service.*;
+import com.swp.bookstore.service.serviceImpl.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -24,6 +18,7 @@ public class ViewDashboard extends HttpServlet {
     private OrderService orderService;
     private UserService userService;
     private RatingService ratingService;
+    private PaymentService paymentService;
 
     @Override
     public void init() throws ServletException {
@@ -31,6 +26,7 @@ public class ViewDashboard extends HttpServlet {
         orderService = new OrderServiceImpl();
         userService = new UserServiceImpl();
         ratingService = new RatingServiceImpl();
+        paymentService = new PaymentServiceImpl();
     }
 
     @Override
@@ -39,12 +35,16 @@ public class ViewDashboard extends HttpServlet {
         long bookNumber = bookService.countBooks();
         long userNumber = userService.countUsers();
         long ratingNumber = ratingService.countRatings();
+        long lastMonthIncome = paymentService.getTotalIncomeByMonthAgo(1);
+        long totalIncome = paymentService.getTotalIncome();
         List<Book> topSellers = bookService.findBestSeller(10);
         req.setAttribute("orderNumber", orderNumber);
         req.setAttribute("bookNumber", bookNumber);
         req.setAttribute("userNumber", userNumber);
         req.setAttribute("ratingNumber", ratingNumber);
         req.setAttribute("topSellers", topSellers);
+        req.setAttribute("lastMonthIncome", lastMonthIncome);
+        req.setAttribute("totalIncome", totalIncome);
         req.getRequestDispatcher("dashboard.jsp").forward(req, resp);
     }
 

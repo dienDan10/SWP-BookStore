@@ -36,6 +36,11 @@
         <filter-class>com.swp.bookstore.filter.AdminFilter</filter-class>
     </filter>
 
+    <filter>
+        <filter-name>CommonFilter</filter-name>
+        <filter-class>com.swp.bookstore.filter.CommonFilter</filter-class>
+    </filter>
+
     <filter-mapping>
         <filter-name>StaticResourceFilter</filter-name>
         <url-pattern>*.jsp</url-pattern>
@@ -54,9 +59,6 @@
         <url-pattern>/view-address</url-pattern>
         <url-pattern>/checkout</url-pattern>
         <url-pattern>/confirm-order</url-pattern>
-        <url-pattern>/update-profile</url-pattern>
-        <url-pattern>/view-profile</url-pattern>
-        <url-pattern>/change-password</url-pattern>
         <url-pattern>/view-order</url-pattern>
         <url-pattern>/receive-order</url-pattern>
         <url-pattern>/rating</url-pattern>
@@ -94,6 +96,13 @@
         <url-pattern>/change-user-status</url-pattern>
         <url-pattern>/manage-account</url-pattern>
         <url-pattern>/update-user-role</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>CommonFilter</filter-name>
+        <url-pattern>/update-profile</url-pattern>
+        <url-pattern>/view-profile</url-pattern>
+        <url-pattern>/change-password</url-pattern>
     </filter-mapping>
 
 </web-app>

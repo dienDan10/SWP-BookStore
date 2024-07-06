@@ -42,8 +42,8 @@
                 <div class="col-8">
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Tổng lợi nhuận </p>
-                    <h5 class="font-weight-bolder">
-                      10000$
+                    <h5 class="font-weight-bolder money">
+                      ${totalIncome}
                     </h5>
                     <p class="mb-0">
 
@@ -114,13 +114,13 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Đơn hàng trong tháng</p>
-                    <h5 class="font-weight-bolder">
-                      10000$
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Doanh thu trong tháng</p>
+                    <h5 class="font-weight-bolder money">
+                      ${lastMonthIncome}
                     </h5>
                     <p class="mb-0">
 
-                      Tổng số đơn hàng trong tháng
+                      Tổng thu nhập 30 ngày gần nhất
                     </p>
                   </div>
                 </div>
@@ -242,6 +242,13 @@
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 <script src="js/toast.js"></script>
+<script>
+  document.querySelectorAll('.money').forEach(item => {
+    const price = item.textContent;
+    if (price.includes('.')) return;
+    item.textContent = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ';
+  })
+</script>
 </body>
 
 </html>

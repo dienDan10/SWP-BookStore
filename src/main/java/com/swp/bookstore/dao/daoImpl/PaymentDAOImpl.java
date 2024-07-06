@@ -5,6 +5,9 @@ import com.swp.bookstore.entity.Payment;
 import com.swp.bookstore.utils.JPAUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
+
+import java.time.LocalDateTime;
 
 public class PaymentDAOImpl implements PaymentDAO {
     @Override
@@ -60,5 +63,73 @@ public class PaymentDAOImpl implements PaymentDAO {
         } finally {
             em.close();
         }
+    }
+
+    @Override
+    public long getTotalIncomeByDayAgo(int day) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        LocalDateTime today = LocalDateTime.now();
+        LocalDateTime daysAgo = today.minusDays(day);
+        Query query = em.createQuery("select sum(p.amount) from Payment p where p.createdTime between :daysAgo and :today");
+        query.setParameter("daysAgo", daysAgo);
+        query.setParameter("today", today);
+        long totalIncome = 0;
+        try {
+            tx.begin();
+            totalIncome = (long) query.getSingleResult();
+            tx.commit();
+        } catch (Exception ex) {
+            tx.rollback();
+            System.out.println("find payment failed");
+            ex.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return totalIncome;
+    }
+
+    @Override
+    public long getTotalIncomeByMonthAgo(int month) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        LocalDateTime today = LocalDateTime.now();
+        LocalDateTime daysAgo = today.minusMonths(month);
+        Query query = em.createQuery("select sum(p.amount) from Payment p where p.createdTime between :daysAgo and :today");
+        query.setParameter("daysAgo", daysAgo);
+        query.setParameter("today", today);
+        long totalIncome = 0;
+        try {
+            tx.begin();
+            totalIncome = (long) query.getSingleResult();
+            tx.commit();
+        } catch (Exception ex) {
+            tx.rollback();
+            System.out.println("find payment failed");
+            ex.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return totalIncome;
+    }
+
+    @Override
+    public long getTotalIncome() {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        Query query = em.createQuery("select sum(p.amount) from Payment p");
+        long totalIncome = 0;
+        try {
+            tx.begin();
+            totalIncome = (long) query.getSingleResult();
+            tx.commit();
+        } catch (Exception ex) {
+            tx.rollback();
+            System.out.println("find payment failed");
+            ex.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return totalIncome;
     }
 }
