@@ -16,6 +16,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.DataFormat;
 import org.apache.poi.ss.usermodel.DataValidation;
 import org.apache.poi.ss.usermodel.DataValidationConstraint;
 import org.apache.poi.ss.util.CellRangeAddressList;
@@ -60,6 +62,12 @@ public class DownloadExcelTemplate extends HttpServlet {
         products.getRow(0).createCell(9).setCellValue("Tóm tắt nội dung");
         products.getRow(0).createCell(10).setCellValue("Ảnh trước(tên hoặc đường dẫn)");
         products.getRow(0).createCell(11).setCellValue("Ảnh sau(tên hoặc đường dẫn)");
+
+        // set cell data format of published date to text
+        DataFormat format = workbook.createDataFormat();
+        CellStyle style = workbook.createCellStyle();
+        style.setDataFormat(format.getFormat("@"));
+        products.setDefaultColumnStyle(2, style);
 
         // set dropdown list for author
         List<Author> authors = authorService.findAll();

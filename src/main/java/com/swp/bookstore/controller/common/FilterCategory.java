@@ -44,7 +44,7 @@ public class FilterCategory extends HttpServlet {
                     "                                <div class=\"single_product_item\">\n" +
                     "                                    <img src=\""+ req.getContextPath() +"/img/book-image/"+book.getImageFront()+"\" alt=\"#\" class=\"img-fluid\">\n" +
                     "                                    <h3 class=\"px-4\"> "+book.getName()+" </h3>\n" +
-                    "                                    <h5 class=\"px-4\">Tác giả: "+book.getAuthor().getName()+"</h5>\n" + builder.toString() +
+                    "                                    <h5 class=\"px-4\">Tác giả: "+(book.getAuthor() == null ? "Chưa có" : book.getAuthor().getName())+"</h5>\n" + builder.toString() +
                     "                                    <p  class=\"px-4 pb-2\">Giá\n" +
                     "                                        <span class=\"book-price\">"+book.getPrice()+"</span>đ\n" +
                     "                                    </p>\n" +

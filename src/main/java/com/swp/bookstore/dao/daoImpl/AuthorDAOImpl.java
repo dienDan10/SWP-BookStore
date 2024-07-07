@@ -38,7 +38,7 @@ public class AuthorDAOImpl implements AuthorDAO {
     public Author findAuthorByName(String name) {
         EntityManager em = JPAUtil.getEntityManager();
         TypedQuery<Author> query = em.createQuery("select a from Author a where lower(a.name) = :name", Author.class);
-        query.setParameter("name", name.toLowerCase());
+        query.setParameter("name", name.trim().toLowerCase());
         Author author = null;
         try {
             author = query.getSingleResult();

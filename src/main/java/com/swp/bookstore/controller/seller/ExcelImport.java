@@ -1,5 +1,6 @@
 package com.swp.bookstore.controller.seller;
 
+import com.swp.bookstore.entity.Author;
 import com.swp.bookstore.entity.Book;
 import com.swp.bookstore.service.AuthorService;
 import com.swp.bookstore.service.BookService;
@@ -22,7 +23,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.*;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @WebServlet(name="ExcelImport", urlPatterns = "/excel-import")
@@ -87,11 +87,8 @@ public class ExcelImport extends HttpServlet {
                 Cell backImgCell = row.getCell(11);
 
                 String bookName = bookNameCell.getStringCellValue();
-                if (bookName == null || bookName.equals("")) { // break the loop because no more row to read
-                    break;
-                }
                 String description = descriptionCell.getStringCellValue();
-                String publishDate = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(publishDateCell.getLocalDateTimeCellValue());
+                String publishDate = publishDateCell.getStringCellValue();
                 String authorName = authorNameCell.getStringCellValue();
                 String publisherName = publisherNameCell.getStringCellValue();
                 String categoryName = categoryNameCell.getStringCellValue();
@@ -102,28 +99,20 @@ public class ExcelImport extends HttpServlet {
                 String frontImg = Paths.get(frontImgCell.getStringCellValue()).getFileName().toString();
                 String backImg = Paths.get(backImgCell.getStringCellValue()).getFileName().toString();
 
-                try {
-                    // Save the image if it was uploaded
-                    if (imageFileMap.containsKey(frontImg)) {
-                        Part imagePart = imageFileMap.get(frontImg);
-                        frontImg = saveImage(imagePart, req.getServletContext().getRealPath("/img"));
-                    }
-
-                    if (imageFileMap.containsKey(backImg)) {
-                        Part imagePart = imageFileMap.get(backImg);
-                        backImg = saveImage(imagePart, req.getServletContext().getRealPath("/img"));
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    System.out.println(e.getMessage());
-                }
-
                 // create book
                 Book book = new Book();
                 book.setName(bookName);
                 book.setDescription(description);
                 book.setPublishedDate(publishDate);
-                book.setAuthor(authorService.findAuthorByName(authorName));
+                //Create or Get Author (Add book will automatically add new author)
+                Author author = authorService.findAuthorByName(authorName);
+                if (author == null) { //Create new author
+                    author = new Author();
+                    author.setName(authorName);
+                    authorService.addAuthor(author);
+                    author = authorService.findAuthorByName(authorName);
+                }
+                book.setAuthor(author);
                 book.setCategory(categoryService.findByName(categoryName));
                 book.setPublisher(publisherService.findByName(publisherName));
                 book.setQuantity(quantity);
@@ -144,7 +133,28 @@ public class ExcelImport extends HttpServlet {
         }
 
         // save books
-        books.forEach(book -> bookService.addBook(book));
+        for (Book book : books) {
+            String frontImg = book.getImageFront();
+            String backImg = book.getImageBack();
+            try {
+                    // Save the image if it was uploaded
+                    if (imageFileMap.containsKey(frontImg)) {
+                        Part imagePart = imageFileMap.get(frontImg);
+                        frontImg = saveImage(imagePart, req.getServletContext().getRealPath("/img"));
+                    }
+
+                    if (imageFileMap.containsKey(backImg)) {
+                        Part imagePart = imageFileMap.get(backImg);
+                        backImg = saveImage(imagePart, req.getServletContext().getRealPath("/img"));
+                    }
+            } catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.println(e.getMessage());
+            }
+            book.setImageFront(frontImg);
+            book.setImageBack(backImg);
+            bookService.addBook(book);
+        }
         session.setAttribute("successMsg", "Lưu sách thành công!");
         resp.sendRedirect(req.getContextPath() +  "/manage-product");
     }

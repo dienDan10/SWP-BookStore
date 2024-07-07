@@ -72,7 +72,15 @@
                     <div class="d-flex flex-row align-items-center justify-content-between flex-row">
                         <div> </div><div> </div>
                         <h5 class="mb-0 mr-lg-5">
-                            <a href="${context}/search-by-author?authorId=${book.author.id}" class="author-name">${book.author.name}</a>
+                            <c:choose>
+                                <c:when test="${not empty book.author}">
+                                    Tác giả: <a href="${context}/search-by-author?authorId=${book.author.id}" class="author-name">${book.author.name}</a>
+                                </c:when>
+                                <c:otherwise>
+                                    Tác giả: Chưa có
+                                </c:otherwise>
+                            </c:choose>
+
                         </h5>
                         <div class="d-inline-block" style="font-size: 10px;">
                             <span style="font-size: 12px;">Đánh giá: </span>
@@ -100,7 +108,7 @@
                             <tbody>
                             <tr>
                                 <td>Nhà Xuất Bản</td>
-                                <td>${book.publisher.name}</td>
+                                <td>${not empty book.publisher ? book.publisher.name : "Chưa có"}</td>
                             </tr>
                             <tr>
                                 <td>Ngày xuất bản</td>
@@ -108,7 +116,7 @@
                             </tr>
                             <tr>
                                 <td>Thể loại</td>
-                                <td>${book.category.name}</td>
+                                <td>${not empty book.category ? book.category.name : "Chưa có"}</td>
                             </tr>
                             <tr>
                                 <td>Mô tả</td>
@@ -145,6 +153,9 @@
                                         </c:when>
                                         <c:when test="${book.quantity == 0}">
                                             <h5>Sản phẩm hiện đang hết hàng</h5>
+                                        </c:when>
+                                        <c:when test="${user.hasRole('SELLER')}">
+                                            <h5>Tài khoàn bạn đang sử dụng không hỗ trợ chức năng mua hàng.</h5>
                                         </c:when>
                                         <c:otherwise>
                                             <button class="btn_3 btn_add_to_cart">add to cart</button>
